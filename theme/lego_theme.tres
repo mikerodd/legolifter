@@ -1,0 +1,93 @@
+[gd_resource type="Theme" load_steps=12 format=3 uid="uid://csttegjq0h4hc"]
+
+[ext_resource type="FontFile" uid="uid://bpam5iq3asedj" path="res://theme/chalet_londonnineteensixty.otf" id="1_msykr"]
+[ext_resource type="Texture2D" uid="uid://b01qc4r7ancqa" path="res://textures/panel.png" id="2_26ypu"]
+[ext_resource type="Texture2D" uid="uid://dxp41xjcxh3um" path="res://textures/mini_panel.png" id="2_c5rhs"]
+[ext_resource type="Texture2D" uid="uid://cnrwwicfhmsug" path="res://textures/button1.png" id="3_6gj1h"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_6gj1h"]
+border_width_left = 7
+border_width_top = 7
+border_width_right = 7
+border_width_bottom = 7
+border_color = Color(0.89423, 0.086022, 9.62615e-08, 1)
+border_blend = true
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_26ypu"]
+content_margin_left = 5.0
+content_margin_top = 5.0
+content_margin_right = 5.0
+content_margin_bottom = 5.0
+bg_color = Color(0.506096, 0.537362, 0.521737, 1)
+border_width_left = 5
+border_width_top = 5
+border_width_right = 5
+border_width_bottom = 5
+border_blend = true
+corner_radius_top_left = 2
+corner_radius_top_right = 2
+corner_radius_bottom_right = 2
+corner_radius_bottom_left = 2
+shadow_color = Color(0.299547, 0.299547, 0.299547, 0.6)
+shadow_size = 5
+shadow_offset = Vector2(3, 3)
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_26ypu"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_hqdjb"]
+texture = ExtResource("2_c5rhs")
+texture_margin_left = 64.0
+texture_margin_right = 62.0
+axis_stretch_vertical = 2
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_26ypu"]
+texture = ExtResource("2_26ypu")
+texture_margin_left = 54.0
+texture_margin_right = 54.0
+axis_stretch_vertical = 2
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_c5rhs"]
+bg_color = Color(0.808011, 0.176349, 0.152895, 1)
+border_width_left = 8
+border_width_top = 8
+border_width_right = 8
+border_width_bottom = 8
+border_color = Color(0.804089, 0.176349, 0.152895, 1)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_6gj1h"]
+texture = ExtResource("3_6gj1h")
+texture_margin_left = 64.0
+texture_margin_right = 62.0
+
+[resource]
+default_font = ExtResource("1_msykr")
+Button/colors/font_color = Color(0.800183, 0.176349, 0.152895, 1)
+Button/font_sizes/font_size = 20
+Button/fonts/font = ExtResource("1_msykr")
+Button/styles/hover = SubResource("StyleBoxFlat_6gj1h")
+Button/styles/normal = SubResource("StyleBoxFlat_26ypu")
+Label/colors/font_color = Color(0.815824, 0.234974, 0.211521, 1)
+Label/colors/font_outline_color = Color(0, 0, 0, 1)
+Label/constants/line_spacing = 3
+Label/constants/outline_size = 0
+Label/constants/shadow_offset_x = 1
+Label/constants/shadow_offset_y = 1
+Label/constants/shadow_outline_size = 1
+Label/font_sizes/font_size = 16
+Label/fonts/font = ExtResource("1_msykr")
+Label/styles/normal = SubResource("StyleBoxEmpty_26ypu")
+MiniPanel/base_type = &"PanelContainer"
+MiniPanel/styles/panel = SubResource("StyleBoxTexture_hqdjb")
+PanelContainer/styles/panel = SubResource("StyleBoxTexture_26ypu")
+ScoreLabel/base_type = &"Label"
+ScoreLabel/colors/font_color = Color(1, 1, 1, 1)
+ScoreLabel/constants/outline_size = 7
+ScoreLabel/font_sizes/font_size = 29
+ScoreLabel/fonts/font = ExtResource("1_msykr")
+ScoreLabel/styles/normal = SubResource("StyleBoxFlat_c5rhs")
+SmallPanel/base_type = &"PanelContainer"
+SmallPanel/styles/panel = SubResource("StyleBoxTexture_6gj1h")
