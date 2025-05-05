@@ -1,0 +1,9 @@
+[gd_resource type="ShaderMaterial" load_steps=2 format=3 uid="uid://em14ienv7cwv"]
+
+[ext_resource type="Shader" uid="uid://dhaohx0gvne4r" path="res://shaders/shader_explosion_cloud.tres" id="1_brtgb"]
+
+[resource]
+render_priority = 0
+shader = ExtResource("1_brtgb")
+shader_parameter/cloud_speed = 1.0
+shader_parameter/cloud_intensity = 0.21
