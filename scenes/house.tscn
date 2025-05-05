@@ -1,0 +1,134 @@
+[gd_scene load_steps=16 format=3 uid="uid://c3jjxg87rvyhs"]
+
+[ext_resource type="Script" uid="uid://44iusi8spl7d" path="res://scripts/main_scene/house.gd" id="1_qtlar"]
+[ext_resource type="PackedScene" uid="uid://cwecakeec8hdj" path="res://scenes/hostage.tscn" id="2_f74lx"]
+[ext_resource type="PackedScene" uid="uid://biinplawy7khb" path="res://import/house2-destroyed.glb" id="2_se78b"]
+[ext_resource type="Texture2D" uid="uid://86m0lrlhv6q5" path="res://textures/particle_sprite_smoke.webp" id="3_rk7hg"]
+[ext_resource type="PackedScene" uid="uid://br1kbj0yuakm4" path="res://import/house2.glb" id="3_se78b"]
+[ext_resource type="PackedScene" uid="uid://lskm5tbedisk" path="res://scenes/lego_destroyer.tscn" id="5_3bgk5"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_qtlar"]
+size = Vector3(2.31264, 2.24554, 5.07672)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_se78b"]
+size = Vector3(1.0933, 0.980469, 5.07672)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_rk7hg"]
+transparency = 1
+vertex_color_use_as_albedo = true
+albedo_color = Color(0.573388, 0.577925, 0.535726, 1)
+albedo_texture = ExtResource("3_rk7hg")
+billboard_mode = 3
+particles_anim_h_frames = 8
+particles_anim_v_frames = 8
+particles_anim_loop = false
+grow_amount = 7.0
+proximity_fade_enabled = true
+
+[sub_resource type="Curve" id="Curve_se78b"]
+_data = [Vector2(0.0503597, 0), 0.0, 0.0, 0, 0, Vector2(1, 0.990342), 0.0433062, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_3bgk5"]
+curve = SubResource("Curve_se78b")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_f74lx"]
+gravity = Vector3(0, 1.5, 0)
+scale_min = 20.0
+scale_max = 30.0
+scale_curve = SubResource("CurveTexture_3bgk5")
+anim_speed_min = 1.0
+anim_speed_max = 3.0
+anim_offset_max = 0.1
+turbulence_enabled = true
+turbulence_noise_strength = 0.5
+turbulence_noise_scale = 5.0
+turbulence_noise_speed = Vector3(0, 2, 0)
+turbulence_noise_speed_random = 0.82
+turbulence_influence_min = 0.01
+
+[sub_resource type="QuadMesh" id="QuadMesh_ptc3g"]
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_rk7hg"]
+gravity = Vector3(0, 1, 0)
+scale_min = 20.0
+scale_max = 30.0
+scale_curve = SubResource("CurveTexture_3bgk5")
+anim_speed_min = 1.0
+anim_speed_max = 3.0
+anim_offset_max = 0.1
+turbulence_enabled = true
+turbulence_noise_strength = 0.5
+turbulence_noise_scale = 5.0
+turbulence_noise_speed = Vector3(0, 2, 0)
+turbulence_noise_speed_random = 0.82
+turbulence_influence_min = 0.01
+
+[sub_resource type="Curve3D" id="Curve3D_f74lx"]
+_data = {
+"points": PackedVector3Array(0, 0, 0, 0, 0, 0, -0.0306545, 0.071133, -0.236238, 0, 0, 0, 0, 0, 0, -0.0165952, 0.071133, 0.0871246, 0.113998, 0.0406494, -0.0986328, -0.113998, -0.0406494, 0.0986328, -1.31618, -0.342139, 0.250479, -0.236141, 0.00655961, -0.185181, 0.236141, -0.00655961, 0.185181, -1.31541, -0.371657, 1.15569, 0, 0, 0, 0, 0, 0, 0.551928, -0.381, 1.60405),
+"tilts": PackedFloat32Array(0, 0, 0, 0, 0)
+}
+point_count = 5
+up_vector_enabled = false
+
+[node name="House" type="StaticBody3D" groups=["houses"]]
+collision_layer = 32
+collision_mask = 153
+script = ExtResource("1_qtlar")
+destroyer_np = NodePath("LegoDestroyer")
+hostage_scene = ExtResource("2_f74lx")
+broken_model = ExtResource("2_se78b")
+
+[node name="house2" parent="." instance=ExtResource("3_se78b")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.990753, 0, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.44667, 1.1611, 0.995148)
+shape = SubResource("BoxShape3D_qtlar")
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.191256, 0.490961, 0.995148)
+shape = SubResource("BoxShape3D_se78b")
+
+[node name="part1" type="GPUParticles3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.37751, 0.271185, -0.423462)
+material_override = SubResource("StandardMaterial3D_rk7hg")
+emitting = false
+amount = 16
+lifetime = 4.0
+process_material = SubResource("ParticleProcessMaterial_f74lx")
+draw_pass_1 = SubResource("QuadMesh_ptc3g")
+
+[node name="part2" type="GPUParticles3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.10061, 0.363235, -0.423462)
+material_override = SubResource("StandardMaterial3D_rk7hg")
+emitting = false
+amount = 16
+lifetime = 4.0
+process_material = SubResource("ParticleProcessMaterial_rk7hg")
+draw_pass_1 = SubResource("QuadMesh_ptc3g")
+
+[node name="HostageTimer" type="Timer" parent="."]
+
+[node name="WayOut" type="Path3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.196247, 0.382358, -0.424734)
+curve = SubResource("Curve3D_f74lx")
+
+[node name="BasePath" type="PathFollow3D" parent="WayOut"]
+transform = Transform3D(-0.999047, 0, -0.0434366, 0, 0.999988, 0, 0.0434369, 0, -0.999039, -0.0306545, 0.071133, -0.236238)
+
+[node name="LegoDestroyer" parent="." instance=ExtResource("5_3bgk5")]
+destroy_model = ExtResource("2_se78b")
+initial_model_np = NodePath("../house2")
+
+[node name="CenterOfExplosion" parent="LegoDestroyer" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.27395, 0.435318, 0)
+
+[node name="PostWayOut" type="Node3D" parent="."]
+
+[connection signal="destroy" from="." to="LegoDestroyer" method="destroy"]
+[connection signal="timeout" from="HostageTimer" to="." method="_on_timer_timeout"]
+[connection signal="destroy_begin" from="LegoDestroyer" to="." method="_on_lego_destroyer_destroy_begin"]
+
+[editable path="LegoDestroyer"]

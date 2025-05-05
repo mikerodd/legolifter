@@ -1,0 +1,138 @@
+[gd_resource type="Resource" script_class="StateMachine" load_steps=22 format=3 uid="uid://blpisoqe535ym"]
+
+[ext_resource type="Script" uid="uid://c6k7m1b50ks2j" path="res://addons/imjp94.yafsm/src/states/StateMachine.gd" id="1_mrllr"]
+[ext_resource type="Script" uid="uid://6xtawmi3oxq8" path="res://addons/imjp94.yafsm/src/states/State.gd" id="2_uwsoo"]
+[ext_resource type="Script" uid="uid://lt0dig07oj4a" path="res://addons/imjp94.yafsm/src/transitions/Transition.gd" id="3_hdyb2"]
+[ext_resource type="Script" uid="uid://xj1j8owjucly" path="res://addons/imjp94.yafsm/src/conditions/Condition.gd" id="4_ojcey"]
+
+[sub_resource type="Resource" id="Resource_injer"]
+script = ExtResource("2_uwsoo")
+name = "Entry"
+metadata/graph_offset = Vector2(323, 260)
+
+[sub_resource type="Resource" id="Resource_tte4e"]
+script = ExtResource("2_uwsoo")
+name = "FacingFront"
+metadata/graph_offset = Vector2(669.5, 400)
+
+[sub_resource type="Resource" id="Resource_1laer"]
+script = ExtResource("2_uwsoo")
+name = "FacingLeft"
+metadata/graph_offset = Vector2(814.5, 260)
+
+[sub_resource type="Resource" id="Resource_762nf"]
+script = ExtResource("2_uwsoo")
+name = "FacingRight"
+metadata/graph_offset = Vector2(529.5, 260)
+
+[sub_resource type="Resource" id="Resource_i2ska"]
+script = ExtResource("3_hdyb2")
+from = "Entry"
+to = "FacingRight"
+conditions = {}
+priority = 0
+
+[sub_resource type="Resource" id="Resource_ds5n3"]
+script = ExtResource("4_ojcey")
+name = "face_left"
+
+[sub_resource type="Resource" id="Resource_3i02h"]
+script = ExtResource("3_hdyb2")
+from = "FacingFront"
+to = "FacingLeft"
+conditions = {
+"face_left": SubResource("Resource_ds5n3")
+}
+priority = 0
+
+[sub_resource type="Resource" id="Resource_aa5fp"]
+script = ExtResource("4_ojcey")
+name = "face_right"
+
+[sub_resource type="Resource" id="Resource_igxil"]
+script = ExtResource("3_hdyb2")
+from = "FacingFront"
+to = "FacingRight"
+conditions = {
+"face_right": SubResource("Resource_aa5fp")
+}
+priority = 0
+
+[sub_resource type="Resource" id="Resource_ulr51"]
+script = ExtResource("4_ojcey")
+name = "face_front"
+
+[sub_resource type="Resource" id="Resource_ywd4v"]
+script = ExtResource("3_hdyb2")
+from = "FacingLeft"
+to = "FacingFront"
+conditions = {
+"face_front": SubResource("Resource_ulr51")
+}
+priority = 0
+
+[sub_resource type="Resource" id="Resource_bpi17"]
+script = ExtResource("4_ojcey")
+name = "face_right"
+
+[sub_resource type="Resource" id="Resource_rq5yn"]
+script = ExtResource("3_hdyb2")
+from = "FacingLeft"
+to = "FacingRight"
+conditions = {
+"face_right": SubResource("Resource_bpi17")
+}
+priority = 0
+
+[sub_resource type="Resource" id="Resource_tv4xo"]
+script = ExtResource("4_ojcey")
+name = "face_front"
+
+[sub_resource type="Resource" id="Resource_jpdut"]
+script = ExtResource("3_hdyb2")
+from = "FacingRight"
+to = "FacingFront"
+conditions = {
+"face_front": SubResource("Resource_tv4xo")
+}
+priority = 0
+
+[sub_resource type="Resource" id="Resource_0g57c"]
+script = ExtResource("4_ojcey")
+name = "face_left"
+
+[sub_resource type="Resource" id="Resource_ij05x"]
+script = ExtResource("3_hdyb2")
+from = "FacingRight"
+to = "FacingLeft"
+conditions = {
+"face_left": SubResource("Resource_0g57c")
+}
+priority = 0
+
+[resource]
+script = ExtResource("1_mrllr")
+states = {
+"Entry": SubResource("Resource_injer"),
+"FacingFront": SubResource("Resource_tte4e"),
+"FacingLeft": SubResource("Resource_1laer"),
+"FacingRight": SubResource("Resource_762nf")
+}
+transitions = {
+"Entry": {
+"FacingRight": SubResource("Resource_i2ska")
+},
+"FacingFront": {
+"FacingLeft": SubResource("Resource_3i02h"),
+"FacingRight": SubResource("Resource_igxil")
+},
+"FacingLeft": {
+"FacingFront": SubResource("Resource_ywd4v"),
+"FacingRight": SubResource("Resource_rq5yn")
+},
+"FacingRight": {
+"FacingFront": SubResource("Resource_jpdut"),
+"FacingLeft": SubResource("Resource_ij05x")
+}
+}
+name = ""

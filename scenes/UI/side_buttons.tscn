@@ -1,0 +1,60 @@
+[gd_scene load_steps=3 format=3 uid="uid://cj0dshpi3rnja"]
+
+[ext_resource type="Script" uid="uid://d1lp1mfegknyv" path="res://scripts/UI/side_buttons.gd" id="1_ew542"]
+[ext_resource type="Theme" uid="uid://csttegjq0h4hc" path="res://theme/lego_theme.tres" id="1_puxpd"]
+
+[node name="SideButtons" type="Control"]
+layout_mode = 3
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = -127.73
+offset_right = -127.73
+grow_vertical = 2
+theme = ExtResource("1_puxpd")
+theme_type_variation = &"SmallPanel"
+script = ExtResource("1_ew542")
+myself = NodePath(".")
+
+[node name="PanelContainer" type="PanelContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_type_variation = &"SmallPanel"
+metadata/_edit_use_anchors_ = true
+
+[node name="HBoxContainer" type="HBoxContainer" parent="PanelContainer"]
+layout_mode = 2
+
+[node name="Control" type="Control" parent="PanelContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="GridContainer" type="GridContainer" parent="PanelContainer/HBoxContainer"]
+layout_mode = 2
+
+[node name="Instructions" type="Button" parent="PanelContainer/HBoxContainer/GridContainer"]
+layout_mode = 2
+text = "Instructions"
+
+[node name="Exit" type="Button" parent="PanelContainer/HBoxContainer/GridContainer"]
+layout_mode = 2
+theme = ExtResource("1_puxpd")
+text = "Exit"
+
+[node name="Play" type="Button" parent="PanelContainer/HBoxContainer/GridContainer"]
+layout_mode = 2
+text = "Play"
+
+[node name="Control2" type="Control" parent="PanelContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[connection signal="pressed" from="PanelContainer/HBoxContainer/GridContainer/Instructions" to="." method="_on_instructions_pressed"]
+[connection signal="pressed" from="PanelContainer/HBoxContainer/GridContainer/Exit" to="." method="_on_exit_pressed"]
+[connection signal="pressed" from="PanelContainer/HBoxContainer/GridContainer/Play" to="." method="_on_play_pressed"]

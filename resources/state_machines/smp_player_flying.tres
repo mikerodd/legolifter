@@ -1,0 +1,180 @@
+[gd_resource type="Resource" script_class="StateMachine" load_steps=28 format=3 uid="uid://bvap80v44apuu"]
+
+[ext_resource type="Script" uid="uid://c6k7m1b50ks2j" path="res://addons/imjp94.yafsm/src/states/StateMachine.gd" id="1_6ye7p"]
+[ext_resource type="Script" uid="uid://6xtawmi3oxq8" path="res://addons/imjp94.yafsm/src/states/State.gd" id="2_0yodg"]
+[ext_resource type="Script" uid="uid://lt0dig07oj4a" path="res://addons/imjp94.yafsm/src/transitions/Transition.gd" id="3_78j57"]
+[ext_resource type="Script" uid="uid://xj1j8owjucly" path="res://addons/imjp94.yafsm/src/conditions/Condition.gd" id="4_nwamh"]
+
+[sub_resource type="Resource" id="Resource_i4ail"]
+script = ExtResource("2_0yodg")
+name = "Destroyed"
+metadata/graph_offset = Vector2(654.5, 180)
+
+[sub_resource type="Resource" id="Resource_a8ls1"]
+script = ExtResource("2_0yodg")
+name = "Entry"
+metadata/graph_offset = Vector2(303, 300)
+
+[sub_resource type="Resource" id="Resource_a38lo"]
+script = ExtResource("2_0yodg")
+name = "Exit"
+metadata/graph_offset = Vector2(1063, 220)
+
+[sub_resource type="Resource" id="Resource_qfm1y"]
+script = ExtResource("2_0yodg")
+name = "Landed"
+metadata/graph_offset = Vector2(503, 300)
+
+[sub_resource type="Resource" id="Resource_fulsm"]
+script = ExtResource("2_0yodg")
+name = "Landing"
+metadata/graph_offset = Vector2(801.5, 300)
+
+[sub_resource type="Resource" id="Resource_4r5pv"]
+script = ExtResource("2_0yodg")
+name = "OnFly"
+metadata/graph_offset = Vector2(803, 60)
+
+[sub_resource type="Resource" id="Resource_60mlk"]
+script = ExtResource("2_0yodg")
+name = "TakeOff"
+metadata/graph_offset = Vector2(503, 60)
+
+[sub_resource type="Resource" id="Resource_4ni07"]
+script = ExtResource("3_78j57")
+from = "Entry"
+to = "Landed"
+conditions = {}
+priority = 0
+
+[sub_resource type="Resource" id="Resource_ujl30"]
+script = ExtResource("4_nwamh")
+name = "is_destroyed"
+
+[sub_resource type="Resource" id="Resource_31cv2"]
+script = ExtResource("3_78j57")
+from = "Landed"
+to = "Destroyed"
+conditions = {
+"is_destroyed": SubResource("Resource_ujl30")
+}
+priority = 0
+
+[sub_resource type="Resource" id="Resource_l71n6"]
+script = ExtResource("4_nwamh")
+name = "move_up"
+
+[sub_resource type="Resource" id="Resource_ke2ow"]
+script = ExtResource("3_78j57")
+from = "Landed"
+to = "TakeOff"
+conditions = {
+"move_up": SubResource("Resource_l71n6")
+}
+priority = 0
+
+[sub_resource type="Resource" id="Resource_hax0n"]
+script = ExtResource("4_nwamh")
+name = "is_destroyed"
+
+[sub_resource type="Resource" id="Resource_t4otl"]
+script = ExtResource("3_78j57")
+from = "Landing"
+to = "Destroyed"
+conditions = {
+"is_destroyed": SubResource("Resource_hax0n")
+}
+priority = 0
+
+[sub_resource type="Resource" id="Resource_bj30b"]
+script = ExtResource("4_nwamh")
+name = "landed"
+
+[sub_resource type="Resource" id="Resource_jc3p3"]
+script = ExtResource("3_78j57")
+from = "Landing"
+to = "Landed"
+conditions = {
+"landed": SubResource("Resource_bj30b")
+}
+priority = 0
+
+[sub_resource type="Resource" id="Resource_487ah"]
+script = ExtResource("4_nwamh")
+name = "is_destroyed"
+
+[sub_resource type="Resource" id="Resource_md1ol"]
+script = ExtResource("3_78j57")
+from = "OnFly"
+to = "Destroyed"
+conditions = {
+"is_destroyed": SubResource("Resource_487ah")
+}
+priority = 0
+
+[sub_resource type="Resource" id="Resource_wnwbv"]
+script = ExtResource("4_nwamh")
+name = "landing"
+
+[sub_resource type="Resource" id="Resource_gl8cc"]
+script = ExtResource("3_78j57")
+from = "OnFly"
+to = "Landing"
+conditions = {
+"landing": SubResource("Resource_wnwbv")
+}
+priority = 0
+
+[sub_resource type="Resource" id="Resource_dt7fs"]
+script = ExtResource("4_nwamh")
+name = "is_destroyed"
+
+[sub_resource type="Resource" id="Resource_wqfne"]
+script = ExtResource("3_78j57")
+from = "TakeOff"
+to = "Destroyed"
+conditions = {
+"is_destroyed": SubResource("Resource_dt7fs")
+}
+priority = 0
+
+[sub_resource type="Resource" id="Resource_pf23h"]
+script = ExtResource("3_78j57")
+from = "TakeOff"
+to = "OnFly"
+conditions = {}
+priority = 0
+
+[resource]
+script = ExtResource("1_6ye7p")
+states = {
+"Destroyed": SubResource("Resource_i4ail"),
+"Entry": SubResource("Resource_a8ls1"),
+"Exit": SubResource("Resource_a38lo"),
+"Landed": SubResource("Resource_qfm1y"),
+"Landing": SubResource("Resource_fulsm"),
+"OnFly": SubResource("Resource_4r5pv"),
+"TakeOff": SubResource("Resource_60mlk")
+}
+transitions = {
+"Entry": {
+"Landed": SubResource("Resource_4ni07")
+},
+"Landed": {
+"Destroyed": SubResource("Resource_31cv2"),
+"TakeOff": SubResource("Resource_ke2ow")
+},
+"Landing": {
+"Destroyed": SubResource("Resource_t4otl"),
+"Landed": SubResource("Resource_jc3p3")
+},
+"OnFly": {
+"Destroyed": SubResource("Resource_md1ol"),
+"Landing": SubResource("Resource_gl8cc")
+},
+"TakeOff": {
+"Destroyed": SubResource("Resource_wqfne"),
+"OnFly": SubResource("Resource_pf23h")
+}
+}
+name = ""

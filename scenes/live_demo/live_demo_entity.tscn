@@ -1,0 +1,20 @@
+[gd_scene load_steps=5 format=3 uid="uid://bnuo2trawkafx"]
+
+[ext_resource type="Script" uid="uid://dk510jgkh0p4u" path="res://scenes/live_demo/live_demo_entity.gd" id="1_4v18t"]
+[ext_resource type="PackedScene" uid="uid://d16aaokfgtucc" path="res://scenes/live_demo/live_component.tscn" id="2_5qyu3"]
+[ext_resource type="PackedScene" uid="uid://btqus0edpuqai" path="res://scenes/live_demo/record_play_component.tscn" id="3_1qurl"]
+[ext_resource type="PackedScene" uid="uid://dpo2xyc4fcjcm" path="res://scenes/live_demo/record_live_component.tscn" id="4_rng8l"]
+
+[node name="LiveDemoEntity" type="Node"]
+script = ExtResource("1_4v18t")
+use_active_signal = true
+message_bus = "Messenger"
+set_active_signal_name = "set_live_demo_mode"
+
+[node name="live" parent="." instance=ExtResource("2_5qyu3")]
+
+[node name="record" parent="." instance=ExtResource("4_rng8l")]
+
+[node name="demo" parent="." instance=ExtResource("3_1qurl")]
+
+[connection signal="recorder_finished" from="record" to="." method="_on_record_recorder_finished"]

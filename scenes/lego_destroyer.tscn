@@ -1,0 +1,9 @@
+[gd_scene load_steps=2 format=3 uid="uid://lskm5tbedisk"]
+
+[ext_resource type="Script" uid="uid://bybeojwio32dw" path="res://scripts/lego_destroyer.gd" id="1_kej01"]
+
+[node name="LegoDestroyer" type="Node"]
+script = ExtResource("1_kej01")
+center_of_explosion_np = NodePath("CenterOfExplosion")
+
+[node name="CenterOfExplosion" type="Marker3D" parent="."]

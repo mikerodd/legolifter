@@ -1,0 +1,144 @@
+{
+	"game_camera": {
+		"@test": 42,
+		"position": "Vector3(50.8309, 4.073, 32.23)",
+		"version": "1.0.0"
+	},
+	"game_variables": {
+		"current_level": 0,
+		"dead_count": 0,
+		"detained_count": 0,
+		"heli_count": 0,
+		"heli_lives": 5,
+		"out_count": 3,
+		"saved_count": 2,
+		"version": "1.0.0"
+	},
+	"houses_storage": {
+		"house_count": 1,
+		"houses": [
+			{
+				"current_hostage_count": 0,
+				"hostages": [],
+				"is_destroyed": true,
+				"name": "House4",
+				"position": "Vector3(-70, 0, 0)",
+				"timer_is_stopped": true
+			}
+		],
+		"version": "1.0.0"
+	},
+	"player_node": {
+		"land_altitude": 0.304,
+		"name": "",
+		"player": {
+			"#do_initiate": "[\"NewFlyingSMP\", \"NewRotatingSMP\"]",
+			"@flying_smp": {
+				"_is_param_edited": false,
+				"_is_started": true,
+				"_is_update_locked": true,
+				"_local_parameters": "{}",
+				"_parameters": "{}",
+				"_stack": "[\"Entry\", \"Landed\"]",
+				"_was_transited": false,
+				"active": true,
+				"autostart": true,
+				"current": "\"Landed\"",
+				"state_machine": "Resource(\"res://resources/state_machines/smp_player_flying.tres\")",
+				"update_process_mode": 1
+			},
+			"@rotating_smp": {
+				"_is_param_edited": false,
+				"_is_started": true,
+				"_is_update_locked": true,
+				"_local_parameters": "{}",
+				"_parameters": "{}",
+				"_stack": "[\"Entry\", \"FacingLeft\", \"FacingFront\"]",
+				"_was_transited": false,
+				"active": true,
+				"autostart": true,
+				"current": "\"FacingFront\"",
+				"state_machine": "Resource(\"res://resources/state_machines/smp_player_rotating.tres\")",
+				"update_process_mode": 1
+			},
+			"@speed_scale": 0.5,
+			"can_fire": true,
+			"can_play": true,
+			"elapsed_rotate": 6.26666666666665,
+			"is_dead": false,
+			"name": "Player1",
+			"passenger_count": 0,
+			"position": "Vector3(50.93, 0.0284905, 0)",
+			"rotation": "Vector3(0, 0, 0)"
+		},
+		"version": "1.0.0"
+	},
+	"post_office": {
+		"hostages": [
+			{
+				"@progress_ratio": 0.5,
+				"@smp_ia": {
+					"_is_param_edited": false,
+					"_is_started": true,
+					"_is_update_locked": true,
+					"_local_parameters": "{}",
+					"_parameters": "{}",
+					"_stack": "[\"Entry\", \"Entry\", \"Unload\", \"ReachPostOffice\"]",
+					"_was_transited": false,
+					"active": true,
+					"autostart": true,
+					"current": "\"ReachPostOffice\"",
+					"state_machine": "Resource(\"res://resources/state_machines/smp_hostage_ia.tres\")",
+					"update_process_mode": 1
+				},
+				"@where_from": "heli",
+				"global_position": "Vector3(55.8046, 0.0337504, 0.0220249)",
+				"global_rotation": "Vector3(-0.0183418, 2.54695, -0.00417641)",
+				"top_level": false
+			},
+			{
+				"@progress_ratio": 0.0666666701436043,
+				"@smp_ia": {
+					"_is_param_edited": false,
+					"_is_started": true,
+					"_is_update_locked": true,
+					"_local_parameters": "{}",
+					"_parameters": "{}",
+					"_stack": "[\"Entry\", \"Entry\", \"Unload\", \"ReachPostOffice\"]",
+					"_was_transited": false,
+					"active": true,
+					"autostart": true,
+					"current": "\"ReachPostOffice\"",
+					"state_machine": "Resource(\"res://resources/state_machines/smp_hostage_ia.tres\")",
+					"update_process_mode": 1
+				},
+				"@where_from": "heli",
+				"global_position": "Vector3(54.9722, 0.0248394, 0.400526)",
+				"global_rotation": "Vector3(-0.0155668, 1.53343, 0.00436566)",
+				"top_level": false
+			},
+			{
+				"@progress_ratio": 0.0,
+				"@smp_ia": {
+					"_is_param_edited": false,
+					"_is_started": true,
+					"_is_update_locked": true,
+					"_local_parameters": "{}",
+					"_parameters": "{}",
+					"_stack": "[\"Entry\", \"Entry\", \"Unload\"]",
+					"_was_transited": false,
+					"active": true,
+					"autostart": true,
+					"current": "\"Unload\"",
+					"state_machine": "Resource(\"res://resources/state_machines/smp_hostage_ia.tres\")",
+					"update_process_mode": 1
+				},
+				"@where_from": "heli",
+				"global_position": "Vector3(53.0967, 0.0224439, 0.382053)",
+				"global_rotation": "Vector3(-0.0103831, 1.86678, 3.00063e-12)",
+				"top_level": false
+			}
+		],
+		"version": "1.0.0"
+	}
+}

@@ -1,0 +1,116 @@
+[gd_resource type="Resource" script_class="StateMachine" load_steps=19 format=3 uid="uid://dnag2y7ad5phm"]
+
+[ext_resource type="Script" uid="uid://c6k7m1b50ks2j" path="res://addons/imjp94.yafsm/src/states/StateMachine.gd" id="1_k1xgu"]
+[ext_resource type="Script" uid="uid://6xtawmi3oxq8" path="res://addons/imjp94.yafsm/src/states/State.gd" id="2_4167t"]
+[ext_resource type="Script" uid="uid://lt0dig07oj4a" path="res://addons/imjp94.yafsm/src/transitions/Transition.gd" id="3_k25m6"]
+[ext_resource type="Script" uid="uid://xj1j8owjucly" path="res://addons/imjp94.yafsm/src/conditions/Condition.gd" id="4_poi8t"]
+
+[sub_resource type="Resource" id="Resource_cs1tg"]
+script = ExtResource("2_4167t")
+name = "Entry"
+metadata/graph_offset = Vector2(263, 200)
+
+[sub_resource type="Resource" id="Resource_2dvfe"]
+script = ExtResource("2_4167t")
+name = "Exit"
+metadata/graph_offset = Vector2(1323, 200)
+
+[sub_resource type="Resource" id="Resource_fdfoy"]
+script = ExtResource("2_4167t")
+name = "FacingFront"
+metadata/graph_offset = Vector2(769.5, 200)
+
+[sub_resource type="Resource" id="Resource_giy8y"]
+script = ExtResource("2_4167t")
+name = "FacingLeft"
+metadata/graph_offset = Vector2(483, 200)
+
+[sub_resource type="Resource" id="Resource_hhpqf"]
+script = ExtResource("2_4167t")
+name = "FacingRight"
+metadata/graph_offset = Vector2(1049.5, 200)
+
+[sub_resource type="Resource" id="Resource_g5jhy"]
+script = ExtResource("3_k25m6")
+from = "Entry"
+to = "FacingLeft"
+conditions = {}
+priority = 0
+
+[sub_resource type="Resource" id="Resource_4gjji"]
+script = ExtResource("4_poi8t")
+name = "front_left"
+
+[sub_resource type="Resource" id="Resource_u2ulf"]
+script = ExtResource("3_k25m6")
+from = "FacingFront"
+to = "FacingLeft"
+conditions = {
+"front_left": SubResource("Resource_4gjji")
+}
+priority = 0
+
+[sub_resource type="Resource" id="Resource_6e8lb"]
+script = ExtResource("4_poi8t")
+name = "front_right"
+
+[sub_resource type="Resource" id="Resource_2gdjj"]
+script = ExtResource("3_k25m6")
+from = "FacingFront"
+to = "FacingRight"
+conditions = {
+"front_right": SubResource("Resource_6e8lb")
+}
+priority = 0
+
+[sub_resource type="Resource" id="Resource_holxr"]
+script = ExtResource("4_poi8t")
+name = "left_front"
+
+[sub_resource type="Resource" id="Resource_mx1m4"]
+script = ExtResource("3_k25m6")
+from = "FacingLeft"
+to = "FacingFront"
+conditions = {
+"left_front": SubResource("Resource_holxr")
+}
+priority = 0
+
+[sub_resource type="Resource" id="Resource_sc3ue"]
+script = ExtResource("4_poi8t")
+name = "right_front"
+
+[sub_resource type="Resource" id="Resource_lxlsd"]
+script = ExtResource("3_k25m6")
+from = "FacingRight"
+to = "FacingFront"
+conditions = {
+"right_front": SubResource("Resource_sc3ue")
+}
+priority = 0
+
+[resource]
+script = ExtResource("1_k1xgu")
+states = {
+"Entry": SubResource("Resource_cs1tg"),
+"Exit": SubResource("Resource_2dvfe"),
+"FacingFront": SubResource("Resource_fdfoy"),
+"FacingLeft": SubResource("Resource_giy8y"),
+"FacingRight": SubResource("Resource_hhpqf")
+}
+transitions = {
+"Entry": {
+"FacingLeft": SubResource("Resource_g5jhy")
+},
+"FacingFront": {
+"FacingLeft": SubResource("Resource_u2ulf"),
+"FacingRight": SubResource("Resource_2gdjj")
+},
+"FacingLeft": {
+"FacingFront": SubResource("Resource_mx1m4")
+},
+"FacingRight": {
+"FacingFront": SubResource("Resource_lxlsd")
+}
+}
+name = ""

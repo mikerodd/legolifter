@@ -1,0 +1,30 @@
+[gd_scene load_steps=5 format=3 uid="uid://t2yaewdbwu2o"]
+
+[ext_resource type="Script" uid="uid://ff75jt3jn0qx" path="res://scripts/track_path.gd" id="1_h7fek"]
+
+[sub_resource type="Curve3D" id="Curve3D_2epmv"]
+_data = {
+"points": PackedVector3Array(0, 0, 0, 0, 0, 0, 0, -1.04, 3.555, 0, 0, 0, 0, 0, 0, 0, -1.014, -3.654, 0, -0.756249, -0.133089, 0, 0.756249, 0.133089, -3.38554e-05, -0.074563, -4.89135, 0, 0.0438859, -1.48956, 0, -0.0438859, 1.48956, 0, 1.238, -2.401, 0, 0, 0, 0, 0, 0, -3.38554e-05, 1.14827, 3.14657, 0, 0.298253, -0.313166, 0, -0.298253, 0.313166, 0, 0.85, 4.563, 0, 0.387729, 0.119301, 0, -0.387729, -0.119301, 0, 0, 4.712, -0.00817871, 0.134298, 0.13459, 0.00817871, -0.134298, -0.13459, 0, -0.933, 4.258, 0.00952148, -0.00675392, 0.133812, -0.00952148, 0.00675392, -0.133812, 0, -1.04, 3.555),
+"tilts": PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0, 0)
+}
+point_count = 9
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ir0vo"]
+albedo_color = Color(0.158005, 0.270859, 0.14408, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_gt1wu"]
+
+[node name="track_path" type="Path3D"]
+curve = SubResource("Curve3D_2epmv")
+script = ExtResource("1_h7fek")
+nb_threads = 26
+offset = 0.86
+speed = 2.0
+
+[node name="thread1" type="PathFollow3D" parent="."]
+transform = Transform3D(0.999846, 0, 0, 0, 0.999859, -0.00360612, 0, 0.00360608, 0.99987, 0, -1.04, 3.555)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="thread1"]
+transform = Transform3D(2, 0, 0, 0, 0.08, 0, 0, 0, 0.7, 0, 0, 0)
+material_override = SubResource("StandardMaterial3D_ir0vo")
+mesh = SubResource("BoxMesh_gt1wu")

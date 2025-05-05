@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://btqus0edpuqai"]
+
+[ext_resource type="Script" uid="uid://lnpblv2xutka" path="res://scenes/live_demo/record_play_component.gd" id="1_6odbm"]
+
+[node name="RecordPlayerComponent" type="Node"]
+script = ExtResource("1_6odbm")

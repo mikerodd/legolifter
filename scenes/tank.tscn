@@ -1,0 +1,337 @@
+[gd_scene load_steps=51 format=3 uid="uid://cp6y14a0vp6su"]
+
+[ext_resource type="Script" uid="uid://bryxgd7iwfj37" path="res://scripts/main_scene/tank.gd" id="1_tkhg2"]
+[ext_resource type="PackedScene" uid="uid://j6hfurql3n5f" path="res://import/tank1.glb" id="2_3iw7i"]
+[ext_resource type="Script" uid="uid://bhy3kpd5pyf7o" path="res://scripts/main_scene/tank_mover.gd" id="2_332hl"]
+[ext_resource type="PackedScene" uid="uid://dp5iqm8rajr6c" path="res://import/tank1_turret.glb" id="3_w2kvd"]
+[ext_resource type="Script" uid="uid://46l00vp06dcr" path="res://addons/imjp94.yafsm/src/StateMachinePlayer.gd" id="3_xyrri"]
+[ext_resource type="PackedScene" uid="uid://b5qd2c1m0vovd" path="res://import/tank1_cannon.glb" id="4_2slht"]
+[ext_resource type="Script" uid="uid://c6k7m1b50ks2j" path="res://addons/imjp94.yafsm/src/states/StateMachine.gd" id="4_3j1bx"]
+[ext_resource type="PackedScene" uid="uid://t2yaewdbwu2o" path="res://scenes/track_path.tscn" id="4_nvimy"]
+[ext_resource type="Script" uid="uid://6xtawmi3oxq8" path="res://addons/imjp94.yafsm/src/states/State.gd" id="5_tgeht"]
+[ext_resource type="Script" uid="uid://lt0dig07oj4a" path="res://addons/imjp94.yafsm/src/transitions/Transition.gd" id="6_ktvdn"]
+[ext_resource type="Script" uid="uid://xj1j8owjucly" path="res://addons/imjp94.yafsm/src/conditions/Condition.gd" id="9_j3d6k"]
+[ext_resource type="Script" uid="uid://blso217oe4a4s" path="res://addons/imjp94.yafsm/src/conditions/BooleanCondition.gd" id="12_2slht"]
+[ext_resource type="PackedScene" uid="uid://bnuo2trawkafx" path="res://scenes/live_demo/live_demo_entity.tscn" id="13_owdos"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_kwxlf"]
+size = Vector3(5.89328, 0.970322, 2.01229)
+
+[sub_resource type="Resource" id="Resource_6khoa"]
+script = ExtResource("5_tgeht")
+name = "Entry"
+metadata/graph_offset = Vector2(-17, 300)
+
+[sub_resource type="Resource" id="Resource_8hgxl"]
+script = ExtResource("5_tgeht")
+name = "Exit"
+metadata/graph_offset = Vector2(896.562, 131.042)
+
+[sub_resource type="Resource" id="Resource_tbi0t"]
+script = ExtResource("5_tgeht")
+name = "FireAtTarget"
+metadata/graph_offset = Vector2(508.5, -120)
+
+[sub_resource type="Resource" id="Resource_cgodk"]
+script = ExtResource("5_tgeht")
+name = "HuntTarget"
+metadata/graph_offset = Vector2(751, 300)
+
+[sub_resource type="Resource" id="Resource_g66np"]
+script = ExtResource("5_tgeht")
+name = "Parking"
+metadata/graph_offset = Vector2(523, 100)
+
+[sub_resource type="Resource" id="Resource_6m5xv"]
+script = ExtResource("5_tgeht")
+name = "Reload"
+metadata/graph_offset = Vector2(143, -120)
+
+[sub_resource type="Resource" id="Resource_ulnvp"]
+script = ExtResource("5_tgeht")
+name = "Scanning"
+metadata/graph_offset = Vector2(138, 300)
+
+[sub_resource type="Resource" id="Resource_0a6e5"]
+script = ExtResource("5_tgeht")
+name = "TargetFound"
+metadata/graph_offset = Vector2(506.5, 440)
+
+[sub_resource type="Resource" id="Resource_0idjk"]
+script = ExtResource("5_tgeht")
+name = "WarningFire"
+metadata/graph_offset = Vector2(968, 300)
+
+[sub_resource type="Resource" id="Resource_bef54"]
+script = ExtResource("6_ktvdn")
+from = "Entry"
+to = "Scanning"
+conditions = {}
+priority = 0
+
+[sub_resource type="Resource" id="Resource_c50an"]
+script = ExtResource("12_2slht")
+value = true
+comparation = 0
+name = "is_parked"
+
+[sub_resource type="Resource" id="Resource_6swvq"]
+script = ExtResource("6_ktvdn")
+from = "FireAtTarget"
+to = "Parking"
+conditions = {
+"is_parked": SubResource("Resource_c50an")
+}
+priority = 0
+
+[sub_resource type="Resource" id="Resource_lvv84"]
+script = ExtResource("6_ktvdn")
+from = "FireAtTarget"
+to = "Reload"
+conditions = {}
+priority = 0
+
+[sub_resource type="Resource" id="Resource_w2kvd"]
+script = ExtResource("9_j3d6k")
+name = "fire_target"
+
+[sub_resource type="Resource" id="Resource_mhehr"]
+script = ExtResource("9_j3d6k")
+name = "turret_aligned"
+
+[sub_resource type="Resource" id="Resource_sqhpl"]
+script = ExtResource("6_ktvdn")
+from = "HuntTarget"
+to = "FireAtTarget"
+conditions = {
+"fire_target": SubResource("Resource_w2kvd"),
+"turret_aligned": SubResource("Resource_mhehr")
+}
+priority = 0
+
+[sub_resource type="Resource" id="Resource_skifl"]
+script = ExtResource("12_2slht")
+value = true
+comparation = 0
+name = "is_parked"
+
+[sub_resource type="Resource" id="Resource_avwk4"]
+script = ExtResource("6_ktvdn")
+from = "HuntTarget"
+to = "Parking"
+conditions = {
+"is_parked": SubResource("Resource_skifl")
+}
+priority = 0
+
+[sub_resource type="Resource" id="Resource_owdos"]
+script = ExtResource("9_j3d6k")
+name = "lost_target"
+
+[sub_resource type="Resource" id="Resource_i2dqb"]
+script = ExtResource("6_ktvdn")
+from = "HuntTarget"
+to = "Scanning"
+conditions = {
+"lost_target": SubResource("Resource_owdos")
+}
+priority = 0
+
+[sub_resource type="Resource" id="Resource_2slht"]
+script = ExtResource("9_j3d6k")
+name = "fire_warning"
+
+[sub_resource type="Resource" id="Resource_fw0y3"]
+script = ExtResource("6_ktvdn")
+from = "HuntTarget"
+to = "WarningFire"
+conditions = {
+"fire_warning": SubResource("Resource_2slht")
+}
+priority = 0
+
+[sub_resource type="Resource" id="Resource_24ko7"]
+script = ExtResource("12_2slht")
+value = false
+comparation = 0
+name = "is_parked"
+
+[sub_resource type="Resource" id="Resource_0ovdi"]
+script = ExtResource("6_ktvdn")
+from = "Parking"
+to = "Scanning"
+conditions = {
+"is_parked": SubResource("Resource_24ko7")
+}
+priority = 0
+
+[sub_resource type="Resource" id="Resource_0yu46"]
+script = ExtResource("9_j3d6k")
+name = "resume_scan"
+
+[sub_resource type="Resource" id="Resource_b45lc"]
+script = ExtResource("6_ktvdn")
+from = "Reload"
+to = "Scanning"
+conditions = {
+"resume_scan": SubResource("Resource_0yu46")
+}
+priority = 0
+
+[sub_resource type="Resource" id="Resource_s5puv"]
+script = ExtResource("12_2slht")
+value = true
+comparation = 0
+name = "is_parked"
+
+[sub_resource type="Resource" id="Resource_id6cm"]
+script = ExtResource("6_ktvdn")
+from = "Scanning"
+to = "Parking"
+conditions = {
+"is_parked": SubResource("Resource_s5puv")
+}
+priority = 0
+
+[sub_resource type="Resource" id="Resource_g746k"]
+script = ExtResource("9_j3d6k")
+name = "found_target"
+
+[sub_resource type="Resource" id="Resource_rcaqt"]
+script = ExtResource("6_ktvdn")
+from = "Scanning"
+to = "TargetFound"
+conditions = {
+"found_target": SubResource("Resource_g746k")
+}
+priority = 0
+
+[sub_resource type="Resource" id="Resource_7hvva"]
+script = ExtResource("9_j3d6k")
+name = "hunt_target"
+
+[sub_resource type="Resource" id="Resource_yalvq"]
+script = ExtResource("6_ktvdn")
+from = "TargetFound"
+to = "HuntTarget"
+conditions = {
+"hunt_target": SubResource("Resource_7hvva")
+}
+priority = 0
+
+[sub_resource type="Resource" id="Resource_824h6"]
+script = ExtResource("9_j3d6k")
+name = "lost_target"
+
+[sub_resource type="Resource" id="Resource_0y7wc"]
+script = ExtResource("6_ktvdn")
+from = "TargetFound"
+to = "Scanning"
+conditions = {
+"lost_target": SubResource("Resource_824h6")
+}
+priority = 0
+
+[sub_resource type="Resource" id="Resource_5mcgb"]
+script = ExtResource("6_ktvdn")
+from = "WarningFire"
+to = "HuntTarget"
+conditions = {}
+priority = 0
+
+[sub_resource type="Resource" id="Resource_001x2"]
+script = ExtResource("4_3j1bx")
+states = {
+"Entry": SubResource("Resource_6khoa"),
+"Exit": SubResource("Resource_8hgxl"),
+"FireAtTarget": SubResource("Resource_tbi0t"),
+"HuntTarget": SubResource("Resource_cgodk"),
+"Parking": SubResource("Resource_g66np"),
+"Reload": SubResource("Resource_6m5xv"),
+"Scanning": SubResource("Resource_ulnvp"),
+"TargetFound": SubResource("Resource_0a6e5"),
+"WarningFire": SubResource("Resource_0idjk")
+}
+transitions = {
+"Entry": {
+"Scanning": SubResource("Resource_bef54")
+},
+"FireAtTarget": {
+"Parking": SubResource("Resource_6swvq"),
+"Reload": SubResource("Resource_lvv84")
+},
+"HuntTarget": {
+"FireAtTarget": SubResource("Resource_sqhpl"),
+"Parking": SubResource("Resource_avwk4"),
+"Scanning": SubResource("Resource_i2dqb"),
+"WarningFire": SubResource("Resource_fw0y3")
+},
+"Parking": {
+"Scanning": SubResource("Resource_0ovdi")
+},
+"Reload": {
+"Scanning": SubResource("Resource_b45lc")
+},
+"Scanning": {
+"Parking": SubResource("Resource_id6cm"),
+"TargetFound": SubResource("Resource_rcaqt")
+},
+"TargetFound": {
+"HuntTarget": SubResource("Resource_yalvq"),
+"Scanning": SubResource("Resource_0y7wc")
+},
+"WarningFire": {
+"HuntTarget": SubResource("Resource_5mcgb")
+}
+}
+name = ""
+
+[node name="Tank" type="CharacterBody3D"]
+collision_layer = 2
+collision_mask = 31
+script = ExtResource("1_tkhg2")
+explo_path = "uid://b18cw4qc2o2ef"
+shell_path = "uid://f1yjxnw08eei"
+align_off = 0.314
+speed = 5.0
+safe_distance = 7.671
+
+[node name="tank_mover" type="Node3D" parent="."]
+script = ExtResource("2_332hl")
+
+[node name="tank1_turret" parent="tank_mover" instance=ExtResource("3_w2kvd")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.0887834, 0)
+
+[node name="cannon_rotator" type="Node3D" parent="tank_mover/tank1_turret"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.895, 0.251)
+
+[node name="tank1_cannon" parent="tank_mover/tank1_turret/cannon_rotator" instance=ExtResource("4_2slht")]
+transform = Transform3D(1, -7.45058e-08, 5.96046e-08, 0, 1, 0, 0, 0, 1, 2.98023e-08, -0.903, -0.269)
+rotation_edit_mode = 2
+
+[node name="cannon_muzzle" type="Marker3D" parent="tank_mover/tank1_turret/cannon_rotator"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.45058e-09, -0.00766098, 0.692043)
+gizmo_extents = 0.53
+
+[node name="tank1_model" parent="tank_mover" instance=ExtResource("2_3iw7i")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.0937834, 0.03)
+
+[node name="track_path_left" parent="tank_mover" instance=ExtResource("4_nvimy")]
+transform = Transform3D(0.19, 0, 0, 0, 0.19, 0, 0, 0, 0.19, 0.576036, 0.208256, -0.116236)
+
+[node name="track_path_right" parent="tank_mover" instance=ExtResource("4_nvimy")]
+transform = Transform3D(0.19, 0, 0, 0, 0.19, 0, 0, 0, 0.19, -0.576238, 0.193891, -0.116236)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.000556231, 0.463901, -0.137699)
+shape = SubResource("BoxShape3D_kwxlf")
+
+[node name="StateMachinePlayer" type="Node" parent="."]
+script = ExtResource("3_xyrri")
+state_machine = SubResource("Resource_001x2")
+
+[node name="player_pointer" type="Node3D" parent="."]
+
+[node name="LiveDemoEntity" parent="." instance=ExtResource("13_owdos")]
+
+[connection signal="transited" from="StateMachinePlayer" to="." method="_on_fsm_ia_transited"]

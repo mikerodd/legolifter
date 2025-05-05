@@ -1,0 +1,44 @@
+{
+"heli_lives" : 5,
+"current_level" : 0,
+"level" : [
+	{
+	        "house_spawn": { "house_count" : 1},
+		"tank_spawn" : { "rate" : 5, "rate_range" : 2, "limit" :5,
+			"tank" : {
+				"Scanning"    :   { "wait" : 3, "wait_range" : 1, "proba" : 0.7 },
+				"TargetFound" : { "wait" : 1, "wait_range" : 1 },
+				"HuntTarget" :  { "wait" : 10, "wait_range" : 1, "proba" : 0.1 },
+				"Reload"     :  { "wait" : 3, "wait_range" : 0.5 }
+			}
+		},
+		"plane_spawn" : { "rate" : 5, "rate_range" : 2, "limit" :1 },		
+	},
+	{
+	        "house_spawn": { "house_count" : 2},
+		"tank_spawn" : { "rate" : 8, "rate_range" : 2, "limit" : 3 },
+		"tank" : {
+			"Scanning"    :   { "wait" : 3, "wait_range" : 2, "proba" : 0.7 },
+			"TargetFound" : { "wait" : 2, "wait_range" : 1 },
+			"HuntTarget" :  { "wait" : 5, "wait_range" : 1, "proba" : 0.1 },
+			"Reload"     :  { "wait" : 2, "wait_range" : 0.8 }
+		},
+		"plane_spawn" : { "rate" : 10, "rate_range" : 2, "limit" :1 },		
+		
+		
+	},
+	{
+	        "house_spawn": { "house_count" : 4},
+		"tank_spawn" : { "rate" : 4, "rate_range" : 2, "limit" : 5 },
+		"tank" : {
+			"Scanning"    :   { "wait" : 2, "wait_range" : 1, "proba" : 0.9 },
+			"TargetFound" : { "wait" : 2, "wait_range" : 1 },
+			"HuntTarget" :  { "wait" : 2, "wait_range" : 1, "proba" : 0.1 },
+			"Reload"     :  { "wait" : 0.5, "wait_range" : 1 }
+		},
+		"plane_spawn" : { "rate" : 5, "rate_range" : 2, "limit" :2 },		
+		
+	}
+	
+]
+}

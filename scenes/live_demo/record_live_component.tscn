@@ -1,0 +1,13 @@
+[gd_scene load_steps=2 format=3 uid="uid://dpo2xyc4fcjcm"]
+
+[ext_resource type="Script" uid="uid://i1p6275fr8ab" path="res://scenes/live_demo/record_live_component.gd" id="1_cvdff"]
+
+[node name="RecordLiveComponent" type="Node"]
+script = ExtResource("1_cvdff")
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 20.0
+one_shot = true
+
+[connection signal="tree_exiting" from="." to="." method="_on_tree_exiting"]
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

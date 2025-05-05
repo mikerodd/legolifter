@@ -1,0 +1,397 @@
+[gd_scene load_steps=57 format=3 uid="uid://d22wpla6um2ni"]
+
+[ext_resource type="Script" uid="uid://djpwkhlpc3nlj" path="res://scripts/lego_tank.gd" id="1_423go"]
+[ext_resource type="PackedScene" uid="uid://cnci4axl7dae7" path="res://import/tank_tiger.glb" id="2_423go"]
+[ext_resource type="PackedScene" uid="uid://dyy6gr03hgf81" path="res://import/tank_tiger_turret.glb" id="3_2hr33"]
+[ext_resource type="PackedScene" uid="uid://ugqvkra70nx0" path="res://import/tank_tiger_cannon.glb" id="4_r38hh"]
+[ext_resource type="Script" uid="uid://46l00vp06dcr" path="res://addons/imjp94.yafsm/src/StateMachinePlayer.gd" id="5_27ga3"]
+[ext_resource type="Script" uid="uid://c6k7m1b50ks2j" path="res://addons/imjp94.yafsm/src/states/StateMachine.gd" id="6_3unpr"]
+[ext_resource type="Script" uid="uid://6xtawmi3oxq8" path="res://addons/imjp94.yafsm/src/states/State.gd" id="7_jxbhe"]
+[ext_resource type="Script" uid="uid://lt0dig07oj4a" path="res://addons/imjp94.yafsm/src/transitions/Transition.gd" id="8_iac4s"]
+[ext_resource type="Script" uid="uid://blso217oe4a4s" path="res://addons/imjp94.yafsm/src/conditions/BooleanCondition.gd" id="9_3u6oy"]
+[ext_resource type="Script" uid="uid://xj1j8owjucly" path="res://addons/imjp94.yafsm/src/conditions/Condition.gd" id="10_bh0sy"]
+[ext_resource type="PackedScene" uid="uid://lskm5tbedisk" path="res://scenes/lego_destroyer.tscn" id="11_423go"]
+[ext_resource type="PackedScene" uid="uid://dkrt0idmey35x" path="res://import/tank_tiger_destroyed.glb" id="12_681ks"]
+[ext_resource type="PackedScene" uid="uid://bnuo2trawkafx" path="res://scenes/live_demo/live_demo_entity.tscn" id="15_681ks"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_jy6d4"]
+size = Vector3(5.89328, 0.890896, 1.85648)
+
+[sub_resource type="GDScript" id="GDScript_pm4ia"]
+script/source = "extends Node3D
+
+
+func move_forward() -> void:
+	pass	
+
+func move_backward() -> void:
+	pass	
+
+func turn_clockwise() -> void:
+	pass	
+
+func turn_c_clockwise() -> void:
+	pass	
+
+func move_stop():
+	pass	
+"
+
+[sub_resource type="Resource" id="Resource_pm4ia"]
+script = ExtResource("7_jxbhe")
+name = "Entry"
+metadata/graph_offset = Vector2(3, 600)
+
+[sub_resource type="Resource" id="Resource_d5a50"]
+script = ExtResource("7_jxbhe")
+name = "Exit"
+metadata/graph_offset = Vector2(1083, 480)
+
+[sub_resource type="Resource" id="Resource_db30w"]
+script = ExtResource("7_jxbhe")
+name = "FireAtTarget"
+metadata/graph_offset = Vector2(788.5, 940)
+
+[sub_resource type="Resource" id="Resource_2hr33"]
+script = ExtResource("7_jxbhe")
+name = "GetClose"
+metadata/graph_offset = Vector2(139, 600)
+
+[sub_resource type="Resource" id="Resource_plvkf"]
+script = ExtResource("7_jxbhe")
+name = "HuntTarget"
+metadata/graph_offset = Vector2(811, 600)
+
+[sub_resource type="Resource" id="Resource_0ac0v"]
+script = ExtResource("7_jxbhe")
+name = "Parking"
+metadata/graph_offset = Vector2(563, 800)
+
+[sub_resource type="Resource" id="Resource_7giep"]
+script = ExtResource("7_jxbhe")
+name = "Reload"
+metadata/graph_offset = Vector2(1123, 960)
+
+[sub_resource type="Resource" id="Resource_ldio1"]
+script = ExtResource("7_jxbhe")
+name = "Scanning"
+metadata/graph_offset = Vector2(558, 540)
+
+[sub_resource type="Resource" id="Resource_q30dc"]
+script = ExtResource("7_jxbhe")
+name = "TargetFound"
+metadata/graph_offset = Vector2(546.5, 360)
+
+[sub_resource type="Resource" id="Resource_biu4u"]
+script = ExtResource("7_jxbhe")
+name = "WarningFire"
+metadata/graph_offset = Vector2(1088, 600)
+
+[sub_resource type="Resource" id="Resource_r38hh"]
+script = ExtResource("8_iac4s")
+from = "Entry"
+to = "GetClose"
+conditions = {}
+priority = 0
+
+[sub_resource type="Resource" id="Resource_6r1ui"]
+script = ExtResource("9_3u6oy")
+value = true
+comparation = 0
+name = "is_parked"
+
+[sub_resource type="Resource" id="Resource_5p4wy"]
+script = ExtResource("8_iac4s")
+from = "FireAtTarget"
+to = "Parking"
+conditions = {
+"is_parked": SubResource("Resource_6r1ui")
+}
+priority = 0
+
+[sub_resource type="Resource" id="Resource_7wact"]
+script = ExtResource("8_iac4s")
+from = "FireAtTarget"
+to = "Reload"
+conditions = {}
+priority = 0
+
+[sub_resource type="Resource" id="Resource_3unpr"]
+script = ExtResource("9_3u6oy")
+value = true
+comparation = 0
+name = "is_parked"
+
+[sub_resource type="Resource" id="Resource_jxbhe"]
+script = ExtResource("8_iac4s")
+from = "GetClose"
+to = "Parking"
+conditions = {
+"is_parked": SubResource("Resource_3unpr")
+}
+priority = 0
+
+[sub_resource type="Resource" id="Resource_681ks"]
+script = ExtResource("10_bh0sy")
+name = "begin_scan"
+
+[sub_resource type="Resource" id="Resource_27ga3"]
+script = ExtResource("8_iac4s")
+from = "GetClose"
+to = "Scanning"
+conditions = {
+"begin_scan": SubResource("Resource_681ks")
+}
+priority = 0
+
+[sub_resource type="Resource" id="Resource_tdij2"]
+script = ExtResource("10_bh0sy")
+name = "fire_target"
+
+[sub_resource type="Resource" id="Resource_fqvns"]
+script = ExtResource("10_bh0sy")
+name = "turret_aligned"
+
+[sub_resource type="Resource" id="Resource_adqs7"]
+script = ExtResource("8_iac4s")
+from = "HuntTarget"
+to = "FireAtTarget"
+conditions = {
+"fire_target": SubResource("Resource_tdij2"),
+"turret_aligned": SubResource("Resource_fqvns")
+}
+priority = 0
+
+[sub_resource type="Resource" id="Resource_mrjjy"]
+script = ExtResource("10_bh0sy")
+name = "lost_target"
+
+[sub_resource type="Resource" id="Resource_tnxrl"]
+script = ExtResource("8_iac4s")
+from = "HuntTarget"
+to = "GetClose"
+conditions = {
+"lost_target": SubResource("Resource_mrjjy")
+}
+priority = 0
+
+[sub_resource type="Resource" id="Resource_8fo7y"]
+script = ExtResource("9_3u6oy")
+value = true
+comparation = 0
+name = "is_parked"
+
+[sub_resource type="Resource" id="Resource_udjt2"]
+script = ExtResource("8_iac4s")
+from = "HuntTarget"
+to = "Parking"
+conditions = {
+"is_parked": SubResource("Resource_8fo7y")
+}
+priority = 0
+
+[sub_resource type="Resource" id="Resource_76ee5"]
+script = ExtResource("10_bh0sy")
+name = "fire_warning"
+
+[sub_resource type="Resource" id="Resource_2f3ts"]
+script = ExtResource("8_iac4s")
+from = "HuntTarget"
+to = "WarningFire"
+conditions = {
+"fire_warning": SubResource("Resource_76ee5")
+}
+priority = 0
+
+[sub_resource type="Resource" id="Resource_tu5hp"]
+script = ExtResource("9_3u6oy")
+value = false
+comparation = 0
+name = "is_parked"
+
+[sub_resource type="Resource" id="Resource_pq883"]
+script = ExtResource("8_iac4s")
+from = "Parking"
+to = "Scanning"
+conditions = {
+"is_parked": SubResource("Resource_tu5hp")
+}
+priority = 0
+
+[sub_resource type="Resource" id="Resource_ttysr"]
+script = ExtResource("10_bh0sy")
+name = "resume_hunt"
+
+[sub_resource type="Resource" id="Resource_ks1hy"]
+script = ExtResource("8_iac4s")
+from = "Reload"
+to = "HuntTarget"
+conditions = {
+"resume_hunt": SubResource("Resource_ttysr")
+}
+priority = 0
+
+[sub_resource type="Resource" id="Resource_0y0fc"]
+script = ExtResource("9_3u6oy")
+value = true
+comparation = 0
+name = "is_parked"
+
+[sub_resource type="Resource" id="Resource_8e4a7"]
+script = ExtResource("8_iac4s")
+from = "Scanning"
+to = "Parking"
+conditions = {
+"is_parked": SubResource("Resource_0y0fc")
+}
+priority = 0
+
+[sub_resource type="Resource" id="Resource_1tni3"]
+script = ExtResource("10_bh0sy")
+name = "found_target"
+
+[sub_resource type="Resource" id="Resource_fnlp6"]
+script = ExtResource("8_iac4s")
+from = "Scanning"
+to = "TargetFound"
+conditions = {
+"found_target": SubResource("Resource_1tni3")
+}
+priority = 0
+
+[sub_resource type="Resource" id="Resource_wrnmw"]
+script = ExtResource("10_bh0sy")
+name = "lost_target"
+
+[sub_resource type="Resource" id="Resource_oh5ce"]
+script = ExtResource("8_iac4s")
+from = "TargetFound"
+to = "GetClose"
+conditions = {
+"lost_target": SubResource("Resource_wrnmw")
+}
+priority = 0
+
+[sub_resource type="Resource" id="Resource_mip6x"]
+script = ExtResource("10_bh0sy")
+name = "hunt_target"
+
+[sub_resource type="Resource" id="Resource_afkhk"]
+script = ExtResource("8_iac4s")
+from = "TargetFound"
+to = "HuntTarget"
+conditions = {
+"hunt_target": SubResource("Resource_mip6x")
+}
+priority = 0
+
+[sub_resource type="Resource" id="Resource_nl7a6"]
+script = ExtResource("8_iac4s")
+from = "WarningFire"
+to = "HuntTarget"
+conditions = {}
+priority = 0
+
+[sub_resource type="Resource" id="Resource_0q52d"]
+script = ExtResource("6_3unpr")
+states = {
+"Entry": SubResource("Resource_pm4ia"),
+"Exit": SubResource("Resource_d5a50"),
+"FireAtTarget": SubResource("Resource_db30w"),
+"GetClose": SubResource("Resource_2hr33"),
+"HuntTarget": SubResource("Resource_plvkf"),
+"Parking": SubResource("Resource_0ac0v"),
+"Reload": SubResource("Resource_7giep"),
+"Scanning": SubResource("Resource_ldio1"),
+"TargetFound": SubResource("Resource_q30dc"),
+"WarningFire": SubResource("Resource_biu4u")
+}
+transitions = {
+"Entry": {
+"GetClose": SubResource("Resource_r38hh")
+},
+"FireAtTarget": {
+"Parking": SubResource("Resource_5p4wy"),
+"Reload": SubResource("Resource_7wact")
+},
+"GetClose": {
+"Parking": SubResource("Resource_jxbhe"),
+"Scanning": SubResource("Resource_27ga3")
+},
+"HuntTarget": {
+"FireAtTarget": SubResource("Resource_adqs7"),
+"GetClose": SubResource("Resource_tnxrl"),
+"Parking": SubResource("Resource_udjt2"),
+"WarningFire": SubResource("Resource_2f3ts")
+},
+"Parking": {
+"Scanning": SubResource("Resource_pq883")
+},
+"Reload": {
+"HuntTarget": SubResource("Resource_ks1hy")
+},
+"Scanning": {
+"Parking": SubResource("Resource_8e4a7"),
+"TargetFound": SubResource("Resource_fnlp6")
+},
+"TargetFound": {
+"GetClose": SubResource("Resource_oh5ce"),
+"HuntTarget": SubResource("Resource_afkhk")
+},
+"WarningFire": {
+"HuntTarget": SubResource("Resource_nl7a6")
+}
+}
+name = ""
+
+[node name="LegoTankTiger" type="CharacterBody3D" groups=["enemy_tanks"]]
+collision_layer = 2
+collision_mask = 2
+script = ExtResource("1_423go")
+explo_path = "uid://b18cw4qc2o2ef"
+shell_path = "uid://f1yjxnw08eei"
+speed = 2.0
+safe_distance = 5.671
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.000556231, 0.444994, -0.0086381)
+shape = SubResource("BoxShape3D_jy6d4")
+
+[node name="TankMover" type="Node3D" parent="."]
+script = SubResource("GDScript_pm4ia")
+
+[node name="tank_tiger" parent="TankMover" instance=ExtResource("2_423go")]
+
+[node name="tank_tiger_turret" parent="TankMover" instance=ExtResource("3_2hr33")]
+
+[node name="CanonRotator" type="Node3D" parent="TankMover/tank_tiger_turret"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.698181, 0.410971)
+
+[node name="tank_tiger_cannon" parent="TankMover/tank_tiger_turret/CanonRotator" instance=ExtResource("4_r38hh")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.687898, -0.418211)
+
+[node name="CanonMuzzle" type="Marker3D" parent="TankMover/tank_tiger_turret/CanonRotator"]
+
+[node name="PlayerPointer" type="Node3D" parent="."]
+
+[node name="StateMachinePlayer" type="Node" parent="."]
+script = ExtResource("5_27ga3")
+state_machine = SubResource("Resource_0q52d")
+metadata/_custom_type_script = "uid://46l00vp06dcr"
+
+[node name="LegoDestroyer" parent="." instance=ExtResource("11_423go")]
+destroy_model = ExtResource("12_681ks")
+initial_model_np = NodePath("../TankMover/tank_tiger")
+explode_intensity = 8.0
+
+[node name="CenterOfExplosion" parent="LegoDestroyer" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00390851, 0.0977128, 0)
+
+[node name="LiveDemoEntity" parent="." instance=ExtResource("15_681ks")]
+
+[connection signal="destroy" from="." to="LegoDestroyer" method="destroy"]
+[connection signal="transited" from="StateMachinePlayer" to="." method="_on_fsm_ia_transited"]
+[connection signal="destroy_begin" from="LegoDestroyer" to="." method="_on_lego_destroyer_destroy_begin"]
+[connection signal="destroy_end" from="LegoDestroyer" to="." method="_on_lego_destroyer_destroy_end"]
+
+[editable path="LegoDestroyer"]

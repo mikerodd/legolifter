@@ -1,0 +1,150 @@
+[gd_scene load_steps=7 format=3 uid="uid://dls3co8gvcbhf"]
+
+[ext_resource type="Theme" uid="uid://csttegjq0h4hc" path="res://theme/lego_theme.tres" id="1_nisbi"]
+[ext_resource type="Script" uid="uid://dyfrj63n5l5q7" path="res://scripts/UI/instructions.gd" id="2_c00ax"]
+[ext_resource type="Texture2D" uid="uid://bfiuc65nhmhgv" path="res://textures/screenshot/heli_screenshot.png" id="2_njqp3"]
+[ext_resource type="Texture2D" uid="uid://d2wqi52ipbsws" path="res://textures/screenshot/safe_house_screenshot.png" id="3_njqp3"]
+[ext_resource type="Texture2D" uid="uid://bydev2cd820cv" path="res://textures/screenshot/tiger_tank_screenshot.png" id="5_ryvh0"]
+[ext_resource type="Texture2D" uid="uid://vkchr0du1xly" path="res://textures/screenshot/cosmic_cruiser_screenshot.png" id="6_wvvhh"]
+
+[node name="Instructions" type="Control"]
+layout_mode = 3
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = -680.0
+offset_top = -192.0
+offset_right = -8.0
+offset_bottom = 228.0
+grow_vertical = 2
+script = ExtResource("2_c00ax")
+
+[node name="InstructionsPanel" type="PanelContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_nisbi")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="InstructionsPanel"]
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="InstructionsPanel/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Control" type="Control" parent="InstructionsPanel/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="PLayerScreenshot" type="TextureRect" parent="InstructionsPanel/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+texture = ExtResource("2_njqp3")
+expand_mode = 2
+stretch_mode = 4
+
+[node name="PLayerLabel" type="Label" parent="InstructionsPanel/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+text = "You !"
+horizontal_alignment = 1
+
+[node name="SafeHouseScreenshot" type="TextureRect" parent="InstructionsPanel/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+texture = ExtResource("3_njqp3")
+expand_mode = 2
+stretch_mode = 4
+
+[node name="SafeHouseLabel" type="Label" parent="InstructionsPanel/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+text = "A Safe-house"
+horizontal_alignment = 1
+
+[node name="TankSreenshot" type="TextureRect" parent="InstructionsPanel/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+texture = ExtResource("5_ryvh0")
+expand_mode = 2
+stretch_mode = 4
+
+[node name="TankLabel" type="Label" parent="InstructionsPanel/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+text = "Enemy Tank"
+horizontal_alignment = 1
+
+[node name="PlaneSreenshot" type="TextureRect" parent="InstructionsPanel/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+texture = ExtResource("6_wvvhh")
+expand_mode = 2
+stretch_mode = 4
+
+[node name="PlaneLabel" type="Label" parent="InstructionsPanel/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+text = "Enemy plane"
+horizontal_alignment = 1
+
+[node name="Control2" type="Control" parent="InstructionsPanel/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="InstructionsPanel/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 4.0
+
+[node name="Control" type="Control" parent="InstructionsPanel/HBoxContainer/VBoxContainer2"]
+layout_mode = 2
+size_flags_vertical = 3
+size_flags_stretch_ratio = 0.1
+
+[node name="Label" type="Label" parent="InstructionsPanel/HBoxContainer/VBoxContainer2"]
+layout_mode = 2
+size_flags_vertical = 3
+size_flags_stretch_ratio = 0.1
+theme_override_font_sizes/font_size = 38
+text = "How to play Legolifter!"
+horizontal_alignment = 1
+
+[node name="Control2" type="Control" parent="InstructionsPanel/HBoxContainer/VBoxContainer2"]
+layout_mode = 2
+size_flags_vertical = 3
+size_flags_stretch_ratio = 0.1
+
+[node name="RichTextLabel" type="RichTextLabel" parent="InstructionsPanel/HBoxContainer/VBoxContainer2"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 4.0
+theme_override_font_sizes/normal_font_size = 24
+bbcode_enabled = true
+text = "[p]Your goal is to rescue the hostages kept in safe houses and bring them back to the post office. [/p][p]You have to shoot on the safe houses to free the hostage, and land to make them board you helicopter.[/p][p]Once there are on board, bring them back to the post-office to set them free.[/p][p]Be careful, there are enemies around that will try to shoot you![/p][p]Use the arrows to move your helicopter, use the control key to fire missile, control key + arrows to turn your helicopter[/p]"
+fit_content = true
+scroll_active = false
+
+[node name="HBoxContainer" type="HBoxContainer" parent="InstructionsPanel/HBoxContainer/VBoxContainer2"]
+layout_mode = 2
+
+[node name="Control2" type="Control" parent="InstructionsPanel/HBoxContainer/VBoxContainer2/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="ok" type="Button" parent="InstructionsPanel/HBoxContainer/VBoxContainer2/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "ok"
+
+[node name="Control3" type="Control" parent="InstructionsPanel/HBoxContainer/VBoxContainer2/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="Control3" type="Control" parent="InstructionsPanel/HBoxContainer/VBoxContainer2"]
+layout_mode = 2
+size_flags_vertical = 3
+size_flags_stretch_ratio = 0.1
+
+[connection signal="pressed" from="InstructionsPanel/HBoxContainer/VBoxContainer2/HBoxContainer/ok" to="." method="_on_ok_pressed"]

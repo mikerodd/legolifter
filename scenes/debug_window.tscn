@@ -1,0 +1,51 @@
+[gd_scene load_steps=3 format=3 uid="uid://d3h0l73sf5pm4"]
+
+[ext_resource type="Theme" uid="uid://csttegjq0h4hc" path="res://theme/lego_theme.tres" id="1_638y5"]
+[ext_resource type="Script" uid="uid://b3qeq2y2aovo0" path="res://scripts/debug_window.gd" id="1_om3it"]
+
+[node name="DebugWindow" type="Window"]
+position = Vector2i(0, 36)
+size = Vector2i(300, 500)
+theme = ExtResource("1_638y5")
+script = ExtResource("1_om3it")
+
+[node name="add_plane" type="Button" parent="."]
+offset_left = 152.0
+offset_top = 20.0
+offset_right = 249.0
+offset_bottom = 51.0
+text = "Add Plane"
+
+[node name="add_tank" type="Button" parent="."]
+offset_left = 24.0
+offset_top = 20.0
+offset_right = 105.0
+offset_bottom = 51.0
+text = "Add Tank"
+
+[node name="killme" type="Button" parent="."]
+offset_left = 24.0
+offset_top = 76.0
+offset_right = 124.0
+offset_bottom = 107.0
+text = "Kill player"
+
+[node name="destroy_houses" type="Button" parent="."]
+offset_left = 24.0
+offset_top = 124.0
+offset_right = 177.0
+offset_bottom = 155.0
+text = "Destroy houses"
+
+[node name="map_messages" type="Button" parent="."]
+offset_left = 24.0
+offset_top = 188.0
+offset_right = 177.0
+offset_bottom = 219.0
+text = "Map signals"
+
+[connection signal="pressed" from="add_plane" to="." method="_on_add_plane_pressed"]
+[connection signal="pressed" from="add_tank" to="." method="_on_add_tank_pressed"]
+[connection signal="pressed" from="killme" to="." method="_on_killme_pressed"]
+[connection signal="pressed" from="destroy_houses" to="." method="_on_destroy_houses_pressed"]
+[connection signal="pressed" from="map_messages" to="." method="_on_map_messages_pressed"]

@@ -1,0 +1,528 @@
+[gd_scene load_steps=75 format=3 uid="uid://c8q76n2as4lf"]
+
+[ext_resource type="Script" uid="uid://divsggom6kasx" path="res://scripts/main_scene/game.gd" id="1_u3qtx"]
+[ext_resource type="Script" uid="uid://c46lxiybkltaj" path="res://scripts/UI/dark_layer.gd" id="2_37s47"]
+[ext_resource type="Script" uid="uid://dvjva865w4axu" path="res://addons/locker/scripts/storage_manager/scene_storage_manager.gd" id="2_pl11u"]
+[ext_resource type="PackedScene" uid="uid://iykav68vl5b2" path="res://scenes/UI/legolifter.tscn" id="3_bt5mj"]
+[ext_resource type="PackedScene" uid="uid://d24s4pve3mv2p" path="res://scenes/UI/pause_buttons.tscn" id="4_e1j6l"]
+[ext_resource type="PackedScene" uid="uid://dx7x8tibljsla" path="res://scenes/UI/confirm_buttons.tscn" id="4_pl11u"]
+[ext_resource type="Script" uid="uid://h4am25vf6ots" path="res://scripts/locker/game_accessor_v1.gd" id="4_suyxu"]
+[ext_resource type="Script" uid="uid://brt4otgn2jol1" path="res://addons/locker/scripts/storage_accessor/storage_accessor.gd" id="4_sww3w"]
+[ext_resource type="PackedScene" uid="uid://cj0dshpi3rnja" path="res://scenes/UI/side_buttons.tscn" id="5_pl11u"]
+[ext_resource type="Script" uid="uid://dtvohndbwyieq" path="res://addons/locker/scripts/storage_accessor/storage_accessor_version.gd" id="5_suyxu"]
+[ext_resource type="PackedScene" uid="uid://bnvs7sljcxtby" path="res://scenes/UI/scores_display.tscn" id="6_bhx41"]
+[ext_resource type="Script" uid="uid://dhaw3dgcf0e75" path="res://scripts/locker/camera_accessor_v1.gd" id="6_sgl2t"]
+[ext_resource type="PackedScene" uid="uid://dls3co8gvcbhf" path="res://scenes/UI/instructions.tscn" id="7_bt5mj"]
+[ext_resource type="Script" uid="uid://ybio55mquob6" path="res://scripts/main_scene/player_node.gd" id="7_qnb83"]
+[ext_resource type="PackedScene" uid="uid://m8eb30m2phbv" path="res://scenes/player.tscn" id="8_sww3w"]
+[ext_resource type="PackedScene" uid="uid://bu3pn3d5ikmyy" path="res://scenes/UI/level.tscn" id="9_bhx41"]
+[ext_resource type="PackedScene" uid="uid://bl2yjbrwstgqt" path="res://scenes/entity_nodes/houses_node.tscn" id="15_qnb83"]
+[ext_resource type="Script" uid="uid://bmur7dfu3ke6x" path="res://scripts/main_scene/game_camera.gd" id="16_twgab"]
+[ext_resource type="PackedScene" uid="uid://c7onwsk0sik8q" path="res://scenes/post_office.tscn" id="17_02fa5"]
+[ext_resource type="PackedScene" uid="uid://dhf2bmsbs7iii" path="res://scenes/entity_nodes/cosmics_node.tscn" id="17_bhx41"]
+[ext_resource type="PackedScene" uid="uid://bf8tnljfl8isj" path="res://scenes/entity_nodes/tanks_node.tscn" id="17_sww3w"]
+[ext_resource type="Script" uid="uid://46l00vp06dcr" path="res://addons/imjp94.yafsm/src/StateMachinePlayer.gd" id="18_nepv3"]
+[ext_resource type="PackedScene" uid="uid://cq1n70b7o4qkb" path="res://scenes/fences.tscn" id="18_pl11u"]
+[ext_resource type="Script" uid="uid://dobtt3gkuegns" path="res://scripts/locker/player_node_accessor_v1.gd" id="18_suyxu"]
+[ext_resource type="Script" uid="uid://c6k7m1b50ks2j" path="res://addons/imjp94.yafsm/src/states/StateMachine.gd" id="19_7025r"]
+[ext_resource type="Script" uid="uid://6xtawmi3oxq8" path="res://addons/imjp94.yafsm/src/states/State.gd" id="20_m4url"]
+[ext_resource type="Script" uid="uid://lt0dig07oj4a" path="res://addons/imjp94.yafsm/src/transitions/Transition.gd" id="21_8ool0"]
+[ext_resource type="Script" uid="uid://xj1j8owjucly" path="res://addons/imjp94.yafsm/src/conditions/Condition.gd" id="22_pr1ej"]
+[ext_resource type="PackedScene" uid="uid://b3manrp7qg001" path="res://scenes/floor.tscn" id="22_qnb83"]
+
+[sub_resource type="Resource" id="Resource_8qswn"]
+script = ExtResource("4_suyxu")
+number = "1.0.0"
+metadata/_custom_type_script = "uid://h4am25vf6ots"
+
+[sub_resource type="CameraAttributesPractical" id="CameraAttributesPractical_qnb83"]
+dof_blur_far_enabled = true
+dof_blur_far_distance = 50.82
+
+[sub_resource type="Resource" id="Resource_458eo"]
+script = ExtResource("6_sgl2t")
+number = "1.0.0"
+metadata/_custom_type_script = "uid://dhaw3dgcf0e75"
+
+[sub_resource type="Resource" id="Resource_h3rex"]
+script = ExtResource("18_suyxu")
+number = "1.0.0"
+metadata/_custom_type_script = "uid://dobtt3gkuegns"
+
+[sub_resource type="Resource" id="Resource_suyxu"]
+script = ExtResource("20_m4url")
+name = "BeginGame"
+metadata/graph_offset = Vector2(610, 260)
+
+[sub_resource type="Resource" id="Resource_7025r"]
+script = ExtResource("20_m4url")
+name = "DemoMode"
+metadata/graph_offset = Vector2(209.5, 0)
+
+[sub_resource type="Resource" id="Resource_gl3ui"]
+script = ExtResource("20_m4url")
+name = "Entry"
+metadata/graph_offset = Vector2(103, 160)
+
+[sub_resource type="Resource" id="Resource_0owkw"]
+script = ExtResource("20_m4url")
+name = "Exit"
+metadata/graph_offset = Vector2(1363, 140)
+
+[sub_resource type="Resource" id="Resource_tyxh2"]
+script = ExtResource("20_m4url")
+name = "Instructions"
+metadata/graph_offset = Vector2(189, 320)
+
+[sub_resource type="Resource" id="Resource_480ru"]
+script = ExtResource("20_m4url")
+name = "Paused"
+metadata/graph_offset = Vector2(763, -20)
+
+[sub_resource type="Resource" id="Resource_tew0s"]
+script = ExtResource("20_m4url")
+name = "Play"
+metadata/graph_offset = Vector2(1023, 160)
+
+[sub_resource type="Resource" id="Resource_twgab"]
+script = ExtResource("20_m4url")
+name = "Record"
+metadata/graph_offset = Vector2(403, 340)
+
+[sub_resource type="Resource" id="Resource_pl11u"]
+script = ExtResource("20_m4url")
+name = "ReturnToBase"
+metadata/graph_offset = Vector2(1002.5, 320)
+
+[sub_resource type="Resource" id="Resource_qouja"]
+script = ExtResource("20_m4url")
+name = "StartLevel"
+metadata/graph_offset = Vector2(795.5, 260)
+
+[sub_resource type="Resource" id="Resource_knvah"]
+script = ExtResource("20_m4url")
+name = "StartScreen"
+metadata/graph_offset = Vector2(391, 160)
+
+[sub_resource type="Resource" id="Resource_sgl2t"]
+script = ExtResource("21_8ool0")
+from = "BeginGame"
+to = "StartLevel"
+conditions = {}
+priority = 0
+
+[sub_resource type="Resource" id="Resource_pr1ej"]
+script = ExtResource("22_pr1ej")
+name = "to_startscreen"
+
+[sub_resource type="Resource" id="Resource_05nbr"]
+script = ExtResource("21_8ool0")
+from = "DemoMode"
+to = "StartScreen"
+conditions = {
+"to_startscreen": SubResource("Resource_pr1ej")
+}
+priority = 0
+
+[sub_resource type="Resource" id="Resource_fedci"]
+script = ExtResource("22_pr1ej")
+name = "to_startscreen"
+
+[sub_resource type="Resource" id="Resource_11qhp"]
+script = ExtResource("21_8ool0")
+from = "Entry"
+to = "StartScreen"
+conditions = {
+"to_startscreen": SubResource("Resource_fedci")
+}
+priority = 0
+
+[sub_resource type="Resource" id="Resource_dk6m0"]
+script = ExtResource("22_pr1ej")
+name = "to_startscreen"
+
+[sub_resource type="Resource" id="Resource_ub3rm"]
+script = ExtResource("21_8ool0")
+from = "Instructions"
+to = "StartScreen"
+conditions = {
+"to_startscreen": SubResource("Resource_dk6m0")
+}
+priority = 0
+
+[sub_resource type="Resource" id="Resource_eu5tj"]
+script = ExtResource("22_pr1ej")
+name = "to_play"
+
+[sub_resource type="Resource" id="Resource_dy8ov"]
+script = ExtResource("21_8ool0")
+from = "Paused"
+to = "Play"
+conditions = {
+"to_play": SubResource("Resource_eu5tj")
+}
+priority = 0
+
+[sub_resource type="Resource" id="Resource_5e0lp"]
+script = ExtResource("22_pr1ej")
+name = "to_start_screen"
+
+[sub_resource type="Resource" id="Resource_i0dsb"]
+script = ExtResource("21_8ool0")
+from = "Paused"
+to = "StartScreen"
+conditions = {
+"to_start_screen": SubResource("Resource_5e0lp")
+}
+priority = 0
+
+[sub_resource type="Resource" id="Resource_3vxrp"]
+script = ExtResource("22_pr1ej")
+name = "to_pause"
+
+[sub_resource type="Resource" id="Resource_52kcm"]
+script = ExtResource("21_8ool0")
+from = "Play"
+to = "Paused"
+conditions = {
+"to_pause": SubResource("Resource_3vxrp")
+}
+priority = 0
+
+[sub_resource type="Resource" id="Resource_bhx41"]
+script = ExtResource("22_pr1ej")
+name = "return_to_base"
+
+[sub_resource type="Resource" id="Resource_qnb83"]
+script = ExtResource("21_8ool0")
+from = "Play"
+to = "ReturnToBase"
+conditions = {
+"return_to_base": SubResource("Resource_bhx41")
+}
+priority = 0
+
+[sub_resource type="Resource" id="Resource_v2yb1"]
+script = ExtResource("22_pr1ej")
+name = "to_start_level"
+
+[sub_resource type="Resource" id="Resource_js0lu"]
+script = ExtResource("21_8ool0")
+from = "Play"
+to = "StartLevel"
+conditions = {
+"to_start_level": SubResource("Resource_v2yb1")
+}
+priority = 0
+
+[sub_resource type="Resource" id="Resource_0sl42"]
+script = ExtResource("22_pr1ej")
+name = "to_startscreen"
+
+[sub_resource type="Resource" id="Resource_oaba0"]
+script = ExtResource("21_8ool0")
+from = "Play"
+to = "StartScreen"
+conditions = {
+"to_startscreen": SubResource("Resource_0sl42")
+}
+priority = 0
+
+[sub_resource type="Resource" id="Resource_sww3w"]
+script = ExtResource("21_8ool0")
+from = "ReturnToBase"
+to = "Play"
+conditions = {}
+priority = 0
+
+[sub_resource type="Resource" id="Resource_wljb1"]
+script = ExtResource("21_8ool0")
+from = "StartLevel"
+to = "Play"
+conditions = {}
+priority = 0
+
+[sub_resource type="Resource" id="Resource_gxtfn"]
+script = ExtResource("22_pr1ej")
+name = "to_begin_game"
+
+[sub_resource type="Resource" id="Resource_ltb6j"]
+script = ExtResource("21_8ool0")
+from = "StartScreen"
+to = "BeginGame"
+conditions = {
+"to_begin_game": SubResource("Resource_gxtfn")
+}
+priority = 0
+
+[sub_resource type="Resource" id="Resource_m4url"]
+script = ExtResource("22_pr1ej")
+name = "to_demo"
+
+[sub_resource type="Resource" id="Resource_8ool0"]
+script = ExtResource("21_8ool0")
+from = "StartScreen"
+to = "DemoMode"
+conditions = {
+"to_demo": SubResource("Resource_m4url")
+}
+priority = 0
+
+[sub_resource type="Resource" id="Resource_34gij"]
+script = ExtResource("22_pr1ej")
+name = "to_instructions"
+
+[sub_resource type="Resource" id="Resource_ikvhh"]
+script = ExtResource("21_8ool0")
+from = "StartScreen"
+to = "Instructions"
+conditions = {
+"to_instructions": SubResource("Resource_34gij")
+}
+priority = 0
+
+[sub_resource type="Resource" id="Resource_02fa5"]
+script = ExtResource("22_pr1ej")
+name = "to_record"
+
+[sub_resource type="Resource" id="Resource_nepv3"]
+script = ExtResource("21_8ool0")
+from = "StartScreen"
+to = "Record"
+conditions = {
+"to_record": SubResource("Resource_02fa5")
+}
+priority = 0
+
+[sub_resource type="Resource" id="Resource_pxyat"]
+script = ExtResource("19_7025r")
+states = {
+"BeginGame": SubResource("Resource_suyxu"),
+"DemoMode": SubResource("Resource_7025r"),
+"Entry": SubResource("Resource_gl3ui"),
+"Exit": SubResource("Resource_0owkw"),
+"Instructions": SubResource("Resource_tyxh2"),
+"Paused": SubResource("Resource_480ru"),
+"Play": SubResource("Resource_tew0s"),
+"Record": SubResource("Resource_twgab"),
+"ReturnToBase": SubResource("Resource_pl11u"),
+"StartLevel": SubResource("Resource_qouja"),
+"StartScreen": SubResource("Resource_knvah")
+}
+transitions = {
+"BeginGame": {
+"StartLevel": SubResource("Resource_sgl2t")
+},
+"DemoMode": {
+"StartScreen": SubResource("Resource_05nbr")
+},
+"Entry": {
+"StartScreen": SubResource("Resource_11qhp")
+},
+"Instructions": {
+"StartScreen": SubResource("Resource_ub3rm")
+},
+"Paused": {
+"Play": SubResource("Resource_dy8ov"),
+"StartScreen": SubResource("Resource_i0dsb")
+},
+"Play": {
+"Paused": SubResource("Resource_52kcm"),
+"ReturnToBase": SubResource("Resource_qnb83"),
+"StartLevel": SubResource("Resource_js0lu"),
+"StartScreen": SubResource("Resource_oaba0")
+},
+"ReturnToBase": {
+"Play": SubResource("Resource_sww3w")
+},
+"StartLevel": {
+"Play": SubResource("Resource_wljb1")
+},
+"StartScreen": {
+"BeginGame": SubResource("Resource_ltb6j"),
+"DemoMode": SubResource("Resource_8ool0"),
+"Instructions": SubResource("Resource_ikvhh"),
+"Record": SubResource("Resource_nepv3")
+}
+}
+name = ""
+
+[node name="Game" type="Node3D"]
+script = ExtResource("1_u3qtx")
+smp_np = NodePath("StateMachinePlayer")
+tanks_node_np = NodePath("3D/TanksNode")
+planes_node_np = NodePath("3D/CosmicsNode")
+game_parameters = "res://conf/game_parameters.json"
+game_camera_np = NodePath("game_camera")
+
+[node name="LokStorageAccessor" type="Node" parent="." groups=["lok_storage"]]
+script = ExtResource("4_sww3w")
+id = "game_variables"
+versions = Array[ExtResource("5_suyxu")]([SubResource("Resource_8qswn")])
+metadata/_custom_type_script = "uid://brt4otgn2jol1"
+
+[node name="LokSceneStorageManager" type="Node" parent="."]
+script = ExtResource("2_pl11u")
+current_file = "demo1"
+metadata/_custom_type_script = "uid://dvjva865w4axu"
+
+[node name="game_camera" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.073, 32.23)
+attributes = SubResource("CameraAttributesPractical_qnb83")
+fov = 32.3
+size = 13.071
+near = 0.16
+far = 94.65
+script = ExtResource("16_twgab")
+start_position_np = NodePath("../3D/PlayerNode/start_position")
+
+[node name="LokStorageAccessor" type="Node" parent="game_camera" groups=["lok_storage"]]
+script = ExtResource("4_sww3w")
+id = "game_camera"
+versions = Array[ExtResource("5_suyxu")]([SubResource("Resource_458eo")])
+dependency_paths = {
+"game_camera": NodePath("..")
+}
+metadata/_custom_type_script = "uid://brt4otgn2jol1"
+
+[node name="UI" type="Node" parent="."]
+
+[node name="DarkLayer" type="ColorRect" parent="UI"]
+process_mode = 3
+offset_right = 1152.0
+offset_bottom = 648.0
+color = Color(0, 0, 0, 0)
+script = ExtResource("2_37s47")
+
+[node name="LegoLifter" parent="UI" instance=ExtResource("3_bt5mj")]
+offset_bottom = -288.0
+
+[node name="ConfirmButtons" parent="UI" instance=ExtResource("4_pl11u")]
+offset_left = -574.0
+offset_right = -574.0
+
+[node name="PauseButtons" parent="UI" instance=ExtResource("4_e1j6l")]
+
+[node name="SideButtons" parent="UI" instance=ExtResource("5_pl11u")]
+
+[node name="Scores" parent="UI" instance=ExtResource("6_bhx41")]
+
+[node name="Instructions" parent="UI" instance=ExtResource("7_bt5mj")]
+offset_left = -688.0
+offset_top = -260.0
+offset_bottom = 160.0
+
+[node name="Level" parent="UI" instance=ExtResource("9_bhx41")]
+
+[node name="3D" type="Node" parent="."]
+
+[node name="PlayerNode" type="Node" parent="3D"]
+script = ExtResource("7_qnb83")
+start_position_np = NodePath("start_position")
+player_scene = ExtResource("8_sww3w")
+land_altitude = 0.304
+
+[node name="LokStorageAccessor" type="Node" parent="3D/PlayerNode" groups=["lok_storage"]]
+script = ExtResource("4_sww3w")
+id = "player_node"
+versions = Array[ExtResource("5_suyxu")]([SubResource("Resource_h3rex")])
+dependency_paths = {
+"player_node": NodePath("..")
+}
+metadata/_custom_type_script = "uid://brt4otgn2jol1"
+
+[node name="start_position" type="Marker3D" parent="3D/PlayerNode"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 51.93, -0.094, 0)
+
+[node name="HousesNode" parent="3D" instance=ExtResource("15_qnb83")]
+
+[node name="TanksNode" parent="3D" instance=ExtResource("17_sww3w")]
+
+[node name="CosmicsNode" parent="3D" instance=ExtResource("17_bhx41")]
+
+[node name="Fences" parent="3D" instance=ExtResource("18_pl11u")]
+
+[node name="Lights" type="Node3D" parent="3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 12.5889, 15.9799)
+
+[node name="OmniLight3D4" type="OmniLight3D" parent="3D/Lights"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -76.7077, 12.5903, 0)
+light_color = Color(0.992675, 1, 0.86778, 1)
+light_energy = 40.0
+shadow_enabled = true
+shadow_opacity = 0.68
+omni_range = 67.707
+
+[node name="OmniLight3D6" type="OmniLight3D" parent="3D/Lights"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -202.918, 12.5903, 0)
+light_color = Color(0.992675, 1, 0.86778, 1)
+light_energy = 40.0
+shadow_enabled = true
+shadow_opacity = 0.68
+omni_range = 64.7487
+
+[node name="OmniLight3D7" type="OmniLight3D" parent="3D/Lights"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -270.181, 12.5903, 0)
+light_color = Color(0.992675, 1, 0.86778, 1)
+light_energy = 40.0
+shadow_enabled = true
+shadow_opacity = 0.68
+omni_range = 67.2377
+
+[node name="OmniLight3D8" type="OmniLight3D" parent="3D/Lights"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -362.181, 12.5903, 0)
+light_color = Color(0.992675, 1, 0.86778, 1)
+light_energy = 40.0
+shadow_enabled = true
+shadow_opacity = 0.68
+omni_range = 67.2377
+
+[node name="OmniLight3D9" type="OmniLight3D" parent="3D/Lights"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -442.48, 12.5903, 0)
+light_color = Color(0.992675, 1, 0.86778, 1)
+light_energy = 40.0
+shadow_enabled = true
+shadow_opacity = 0.68
+omni_range = 67.2377
+
+[node name="OmniLight3D3" type="OmniLight3D" parent="3D/Lights"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 50.6972, 12.5903, 0)
+light_color = Color(0.992675, 1, 0.86778, 1)
+light_energy = 40.0
+shadow_enabled = true
+shadow_opacity = 0.68
+omni_range = 68.155
+
+[node name="OmniLight3D5" type="OmniLight3D" parent="3D/Lights"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -135.046, 12.5903, 0)
+light_color = Color(0.992675, 1, 0.86778, 1)
+light_energy = 40.0
+shadow_enabled = true
+shadow_opacity = 0.68
+omni_range = 66.3206
+
+[node name="OmniLight3D2" type="OmniLight3D" parent="3D/Lights"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.71437, 12.5903, 0)
+light_color = Color(0.992675, 1, 0.86778, 1)
+light_energy = 40.0
+shadow_enabled = true
+shadow_opacity = 0.68
+omni_range = 65.808
+
+[node name="post_office" parent="3D" instance=ExtResource("17_02fa5")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 53.3198, 0.0224457, 0)
+
+[node name="PathTemplate" parent="3D/post_office/way_in" index="0"]
+transform = Transform3D(0.291673, -0.00993151, -0.956448, -9.31308e-10, 0.999933, -0.0103829, 0.956502, 0.00302849, 0.291657, 0, 0, 0)
+
+[node name="floor" parent="3D" instance=ExtResource("22_qnb83")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -217.238, 0, 0)
+
+[node name="StateMachinePlayer" type="Node" parent="."]
+script = ExtResource("18_nepv3")
+state_machine = SubResource("Resource_pxyat")
+metadata/_custom_type_script = "uid://46l00vp06dcr"
+
+[connection signal="transited" from="StateMachinePlayer" to="." method="_on_smp_transited"]
+
+[editable path="3D/post_office"]

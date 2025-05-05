@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://d16aaokfgtucc"]
+
+[ext_resource type="Script" uid="uid://ceiwavds0txtm" path="res://scenes/live_demo/live_component.gd" id="1_rqui2"]
+
+[node name="LiveComponent" type="Node"]
+script = ExtResource("1_rqui2")

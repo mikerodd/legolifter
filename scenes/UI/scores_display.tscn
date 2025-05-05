@@ -1,0 +1,184 @@
+[gd_scene load_steps=12 format=3 uid="uid://bnvs7sljcxtby"]
+
+[ext_resource type="Script" uid="uid://db3nak0rahdkn" path="res://scripts/scores_display.gd" id="1_02s7e"]
+[ext_resource type="Texture2D" uid="uid://dux1s5grmaf6f" path="res://shaders/skull.png" id="1_08t0d"]
+[ext_resource type="Theme" uid="uid://csttegjq0h4hc" path="res://theme/lego_theme.tres" id="1_rrjwj"]
+[ext_resource type="Texture2D" uid="uid://bquqksxve21l" path="res://shaders/structure_tower.png" id="2_u5qtf"]
+[ext_resource type="Texture2D" uid="uid://c0051d4wxtfnj" path="res://textures/hexagon_out.png" id="3_u5qtf"]
+[ext_resource type="Texture2D" uid="uid://2e2166tyrlxk" path="res://shaders/structure_house.png" id="4_7pjmi"]
+[ext_resource type="Texture2D" uid="uid://dgb77v5ew5ayb" path="res://textures/character_lift.png" id="5_7pjmi"]
+[ext_resource type="Texture2D" uid="uid://x3lxxn6ahwb5" path="res://textures/heli_life.png" id="8_jgel7"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_7pjmi"]
+bg_color = Color(0.960784, 0.811765, 0.25098, 1)
+border_width_left = 4
+border_width_top = 4
+border_width_right = 4
+border_width_bottom = 4
+border_color = Color(0.850996, 0.191974, 0.176349, 1)
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_jgel7"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_yam8e"]
+
+[node name="ScoresDisplay" type="CanvasLayer"]
+script = ExtResource("1_02s7e")
+
+[node name="HostageScore" type="PanelContainer" parent="."]
+custom_minimum_size = Vector2(20, 20)
+anchors_preset = -1
+anchor_top = 0.877
+anchor_right = 0.993
+anchor_bottom = 1.0
+offset_top = -16.296
+offset_right = 8.06409
+grow_horizontal = 2
+grow_vertical = 0
+theme = ExtResource("1_rrjwj")
+theme_type_variation = &"SmallPanel"
+
+[node name="Panel2" type="Panel" parent="HostageScore"]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_7pjmi")
+
+[node name="MarginContainer" type="MarginContainer" parent="HostageScore"]
+layout_mode = 2
+theme_override_constants/margin_left = 1
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="GridContainer" type="HBoxContainer" parent="HostageScore/MarginContainer"]
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+alignment = 1
+
+[node name="DetainedContainer" type="HBoxContainer" parent="HostageScore/MarginContainer/GridContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="DetainedIcon" type="TextureRect" parent="HostageScore/MarginContainer/GridContainer/DetainedContainer"]
+layout_mode = 2
+size_flags_horizontal = 6
+texture = ExtResource("2_u5qtf")
+expand_mode = 2
+
+[node name="DetainedCount" type="Label" parent="HostageScore/MarginContainer/GridContainer/DetainedContainer"]
+custom_minimum_size = Vector2(50, 30)
+layout_mode = 2
+size_flags_horizontal = 2
+theme = ExtResource("1_rrjwj")
+theme_type_variation = &"ScoreLabel"
+text = "12"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="OutContainer" type="HBoxContainer" parent="HostageScore/MarginContainer/GridContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="OutIcon" type="TextureRect" parent="HostageScore/MarginContainer/GridContainer/OutContainer"]
+layout_mode = 2
+size_flags_horizontal = 6
+texture = ExtResource("3_u5qtf")
+expand_mode = 2
+
+[node name="OutCount" type="Label" parent="HostageScore/MarginContainer/GridContainer/OutContainer"]
+custom_minimum_size = Vector2(50, 30)
+layout_mode = 2
+size_flags_horizontal = 2
+theme = ExtResource("1_rrjwj")
+theme_type_variation = &"ScoreLabel"
+text = "13"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="HeliContainer" type="HBoxContainer" parent="HostageScore/MarginContainer/GridContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="HeliIcon" type="TextureRect" parent="HostageScore/MarginContainer/GridContainer/HeliContainer"]
+layout_mode = 2
+size_flags_horizontal = 6
+texture = ExtResource("5_7pjmi")
+expand_mode = 2
+
+[node name="HeliCount" type="Label" parent="HostageScore/MarginContainer/GridContainer/HeliContainer"]
+custom_minimum_size = Vector2(50, 30)
+layout_mode = 2
+size_flags_horizontal = 2
+theme = ExtResource("1_rrjwj")
+theme_type_variation = &"ScoreLabel"
+text = "13"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="DeatContainer" type="HBoxContainer" parent="HostageScore/MarginContainer/GridContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="DeadIcon" type="TextureRect" parent="HostageScore/MarginContainer/GridContainer/DeatContainer"]
+layout_mode = 2
+size_flags_horizontal = 6
+texture = ExtResource("1_08t0d")
+expand_mode = 2
+
+[node name="DeadCount" type="Label" parent="HostageScore/MarginContainer/GridContainer/DeatContainer"]
+custom_minimum_size = Vector2(50, 30)
+layout_mode = 2
+size_flags_horizontal = 2
+theme = ExtResource("1_rrjwj")
+theme_type_variation = &"ScoreLabel"
+text = "12"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="SavedContainer" type="HBoxContainer" parent="HostageScore/MarginContainer/GridContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="SavedIcon" type="TextureRect" parent="HostageScore/MarginContainer/GridContainer/SavedContainer"]
+layout_mode = 2
+size_flags_horizontal = 6
+texture = ExtResource("4_7pjmi")
+expand_mode = 2
+
+[node name="SaveCount" type="Label" parent="HostageScore/MarginContainer/GridContainer/SavedContainer"]
+custom_minimum_size = Vector2(50, 30)
+layout_mode = 2
+size_flags_horizontal = 2
+theme = ExtResource("1_rrjwj")
+theme_type_variation = &"ScoreLabel"
+text = "13"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="HeliRemaining" type="PanelContainer" parent="."]
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -187.0
+offset_top = 18.0
+offset_right = -27.0
+offset_bottom = 80.0
+grow_horizontal = 0
+theme_override_styles/panel = SubResource("StyleBoxEmpty_jgel7")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="HeliRemaining"]
+layout_mode = 2
+
+[node name="Helilives" type="Label" parent="HeliRemaining/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme = ExtResource("1_rrjwj")
+theme_type_variation = &"ScoreLabel"
+theme_override_styles/normal = SubResource("StyleBoxEmpty_yam8e")
+text = "1"
+horizontal_alignment = 2
+vertical_alignment = 1
+
+[node name="TextureRect" type="TextureRect" parent="HeliRemaining/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 3.0
+texture = ExtResource("8_jgel7")
+expand_mode = 2

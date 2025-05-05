@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://dod8qd8uhyfbk"]
+
+[ext_resource type="Script" uid="uid://dppfhjqwy6bpb" path="res://scripts/proba_computer.gd" id="1_086f8"]
+
+[node name="ProbaComputer" type="Node" groups=["enemy_to_initialize"]]
+script = ExtResource("1_086f8")
+
+[connection signal="proba_initialize" from="." to="." method="_on_proba_initialize"]

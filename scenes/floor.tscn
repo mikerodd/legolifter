@@ -1,0 +1,34 @@
+[gd_scene load_steps=9 format=3 uid="uid://b3manrp7qg001"]
+
+[ext_resource type="PackedScene" uid="uid://m3usxqukj557" path="res://import/floor-simple.glb" id="1_1bx2v"]
+[ext_resource type="PackedScene" uid="uid://hrxyx2yy2n28" path="res://import/wooden-chair.glb" id="2_wc2lb"]
+[ext_resource type="PackedScene" uid="uid://ctnmy1f3s81vp" path="res://import/basket.glb" id="3_hl37q"]
+[ext_resource type="PackedScene" uid="uid://dwaqxqlw7hp0n" path="res://import/furniture-and-photo.glb" id="4_qn20g"]
+[ext_resource type="PackedScene" uid="uid://d0k0ul5mxwk5f" path="res://import/cabinet.glb" id="5_a2b8f"]
+[ext_resource type="PackedScene" uid="uid://dkd0m0j6bm6lb" path="res://import/clock-and-books.glb" id="6_hgjnp"]
+[ext_resource type="PackedScene" uid="uid://ccghtcha8b1n0" path="res://import/door.glb" id="7_lvm7u"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_n5iih"]
+size = Vector3(15.987, 0.009, 2.03)
+
+[node name="floor" type="StaticBody3D"]
+collision_layer = 8
+collision_mask = 31
+
+[node name="floor-simple" parent="." instance=ExtResource("1_1bx2v")]
+
+[node name="wooden-chair" parent="." instance=ExtResource("2_wc2lb")]
+
+[node name="basket" parent="." instance=ExtResource("3_hl37q")]
+
+[node name="furniture-and-photo" parent="." instance=ExtResource("4_qn20g")]
+
+[node name="cabinet" parent="." instance=ExtResource("5_a2b8f")]
+
+[node name="clock-and-books" parent="." instance=ExtResource("6_hgjnp")]
+
+[node name="door" parent="." instance=ExtResource("7_lvm7u")]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(40, 0, 0, 0, 40, 0, 0, 0, 40, 0.667114, -0.178242, 0)
+shape = SubResource("BoxShape3D_n5iih")

@@ -1,0 +1,234 @@
+[gd_resource type="Resource" script_class="StateMachine" load_steps=36 format=3 uid="uid://cq0jtyghnkk47"]
+
+[ext_resource type="Script" uid="uid://c6k7m1b50ks2j" path="res://addons/imjp94.yafsm/src/states/StateMachine.gd" id="1_k123s"]
+[ext_resource type="Script" uid="uid://6xtawmi3oxq8" path="res://addons/imjp94.yafsm/src/states/State.gd" id="2_1r0rx"]
+[ext_resource type="Script" uid="uid://xj1j8owjucly" path="res://addons/imjp94.yafsm/src/conditions/Condition.gd" id="3_wgnig"]
+[ext_resource type="Script" uid="uid://lt0dig07oj4a" path="res://addons/imjp94.yafsm/src/transitions/Transition.gd" id="4_j3dgd"]
+
+[sub_resource type="Resource" id="Resource_wfi52"]
+script = ExtResource("2_1r0rx")
+name = "Entry"
+metadata/graph_offset = Vector2(83, 240)
+
+[sub_resource type="Resource" id="Resource_7dmtn"]
+script = ExtResource("2_1r0rx")
+name = "Exit"
+metadata/graph_offset = Vector2(1163, 100)
+
+[sub_resource type="Resource" id="Resource_jix66"]
+script = ExtResource("2_1r0rx")
+name = "Exiting"
+metadata/graph_offset = Vector2(303, 240)
+
+[sub_resource type="Resource" id="Resource_rt1da"]
+script = ExtResource("2_1r0rx")
+name = "Idle"
+metadata/graph_offset = Vector2(883, 240)
+
+[sub_resource type="Resource" id="Resource_csnpa"]
+script = ExtResource("2_1r0rx")
+name = "InHelicopter"
+metadata/graph_offset = Vector2(747.5, 380)
+
+[sub_resource type="Resource" id="Resource_yub2h"]
+script = ExtResource("2_1r0rx")
+name = "Lost"
+metadata/graph_offset = Vector2(523, 60)
+
+[sub_resource type="Resource" id="Resource_bwddm"]
+script = ExtResource("2_1r0rx")
+name = "ReachHelicopter"
+metadata/graph_offset = Vector2(494.5, 240)
+
+[sub_resource type="Resource" id="Resource_bqucq"]
+script = ExtResource("2_1r0rx")
+name = "ReachPostOffice"
+metadata/graph_offset = Vector2(414.5, 400)
+
+[sub_resource type="Resource" id="Resource_j027u"]
+script = ExtResource("2_1r0rx")
+name = "Unload"
+metadata/graph_offset = Vector2(203, 400)
+
+[sub_resource type="Resource" id="Resource_a666r"]
+script = ExtResource("3_wgnig")
+name = "exit_from_house"
+
+[sub_resource type="Resource" id="Resource_ra1mv"]
+script = ExtResource("4_j3dgd")
+from = "Entry"
+to = "Exiting"
+conditions = {
+"exit_from_house": SubResource("Resource_a666r")
+}
+priority = 0
+
+[sub_resource type="Resource" id="Resource_gn5s1"]
+script = ExtResource("3_wgnig")
+name = "exit_from_heli"
+
+[sub_resource type="Resource" id="Resource_0ryfv"]
+script = ExtResource("4_j3dgd")
+from = "Entry"
+to = "Unload"
+conditions = {
+"exit_from_heli": SubResource("Resource_gn5s1")
+}
+priority = 0
+
+[sub_resource type="Resource" id="Resource_7v6rh"]
+script = ExtResource("3_wgnig")
+name = "really_lost"
+
+[sub_resource type="Resource" id="Resource_jdip4"]
+script = ExtResource("4_j3dgd")
+from = "Exiting"
+to = "Lost"
+conditions = {
+"really_lost": SubResource("Resource_7v6rh")
+}
+priority = 0
+
+[sub_resource type="Resource" id="Resource_p8r2f"]
+script = ExtResource("3_wgnig")
+name = "exit_reached"
+
+[sub_resource type="Resource" id="Resource_f1lt1"]
+script = ExtResource("4_j3dgd")
+from = "Exiting"
+to = "ReachHelicopter"
+conditions = {
+"exit_reached": SubResource("Resource_p8r2f")
+}
+priority = 0
+
+[sub_resource type="Resource" id="Resource_hcg05"]
+script = ExtResource("3_wgnig")
+name = "really_lost"
+
+[sub_resource type="Resource" id="Resource_qa3gr"]
+script = ExtResource("4_j3dgd")
+from = "Idle"
+to = "Lost"
+conditions = {
+"really_lost": SubResource("Resource_hcg05")
+}
+priority = 0
+
+[sub_resource type="Resource" id="Resource_ly7sc"]
+script = ExtResource("3_wgnig")
+name = "found_helicopter"
+
+[sub_resource type="Resource" id="Resource_sjwvo"]
+script = ExtResource("4_j3dgd")
+from = "Idle"
+to = "ReachHelicopter"
+conditions = {
+"found_helicopter": SubResource("Resource_ly7sc")
+}
+priority = 0
+
+[sub_resource type="Resource" id="Resource_k0g2c"]
+script = ExtResource("3_wgnig")
+name = "go_idle"
+
+[sub_resource type="Resource" id="Resource_igoox"]
+script = ExtResource("4_j3dgd")
+from = "Lost"
+to = "Idle"
+conditions = {
+"go_idle": SubResource("Resource_k0g2c")
+}
+priority = 0
+
+[sub_resource type="Resource" id="Resource_hhf3i"]
+script = ExtResource("3_wgnig")
+name = "found_helicopter"
+
+[sub_resource type="Resource" id="Resource_y5pgu"]
+script = ExtResource("4_j3dgd")
+from = "Lost"
+to = "ReachHelicopter"
+conditions = {
+"found_helicopter": SubResource("Resource_hhf3i")
+}
+priority = 0
+
+[sub_resource type="Resource" id="Resource_wms6m"]
+script = ExtResource("3_wgnig")
+name = "lost_helicopter"
+
+[sub_resource type="Resource" id="Resource_o4d7u"]
+script = ExtResource("4_j3dgd")
+from = "ReachHelicopter"
+to = "Idle"
+conditions = {
+"lost_helicopter": SubResource("Resource_wms6m")
+}
+priority = 0
+
+[sub_resource type="Resource" id="Resource_sxa7r"]
+script = ExtResource("3_wgnig")
+name = "helicopter_reached"
+
+[sub_resource type="Resource" id="Resource_xxjj1"]
+script = ExtResource("4_j3dgd")
+from = "ReachHelicopter"
+to = "InHelicopter"
+conditions = {
+"helicopter_reached": SubResource("Resource_sxa7r")
+}
+priority = 0
+
+[sub_resource type="Resource" id="Resource_6ce5o"]
+script = ExtResource("3_wgnig")
+name = "exit_reached"
+
+[sub_resource type="Resource" id="Resource_3ti46"]
+script = ExtResource("4_j3dgd")
+from = "Unload"
+to = "ReachPostOffice"
+conditions = {
+"exit_reached": SubResource("Resource_6ce5o")
+}
+priority = 0
+
+[resource]
+script = ExtResource("1_k123s")
+states = {
+"Entry": SubResource("Resource_wfi52"),
+"Exit": SubResource("Resource_7dmtn"),
+"Exiting": SubResource("Resource_jix66"),
+"Idle": SubResource("Resource_rt1da"),
+"InHelicopter": SubResource("Resource_csnpa"),
+"Lost": SubResource("Resource_yub2h"),
+"ReachHelicopter": SubResource("Resource_bwddm"),
+"ReachPostOffice": SubResource("Resource_bqucq"),
+"Unload": SubResource("Resource_j027u")
+}
+transitions = {
+"Entry": {
+"Exiting": SubResource("Resource_ra1mv"),
+"Unload": SubResource("Resource_0ryfv")
+},
+"Exiting": {
+"Lost": SubResource("Resource_jdip4"),
+"ReachHelicopter": SubResource("Resource_f1lt1")
+},
+"Idle": {
+"Lost": SubResource("Resource_qa3gr"),
+"ReachHelicopter": SubResource("Resource_sjwvo")
+},
+"Lost": {
+"Idle": SubResource("Resource_igoox"),
+"ReachHelicopter": SubResource("Resource_y5pgu")
+},
+"ReachHelicopter": {
+"Idle": SubResource("Resource_o4d7u"),
+"InHelicopter": SubResource("Resource_xxjj1")
+},
+"Unload": {
+"ReachPostOffice": SubResource("Resource_3ti46")
+}
+}
+name = ""

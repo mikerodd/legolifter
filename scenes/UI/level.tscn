@@ -1,0 +1,53 @@
+[gd_scene load_steps=3 format=3 uid="uid://bu3pn3d5ikmyy"]
+
+[ext_resource type="Script" uid="uid://v0qkvxom2jt7" path="res://scripts/UI/level.gd" id="1_ddfla"]
+[ext_resource type="Theme" uid="uid://csttegjq0h4hc" path="res://theme/lego_theme.tres" id="1_o7nn8"]
+
+[node name="Level" type="Control"]
+layout_mode = 3
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+grow_vertical = 2
+script = ExtResource("1_ddfla")
+displayed_seconds = 2.0
+level_label_np = NodePath("PanelContainer/VBoxContainer/LevelLabel")
+
+[node name="PanelContainer" type="PanelContainer" parent="."]
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -186.355
+offset_top = -43.0
+offset_right = -12.355
+offset_bottom = 43.0
+grow_horizontal = 0
+grow_vertical = 2
+theme = ExtResource("1_o7nn8")
+theme_type_variation = &"MiniPanel"
+
+[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer"]
+layout_mode = 2
+
+[node name="Control2" type="Control" parent="PanelContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="Label" type="Label" parent="PanelContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 16
+text = "LEVEL"
+horizontal_alignment = 1
+
+[node name="LevelLabel" type="Label" parent="PanelContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 64
+text = "2"
+horizontal_alignment = 1
+
+[node name="Control" type="Control" parent="PanelContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3

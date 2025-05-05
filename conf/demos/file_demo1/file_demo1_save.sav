@@ -1,0 +1,80 @@
+{
+	"game_camera": {
+		"@test": 42,
+		"position": "Vector3(44.7785, 4.073, 32.23)",
+		"version": "1.0.0"
+	},
+	"game_variables": {
+		"current_level": 0,
+		"dead_count": 0,
+		"detained_count": 0,
+		"heli_count": 5,
+		"heli_lives": 5,
+		"out_count": 0,
+		"saved_count": 0,
+		"version": "1.0.0"
+	},
+	"houses_storage": {
+		"house_count": 1,
+		"houses": [
+			{
+				"current_hostage_count": 0,
+				"hostages": [],
+				"is_destroyed": true,
+				"name": "House4",
+				"position": "Vector3(-70, 0, 0)",
+				"timer_is_stopped": true
+			}
+		],
+		"version": "1.0.0"
+	},
+	"player_node": {
+		"land_altitude": 0.304,
+		"name": "",
+		"player": {
+			"#do_initiate": "[\"NewFlyingSMP\", \"NewRotatingSMP\"]",
+			"@flying_smp": {
+				"_is_param_edited": false,
+				"_is_started": true,
+				"_is_update_locked": true,
+				"_local_parameters": "{}",
+				"_parameters": "{}",
+				"_stack": "[\"Entry\", \"Landed\", \"TakeOff\", \"OnFly\"]",
+				"_was_transited": false,
+				"active": true,
+				"autostart": true,
+				"current": "\"OnFly\"",
+				"state_machine": "Resource(\"res://resources/state_machines/smp_player_flying.tres\")",
+				"update_process_mode": 1
+			},
+			"@rotating_smp": {
+				"_is_param_edited": false,
+				"_is_started": true,
+				"_is_update_locked": true,
+				"_local_parameters": "{}",
+				"_parameters": "{}",
+				"_stack": "[\"Entry\", \"FacingLeft\", \"FacingFront\"]",
+				"_was_transited": false,
+				"active": true,
+				"autostart": true,
+				"current": "\"FacingFront\"",
+				"state_machine": "Resource(\"res://resources/state_machines/smp_player_rotating.tres\")",
+				"update_process_mode": 1
+			},
+			"@speed_scale": 1.5,
+			"can_fire": true,
+			"can_play": true,
+			"elapsed_rotate": 0.0166666666666667,
+			"is_dead": false,
+			"name": "Player1",
+			"passenger_count": 0,
+			"position": "Vector3(45.93, 6.4533, 0)",
+			"rotation": "Vector3(0, 0, 0)"
+		},
+		"version": "1.0.0"
+	},
+	"post_office": {
+		"hostages": [],
+		"version": "1.0.0"
+	}
+}

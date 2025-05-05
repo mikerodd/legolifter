@@ -1,0 +1,30 @@
+[gd_scene load_steps=2 format=3 uid="uid://crpf5mtce1pwy"]
+
+[sub_resource type="GDScript" id="GDScript_v2vft"]
+script/source = "extends Node
+
+
+@export var particles: Array[Node]
+@export var model_to_hide:Node
+
+signal destroy_finished
+
+
+func destroy(show_explode: bool = true) -> void:
+	if show_explode:
+		for e in particles:
+			if e is GPUParticles3D or e is CPUParticles3D:
+				e.emitting = true
+	
+	if model_to_hide:
+		model_to_hide.visible = false
+	destroy_finished.emit()
+
+	
+	
+	
+"
+
+[node name="base_destroyer" type="Node" node_paths=PackedStringArray("particles")]
+script = SubResource("GDScript_v2vft")
+particles = [null]
