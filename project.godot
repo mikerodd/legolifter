@@ -28,8 +28,6 @@ GameVariables="*res://scripts/game_variable.gd"
 GlobalUtils="*res://utils/global_utils.gd"
 Messenger="*res://scripts/messenger.gd"
 Logger="*res://addons/gs_logger/logger.gd"
-DebugMenu="*res://addons/debug_menu/debug_menu.tscn"
-Interfaces="*res://addons/gdscript-interfaces/Interfaces.gd"
 LokGlobalStorageManager="*res://addons/locker/scripts/storage_manager/global_storage_manager.gd"
 
 [display]
