@@ -22,7 +22,6 @@ func cleanup_houses() -> void:
 		if h is House:
 			h.name = "__" + h.name
 			h.queue_free()
-			#await h.tree_exited
 	
 	
 func spwan_house_in_game() -> void:		

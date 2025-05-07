@@ -19,7 +19,7 @@ config/name="legolifter"
 run/main_scene="uid://c8q76n2as4lf"
 config/features=PackedStringArray("4.4", "Forward Plus")
 boot_splash/bg_color=Color(0.521737, 0.549096, 0.525643, 1)
-boot_splash/image="uid://bt0oqhxisukat"
+boot_splash/image="uid://caepbuo6m4kmt"
 config/icon="uid://pwrx30oo7kuq"
 
 [autoload]
@@ -41,7 +41,7 @@ version_control/autoload_on_startup=true
 
 [editor_plugins]
 
-enabled=PackedStringArray("res://addons/debug_menu/plugin.cfg", "res://addons/gdscript-interfaces/plugin.cfg", "res://addons/gs_logger/plugin.cfg", "res://addons/imjp94.yafsm/plugin.cfg", "res://addons/locker/plugin.cfg")
+enabled=PackedStringArray("res://addons/gs_logger/plugin.cfg", "res://addons/imjp94.yafsm/plugin.cfg", "res://addons/locker/plugin.cfg")
 
 [global_group]
 

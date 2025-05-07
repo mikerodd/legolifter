@@ -32,15 +32,14 @@ func _on_level_started(_level : int) -> void:
 	Logger.debug("starting spawn timer")
 	spawn_timer.paused = false
 	spawn_timer.start()
-	Logger.debug("timer values : stopped: %s" % [spawn_timer.is_stopped()])
-	pass 
 	
 	
 
 func cleanup_tanks() -> void:
 	Logger.debug("cleanup_tanks - Cleaning up tanks")
 	for t in get_children():
-		if t is LegoTank or t is Tank: t.queue_free()
+		if t is LegoTank or t is Tank: 
+			t.queue_free()
 
 
 func safe_position_for_tank(pos_x : float) -> bool :

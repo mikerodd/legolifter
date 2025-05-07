@@ -40,18 +40,3 @@ func init_player(_can_play : bool ) -> void:
 	GlobalUtils.player._init_me(spawn_p)
 
 	
-
-func old_init_player(_can_play: bool) -> void:
-	for p in get_children():
-		if p is Player:
-			if p.is_dead:
-				p.queue_free()
-				GlobalUtils.player = player_scene.instantiate()
-				GlobalUtils.player.name = GlobalUtils.build_unique_name("Player")
-				add_child(GlobalUtils.player)
-				GlobalUtils.player.land_altitude = land_altitude
-			else:
-				GlobalUtils.player = p
-			
-	GlobalUtils.player.position = start_position.position
-	GlobalUtils.player.can_play = _can_play

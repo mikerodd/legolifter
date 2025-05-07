@@ -51,6 +51,9 @@ var my_collision_layer :int
 func _ready() -> void:
 	flying_smp.transited.connect(self._debug_fly)
 	rotating_smp.transited.connect(self._debug_rotate)
+	physics_frame_begin = Engine.get_physics_frames()
+	drawn_frame_begin  = Engine.get_frames_drawn()
+	process_frame_begin = Engine.get_process_frames()
 	
 	
 func _init_me(spawn_p: Dictionary) -> void:
@@ -61,6 +64,10 @@ func _init_me(spawn_p: Dictionary) -> void:
 
 
 
+var tmp_trace : Array = []
+var physics_frame_begin : int =0
+var drawn_frame_begin : int = 0
+var process_frame_begin: int = 0 
 
 func _physics_process(_delta: float) -> void:
 	if not can_play:
@@ -87,6 +94,14 @@ func _physics_process(_delta: float) -> void:
 			var rotate_right = 1 if live_demo.is_action_pressed("rotate_right") else 0
 			velocity = move_up * Vector3.UP *  speed  + move_down * Vector3.DOWN * speed 
 			velocity += move_left * Vector3.LEFT * speed  + move_right * Vector3.RIGHT * speed
+			if velocity != Vector3.ZERO:
+				tmp_trace.push_back({
+					"player_velocity" : velocity,
+					"player_position" : position,
+					"process_frame" : Engine.get_process_frames() - process_frame_begin,
+					"pyhysics_frame" : Engine.get_physics_frames() - physics_frame_begin,
+					"drawn_frame" : Engine.get_frames_drawn() - drawn_frame_begin
+				})
 			manage_collisions(move_and_collide(velocity * _delta))
 			if action and can_fire:
 				fire_rocket()
@@ -123,6 +138,12 @@ func _physics_process(_delta: float) -> void:
 			create_tween().tween_property(model_anim,"speed_scale", 0.5, 1)
 			create_tween().tween_property(model_rotator, "rotation:z", 0, 0.2)
 			flying_smp.set_trigger("landed")
+			if tmp_trace.size() != 0:
+				var file = FileAccess.open("user://test_player.json", FileAccess.WRITE)
+				var json_string = JSON.stringify(tmp_trace,"    ")
+				file.store_string(json_string)
+				file.close()
+
 
 		"Destroyed":
 			velocity += Vector3.DOWN * 0.2

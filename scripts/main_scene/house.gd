@@ -74,6 +74,6 @@ func _on_timer_timeout() -> void:
 func _on_lego_destroyer_destroy_begin() -> void:
 	is_destroyed = true
 	part1.emitting = true
-	part2.emitting = true	
+	part2.emitting = true
 	house_model.queue_free()
 	hostage_timer.start()

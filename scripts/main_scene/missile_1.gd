@@ -48,7 +48,6 @@ func destroy_me(_show_explode: bool = true) -> void:
 
 
 
-
 static func spawn(missile_scene:PackedScene, orig: Node3D, my_layer:int, mask_to_remove: int ) -> void:
 	var missile: CharacterBody3D = missile_scene.instantiate()
 	Logger.debug(" Fire missile !")

@@ -24,7 +24,7 @@ func _is_active_changed(value)-> void :
 	if value and begin_play_tick == -1: 
 		if recorded_session.size() == 0:
 			RecordPlayComponent.load_recorded()
-		begin_play_tick = Time.get_ticks_msec()			
+		begin_play_tick = Engine.get_physics_frames() #  Time.get_ticks_msec()			
 
 var new_local_session: Dictionary={}
 
@@ -61,44 +61,10 @@ func _ready():
 		pass
 		
 		
-#func test_physics_process(_delta: float) -> void:
-	#if not is_active : return
-	#var tick = int(Time.get_ticks_msec() - begin_play_tick)
-	#if tick > record_end_tick: 
-		#end_of_record.emit()
-		#is_active = false 
-		#return
-		#
-	#var catch_up 
-	#var evt
-	#while local_recorded_session.pressed.size() > current_pressed \
-	  #and local_recorded_session.pressed[current_pressed].tick <= tick:
-		#catch_up = current_pressed
-		#while local_recorded_session.pressed[catch_up].tick  <= tick:
-			#evt = local_recorded_session.pressed[catch_up]
-			#currently_pressed_keys.set(evt.name,evt.type)
-			#print(" (%d) key event at %d : %s, %s" % [tick, evt.tick, evt.name, ["Pressed" if evt.type == "P" else "Released"]])
-			#local_recorded_session.pressed[catch_up].set("treated",true)
-			#catch_up -= 1
-			#if local_recorded_session.pressed[catch_up].has("treated") : break
-		#if local_recorded_session.pressed[current_pressed].tick <= tick:
-			#current_pressed += 1
-#
-	#catch_up = current_just_pressed
-	#if local_recorded_session.just_pressed.size() > catch_up:
-		#while local_recorded_session.just_pressed[catch_up].tick <= tick:
-			#evt = local_recorded_session.just_pressed[catch_up]
-			#currently_just_pressed_keys.set(evt.name,evt.type)
-			#local_recorded_session.just_pressed[catch_up].set("treated",true)
-			#catch_up -= 1
-			#if local_recorded_session.just_pressed[catch_up].has("treated") : break
-		#if local_recorded_session.just_pressed[current_just_pressed].tick <= tick:
-			#current_just_pressed += 1
-		#
 	
 func is_action_just_pressed(_name: String, _exact_match: bool = false) -> bool:
 #{"last_action": {"type":false,"tick":0},"ticks":[], "just_pressed":false})
-	var tick = int(Time.get_ticks_msec() - begin_play_tick)
+	var tick = int(Engine.get_physics_frames()  - begin_play_tick) # Time.get_ticks_msec()
 	if new_local_session[_name]["ticks"][tick]: 
 		if new_local_session[_name]["just_pressed"]:
 			return false
@@ -111,8 +77,7 @@ func is_action_just_pressed(_name: String, _exact_match: bool = false) -> bool:
 	
 
 func is_action_pressed(_name: String, _exact_match: bool = false) -> bool:
-	var tick = int(Time.get_ticks_msec() - begin_play_tick)
-
+	var tick = int(Engine.get_physics_frames()  - begin_play_tick) # Time.get_ticks_msec()
 	return new_local_session[_name]["ticks"][tick]
 
 		
@@ -125,7 +90,7 @@ func get_input_handler() -> Object:
 func randf() -> float:
 	if not is_active: return 0
 
-	var tick = int(Time.get_ticks_msec() - begin_play_tick)
+	var tick = int(Engine.get_physics_frames()  - begin_play_tick)
 	var next = local_recorded_session.randf[current_randf]
 	var offset = tick - next.tick
 	if offset > 20: 
@@ -137,7 +102,7 @@ func randf() -> float:
 func randi() -> int:
 	if not is_active: return 0
 
-	var tick = int(Time.get_ticks_msec() - begin_play_tick)
+	var tick = int(Engine.get_physics_frames()  - begin_play_tick)
 	var next = local_recorded_session.randi[current_randi]
 	var offset = tick - next.tick
 	if offset > 20: 
@@ -156,6 +121,8 @@ func randi_range(from:int, _to:int) -> int:
 
 static func load_recorded() -> void:
 	var json_string: String = FileAccess.get_file_as_string("user://demo_record.json")
+	if FileAccess.get_open_error() != OK:
+		push_error("could not open file !")
 	var json = JSON.new()
 	var error = json.parse(json_string)
 	if error == OK:

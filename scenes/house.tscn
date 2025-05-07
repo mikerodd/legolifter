@@ -3,7 +3,7 @@
 [ext_resource type="Script" uid="uid://44iusi8spl7d" path="res://scripts/main_scene/house.gd" id="1_qtlar"]
 [ext_resource type="PackedScene" uid="uid://cwecakeec8hdj" path="res://scenes/hostage.tscn" id="2_f74lx"]
 [ext_resource type="PackedScene" uid="uid://biinplawy7khb" path="res://import/house2-destroyed.glb" id="2_se78b"]
-[ext_resource type="Texture2D" uid="uid://86m0lrlhv6q5" path="res://textures/particle_sprite_smoke.webp" id="3_rk7hg"]
+[ext_resource type="Texture2D" uid="uid://6v3s8hxtxulq" path="res://textures/partlcles/particle_sprite_smoke.webp" id="3_rk7hg"]
 [ext_resource type="PackedScene" uid="uid://br1kbj0yuakm4" path="res://import/house2.glb" id="3_se78b"]
 [ext_resource type="PackedScene" uid="uid://lskm5tbedisk" path="res://scenes/lego_destroyer.tscn" id="5_3bgk5"]
 

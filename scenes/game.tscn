@@ -350,10 +350,14 @@ name = ""
 [node name="Game" type="Node3D"]
 script = ExtResource("1_u3qtx")
 smp_np = NodePath("StateMachinePlayer")
-tanks_node_np = NodePath("3D/TanksNode")
-planes_node_np = NodePath("3D/CosmicsNode")
+tanks_node_np = NodePath("3D/MovingBits/TanksNode")
+planes_node_np = NodePath("3D/MovingBits/CosmicsNode")
 game_parameters = "res://conf/game_parameters.json"
-game_camera_np = NodePath("game_camera")
+game_camera_np = NodePath("3D/MovingBits/game_camera")
+
+[node name="DemoTimer" type="Timer" parent="."]
+wait_time = 10.0
+one_shot = true
 
 [node name="LokStorageAccessor" type="Node" parent="." groups=["lok_storage"]]
 script = ExtResource("4_sww3w")
@@ -365,25 +369,6 @@ metadata/_custom_type_script = "uid://brt4otgn2jol1"
 script = ExtResource("2_pl11u")
 current_file = "demo1"
 metadata/_custom_type_script = "uid://dvjva865w4axu"
-
-[node name="game_camera" type="Camera3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.073, 32.23)
-attributes = SubResource("CameraAttributesPractical_qnb83")
-fov = 32.3
-size = 13.071
-near = 0.16
-far = 94.65
-script = ExtResource("16_twgab")
-start_position_np = NodePath("../3D/PlayerNode/start_position")
-
-[node name="LokStorageAccessor" type="Node" parent="game_camera" groups=["lok_storage"]]
-script = ExtResource("4_sww3w")
-id = "game_camera"
-versions = Array[ExtResource("5_suyxu")]([SubResource("Resource_458eo")])
-dependency_paths = {
-"game_camera": NodePath("..")
-}
-metadata/_custom_type_script = "uid://brt4otgn2jol1"
 
 [node name="UI" type="Node" parent="."]
 
@@ -416,13 +401,34 @@ offset_bottom = 160.0
 
 [node name="3D" type="Node" parent="."]
 
-[node name="PlayerNode" type="Node" parent="3D"]
+[node name="MovingBits" type="Node3D" parent="3D"]
+
+[node name="game_camera" type="Camera3D" parent="3D/MovingBits"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.073, 32.23)
+attributes = SubResource("CameraAttributesPractical_qnb83")
+fov = 32.3
+size = 13.071
+near = 0.16
+far = 94.65
+script = ExtResource("16_twgab")
+start_position_np = NodePath("../PlayerNode/start_position")
+
+[node name="LokStorageAccessor" type="Node" parent="3D/MovingBits/game_camera" groups=["lok_storage"]]
+script = ExtResource("4_sww3w")
+id = "game_camera"
+versions = Array[ExtResource("5_suyxu")]([SubResource("Resource_458eo")])
+dependency_paths = {
+"game_camera": NodePath("..")
+}
+metadata/_custom_type_script = "uid://brt4otgn2jol1"
+
+[node name="PlayerNode" type="Node" parent="3D/MovingBits"]
 script = ExtResource("7_qnb83")
 start_position_np = NodePath("start_position")
 player_scene = ExtResource("8_sww3w")
 land_altitude = 0.304
 
-[node name="LokStorageAccessor" type="Node" parent="3D/PlayerNode" groups=["lok_storage"]]
+[node name="LokStorageAccessor" type="Node" parent="3D/MovingBits/PlayerNode" groups=["lok_storage"]]
 script = ExtResource("4_sww3w")
 id = "player_node"
 versions = Array[ExtResource("5_suyxu")]([SubResource("Resource_h3rex")])
@@ -431,91 +437,93 @@ dependency_paths = {
 }
 metadata/_custom_type_script = "uid://brt4otgn2jol1"
 
-[node name="start_position" type="Marker3D" parent="3D/PlayerNode"]
+[node name="start_position" type="Marker3D" parent="3D/MovingBits/PlayerNode"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 51.93, -0.094, 0)
 
-[node name="HousesNode" parent="3D" instance=ExtResource("15_qnb83")]
+[node name="HousesNode" parent="3D/MovingBits" instance=ExtResource("15_qnb83")]
 
-[node name="TanksNode" parent="3D" instance=ExtResource("17_sww3w")]
+[node name="TanksNode" parent="3D/MovingBits" instance=ExtResource("17_sww3w")]
 
-[node name="CosmicsNode" parent="3D" instance=ExtResource("17_bhx41")]
+[node name="CosmicsNode" parent="3D/MovingBits" instance=ExtResource("17_bhx41")]
 
-[node name="Fences" parent="3D" instance=ExtResource("18_pl11u")]
+[node name="Fences" parent="3D/MovingBits" instance=ExtResource("18_pl11u")]
 
-[node name="Lights" type="Node3D" parent="3D"]
+[node name="post_office" parent="3D/MovingBits" instance=ExtResource("17_02fa5")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 53.3198, 0.0224457, 0)
+
+[node name="PathTemplate" parent="3D/MovingBits/post_office/way_in" index="0"]
+transform = Transform3D(0.291673, -0.00993151, -0.956448, -9.31308e-10, 0.999933, -0.0103829, 0.956502, 0.00302849, 0.291657, 0, 0, 0)
+
+[node name="Background" type="Node3D" parent="3D"]
+
+[node name="Lights" type="Node3D" parent="3D/Background"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 12.5889, 15.9799)
 
-[node name="OmniLight3D4" type="OmniLight3D" parent="3D/Lights"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -76.7077, 12.5903, 0)
+[node name="OmniLight3D3" type="OmniLight3D" parent="3D/Background/Lights"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 50.6972, 12.5903, -4.61039)
 light_color = Color(0.992675, 1, 0.86778, 1)
-light_energy = 40.0
-shadow_enabled = true
-shadow_opacity = 0.68
-omni_range = 67.707
-
-[node name="OmniLight3D6" type="OmniLight3D" parent="3D/Lights"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -202.918, 12.5903, 0)
-light_color = Color(0.992675, 1, 0.86778, 1)
-light_energy = 40.0
-shadow_enabled = true
-shadow_opacity = 0.68
-omni_range = 64.7487
-
-[node name="OmniLight3D7" type="OmniLight3D" parent="3D/Lights"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -270.181, 12.5903, 0)
-light_color = Color(0.992675, 1, 0.86778, 1)
-light_energy = 40.0
-shadow_enabled = true
-shadow_opacity = 0.68
-omni_range = 67.2377
-
-[node name="OmniLight3D8" type="OmniLight3D" parent="3D/Lights"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -362.181, 12.5903, 0)
-light_color = Color(0.992675, 1, 0.86778, 1)
-light_energy = 40.0
-shadow_enabled = true
-shadow_opacity = 0.68
-omni_range = 67.2377
-
-[node name="OmniLight3D9" type="OmniLight3D" parent="3D/Lights"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -442.48, 12.5903, 0)
-light_color = Color(0.992675, 1, 0.86778, 1)
-light_energy = 40.0
-shadow_enabled = true
-shadow_opacity = 0.68
-omni_range = 67.2377
-
-[node name="OmniLight3D3" type="OmniLight3D" parent="3D/Lights"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 50.6972, 12.5903, 0)
-light_color = Color(0.992675, 1, 0.86778, 1)
-light_energy = 40.0
+light_energy = 20.0
 shadow_enabled = true
 shadow_opacity = 0.68
 omni_range = 68.155
 
-[node name="OmniLight3D5" type="OmniLight3D" parent="3D/Lights"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -135.046, 12.5903, 0)
+[node name="OmniLight3D2" type="OmniLight3D" parent="3D/Background/Lights"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.71437, 12.5903, -32.301)
 light_color = Color(0.992675, 1, 0.86778, 1)
-light_energy = 40.0
-shadow_enabled = true
-shadow_opacity = 0.68
-omni_range = 66.3206
-
-[node name="OmniLight3D2" type="OmniLight3D" parent="3D/Lights"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.71437, 12.5903, 0)
-light_color = Color(0.992675, 1, 0.86778, 1)
-light_energy = 40.0
+light_energy = 20.0
 shadow_enabled = true
 shadow_opacity = 0.68
 omni_range = 65.808
 
-[node name="post_office" parent="3D" instance=ExtResource("17_02fa5")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 53.3198, 0.0224457, 0)
+[node name="OmniLight3D4" type="OmniLight3D" parent="3D/Background/Lights"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -76.7077, 12.5903, -4.61039)
+light_color = Color(0.992675, 1, 0.86778, 1)
+light_energy = 20.0
+shadow_enabled = true
+shadow_opacity = 0.68
+omni_range = 67.707
 
-[node name="PathTemplate" parent="3D/post_office/way_in" index="0"]
-transform = Transform3D(0.291673, -0.00993151, -0.956448, -9.31308e-10, 0.999933, -0.0103829, 0.956502, 0.00302849, 0.291657, 0, 0, 0)
+[node name="OmniLight3D5" type="OmniLight3D" parent="3D/Background/Lights"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -135.046, 12.5903, -32.301)
+light_color = Color(0.992675, 1, 0.86778, 1)
+light_energy = 20.0
+shadow_enabled = true
+shadow_opacity = 0.68
+omni_range = 66.3206
 
-[node name="floor" parent="3D" instance=ExtResource("22_qnb83")]
+[node name="OmniLight3D6" type="OmniLight3D" parent="3D/Background/Lights"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -202.918, 12.5903, -4.61039)
+light_color = Color(0.992675, 1, 0.86778, 1)
+light_energy = 20.0
+shadow_enabled = true
+shadow_opacity = 0.68
+omni_range = 64.7487
+
+[node name="OmniLight3D7" type="OmniLight3D" parent="3D/Background/Lights"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -270.181, 12.5903, -32.301)
+light_color = Color(0.992675, 1, 0.86778, 1)
+light_energy = 20.0
+shadow_enabled = true
+shadow_opacity = 0.68
+omni_range = 67.2377
+
+[node name="OmniLight3D8" type="OmniLight3D" parent="3D/Background/Lights"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -362.181, 12.5903, -4.61039)
+light_color = Color(0.992675, 1, 0.86778, 1)
+light_energy = 20.0
+shadow_enabled = true
+shadow_opacity = 0.68
+omni_range = 67.2377
+
+[node name="OmniLight3D9" type="OmniLight3D" parent="3D/Background/Lights"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -442.48, 12.5903, -32.301)
+light_color = Color(0.992675, 1, 0.86778, 1)
+light_energy = 20.0
+shadow_enabled = true
+shadow_opacity = 0.68
+omni_range = 67.2377
+
+[node name="floor" parent="3D/Background" instance=ExtResource("22_qnb83")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -217.238, 0, 0)
 
 [node name="StateMachinePlayer" type="Node" parent="."]
@@ -523,6 +531,7 @@ script = ExtResource("18_nepv3")
 state_machine = SubResource("Resource_pxyat")
 metadata/_custom_type_script = "uid://46l00vp06dcr"
 
+[connection signal="timeout" from="DemoTimer" to="." method="_on_demo_timer_timeout"]
 [connection signal="transited" from="StateMachinePlayer" to="." method="_on_smp_transited"]
 
-[editable path="3D/post_office"]
+[editable path="3D/MovingBits/post_office"]

@@ -372,7 +372,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.687898, -0.418211)
 
 [node name="CanonMuzzle" type="Marker3D" parent="TankMover/tank_tiger_turret/CanonRotator"]
 
-[node name="PlayerPointer" type="Node3D" parent="."]
+[node name="PlayerPointer" type="Marker3D" parent="."]
 
 [node name="StateMachinePlayer" type="Node" parent="."]
 script = ExtResource("5_27ga3")

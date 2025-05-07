@@ -27,7 +27,8 @@ var recorded_events: Dictionary = {
 func _is_active_changed(active)-> void : 
 #	print("RecordLiveComponent %s is %s" % [get_path().get_concatenated_names(), "activated" if active else "deactivated"])
 	if active:
-		if begin_record_tick == -1: begin_record_tick = Time.get_ticks_msec()
+		if begin_record_tick == -1: 
+			begin_record_tick = Engine.get_physics_frames() #  Time.get_ticks_msec()
 		recorders.append(self)
 		$Timer.start()
 	else:
@@ -47,7 +48,7 @@ func get_input_handler() -> Object:
 func is_action_just_pressed(_name: String, exact_match: bool = false) -> bool:
 	var ret = Input.is_action_just_pressed(_name, exact_match)
 	if ret and action_list.has(_name):
-		var tick = int(Time.get_ticks_msec() - begin_record_tick)
+		var tick = int(Engine.get_physics_frames() - begin_record_tick) # Time.get_ticks_msec()
 		recorded_events.just_pressed.append({"tick": tick, "name": _name, "type":"P"})
 		max_tick = max(max_tick, tick)
 	return ret
@@ -55,7 +56,7 @@ func is_action_just_pressed(_name: String, exact_match: bool = false) -> bool:
 func is_action_pressed(_name: String, exact_match: bool = false) -> bool:
 	var ret =  Input.is_action_pressed(_name, exact_match)
 	if ret and action_list.has(_name):
-		var tick = int(Time.get_ticks_msec() - begin_record_tick)
+		var tick = int(Engine.get_physics_frames()  - begin_record_tick) # Time.get_ticks_msec()
 		if Input.is_action_just_pressed(_name, exact_match):
 			recorded_events.pressed.append({"tick": tick, "name": _name, "type":"P"})
 			max_tick = max(max_tick, tick)
@@ -64,21 +65,21 @@ func is_action_pressed(_name: String, exact_match: bool = false) -> bool:
 
 func randf() -> float:
 	var r = super.randf()
-	var tick = int(Time.get_ticks_msec() - begin_record_tick)
+	var tick = int(Engine.get_physics_frames()  - begin_record_tick) # Time.get_ticks_msec()
 	recorded_events.randf.append({"tick": tick, "value" : r})
 	max_tick = max(max_tick, tick)
 	return r
 	
 func randi() -> int:
 	var r = super.randi()
-	var tick = int(Time.get_ticks_msec() - begin_record_tick)
+	var tick = int(Engine.get_physics_frames()  - begin_record_tick) # Time.get_ticks_msec()
 	recorded_events.randi.append({"tick": tick, "value" : r})
 	max_tick = max(max_tick, tick)
 	return r
 	
 func randf_range(from:float, to: float) -> float:
 	var r = super.randf_range(from, to)
-	var tick = int(Time.get_ticks_msec() - begin_record_tick)
+	var tick = int(Engine.get_physics_frames()  - begin_record_tick) # Time.get_ticks_msec()
 	recorded_events.randf.append({"tick": tick, "value" : r})
 	max_tick = max(max_tick, tick)
 	return r
@@ -86,7 +87,7 @@ func randf_range(from:float, to: float) -> float:
 	
 func randi_range(from:int, to:int) -> int:
 	var r = super.randi_range(from, to)
-	var tick = int(Time.get_ticks_msec() - begin_record_tick)
+	var tick = int(Engine.get_physics_frames()  - begin_record_tick) # Time.get_ticks_msec()
 	recorded_events.randi.append({"tick": tick, "value" : r})
 	max_tick = max(max_tick, tick)
 	return r
@@ -95,22 +96,9 @@ func _unhandled_input(event: InputEvent):
 	if event.is_released() and event is InputEventKey:
 		for a in action_list:
 			if event.is_action_released(a):
-				var tick = int(Time.get_ticks_msec() - begin_record_tick)					
+				var tick = int(Engine.get_physics_frames()  - begin_record_tick) # Time.get_ticks_msec()
 				recorded_events.pressed.append({"tick": tick, "name": a, "type":"R"})
 				max_tick = max(max_tick, tick)
-				
-
-#func _unhandled_input(event: InputEvent):
-#
-	#if event.is_released() and event is InputEventKey:
-		##for a in InputMap.get_actions():
-		#for a in action_list:
-			#for e in InputMap.action_get_events(a):
-				#if e.is_match(event):
-					#var tick = int(Time.get_ticks_msec() - begin_record_tick)					
-					#recorded_events.pressed.append({"tick": tick, "name": a, "type":"R"})
-					#max_tick = max(max_tick, tick)
-					#break
 
 
 func get_recorded_events() -> Dictionary:

@@ -8,5 +8,6 @@ func _ready() -> void:
 
 
 func _on_incendescent_finished() -> void:
-	self.queue_free()
+	#self.queue_free()
+	DemoMode.demo_queue_free(self)
 	

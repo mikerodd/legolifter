@@ -88,9 +88,9 @@ func _on_smp_transited(_from: Variant, to: Variant) -> void:
 			Messenger.begin_play.emit("record")
 			
 		"DemoMode":
+			Messenger.set_live_demo_mode.emit("demo")
 			Messenger.level_started.emit(GameVariables.current_level)
 			GlobalUtils.reinit_unique_name()
-			Messenger.set_live_demo_mode.emit("demo")
 			Messenger.begin_play.emit("demo")
 			
 func manage_debug_window():
@@ -109,8 +109,11 @@ func _unhandled_key_input(_event):
 			DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_FULLSCREEN)
 	if Input.is_action_just_pressed("record"):
 		smp.set_trigger("to_record")
+		#DemoMode.start_record_demo($"3D/MovingBits")
+		#$DemoTimer.start()		
 	if Input.is_action_just_pressed("play_record"):
 		smp.set_trigger("to_demo")
+		#DemoMode.play_demo($"3D/MovingBits")
 	if Input.is_action_just_pressed("save"):
 		lok_scene_mng.save_data()
 	if Input.is_action_just_pressed("load"):
@@ -121,3 +124,8 @@ func _unhandled_key_input(_event):
 
 func _on_return_to_start() -> void:
 	smp.set_trigger("to_startscreen")
+
+
+func _on_demo_timer_timeout() -> void:
+	pass
+	

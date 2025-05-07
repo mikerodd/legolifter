@@ -32,7 +32,8 @@ func _on_return_to_start() -> void :
 	
 func cleanup_planes() -> void:
 	for t in get_children():
-		if t is CosmicCruiser: t.queue_free()
+		if t is CosmicCruiser: 
+			t.queue_free()
 		
 		
 func _on_level_started(_level : int) -> void:

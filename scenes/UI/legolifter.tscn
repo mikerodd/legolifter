@@ -1,6 +1,6 @@
 [gd_scene load_steps=4 format=3 uid="uid://iykav68vl5b2"]
 
-[ext_resource type="Texture2D" uid="uid://bt0oqhxisukat" path="res://textures/legolifter.png" id="1_raq86"]
+[ext_resource type="Texture2D" uid="uid://caepbuo6m4kmt" path="res://textures/ui/legolifter.png" id="1_raq86"]
 
 [sub_resource type="GDScript" id="GDScript_raq86"]
 script/source = "extends Control

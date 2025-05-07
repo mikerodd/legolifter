@@ -37,7 +37,7 @@ func _physics_process(delta: float) -> void:
 			velocity += (Vector3.UP * 1.5 + escape_route) * 0.2
 			self.rotate_z(PI/3 * delta)
 			if position.y > 18 : # i'm out of scope
-				get_parent().get_parent().queue_free()	
+				get_parent().get_parent().queue_free()
 					
 	
 	manage_collisions(delta)
@@ -80,7 +80,7 @@ func _on_lego_destroyer_destroy_begin() -> void:
 	plane_model.visible = false
 	
 func _on_lego_destroyer_destroy_end() -> void:
-	get_parent().get_parent().queue_free()	
+	get_parent().get_parent().queue_free()
 	
 func _on_destroy() -> void:
 	smp_ia.set_trigger("to_destroyed")

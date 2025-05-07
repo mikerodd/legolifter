@@ -1,9 +1,9 @@
 [gd_resource type="Theme" load_steps=12 format=3 uid="uid://csttegjq0h4hc"]
 
 [ext_resource type="FontFile" uid="uid://bpam5iq3asedj" path="res://theme/chalet_londonnineteensixty.otf" id="1_msykr"]
-[ext_resource type="Texture2D" uid="uid://b01qc4r7ancqa" path="res://textures/panel.png" id="2_26ypu"]
-[ext_resource type="Texture2D" uid="uid://dxp41xjcxh3um" path="res://textures/mini_panel.png" id="2_c5rhs"]
-[ext_resource type="Texture2D" uid="uid://cnrwwicfhmsug" path="res://textures/button1.png" id="3_6gj1h"]
+[ext_resource type="Texture2D" uid="uid://dyo35a3hs555k" path="res://textures/ui/panel.png" id="2_26ypu"]
+[ext_resource type="Texture2D" uid="uid://b83ij1ecig5qj" path="res://textures/ui/mini_panel.png" id="2_c5rhs"]
+[ext_resource type="Texture2D" uid="uid://nnboj08cgxf0" path="res://textures/ui/button1.png" id="3_6gj1h"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_6gj1h"]
 border_width_left = 7
