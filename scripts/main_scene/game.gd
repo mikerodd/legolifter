@@ -82,9 +82,9 @@ func _on_smp_transited(_from: Variant, to: Variant) -> void:
 			Messenger.update_scores.emit()
 
 		"Record":		
+			Messenger.set_live_demo_mode.emit("record")
 			Messenger.level_started.emit(GameVariables.current_level)
 			GlobalUtils.reinit_unique_name()
-			Messenger.set_live_demo_mode.emit("record")
 			Messenger.begin_play.emit("record")
 			
 		"DemoMode":
