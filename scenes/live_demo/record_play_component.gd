@@ -1,7 +1,7 @@
 class_name RecordPlayComponent extends LiveComponent
 
 
-signal end_of_record
+#signal end_of_record
 
 static var recorded_session: Dictionary = {}
 static var begin_play_tick : float = -1
