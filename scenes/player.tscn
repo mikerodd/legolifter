@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://m8eb30m2phbv"]
+[gd_scene load_steps=10 format=3 uid="uid://m8eb30m2phbv"]
 
 [ext_resource type="Script" uid="uid://cerxyojin83ah" path="res://scripts/main_scene/player.gd" id="1_dgqi6"]
 [ext_resource type="PackedScene" uid="uid://dcd0l1ye5i2lk" path="res://scenes/missile1.tscn" id="2_smehm"]
@@ -8,7 +8,6 @@
 [ext_resource type="Script" uid="uid://cra0md6tqliiq" path="res://scripts/locker/l_s_state_machine_player.gd" id="9_3v2ag"]
 [ext_resource type="PackedScene" uid="uid://lskm5tbedisk" path="res://scenes/lego_destroyer.tscn" id="9_ur7pv"]
 [ext_resource type="PackedScene" uid="uid://eryu7cbmb1ip" path="res://import/helicopter3_destroyed.glb" id="10_y4r1p"]
-[ext_resource type="PackedScene" uid="uid://bnuo2trawkafx" path="res://scenes/live_demo/live_demo_entity.tscn" id="11_d2wvv"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_kvmko"]
 size = Vector3(3.48972, 1.04744, 3.45163)
@@ -54,17 +53,12 @@ explode_intensity = 8.0
 [node name="CenterOfExplosion" parent="LegoDestroyer" index="0"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.345612, 0.69965, 0)
 
-[node name="LiveDemoEntity" parent="." instance=ExtResource("11_d2wvv")]
-
-[node name="record" parent="LiveDemoEntity" index="1"]
-action_list = Array[String](["move_up", "move_down", "move_left", "move_right", "fire", "rotate_left", "rotate_right"])
-
 [connection signal="destroy" from="." to="." method="_on_destroy"]
 [connection signal="tree_exiting" from="." to="." method="_on_tree_exiting"]
 [connection signal="transited" from="NewRotatingSMP" to="." method="_on_rotating_smp_transited"]
+[connection signal="transited" from="NewFlyingSMP" to="." method="_on_flying_smp_transited"]
 [connection signal="timeout" from="fire_rate_timer" to="." method="_on_fire_rate_timer_timeout"]
 [connection signal="destroy_end" from="LegoDestroyer" to="." method="_on_lego_destroyer_destroy_end"]
 
 [editable path="model_rotator/helicopter3"]
 [editable path="LegoDestroyer"]
-[editable path="LiveDemoEntity"]

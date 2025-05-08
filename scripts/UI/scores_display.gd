@@ -1,4 +1,4 @@
-extends CanvasLayer
+extends Control
 
 
 @onready var out_label: Label = get_node("HostageScore/MarginContainer/GridContainer/OutContainer/OutCount")
@@ -10,6 +10,8 @@ extends CanvasLayer
 
 func _ready() -> void:
 	Messenger.update_scores.connect(self.update_scores)
+
+		
 
 func update_scores() -> void:
 	saved_label.text = str(GameVariables.saved_count)

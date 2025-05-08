@@ -11,17 +11,22 @@ const NORMAL_MODE_SCALE = 1
 const DEMO_MODE_SCALE = 0.5
 
 func _ready() -> void:
-	Messenger.return_to_start.connect(fade_in)
+	Messenger.return_to_start.connect(_on_return_to_start)
 	Messenger.begin_play.connect(_on_begin_play)
 	Messenger.set_live_demo_mode.connect(_on_live_demo_mode)
 
+func _on_return_to_start():
+		self.scale = Vector2(NORMAL_MODE_SCALE, NORMAL_MODE_SCALE)
+		self.position.y = NORMAL_MODE_POS_Y
+		fade_in()
 
-func _on_begin_play(playmode: String) -> void:
+func _on_begin_play() -> void:
+	var playmode = LiveDemo.current_active
 	if playmode == \"live\": 
 		self.scale = Vector2(NORMAL_MODE_SCALE, NORMAL_MODE_SCALE)
 		self.position.y = NORMAL_MODE_POS_Y
 		fade_out()
-	if playmode == \"demo\":
+	if playmode == \"demo\" or playmode == \"record\":
 		self.scale = Vector2(DEMO_MODE_SCALE, DEMO_MODE_SCALE)
 		self.position.y = DEMO_MODE_POS_Y
 

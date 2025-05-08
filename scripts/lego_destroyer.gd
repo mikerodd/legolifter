@@ -43,6 +43,8 @@ func apply_impulse(node: Node3D):
 	for p in node.get_children():
 		if p is RigidBody3D:
 			p.apply_impulse(p.get_child(1).position * randf_range(0.1,explode_intensity), center_of_explosion.global_position)
+			p.apply_torque(center_of_explosion.global_position - p.position)
+
 		if p.get_child_count() > 0:
 			apply_impulse(p)
 

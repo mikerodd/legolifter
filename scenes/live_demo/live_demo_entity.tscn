@@ -14,6 +14,7 @@ set_active_signal_name = "set_live_demo_mode"
 [node name="live" parent="." instance=ExtResource("2_5qyu3")]
 
 [node name="record" parent="." instance=ExtResource("4_rng8l")]
+action_list = Array[String](["move_up", "move_down", "move_left", "move_right", "fire", "rotate_left", "rotate_right"])
 
 [node name="demo" parent="." instance=ExtResource("3_1qurl")]
 

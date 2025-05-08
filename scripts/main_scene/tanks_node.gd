@@ -8,8 +8,6 @@ extends Node
 @onready var tank_spawn_location : Marker3D = get_node(tank_spawn_location_np)
 @export_node_path var spawn_timer_np : NodePath
 @onready var spawn_timer : Timer = get_node(spawn_timer_np)
-@export_node_path("LiveDemoEntity") var live_demo_np : NodePath
-@onready var live_demo = get_node(live_demo_np)
 
 
 var my_parms : Dictionary
@@ -28,7 +26,7 @@ func _on_level_started(_level : int) -> void:
 	my_parms = GameVariables.get_my_parms(self.name)
 	Logger.debug("spawn variables:  rate:%f, rate_range: %f  " % [my_parms["rate"],my_parms["rate_range"]] )
 	spawn_timer.wait_time = my_parms["rate"] + \
-		live_demo.randf_range(0, my_parms["rate_range"])
+		LiveDemo.randf_range(self, 0, my_parms["rate_range"])
 	Logger.debug("starting spawn timer")
 	spawn_timer.paused = false
 	spawn_timer.start()
@@ -65,7 +63,7 @@ func spawn_tank_in_game() -> void:
 		return
 		
 	var spawn_p : Dictionary = {"parms" : {}, "parent": self}
-	spawn_p["parms"]["name"] = GlobalUtils.build_unique_name("Tank")
+	spawn_p["parms"]["name"] = LiveDemo.build_unique_name("Tank")
 	spawn_p["parms"]["position"] = Vector3(safe_position, tank_spawn_location.position.y,tank_spawn_location.position.z)
 	spawn_p["parms"]["rotation"] = Vector3(0, PI/2, 0)
 	spawn_p["parms"]["right_limit"] = tank_limit.position.x
@@ -79,7 +77,7 @@ func _on_spawn_timer_timeout() -> void:
 	if  (get_tree().get_node_count_in_group("enemy_tanks") 
 			< my_parms["limit"]):
 		spawn_timer.wait_time = my_parms["rate"] + \
-			live_demo.randf_range(0, my_parms["rate_range"])
+			LiveDemo.randf_range(self, 0, my_parms["rate_range"])
 		spawn_tank_in_game()
 	else:
 		# we keep the timer running to check if some tanks have been destroyed 

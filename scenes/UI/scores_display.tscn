@@ -1,6 +1,6 @@
-[gd_scene load_steps=12 format=3 uid="uid://bnvs7sljcxtby"]
+[gd_scene load_steps=14 format=3 uid="uid://bnvs7sljcxtby"]
 
-[ext_resource type="Script" uid="uid://db3nak0rahdkn" path="res://scripts/scores_display.gd" id="1_02s7e"]
+[ext_resource type="Script" uid="uid://db3nak0rahdkn" path="res://scripts/UI/scores_display.gd" id="1_02s7e"]
 [ext_resource type="Texture2D" uid="uid://dux1s5grmaf6f" path="res://shaders/skull.png" id="1_08t0d"]
 [ext_resource type="Theme" uid="uid://csttegjq0h4hc" path="res://theme/lego_theme.tres" id="1_rrjwj"]
 [ext_resource type="Texture2D" uid="uid://bquqksxve21l" path="res://shaders/structure_tower.png" id="2_u5qtf"]
@@ -17,21 +17,60 @@ border_width_right = 4
 border_width_bottom = 4
 border_color = Color(0.850996, 0.191974, 0.176349, 1)
 
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_mjds2"]
+
+[sub_resource type="GDScript" id="GDScript_mjds2"]
+script/source = "extends PanelContainer
+
+@onready var timer : Timer = $Timer
+
+func _ready() -> void:
+	Messenger.return_to_start.connect(_hide_me)
+	Messenger.begin_play.connect(_on_begin_play)
+
+func _on_begin_play() -> void:
+	var playmode = LiveDemo.current_active
+	if playmode == \"demo\":
+		_show_me()
+	else:
+		_hide_me()
+
+
+func _on_timer_timeout() -> void:
+	visible = not visible
+
+
+func _show_me() -> void:
+	visible = true
+	timer.start()
+
+
+func _hide_me() -> void:
+	visible = false
+	timer.stop()
+"
+
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_jgel7"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_yam8e"]
 
-[node name="ScoresDisplay" type="CanvasLayer"]
+[node name="ScoresDisplay" type="Control"]
+layout_mode = 3
+anchors_preset = 0
 script = ExtResource("1_02s7e")
+metadata/_edit_use_anchors_ = true
 
 [node name="HostageScore" type="PanelContainer" parent="."]
 custom_minimum_size = Vector2(20, 20)
+layout_mode = 1
 anchors_preset = -1
 anchor_top = 0.877
 anchor_right = 0.993
 anchor_bottom = 1.0
-offset_top = -16.296
-offset_right = 8.06409
+offset_left = -1.0
+offset_top = 546.0
+offset_right = 1152.0
+offset_bottom = 648.0
 grow_horizontal = 2
 grow_vertical = 0
 theme = ExtResource("1_rrjwj")
@@ -152,15 +191,32 @@ text = "13"
 horizontal_alignment = 1
 vertical_alignment = 1
 
+[node name="PressAnyKey" type="PanelContainer" parent="."]
+layout_mode = 1
+offset_left = 100.0
+offset_top = 487.345
+offset_right = 1051.0
+offset_bottom = 553.345
+theme_override_styles/panel = SubResource("StyleBoxEmpty_mjds2")
+script = SubResource("GDScript_mjds2")
+metadata/_edit_use_anchors_ = true
+
+[node name="Label" type="Label" parent="PressAnyKey"]
+layout_mode = 2
+theme = ExtResource("1_rrjwj")
+theme_override_colors/font_color = Color(0.957, 0.808011, 0.251087, 1)
+theme_override_font_sizes/font_size = 40
+text = "Press Any Key"
+horizontal_alignment = 1
+
+[node name="Timer" type="Timer" parent="PressAnyKey"]
+autostart = true
+
 [node name="HeliRemaining" type="PanelContainer" parent="."]
-anchors_preset = 1
-anchor_left = 1.0
-anchor_right = 1.0
-offset_left = -187.0
-offset_top = 18.0
-offset_right = -27.0
-offset_bottom = 80.0
-grow_horizontal = 0
+layout_mode = 0
+offset_left = 1000.0
+offset_right = 1151.0
+offset_bottom = 70.0
 theme_override_styles/panel = SubResource("StyleBoxEmpty_jgel7")
 
 [node name="HBoxContainer" type="HBoxContainer" parent="HeliRemaining"]
@@ -182,3 +238,5 @@ size_flags_horizontal = 3
 size_flags_stretch_ratio = 3.0
 texture = ExtResource("8_jgel7")
 expand_mode = 2
+
+[connection signal="timeout" from="PressAnyKey/Timer" to="PressAnyKey" method="_on_timer_timeout"]

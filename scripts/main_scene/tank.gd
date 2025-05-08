@@ -45,7 +45,7 @@ func _physics_process(delta: float) -> void:
 		"Scanning":
 			turret_model.rotation.y -= PI/5 * delta
 			if wait_delay > wait_finished:
-				if live_demo.randf() < intel.Scanning.proba:
+				if LiveDemo.randf(self) < intel.Scanning.proba:
 					smp_ia.set_trigger("found_target")
 				else: 
 					Logger.debug("Didn't detect the target...")
@@ -60,7 +60,7 @@ func _physics_process(delta: float) -> void:
 		"HuntTarget":
 			point_at_player(delta)
 			if wait_delay > wait_finished:
-				if live_demo.randf() < intel.HuntTarget.proba:
+				if LiveDemo.randf(self) < intel.HuntTarget.proba:
 					Logger.debug("I lost my target...")
 					smp_ia.set_trigger("lost_target")
 				else:
@@ -112,8 +112,8 @@ func point_at_player(delta):
 
 func compute_wait(cur_state) -> float:
 	if intel.has(cur_state):
-		var tmp_range = live_demo.randf_range(0, intel[cur_state].wait_range)
-		return live_demo.randf_range(intel[cur_state].wait - tmp_range, intel[cur_state].wait + tmp_range)
+		var tmp_range = LiveDemo.randf_range(self, 0, intel[cur_state].wait_range)
+		return LiveDemo.randf_range(self, intel[cur_state].wait - tmp_range, intel[cur_state].wait + tmp_range)
 	else: 
 		return 0		
 

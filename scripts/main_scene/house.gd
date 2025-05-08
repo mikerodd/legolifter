@@ -48,7 +48,7 @@ func _init_me(spawn_p: Dictionary) -> void:
 
 func create_path_for_hostage() -> PathFollow3D:
 	var pf: PathFollow3D  = base_path.duplicate()
-	pf.name = GlobalUtils.build_unique_name("HostagePathFollow")
+	pf.name = LiveDemo.build_unique_name("HostagePathFollow")
 	way_out.add_child(pf)
 	return pf	
 

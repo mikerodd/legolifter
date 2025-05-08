@@ -29,7 +29,7 @@ func spwan_house_in_game() -> void:
 	for p in get_children():
 		if p is Marker3D:
 			var spawn_p : Dictionary = {"parms" : {}, "parent": self}
-			spawn_p["parms"]["name"] = GlobalUtils.build_unique_name("House")
+			spawn_p["parms"]["name"] = LiveDemo.build_unique_name("House")
 			spawn_p["parms"]["position"] = p.position
 			spawn_p["parms"]["rotation"] = p.rotation
 			spawn_p["parms"]["current_hostage_count"] =  GameVariables.hostages_per_house 
@@ -43,6 +43,5 @@ func spwan_house_in_game() -> void:
 			if tmp_count >= house_count : return
 
 func init_houses() -> void :
-	GameVariables.init_scores()	
 	cleanup_houses()
 	spwan_house_in_game()

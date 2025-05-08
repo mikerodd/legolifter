@@ -19,7 +19,7 @@ signal show_side_buttons
 @warning_ignore("unused_signal")
 signal return_to_start
 @warning_ignore("unused_signal")
-signal begin_play(playmode: String)
+signal begin_play
 @warning_ignore("unused_signal")
 signal level_started(level: int)
 @warning_ignore("unused_signal")
@@ -36,6 +36,8 @@ signal set_live_demo_mode(mode: String)
 ## UI Signals
 @warning_ignore("unused_signal")
 signal ui_darken_display
+@warning_ignore("unused_signal")
+signal ui_total_dark_display
 @warning_ignore("unused_signal")
 signal ui_englight_display
 @warning_ignore("unused_signal")

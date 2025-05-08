@@ -16,7 +16,6 @@ signal destroy
 @onready var shell_orig = $model_rotator/helicopter3/missile_orig
 @onready var fire_rate_timer: Timer = $fire_rate_timer
 @onready var coli_shape:CollisionShape3D = $new_heli_colishape
-@onready var live_demo:LiveDemoEntity = $LiveDemoEntity
 
 
 
@@ -47,6 +46,8 @@ var can_play: bool = false
 var is_dead: bool = false
 var passenger_count: int  = 0;
 var my_collision_layer :int 
+var limit_right : Vector3
+var limit_left : Vector3 
 
 func _ready() -> void:
 	flying_smp.transited.connect(self._debug_fly)
@@ -80,18 +81,22 @@ func _physics_process(_delta: float) -> void:
 
 	match flying_smp.get_current():
 		"Landed":
-			if live_demo.is_action_pressed("move_up"): 
+			if LiveDemo.is_action_pressed("move_up"): 
 				flying_smp.set_trigger("move_up")
 				create_tween().tween_property(model_anim,"speed_scale",1.5,1)
 			
 		"OnFly":
-			var move_up = 1 if live_demo.is_action_pressed("move_up") else 0
-			var move_down = 1 if live_demo.is_action_pressed("move_down") else 0
-			var move_left = 1 if live_demo.is_action_pressed("move_left") else 0
-			var move_right = 1 if live_demo.is_action_pressed("move_right") else 0
-			var action = 1 if live_demo.is_action_pressed("fire") else 0
-			var rotate_left = 1 if live_demo.is_action_pressed("rotate_left") else 0
-			var rotate_right = 1 if live_demo.is_action_pressed("rotate_right") else 0
+			var move_up = 1 if LiveDemo.is_action_pressed("move_up") else 0
+			var move_down = 1 if LiveDemo.is_action_pressed("move_down") else 0
+			var move_left = 1 if LiveDemo.is_action_pressed("move_left") else 0
+			var move_right = 1 if LiveDemo.is_action_pressed("move_right") else 0
+			var action = 1 if LiveDemo.is_action_pressed("fire") else 0
+			var rotate_left = 1 if LiveDemo.is_action_pressed("rotate_left") else 0
+			var rotate_right = 1 if LiveDemo.is_action_pressed("rotate_right") else 0
+			if position.x < limit_left.x: 
+				move_left = 0
+			if position.x > limit_right.x:
+				move_right = 0
 			velocity = move_up * Vector3.UP *  speed  + move_down * Vector3.DOWN * speed 
 			velocity += move_left * Vector3.LEFT * speed  + move_right * Vector3.RIGHT * speed
 			if velocity != Vector3.ZERO:
@@ -106,9 +111,9 @@ func _physics_process(_delta: float) -> void:
 			if action and can_fire:
 				fire_rocket()
 
-			if live_demo.is_action_just_pressed("move_left"):
+			if LiveDemo.is_action_just_pressed("move_left"):
 				create_tween().tween_property(model_rotator, "rotation:z", PI/16, rotation_duration)
-			elif live_demo.is_action_just_pressed("move_right"):
+			elif LiveDemo.is_action_just_pressed("move_right"):
 				create_tween().tween_property(model_rotator, "rotation:z", -PI/16, rotation_duration)
 			elif move_right == 0 and move_left == 0:
 				create_tween().tween_property(model_rotator, "rotation:z", 0, rotation_duration)
@@ -147,8 +152,8 @@ func _physics_process(_delta: float) -> void:
 
 		"Destroyed":
 			velocity += Vector3.DOWN * 0.2
-			self.rotate(Vector3.UP, live_demo.randf_range(-2, 3) * _delta)
-			self.rotate(Vector3.LEFT, live_demo.randf_range( -2, 3) * _delta)
+			self.rotate(Vector3.UP, LiveDemo.randf_range(self, -2, 3) * _delta)
+			self.rotate(Vector3.LEFT, LiveDemo.randf_range(self, -2, 3) * _delta)
 			var c_obj = move_and_collide(velocity * _delta)
 			if c_obj:
 				if not c_obj.get_collider() is Missile1:
@@ -221,9 +226,11 @@ func _on_destroy() -> void:
 
 
 func _on_lego_destroyer_destroy_end() -> void:
+	Logger.debug("score at destroyed : dead_count:%d  heli_count:%d " % [GameVariables.dead_count, GameVariables.heli_count])
 	GameVariables.heli_lives -= 1
 	GameVariables.dead_count += GameVariables.heli_count
 	GameVariables.heli_count = 0
+	
 
 	if GameVariables.check_end_level():
 		Messenger.level_complete.emit()
@@ -237,9 +244,5 @@ func _on_tree_exiting() -> void:
 	pass
 
 
-func _on_play_end_of_record() -> void:
-	Logger.debug("End of record")
-
-
 func _on_flying_smp_transited(from: Variant, to: Variant) -> void:
-	Logger.debug("on flying SMP transited from %s to %s" % [from, to])
+	Logger.debug("PLayer flying SMP transited from %s to %s" % [from, to])

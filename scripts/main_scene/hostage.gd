@@ -21,7 +21,7 @@ func _physics_process(delta: float) -> void:
 						GlobalUtils.player.has_room_for_hostage()):
 					smp_ia.set_trigger("found_helicopter")
 				if wait_delay > wait_finished:
-					if live_demo.randf() < 0.5:
+					if LiveDemo.randf(self) < 0.5:
 						smp_ia.set_trigger("go_idle")
 					else:
 						wait_delay = 0
@@ -37,7 +37,7 @@ func _physics_process(delta: float) -> void:
 				
 			"ReachHelicopter":
 				if wait_delay > wait_finished:
-					if live_demo.randf() < 0.5 and not GlobalUtils.player.is_landed():
+					if LiveDemo.randf(self) < 0.5 and not GlobalUtils.player.is_landed():
 						smp_ia.set_trigger("lost_helicopter")
 					else:
 						wait_delay = 0
@@ -57,7 +57,7 @@ func _physics_process(delta: float) -> void:
 						get_parent().queue_free()
 			"Idle":
 				if wait_delay > wait_finished:
-					if live_demo.randf() < 0.5:
+					if LiveDemo.randf(self) < 0.5:
 						smp_ia.set_trigger("found_helicopter")
 					else:
 						smp_ia.set_trigger("really_lost")
@@ -75,6 +75,7 @@ func _on_path_house_finished():
 	Logger.debug("I finished the path")
 	top_level = true
 	rotation = Vector3(0, PI/2, 0)
+	Logger.debug("end of path for hostage, status of player. Lander %s, room for hostage : %s " % [GlobalUtils.player.is_landed(), GlobalUtils.player.has_room_for_hostage()])
 	if GlobalUtils.player.is_landed() and GlobalUtils.player.has_room_for_hostage():
 		smp_ia.set_trigger("exit_reached")
 	else: 
@@ -102,13 +103,13 @@ func _on_smp_ia_transited(_from: Variant, to: Variant) -> void:
 	if to == "ReachHelicopter":
 		anim.play("G_run",-1,3)
 		wait_delay = 0
-		wait_finished = live_demo.randf_range(1,3)
+		wait_finished = LiveDemo.randf_range(self, 1, 3)
 		Logger.debug("Hostage is looking for the Helicopter...")
 
 	if to == "Lost":
 		anim.play("G_run",-1,3)
 		wait_delay = 0
-		wait_finished = live_demo.randf_range(1,3)
+		wait_finished = LiveDemo.randf_range(self, 1, 3)
 		Logger.debug("Hostage is completely lost...")
 
 	if to == "ReachPostOffice":
@@ -120,7 +121,7 @@ func _on_smp_ia_transited(_from: Variant, to: Variant) -> void:
 		rotation.y = 0
 		#anim.play("G_stand-idle")
 		wait_delay = 0
-		wait_finished = live_demo.randf_range(1,3)
+		wait_finished = LiveDemo.randf_range(self, 1, 3)
 		Logger.debug("Hostage is idling")
 
 

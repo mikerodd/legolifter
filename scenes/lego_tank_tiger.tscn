@@ -1,4 +1,4 @@
-[gd_scene load_steps=57 format=3 uid="uid://d22wpla6um2ni"]
+[gd_scene load_steps=56 format=3 uid="uid://d22wpla6um2ni"]
 
 [ext_resource type="Script" uid="uid://djpwkhlpc3nlj" path="res://scripts/lego_tank.gd" id="1_423go"]
 [ext_resource type="PackedScene" uid="uid://cnci4axl7dae7" path="res://import/tank_tiger.glb" id="2_423go"]
@@ -12,7 +12,6 @@
 [ext_resource type="Script" uid="uid://xj1j8owjucly" path="res://addons/imjp94.yafsm/src/conditions/Condition.gd" id="10_bh0sy"]
 [ext_resource type="PackedScene" uid="uid://lskm5tbedisk" path="res://scenes/lego_destroyer.tscn" id="11_423go"]
 [ext_resource type="PackedScene" uid="uid://dkrt0idmey35x" path="res://import/tank_tiger_destroyed.glb" id="12_681ks"]
-[ext_resource type="PackedScene" uid="uid://bnuo2trawkafx" path="res://scenes/live_demo/live_demo_entity.tscn" id="15_681ks"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_jy6d4"]
 size = Vector3(5.89328, 0.890896, 1.85648)
@@ -386,8 +385,6 @@ explode_intensity = 8.0
 
 [node name="CenterOfExplosion" parent="LegoDestroyer" index="0"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00390851, 0.0977128, 0)
-
-[node name="LiveDemoEntity" parent="." instance=ExtResource("15_681ks")]
 
 [connection signal="destroy" from="." to="LegoDestroyer" method="destroy"]
 [connection signal="transited" from="StateMachinePlayer" to="." method="_on_fsm_ia_transited"]

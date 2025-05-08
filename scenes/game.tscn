@@ -372,15 +372,18 @@ metadata/_custom_type_script = "uid://dvjva865w4axu"
 
 [node name="UI" type="Node" parent="."]
 
+[node name="Scores" parent="UI" instance=ExtResource("6_bhx41")]
+
+[node name="LegoLifter" parent="UI" instance=ExtResource("3_bt5mj")]
+process_mode = 3
+offset_bottom = -288.0
+
 [node name="DarkLayer" type="ColorRect" parent="UI"]
 process_mode = 3
 offset_right = 1152.0
 offset_bottom = 648.0
 color = Color(0, 0, 0, 0)
 script = ExtResource("2_37s47")
-
-[node name="LegoLifter" parent="UI" instance=ExtResource("3_bt5mj")]
-offset_bottom = -288.0
 
 [node name="ConfirmButtons" parent="UI" instance=ExtResource("4_pl11u")]
 offset_left = -574.0
@@ -390,14 +393,13 @@ offset_right = -574.0
 
 [node name="SideButtons" parent="UI" instance=ExtResource("5_pl11u")]
 
-[node name="Scores" parent="UI" instance=ExtResource("6_bhx41")]
-
 [node name="Instructions" parent="UI" instance=ExtResource("7_bt5mj")]
 offset_left = -688.0
 offset_top = -260.0
 offset_bottom = 160.0
 
 [node name="Level" parent="UI" instance=ExtResource("9_bhx41")]
+process_mode = 3
 
 [node name="3D" type="Node" parent="."]
 
@@ -425,6 +427,8 @@ metadata/_custom_type_script = "uid://brt4otgn2jol1"
 [node name="PlayerNode" type="Node" parent="3D/MovingBits"]
 script = ExtResource("7_qnb83")
 start_position_np = NodePath("start_position")
+player_limit_right_np = NodePath("playerLimitRight")
+player_limit_left_np = NodePath("playerLimitLeft")
 player_scene = ExtResource("8_sww3w")
 land_altitude = 0.304
 
@@ -439,6 +443,12 @@ metadata/_custom_type_script = "uid://brt4otgn2jol1"
 
 [node name="start_position" type="Marker3D" parent="3D/MovingBits/PlayerNode"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 51.93, -0.094, 0)
+
+[node name="playerLimitRight" type="Marker3D" parent="3D/MovingBits/PlayerNode"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 60.4299, 0, 0)
+
+[node name="playerLimitLeft" type="Marker3D" parent="3D/MovingBits/PlayerNode"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -485.48, 0, 0)
 
 [node name="HousesNode" parent="3D/MovingBits" instance=ExtResource("15_qnb83")]
 

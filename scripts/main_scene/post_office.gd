@@ -22,7 +22,7 @@ func cleanup_hostages() -> void:
 func _on_timer_timeout() -> void:
 	if GlobalUtils.player.is_landed():
 		var pf: PathFollow3D  = base_path.duplicate()
-		pf.name = GlobalUtils.build_unique_name("HostagePath")
+		pf.name = LiveDemo.build_unique_name("HostagePath")
 		way_in.add_child(pf)
 		var h : Hostage = hostage_scene.instantiate()
 		h._init_me(

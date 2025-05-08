@@ -123,7 +123,7 @@ destroy_model = ExtResource("2_se78b")
 initial_model_np = NodePath("../house2")
 
 [node name="CenterOfExplosion" parent="LegoDestroyer" index="0"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.27395, 0.435318, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.07822, 0.435318, -0.706152)
 
 [node name="PostWayOut" type="Node3D" parent="."]
 

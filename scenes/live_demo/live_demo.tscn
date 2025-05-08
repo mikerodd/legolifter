@@ -1,0 +1,21 @@
+[gd_scene load_steps=5 format=3 uid="uid://164mxe8ailh2"]
+
+[ext_resource type="Script" uid="uid://blpgkgwxh17nh" path="res://scenes/live_demo/live_demo.gd" id="1_o8dyu"]
+[ext_resource type="Script" uid="uid://dimbhos5iguy5" path="res://scenes/live_demo/live_demo_live.gd" id="2_5mfsu"]
+[ext_resource type="Script" uid="uid://diyfbh05cadeh" path="res://scenes/live_demo/live_demo_record.gd" id="3_ugwv3"]
+[ext_resource type="Script" uid="uid://dfmpxqwbrq6ec" path="res://scenes/live_demo/live_demo_demo.gd" id="4_iwttr"]
+
+[node name="LiveDemo" type="Node"]
+script = ExtResource("1_o8dyu")
+
+[node name="Live" type="Node" parent="."]
+script = ExtResource("2_5mfsu")
+
+[node name="Record" type="Node" parent="."]
+script = ExtResource("3_ugwv3")
+action_list = Array[String](["move_up", "move_down", "move_left", "move_right", "fire", "rotate_left", "rotate_right"])
+
+[node name="Demo" type="Node" parent="."]
+script = ExtResource("4_iwttr")
+
+[connection signal="demo_finished" from="Demo" to="." method="_on_demo_demo_finished"]

@@ -29,6 +29,7 @@ GlobalUtils="*res://utils/global_utils.gd"
 Messenger="*res://scripts/messenger.gd"
 Logger="*res://addons/gs_logger/logger.gd"
 LokGlobalStorageManager="*res://addons/locker/scripts/storage_manager/global_storage_manager.gd"
+LiveDemo="*res://scenes/live_demo/live_demo.tscn"
 
 [display]
 

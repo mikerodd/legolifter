@@ -12,8 +12,6 @@ class_name CosmicNode extends Node
 @onready var player_pointer : Marker3D = get_node(player_pointer_np)
 @export_node_path("Marker3D") var plane_limit_np : NodePath
 @onready var plane_limit : Marker3D = get_node(plane_limit_np)
-@export_node_path("LiveDemoEntity") var live_demo_np : NodePath
-@onready var live_demo = get_node(live_demo_np)
 
 var spawn_limit : Marker3D
 var my_parms : Dictionary = {}
@@ -40,7 +38,7 @@ func _on_level_started(_level : int) -> void:
 	my_parms = GameVariables.get_my_parms(self.name)
 
 	spawn_timer.wait_time = my_parms["rate"] + \
-		live_demo.randf_range(0, my_parms["rate_range"])
+		LiveDemo.randf_range(self, 0, my_parms["rate_range"])
 	spawn_timer.start()	
 
 func spawn_plane_in_game() -> void :
@@ -50,7 +48,7 @@ func spawn_plane_in_game() -> void :
 
 	var p_template
 	var e_r
-	if live_demo.randf() >= 0.5:
+	if LiveDemo.randf(self) >= 0.5:
 		p_template = approach_r_path
 		e_r = Vector3.LEFT
 	else:
@@ -60,7 +58,7 @@ func spawn_plane_in_game() -> void :
 	add_child(path)
 	var spawn_p : Dictionary = {"parms" : {}, "parent": path.get_node("way_in")}
 	path.position = GlobalUtils.player.position - player_pointer.position
-	spawn_p["parms"]["name"] = GlobalUtils.build_unique_name("Plane")
+	spawn_p["parms"]["name"] = LiveDemo.build_unique_name("Plane")
 	spawn_p["parms"]["escape_route"] = e_r
 
 	var new_plane : CosmicCruiser = plane_scene.instantiate()
@@ -75,7 +73,7 @@ func _on_spawn_timer_timeout() -> void:
 	var count = get_tree().get_node_count_in_group("enemy_planes")
 	if  count < my_parms["limit"]:
 		spawn_timer.wait_time = my_parms["rate"] + \
-			live_demo.randf_range(0, my_parms["rate_range"])
+			LiveDemo.randf_range(self, 0, my_parms["rate_range"])
 		spawn_plane_in_game()
 	else:
 		# we keep the timer running to check if some tanks have been destroyed 

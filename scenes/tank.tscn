@@ -1,4 +1,4 @@
-[gd_scene load_steps=51 format=3 uid="uid://cp6y14a0vp6su"]
+[gd_scene load_steps=50 format=3 uid="uid://cp6y14a0vp6su"]
 
 [ext_resource type="Script" uid="uid://bryxgd7iwfj37" path="res://scripts/main_scene/tank.gd" id="1_tkhg2"]
 [ext_resource type="PackedScene" uid="uid://j6hfurql3n5f" path="res://import/tank1.glb" id="2_3iw7i"]
@@ -12,7 +12,6 @@
 [ext_resource type="Script" uid="uid://lt0dig07oj4a" path="res://addons/imjp94.yafsm/src/transitions/Transition.gd" id="6_ktvdn"]
 [ext_resource type="Script" uid="uid://xj1j8owjucly" path="res://addons/imjp94.yafsm/src/conditions/Condition.gd" id="9_j3d6k"]
 [ext_resource type="Script" uid="uid://blso217oe4a4s" path="res://addons/imjp94.yafsm/src/conditions/BooleanCondition.gd" id="12_2slht"]
-[ext_resource type="PackedScene" uid="uid://bnuo2trawkafx" path="res://scenes/live_demo/live_demo_entity.tscn" id="13_owdos"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_kwxlf"]
 size = Vector3(5.89328, 0.970322, 2.01229)
@@ -331,7 +330,5 @@ script = ExtResource("3_xyrri")
 state_machine = SubResource("Resource_001x2")
 
 [node name="player_pointer" type="Node3D" parent="."]
-
-[node name="LiveDemoEntity" parent="." instance=ExtResource("13_owdos")]
 
 [connection signal="transited" from="StateMachinePlayer" to="." method="_on_fsm_ia_transited"]

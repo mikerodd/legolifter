@@ -1,0 +1,514 @@
+{
+    "/root/Game/3D/MovingBits/CosmicsNode": {
+        "randf": [
+            {
+                "tick": 0,
+                "value": 0.495333522558212
+            }
+        ]
+    },
+    "/root/Game/3D/MovingBits/HousesNode/House1/WayOut/HostagePathFollow4/Hostage": {
+        "randf": [
+            {
+                "tick": 936,
+                "value": 2.46824026107788
+            },
+            {
+                "tick": 1085,
+                "value": 0.534873366355896
+            }
+        ]
+    },
+    "/root/Game/3D/MovingBits/HousesNode/House1/WayOut/HostagePathFollow5/Hostage": {
+        "randf": [
+            {
+                "tick": 996,
+                "value": 2.87242889404297
+            }
+        ]
+    },
+    "/root/Game/3D/MovingBits/HousesNode/House1/WayOut/HostagePathFollow6/Hostage": {
+        "randf": [
+            {
+                "tick": 1056,
+                "value": 2.07638263702393
+            },
+            {
+                "tick": 1181,
+                "value": 0.261917948722839
+            }
+        ]
+    },
+    "/root/Game/3D/MovingBits/HousesNode/House1/WayOut/HostagePathFollow7/Hostage": {
+        "randf": [
+            {
+                "tick": 1116,
+                "value": 1.65283489227295
+            },
+            {
+                "tick": 1216,
+                "value": 0.871944308280945
+            }
+        ]
+    },
+    "/root/Game/3D/MovingBits/HousesNode/House1/WayOut/HostagePathFollow8/Hostage": {
+        "randf": [
+            {
+                "tick": 1176,
+                "value": 2.08942604064941
+            },
+            {
+                "tick": 1302,
+                "value": 0.259064137935638
+            }
+        ]
+    },
+    "/root/Game/3D/MovingBits/TanksNode": {
+        "randf": [
+            {
+                "tick": 0,
+                "value": 1.50089967250824
+            },
+            {
+                "tick": 390,
+                "value": 0.230122119188309
+            },
+            {
+                "tick": 1094,
+                "value": 0.0836096107959747
+            },
+            {
+                "tick": 2018,
+                "value": 1.52442741394043
+            }
+        ]
+    },
+    "/root/Game/3D/MovingBits/TanksNode/Tank3": {
+        "randf": [
+            {
+                "tick": 391,
+                "value": 0.00277991546317935
+            },
+            {
+                "tick": 391,
+                "value": 3.00277066230774
+            }
+        ]
+    },
+    "/root/Game/3D/MovingBits/TanksNode/Tank9": {
+        "randf": [
+            {
+                "tick": 1183,
+                "value": 0.998191356658936
+            },
+            {
+                "tick": 1183,
+                "value": 3.75555968284607
+            },
+            {
+                "tick": 1409,
+                "value": 0.389832705259323
+            },
+            {
+                "tick": 1409,
+                "value": 0.992480039596558
+            },
+            {
+                "tick": 1409,
+                "value": 0.533816933631897
+            },
+            {
+                "tick": 1442,
+                "value": 0.155695915222168
+            },
+            {
+                "tick": 1442,
+                "value": 9.84673404693604
+            }
+        ]
+    },
+    "action_list": [
+        "move_up",
+        "move_down",
+        "move_left",
+        "move_right",
+        "fire",
+        "rotate_left",
+        "rotate_right"
+    ],
+    "just_pressed": [
+        {
+            "name": "move_left",
+            "tick": 77,
+            "type": "P"
+        },
+        {
+            "name": "move_right",
+            "tick": 489,
+            "type": "P"
+        },
+        {
+            "name": "move_right",
+            "tick": 535,
+            "type": "P"
+        },
+        {
+            "name": "move_left",
+            "tick": 596,
+            "type": "P"
+        },
+        {
+            "name": "move_left",
+            "tick": 759,
+            "type": "P"
+        },
+        {
+            "name": "move_left",
+            "tick": 817,
+            "type": "P"
+        },
+        {
+            "name": "move_left",
+            "tick": 1404,
+            "type": "P"
+        },
+        {
+            "name": "move_right",
+            "tick": 1507,
+            "type": "P"
+        },
+        {
+            "name": "move_right",
+            "tick": 1579,
+            "type": "P"
+        },
+        {
+            "name": "move_right",
+            "tick": 1800,
+            "type": "P"
+        }
+    ],
+    "max_tick": 2223.0,
+    "pressed": [
+        {
+            "name": "move_up",
+            "tick": 40,
+            "type": "P"
+        },
+        {
+            "name": "move_up",
+            "tick": 65,
+            "type": "R"
+        },
+        {
+            "name": "move_left",
+            "tick": 77,
+            "type": "P"
+        },
+        {
+            "name": "move_left",
+            "tick": 440,
+            "type": "R"
+        },
+        {
+            "name": "rotate_left",
+            "tick": 440,
+            "type": "R"
+        },
+        {
+            "name": "fire",
+            "tick": 480,
+            "type": "P"
+        },
+        {
+            "name": "move_right",
+            "tick": 489,
+            "type": "P"
+        },
+        {
+            "name": "rotate_right",
+            "tick": 489,
+            "type": "P"
+        },
+        {
+            "name": "move_right",
+            "tick": 497,
+            "type": "R"
+        },
+        {
+            "name": "rotate_right",
+            "tick": 497,
+            "type": "R"
+        },
+        {
+            "name": "fire",
+            "tick": 506,
+            "type": "R"
+        },
+        {
+            "name": "move_right",
+            "tick": 535,
+            "type": "P"
+        },
+        {
+            "name": "move_right",
+            "tick": 547,
+            "type": "R"
+        },
+        {
+            "name": "rotate_right",
+            "tick": 547,
+            "type": "R"
+        },
+        {
+            "name": "fire",
+            "tick": 551,
+            "type": "P"
+        },
+        {
+            "name": "fire",
+            "tick": 555,
+            "type": "R"
+        },
+        {
+            "name": "move_left",
+            "tick": 596,
+            "type": "P"
+        },
+        {
+            "name": "move_left",
+            "tick": 733,
+            "type": "R"
+        },
+        {
+            "name": "rotate_left",
+            "tick": 733,
+            "type": "R"
+        },
+        {
+            "name": "fire",
+            "tick": 740,
+            "type": "P"
+        },
+        {
+            "name": "fire",
+            "tick": 747,
+            "type": "R"
+        },
+        {
+            "name": "move_left",
+            "tick": 759,
+            "type": "P"
+        },
+        {
+            "name": "move_left",
+            "tick": 778,
+            "type": "R"
+        },
+        {
+            "name": "rotate_left",
+            "tick": 778,
+            "type": "R"
+        },
+        {
+            "name": "move_down",
+            "tick": 797,
+            "type": "P"
+        },
+        {
+            "name": "move_down",
+            "tick": 810,
+            "type": "R"
+        },
+        {
+            "name": "move_left",
+            "tick": 817,
+            "type": "P"
+        },
+        {
+            "name": "move_left",
+            "tick": 822,
+            "type": "R"
+        },
+        {
+            "name": "rotate_left",
+            "tick": 822,
+            "type": "R"
+        },
+        {
+            "name": "move_down",
+            "tick": 837,
+            "type": "P"
+        },
+        {
+            "name": "move_down",
+            "tick": 861,
+            "type": "R"
+        },
+        {
+            "name": "move_up",
+            "tick": 1366,
+            "type": "P"
+        },
+        {
+            "name": "move_up",
+            "tick": 1387,
+            "type": "R"
+        },
+        {
+            "name": "move_left",
+            "tick": 1404,
+            "type": "P"
+        },
+        {
+            "name": "move_left",
+            "tick": 1463,
+            "type": "R"
+        },
+        {
+            "name": "rotate_left",
+            "tick": 1463,
+            "type": "R"
+        },
+        {
+            "name": "fire",
+            "tick": 1480,
+            "type": "P"
+        },
+        {
+            "name": "fire",
+            "tick": 1484,
+            "type": "R"
+        },
+        {
+            "name": "move_right",
+            "tick": 1507,
+            "type": "P"
+        },
+        {
+            "name": "move_right",
+            "tick": 1519,
+            "type": "R"
+        },
+        {
+            "name": "rotate_right",
+            "tick": 1519,
+            "type": "R"
+        },
+        {
+            "name": "fire",
+            "tick": 1523,
+            "type": "P"
+        },
+        {
+            "name": "move_up",
+            "tick": 1532,
+            "type": "P"
+        },
+        {
+            "name": "fire",
+            "tick": 1532,
+            "type": "R"
+        },
+        {
+            "name": "move_up",
+            "tick": 1542,
+            "type": "R"
+        },
+        {
+            "name": "move_right",
+            "tick": 1579,
+            "type": "P"
+        },
+        {
+            "name": "move_down",
+            "tick": 1596,
+            "type": "P"
+        },
+        {
+            "name": "move_down",
+            "tick": 1606,
+            "type": "R"
+        },
+        {
+            "name": "fire",
+            "tick": 1651,
+            "type": "P"
+        },
+        {
+            "name": "fire",
+            "tick": 1655,
+            "type": "R"
+        },
+        {
+            "name": "fire",
+            "tick": 1706,
+            "type": "P"
+        },
+        {
+            "name": "fire",
+            "tick": 1716,
+            "type": "R"
+        },
+        {
+            "name": "fire",
+            "tick": 1756,
+            "type": "P"
+        },
+        {
+            "name": "fire",
+            "tick": 1771,
+            "type": "R"
+        },
+        {
+            "name": "move_right",
+            "tick": 1774,
+            "type": "R"
+        },
+        {
+            "name": "rotate_right",
+            "tick": 1774,
+            "type": "R"
+        },
+        {
+            "name": "fire",
+            "tick": 1799,
+            "type": "P"
+        },
+        {
+            "name": "move_right",
+            "tick": 1800,
+            "type": "P"
+        },
+        {
+            "name": "rotate_right",
+            "tick": 1800,
+            "type": "P"
+        },
+        {
+            "name": "fire",
+            "tick": 1813,
+            "type": "R"
+        },
+        {
+            "name": "move_right",
+            "tick": 2153,
+            "type": "R"
+        },
+        {
+            "name": "rotate_right",
+            "tick": 2153,
+            "type": "R"
+        },
+        {
+            "name": "move_down",
+            "tick": 2188,
+            "type": "P"
+        },
+        {
+            "name": "move_down",
+            "tick": 2223,
+            "type": "R"
+        }
+    ]
+}
