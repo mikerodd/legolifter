@@ -12,7 +12,7 @@ func _ready() -> void:
 func init_camera() -> void:
 	position.x = start_position.position.x
 
-func _process(delta: float) -> void:
+func _physics_process(delta: float) -> void:
 	if GlobalUtils.player:
 		var px:float = GlobalUtils.player.position.x
 		if position.x < px - offset:

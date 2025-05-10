@@ -6,8 +6,6 @@ class_name House extends Node3D
 signal destroy
 
 
-@onready var part1 = $part1
-@onready var part2 = $part2
 @onready var hostage_timer : Timer = $HostageTimer
 @onready var base_path = $WayOut/BasePath
 @onready var way_out = $WayOut
@@ -73,7 +71,5 @@ func _on_timer_timeout() -> void:
 
 func _on_lego_destroyer_destroy_begin() -> void:
 	is_destroyed = true
-	part1.emitting = true
-	part2.emitting = true
 	house_model.queue_free()
 	hostage_timer.start()

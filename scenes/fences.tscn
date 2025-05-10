@@ -3,7 +3,7 @@
 [ext_resource type="PackedScene" uid="uid://camg584a7q0g2" path="res://import/fence.glb" id="1_pcjmj"]
 [ext_resource type="PackedScene" uid="uid://cu1skyi0rx3wo" path="res://import/cannon.glb" id="2_f3b7b"]
 
-[node name="Fences" type="Node"]
+[node name="Fences" type="Node3D"]
 
 [node name="fence" parent="." instance=ExtResource("1_pcjmj")]
 transform = Transform3D(0.0590276, 0, -0.998256, 0, 1, 0, 0.998256, 0, 0.0590276, 31.1097, -0.0333252, 8.57368)
