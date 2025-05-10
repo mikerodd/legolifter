@@ -4,8 +4,10 @@ extends Node
 @onready var start_position = get_node(start_position_np)
 @export_node_path("Marker3D") var player_limit_right_np
 @export_node_path("Marker3D") var player_limit_left_np
+@export_node_path("Marker3D") var player_limit_up_np
 @onready var player_limit_right: Marker3D = get_node(player_limit_right_np)
 @onready var player_limit_left: Marker3D = get_node(player_limit_left_np)
+@onready var player_limit_up: Marker3D = get_node(player_limit_up_np)
 
 @export var player_scene: PackedScene
 @export var land_altitude : float
@@ -39,6 +41,7 @@ func init_player(_can_play : bool ) -> void:
 	spawn_p["parms"]["can_play"] = _can_play
 	spawn_p["parms"]["limit_right"] = player_limit_right.position
 	spawn_p["parms"]["limit_left"] = player_limit_left.position
+	spawn_p["parms"]["limit_up"] = player_limit_up.position
 	spawn_p["parms"]["@speed_scale"] = 0.5
 	spawn_p["parms"]["#do_initiate"] = var_to_str(["NewFlyingSMP", "NewRotatingSMP"])
 	

@@ -48,6 +48,7 @@ var passenger_count: int  = 0;
 var my_collision_layer :int 
 var limit_right : Vector3
 var limit_left : Vector3 
+var limit_up : Vector3 
 
 func _ready() -> void:
 	flying_smp.transited.connect(self._debug_fly)
@@ -97,6 +98,8 @@ func _physics_process(_delta: float) -> void:
 				move_left = 0
 			if position.x > limit_right.x:
 				move_right = 0
+			if position.y > limit_up.y:
+				move_up = 0
 			velocity = move_up * Vector3.UP *  speed  + move_down * Vector3.DOWN * speed 
 			velocity += move_left * Vector3.LEFT * speed  + move_right * Vector3.RIGHT * speed
 			if velocity != Vector3.ZERO:

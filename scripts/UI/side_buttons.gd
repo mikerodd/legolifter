@@ -17,6 +17,7 @@ func _on_play_pressed() -> void:
 	Messenger.begin_game.emit()
 
 func _on_instructions_pressed() -> void:
+	Messenger.demo_timer_forbidden.emit()
 	_hide_me()
 	show_modal(self,Messenger.ui_show_instructions)
 	Logger.debug("After instruction pressed")
@@ -27,3 +28,7 @@ func _on_begin_play():
 func _on_demo_finished():
 	_show_me()
 		
+func _show_me(darken : bool = false ) -> void:
+	Messenger.demo_timer_authorized.emit()
+	super._show_me(darken)
+	

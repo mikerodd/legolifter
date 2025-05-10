@@ -2,7 +2,7 @@
 "start_heli_lives" : 5,
 "max_hostage_onboard" : 5,
 "hostages_per_house" : 5,
-"start_level" : 0,
+"start_level" : 1,
 "level" : [
 	{
 	        "HousesNode": { "house_count" : 1},

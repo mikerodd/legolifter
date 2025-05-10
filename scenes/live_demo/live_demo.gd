@@ -16,6 +16,16 @@ enum Behaviours {LIVE, RECORD, DEMO}
 	"demo" : $Demo
 }
 
+## Additional parameters that the caller can set to be saved / restored
+var custom_params: Dictionary = {}:
+	set(value):
+		available_components["record"].custom_params = value
+		custom_params = value
+	get():
+		return available_components["demo"].custom_params
+		
+		
+
 ## current active component
 var current_active: String:
 	set(comp_name):
@@ -55,20 +65,6 @@ func is_action_pressed(_name: String, exact_match: bool = false) -> bool:
 	var handler: Object = available_components[current_active].get_input_handler()
 	return handler.is_action_pressed(_name, exact_match)
 
-
-#func set_active(comp_name: String) -> bool:
-	#if comp_name == current_active :
-		#return true
-	#if available_components.has(current_active): 
-		#available_components[current_active].is_active = false 
-	#if available_components.has(comp_name):
-		#available_components[comp_name].is_active = true
-		#current_active = comp_name
-		#return true
-	#return false
-#
-#func get_active() -> String:
-	#return current_active
 
 func record_demo() -> void:
 	available_components["record"]._record_internal()

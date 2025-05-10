@@ -16,15 +16,19 @@ signal destroy
 @onready var missile_r_orig = get_node(missile_r_orig_np)
 
 var is_dead : bool = false
-var intel : Dictionary
 var pf : PathFollow3D
 var approach_tw : Tween
 var escape_route : Vector3
+var from_left : bool
+
+	
+
 
 func _init_me(spawn_p: Dictionary) -> void:
 	super._init_me(spawn_p)   # initialize standard parms & put in the tree
 	rotate_y(-PI/2)
 	pf = get_parent()
+	smp_ia.start()
 
 
 func _physics_process(delta: float) -> void:

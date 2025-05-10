@@ -13,8 +13,10 @@ class_name Game
 @export_file("*.json") var game_parameters : String
 @export_node_path("Camera3D") var game_camera_np
 @onready var game_camera: Camera3D = get_node(game_camera_np)
-@onready var lok_scene_mng : LokSceneStorageManager = get_node("LokSceneStorageManager")
-@onready var demo_timer : Timer = $DemoTimer
+@export_node_path("LokSceneStorageManager") var lok_scene_mng_np
+@onready var lok_scene_mng : LokSceneStorageManager = get_node(lok_scene_mng_np)
+@export_node_path("Timer") var demo_timer_np
+@onready var demo_timer : Timer = get_node(demo_timer_np)
 
 var debug_win = preload("res://scenes/debug_window.tscn")
 
@@ -39,6 +41,10 @@ func _ready():
 	Messenger.return_to_base.connect(_on_return_to_base)
 	Messenger.level_complete.connect(_on_level_complete)
 	LiveDemo.demo_finished.connect(_on_demo_finished)
+	Messenger.demo_timer_authorized.connect(_on_demo_timer_authorized)
+	Messenger.demo_timer_forbidden.connect(_on_demo_timer_forbidden)
+	
+
 
 	Messenger.return_to_start.emit()
 	pass
@@ -69,6 +75,13 @@ func _on_demo_finished() -> void:
 	LiveDemo.current_active = "live"
 	Messenger.return_to_start.emit()
 
+func _on_demo_timer_authorized() -> void:
+	demo_timer.start()
+	
+	
+func _on_demo_timer_forbidden() -> void:
+	demo_timer.stop()
+
 
 func _init() -> void:
 	Logger.set_logger_level(Logger.LOG_LEVEL_DEBUG)
@@ -78,7 +91,7 @@ func _on_smp_transited(_from: Variant, to: Variant) -> void:
 	match to:
 		"StartScreen":
 			Messenger.ui_englight_display.emit()
-			demo_timer.start()
+			Messenger.demo_timer_authorized.emit()
 		"BeginGame":
 			GameVariables.init_scores()	
 			Messenger.level_started.emit(GameVariables.current_level)
@@ -87,7 +100,7 @@ func _on_smp_transited(_from: Variant, to: Variant) -> void:
 			Messenger.ui_show_level.emit()
 
 		"Play":
-			demo_timer.stop()			
+			Messenger.demo_timer_forbidden.emit()
 			LiveDemo.reinit_unique_name()
 			LiveDemo.current_active = "live"
 			Messenger.begin_play.emit()
@@ -95,9 +108,11 @@ func _on_smp_transited(_from: Variant, to: Variant) -> void:
 
 		"Record":
 			GameVariables.init_scores()	
-			demo_timer.stop()			
+			Messenger.demo_timer_forbidden.emit()
 			LiveDemo.reinit_unique_name()
 			LiveDemo.current_active = "record"
+			GameVariables.current_level = GameVariables.start_level
+			LiveDemo.custom_params = {"current_level": GameVariables.current_level}
 			Messenger.level_started.emit(GameVariables.current_level)
 			Messenger.begin_play.emit()
 			
@@ -105,6 +120,8 @@ func _on_smp_transited(_from: Variant, to: Variant) -> void:
 			GameVariables.init_scores()	
 			LiveDemo.reinit_unique_name()
 			LiveDemo.current_active = "demo"
+			if LiveDemo.custom_params.has("current_level"):
+				GameVariables.current_level = LiveDemo.custom_params["current_level"]
 			GameVariables._on_begin_game()  # FIXME : level & life to be initiated elsewhere
 			Messenger.level_started.emit(GameVariables.current_level)
 			Messenger.begin_play.emit()

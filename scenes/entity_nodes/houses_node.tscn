@@ -2,12 +2,12 @@
 
 [ext_resource type="Script" uid="uid://c1oas1y7c08ho" path="res://scripts/main_scene/houses_node.gd" id="1_m76fh"]
 [ext_resource type="PackedScene" uid="uid://c3jjxg87rvyhs" path="res://scenes/house.tscn" id="2_yiiho"]
-[ext_resource type="Script" uid="uid://brt4otgn2jol1" path="res://addons/locker/scripts/storage_accessor/storage_accessor.gd" id="3_lntm3"]
-[ext_resource type="Script" uid="uid://dtvohndbwyieq" path="res://addons/locker/scripts/storage_accessor/storage_accessor_version.gd" id="4_qmomb"]
-[ext_resource type="Script" uid="uid://kv534even0u1" path="res://scripts/locker/houses_node_accessor_v1.gd" id="5_qmomb"]
+[ext_resource type="Script" uid="uid://brt4otgn2jol1" path="res://addons/locker/scripts/storage_accessor/storage_accessor.gd" id="3_qmomb"]
+[ext_resource type="Script" uid="uid://dtvohndbwyieq" path="res://addons/locker/scripts/storage_accessor/storage_accessor_version.gd" id="4_mmbpk"]
+[ext_resource type="Script" uid="uid://kv534even0u1" path="res://scripts/locker/houses_node_accessor_v1.gd" id="5_ao5wp"]
 
-[sub_resource type="Resource" id="Resource_qmomb"]
-script = ExtResource("5_qmomb")
+[sub_resource type="Resource" id="Resource_nc42a"]
+script = ExtResource("5_ao5wp")
 number = "1.0.0"
 metadata/_custom_type_script = "uid://kv534even0u1"
 
@@ -16,9 +16,9 @@ script = ExtResource("1_m76fh")
 house_scene = ExtResource("2_yiiho")
 
 [node name="LokStorageAccessor" type="Node" parent="." groups=["lok_storage"]]
-script = ExtResource("3_lntm3")
-id = "houses_storage"
-versions = Array[ExtResource("4_qmomb")]([SubResource("Resource_qmomb")])
+script = ExtResource("3_qmomb")
+id = "houses_node"
+versions = Array[ExtResource("4_mmbpk")]([SubResource("Resource_nc42a")])
 dependency_paths = {
 "houses_node": NodePath("..")
 }

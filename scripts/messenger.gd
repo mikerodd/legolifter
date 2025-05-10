@@ -11,6 +11,10 @@ signal exit_game
 signal play_game
 @warning_ignore("unused_signal")
 signal begin_game
+@warning_ignore("unused_signal")
+signal demo_timer_authorized
+@warning_ignore("unused_signal")
+signal demo_timer_forbidden
 
 @warning_ignore("unused_signal")
 signal release_hostages

@@ -2,7 +2,6 @@ class_name Hostage extends Actor
 
 @onready var smp_ia = $NewSPMIA
 @onready var anim: AnimationPlayer = $hostage/AnimationPlayer
-@onready var live_demo : LiveDemoEntity = $LiveDemoEntity
 
 var wait_delay: float = 0 
 var wait_finished: float = 0

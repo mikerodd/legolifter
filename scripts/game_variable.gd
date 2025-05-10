@@ -54,7 +54,13 @@ var current_level : int = 0 :
 
 func _ready() -> void:
 	Messenger.begin_game.connect(_on_begin_game)
+	Messenger.begin_play.connect(_on_begin_play)
 
+func _on_begin_play() -> void:
+	if LiveDemo.current_active == "demo":
+		current_level = self.start_level
+		heli_lives = self.start_heli_lives
+		
 
 func _on_begin_game() -> void:
 	current_level = self.start_level

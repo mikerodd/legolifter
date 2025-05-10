@@ -3,7 +3,7 @@ class_name LiveDemoRecord extends LiveDemoLive
 
 var begin_record_tick : float = -1
 var deleted_node_records: Dictionary = {}
-
+var custom_params: Dictionary = {}
 
 
 
@@ -109,6 +109,9 @@ func get_recorded_events() -> Dictionary:
 	
 func _record_internal() -> void:
 	if begin_record_tick == -1 : return 
+	var to_save: Dictionary = get_recorded_events()
+	if custom_params.size() != 0:
+		to_save.merge({"custom_params":custom_params})
 	var json_string = JSON.stringify(get_recorded_events(),"    ")
 	var file = FileAccess.open(demo_filename, FileAccess.WRITE)
 	file.store_string(json_string)

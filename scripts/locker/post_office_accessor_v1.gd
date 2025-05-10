@@ -3,7 +3,7 @@ extends LokStorageAccessorVersion
 
 
 func _retrieve_data(deps: Dictionary) -> Dictionary:
-	var way_in: Node = deps.get("way_in")
+	var way_in: Node = deps.get("post_office_way_in")
 	var ret : Dictionary = {"hostages":[]}
 	var smp_loader = LoadSaveSMP.new()
 		

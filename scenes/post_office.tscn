@@ -3,12 +3,12 @@
 [ext_resource type="Script" uid="uid://bd6edutjwqu77" path="res://scripts/main_scene/post_office.gd" id="1_7vu2t"]
 [ext_resource type="PackedScene" uid="uid://c5cdhw2a4u0mt" path="res://import/post-office.glb" id="1_t4qjs"]
 [ext_resource type="PackedScene" uid="uid://cwecakeec8hdj" path="res://scenes/hostage.tscn" id="2_yv1ri"]
-[ext_resource type="Script" uid="uid://brt4otgn2jol1" path="res://addons/locker/scripts/storage_accessor/storage_accessor.gd" id="3_ibcgh"]
-[ext_resource type="Script" uid="uid://dtvohndbwyieq" path="res://addons/locker/scripts/storage_accessor/storage_accessor_version.gd" id="4_f3cdo"]
-[ext_resource type="Script" uid="uid://b2tl1iieiad8p" path="res://scripts/locker/post_office_accessor_v1.gd" id="5_1hob2"]
+[ext_resource type="Script" uid="uid://brt4otgn2jol1" path="res://addons/locker/scripts/storage_accessor/storage_accessor.gd" id="3_f3cdo"]
+[ext_resource type="Script" uid="uid://dtvohndbwyieq" path="res://addons/locker/scripts/storage_accessor/storage_accessor_version.gd" id="4_1hob2"]
+[ext_resource type="Script" uid="uid://b2tl1iieiad8p" path="res://scripts/locker/post_office_accessor_v1.gd" id="5_0b11a"]
 
-[sub_resource type="Resource" id="Resource_0b11a"]
-script = ExtResource("5_1hob2")
+[sub_resource type="Resource" id="Resource_1wsqg"]
+script = ExtResource("5_0b11a")
 number = "1.0.0"
 metadata/_custom_type_script = "uid://b2tl1iieiad8p"
 
@@ -26,12 +26,12 @@ point_count = 3
 script = ExtResource("1_7vu2t")
 hostage_scene = ExtResource("2_yv1ri")
 
-[node name="LokStorageAccessor" type="Node" parent="." groups=["lok_storage"]]
-script = ExtResource("3_ibcgh")
-id = "post_office"
-versions = Array[ExtResource("4_f3cdo")]([SubResource("Resource_0b11a")])
+[node name="LokStorageAccessor" type="Node" parent="."]
+script = ExtResource("3_f3cdo")
+id = "post_office_way_in"
+versions = Array[ExtResource("4_1hob2")]([SubResource("Resource_1wsqg")])
 dependency_paths = {
-"way_in": NodePath("../way_in")
+"post_office_way_in": NodePath("../way_in")
 }
 metadata/_custom_type_script = "uid://brt4otgn2jol1"
 

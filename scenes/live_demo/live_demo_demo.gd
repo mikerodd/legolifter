@@ -16,13 +16,15 @@ var demo_filename : String = "res://conf/demos/demo_record_v3.json"
 
 var currently_pressed_keys : Dictionary = {}
 var currently_just_pressed_keys : Dictionary = {}
-
+var custom_params : Dictionary = {}
 
 func _is_active_changed(value)-> void : 
 #	print("RecordPlayComponent is %s" % ["activated" if value else "deactivated"])
 	if value:
 		signal_sent = false
 		load_recorded()
+		if recorded_session.has("custom_params"):
+			custom_params = recorded_session["custom_params"]
 		setup_demo_action_map()
 		begin_play_tick = Engine.get_physics_frames()
 	else:
@@ -32,9 +34,6 @@ func _is_active_changed(value)-> void :
 
 
 func setup_demo_action_map():
-	if recorded_session.size() == 0:
-		load_recorded()
-
 	if recorded_session.has("action_list"):
 		for a in recorded_session.action_list:
 			currently_pressed_keys.set(a,"R")

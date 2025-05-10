@@ -1,0 +1,152 @@
+[gd_resource type="Resource" script_class="StateMachine" load_steps=24 format=3 uid="uid://kh4vg10jpgc0"]
+
+[ext_resource type="Script" uid="uid://c6k7m1b50ks2j" path="res://addons/imjp94.yafsm/src/states/StateMachine.gd" id="1_d3efn"]
+[ext_resource type="Script" uid="uid://6xtawmi3oxq8" path="res://addons/imjp94.yafsm/src/states/State.gd" id="2_aqxun"]
+[ext_resource type="Script" uid="uid://xj1j8owjucly" path="res://addons/imjp94.yafsm/src/conditions/Condition.gd" id="3_qb2ft"]
+[ext_resource type="Script" uid="uid://lt0dig07oj4a" path="res://addons/imjp94.yafsm/src/transitions/Transition.gd" id="4_g2a78"]
+
+[sub_resource type="Resource" id="Resource_ghukj"]
+script = ExtResource("2_aqxun")
+name = "Approaching"
+metadata/graph_offset = Vector2(226, 560)
+
+[sub_resource type="Resource" id="Resource_u8k8i"]
+script = ExtResource("2_aqxun")
+name = "Destroyed"
+metadata/graph_offset = Vector2(434.5, 760)
+
+[sub_resource type="Resource" id="Resource_n7vk0"]
+script = ExtResource("2_aqxun")
+name = "Entry"
+metadata/graph_offset = Vector2(43, 560)
+
+[sub_resource type="Resource" id="Resource_xmjap"]
+script = ExtResource("2_aqxun")
+name = "Escape"
+metadata/graph_offset = Vector2(623, 560)
+
+[sub_resource type="Resource" id="Resource_mgcrw"]
+script = ExtResource("2_aqxun")
+name = "Exit"
+metadata/graph_offset = Vector2(843, 560)
+
+[sub_resource type="Resource" id="Resource_j7o7i"]
+script = ExtResource("2_aqxun")
+name = "Firing"
+metadata/graph_offset = Vector2(443, 560)
+
+[sub_resource type="Resource" id="Resource_4keu7"]
+script = ExtResource("2_aqxun")
+name = "OnTheGround"
+metadata/graph_offset = Vector2(701, 760)
+
+[sub_resource type="Resource" id="Resource_tc70r"]
+script = ExtResource("3_qb2ft")
+name = "to_destroyed"
+
+[sub_resource type="Resource" id="Resource_g2d0o"]
+script = ExtResource("4_g2a78")
+from = "Approaching"
+to = "Destroyed"
+conditions = {
+"to_destroyed": SubResource("Resource_tc70r")
+}
+priority = 0
+
+[sub_resource type="Resource" id="Resource_edoeq"]
+script = ExtResource("3_qb2ft")
+name = "to_fire"
+
+[sub_resource type="Resource" id="Resource_565lu"]
+script = ExtResource("4_g2a78")
+from = "Approaching"
+to = "Firing"
+conditions = {
+"to_fire": SubResource("Resource_edoeq")
+}
+priority = 0
+
+[sub_resource type="Resource" id="Resource_ywlee"]
+script = ExtResource("3_qb2ft")
+name = "to_ground"
+
+[sub_resource type="Resource" id="Resource_lrkya"]
+script = ExtResource("4_g2a78")
+from = "Destroyed"
+to = "OnTheGround"
+conditions = {
+"to_ground": SubResource("Resource_ywlee")
+}
+priority = 0
+
+[sub_resource type="Resource" id="Resource_uq81i"]
+script = ExtResource("4_g2a78")
+from = "Entry"
+to = "Approaching"
+conditions = {}
+priority = 0
+
+[sub_resource type="Resource" id="Resource_gaugq"]
+script = ExtResource("3_qb2ft")
+name = "to_destroyed"
+
+[sub_resource type="Resource" id="Resource_sfmdp"]
+script = ExtResource("4_g2a78")
+from = "Escape"
+to = "Destroyed"
+conditions = {
+"to_destroyed": SubResource("Resource_gaugq")
+}
+priority = 0
+
+[sub_resource type="Resource" id="Resource_7xfhs"]
+script = ExtResource("3_qb2ft")
+name = "to_destroyed"
+
+[sub_resource type="Resource" id="Resource_rtbh7"]
+script = ExtResource("4_g2a78")
+from = "Firing"
+to = "Destroyed"
+conditions = {
+"to_destroyed": SubResource("Resource_7xfhs")
+}
+priority = 0
+
+[sub_resource type="Resource" id="Resource_i3t4g"]
+script = ExtResource("4_g2a78")
+from = "Firing"
+to = "Escape"
+conditions = {}
+priority = 0
+
+[resource]
+script = ExtResource("1_d3efn")
+states = {
+"Approaching": SubResource("Resource_ghukj"),
+"Destroyed": SubResource("Resource_u8k8i"),
+"Entry": SubResource("Resource_n7vk0"),
+"Escape": SubResource("Resource_xmjap"),
+"Exit": SubResource("Resource_mgcrw"),
+"Firing": SubResource("Resource_j7o7i"),
+"OnTheGround": SubResource("Resource_4keu7")
+}
+transitions = {
+"Approaching": {
+"Destroyed": SubResource("Resource_g2d0o"),
+"Firing": SubResource("Resource_565lu")
+},
+"Destroyed": {
+"OnTheGround": SubResource("Resource_lrkya")
+},
+"Entry": {
+"Approaching": SubResource("Resource_uq81i")
+},
+"Escape": {
+"Destroyed": SubResource("Resource_sfmdp")
+},
+"Firing": {
+"Destroyed": SubResource("Resource_rtbh7"),
+"Escape": SubResource("Resource_i3t4g")
+}
+}
+name = ""

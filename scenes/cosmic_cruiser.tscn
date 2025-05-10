@@ -1,164 +1,15 @@
-[gd_scene load_steps=32 format=3 uid="uid://c6mufcm6wmgcn"]
+[gd_scene load_steps=9 format=3 uid="uid://c6mufcm6wmgcn"]
 
 [ext_resource type="Script" uid="uid://dfk5c8vm30wp4" path="res://scripts/main_scene/cosmic_cruiser.gd" id="1_hci50"]
 [ext_resource type="PackedScene" uid="uid://5pu1uu8js4bi" path="res://import/cosmic_cruiser.glb" id="1_ooyga"]
 [ext_resource type="PackedScene" uid="uid://dcd0l1ye5i2lk" path="res://scenes/missile1.tscn" id="2_j7o7i"]
-[ext_resource type="Script" uid="uid://46l00vp06dcr" path="res://addons/imjp94.yafsm/src/StateMachinePlayer.gd" id="3_0vtqp"]
-[ext_resource type="Script" uid="uid://c6k7m1b50ks2j" path="res://addons/imjp94.yafsm/src/states/StateMachine.gd" id="4_hdwpl"]
 [ext_resource type="PackedScene" uid="uid://c3r0h0p4w371a" path="res://import/cosmic_cruiser_destroyed.glb" id="5_edoeq"]
-[ext_resource type="Script" uid="uid://6xtawmi3oxq8" path="res://addons/imjp94.yafsm/src/states/State.gd" id="5_j7o7i"]
-[ext_resource type="Script" uid="uid://lt0dig07oj4a" path="res://addons/imjp94.yafsm/src/transitions/Transition.gd" id="6_edoeq"]
+[ext_resource type="Script" uid="uid://cra0md6tqliiq" path="res://scripts/locker/l_s_state_machine_player.gd" id="6_peeb5"]
 [ext_resource type="PackedScene" uid="uid://lskm5tbedisk" path="res://scenes/lego_destroyer.tscn" id="7_565lu"]
-[ext_resource type="Script" uid="uid://xj1j8owjucly" path="res://addons/imjp94.yafsm/src/conditions/Condition.gd" id="9_hdwpl"]
+[ext_resource type="Resource" uid="uid://kh4vg10jpgc0" path="res://resources/state_machines/smp_cosmic_cruiser.tres" id="7_hci50"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_qdaub"]
 size = Vector3(2.06741, 0.783447, 1.97916)
-
-[sub_resource type="Resource" id="Resource_ghukj"]
-script = ExtResource("5_j7o7i")
-name = "Approaching"
-metadata/graph_offset = Vector2(226, 560)
-
-[sub_resource type="Resource" id="Resource_u8k8i"]
-script = ExtResource("5_j7o7i")
-name = "Destroyed"
-metadata/graph_offset = Vector2(434.5, 760)
-
-[sub_resource type="Resource" id="Resource_n7vk0"]
-script = ExtResource("5_j7o7i")
-name = "Entry"
-metadata/graph_offset = Vector2(43, 560)
-
-[sub_resource type="Resource" id="Resource_xmjap"]
-script = ExtResource("5_j7o7i")
-name = "Escape"
-metadata/graph_offset = Vector2(623, 560)
-
-[sub_resource type="Resource" id="Resource_mgcrw"]
-script = ExtResource("5_j7o7i")
-name = "Exit"
-metadata/graph_offset = Vector2(843, 560)
-
-[sub_resource type="Resource" id="Resource_j7o7i"]
-script = ExtResource("5_j7o7i")
-name = "Firing"
-metadata/graph_offset = Vector2(443, 560)
-
-[sub_resource type="Resource" id="Resource_4keu7"]
-script = ExtResource("5_j7o7i")
-name = "OnTheGround"
-metadata/graph_offset = Vector2(701, 760)
-
-[sub_resource type="Resource" id="Resource_tc70r"]
-script = ExtResource("9_hdwpl")
-name = "to_destroyed"
-
-[sub_resource type="Resource" id="Resource_g2d0o"]
-script = ExtResource("6_edoeq")
-from = "Approaching"
-to = "Destroyed"
-conditions = {
-"to_destroyed": SubResource("Resource_tc70r")
-}
-priority = 0
-
-[sub_resource type="Resource" id="Resource_edoeq"]
-script = ExtResource("9_hdwpl")
-name = "to_fire"
-
-[sub_resource type="Resource" id="Resource_565lu"]
-script = ExtResource("6_edoeq")
-from = "Approaching"
-to = "Firing"
-conditions = {
-"to_fire": SubResource("Resource_edoeq")
-}
-priority = 0
-
-[sub_resource type="Resource" id="Resource_ywlee"]
-script = ExtResource("9_hdwpl")
-name = "to_ground"
-
-[sub_resource type="Resource" id="Resource_lrkya"]
-script = ExtResource("6_edoeq")
-from = "Destroyed"
-to = "OnTheGround"
-conditions = {
-"to_ground": SubResource("Resource_ywlee")
-}
-priority = 0
-
-[sub_resource type="Resource" id="Resource_uq81i"]
-script = ExtResource("6_edoeq")
-from = "Entry"
-to = "Approaching"
-conditions = {}
-priority = 0
-
-[sub_resource type="Resource" id="Resource_gaugq"]
-script = ExtResource("9_hdwpl")
-name = "to_destroyed"
-
-[sub_resource type="Resource" id="Resource_sfmdp"]
-script = ExtResource("6_edoeq")
-from = "Escape"
-to = "Destroyed"
-conditions = {
-"to_destroyed": SubResource("Resource_gaugq")
-}
-priority = 0
-
-[sub_resource type="Resource" id="Resource_7xfhs"]
-script = ExtResource("9_hdwpl")
-name = "to_destroyed"
-
-[sub_resource type="Resource" id="Resource_rtbh7"]
-script = ExtResource("6_edoeq")
-from = "Firing"
-to = "Destroyed"
-conditions = {
-"to_destroyed": SubResource("Resource_7xfhs")
-}
-priority = 0
-
-[sub_resource type="Resource" id="Resource_i3t4g"]
-script = ExtResource("6_edoeq")
-from = "Firing"
-to = "Escape"
-conditions = {}
-priority = 0
-
-[sub_resource type="Resource" id="Resource_vx4dc"]
-script = ExtResource("4_hdwpl")
-states = {
-"Approaching": SubResource("Resource_ghukj"),
-"Destroyed": SubResource("Resource_u8k8i"),
-"Entry": SubResource("Resource_n7vk0"),
-"Escape": SubResource("Resource_xmjap"),
-"Exit": SubResource("Resource_mgcrw"),
-"Firing": SubResource("Resource_j7o7i"),
-"OnTheGround": SubResource("Resource_4keu7")
-}
-transitions = {
-"Approaching": {
-"Destroyed": SubResource("Resource_g2d0o"),
-"Firing": SubResource("Resource_565lu")
-},
-"Destroyed": {
-"OnTheGround": SubResource("Resource_lrkya")
-},
-"Entry": {
-"Approaching": SubResource("Resource_uq81i")
-},
-"Escape": {
-"Destroyed": SubResource("Resource_sfmdp")
-},
-"Firing": {
-"Destroyed": SubResource("Resource_rtbh7"),
-"Escape": SubResource("Resource_i3t4g")
-}
-}
-name = ""
 
 [node name="CosmicCruiser" type="CharacterBody3D" groups=["enemy_planes"]]
 collision_layer = 2
@@ -186,8 +37,9 @@ explode_intensity = 8.0
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.302292, 0)
 
 [node name="smp_ia" type="Node" parent="." groups=["enemies"]]
-script = ExtResource("3_0vtqp")
-state_machine = SubResource("Resource_vx4dc")
+script = ExtResource("6_peeb5")
+state_machine = ExtResource("7_hci50")
+autostart = false
 metadata/_custom_type_script = "uid://46l00vp06dcr"
 
 [node name="MissileLOrig" type="Marker3D" parent="."]

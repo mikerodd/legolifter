@@ -63,7 +63,6 @@ func _ready():
 		
 	
 func is_action_just_pressed(_name: String, _exact_match: bool = false) -> bool:
-#{"last_action": {"type":false,"tick":0},"ticks":[], "just_pressed":false})
 	var tick = int(Engine.get_physics_frames()  - begin_play_tick) # Time.get_ticks_msec()
 	if new_local_session[_name]["ticks"][tick]: 
 		if new_local_session[_name]["just_pressed"]:

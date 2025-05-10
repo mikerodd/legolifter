@@ -1,11 +1,10 @@
-[gd_scene load_steps=8 format=3 uid="uid://cwecakeec8hdj"]
+[gd_scene load_steps=7 format=3 uid="uid://cwecakeec8hdj"]
 
 [ext_resource type="Script" uid="uid://lec2n3axyiyb" path="res://scripts/main_scene/hostage.gd" id="1_bxm40"]
 [ext_resource type="PackedScene" uid="uid://bxamcmsxsv5yr" path="res://import/male-blue9-game.glb" id="1_n0bme"]
 [ext_resource type="PackedScene" uid="uid://bdrgrnxv5wsxj" path="res://import/hostage.glb" id="2_csnpa"]
 [ext_resource type="Resource" uid="uid://cq0jtyghnkk47" path="res://resources/state_machines/smp_hostage_ia.tres" id="5_csnpa"]
 [ext_resource type="Script" uid="uid://cra0md6tqliiq" path="res://scripts/locker/l_s_state_machine_player.gd" id="9_7dmtn"]
-[ext_resource type="PackedScene" uid="uid://bnuo2trawkafx" path="res://scenes/live_demo/live_demo_entity.tscn" id="9_j027u"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_tnswf"]
 size = Vector3(1.12915, 0.847168, 0.41687)
@@ -108,8 +107,6 @@ shape = SubResource("BoxShape3D_tnswf")
 [node name="NewSPMIA" type="Node" parent="."]
 script = ExtResource("9_7dmtn")
 state_machine = ExtResource("5_csnpa")
-
-[node name="LiveDemoEntity" parent="." instance=ExtResource("9_j027u")]
 
 [connection signal="transited" from="NewSPMIA" to="." method="_on_smp_ia_transited"]
 

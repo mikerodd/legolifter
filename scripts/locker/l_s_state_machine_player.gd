@@ -11,4 +11,5 @@ func _ready() -> void:
 
 	set_process(false)
 	set_physics_process(false)
-	_initiate()
+	_initiate()    # not defered !
+	
