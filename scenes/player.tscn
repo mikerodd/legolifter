@@ -1,8 +1,10 @@
-[gd_scene load_steps=10 format=3 uid="uid://m8eb30m2phbv"]
+[gd_scene load_steps=12 format=3 uid="uid://m8eb30m2phbv"]
 
 [ext_resource type="Script" uid="uid://cerxyojin83ah" path="res://scripts/main_scene/player.gd" id="1_dgqi6"]
 [ext_resource type="PackedScene" uid="uid://dcd0l1ye5i2lk" path="res://scenes/missile1.tscn" id="2_smehm"]
 [ext_resource type="PackedScene" uid="uid://ccgrm5ej6g17u" path="res://import/helicopter3.glb" id="3_ur7pv"]
+[ext_resource type="LightmapGIData" uid="uid://kc1ejo1fk27f" path="res://resources/player.lmbake" id="3_y4r1p"]
+[ext_resource type="Script" uid="uid://b23muv6jw0n6x" path="res://scripts/lightmap_gi.gd" id="4_y4r1p"]
 [ext_resource type="Resource" uid="uid://dnag2y7ad5phm" path="res://resources/state_machines/smp_player_rotating.tres" id="5_ur7pv"]
 [ext_resource type="Resource" uid="uid://bvap80v44apuu" path="res://resources/state_machines/smp_player_flying.tres" id="6_y4r1p"]
 [ext_resource type="Script" uid="uid://cra0md6tqliiq" path="res://scripts/locker/l_s_state_machine_player.gd" id="9_3v2ag"]
@@ -21,6 +23,11 @@ speed = 15.0
 rotation_duration = 0.5
 shell1_scene = ExtResource("2_smehm")
 
+[node name="LightmapGI" type="LightmapGI" parent="." groups=["lightmaps"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.455528, 0)
+light_data = ExtResource("3_y4r1p")
+script = ExtResource("4_y4r1p")
+
 [node name="new_heli_colishape" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.182022, 0.627111, -0.035965)
 shape = SubResource("BoxShape3D_kvmko")
@@ -29,10 +36,10 @@ shape = SubResource("BoxShape3D_kvmko")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.455528, 0)
 
 [node name="helicopter3" parent="model_rotator" instance=ExtResource("3_ur7pv")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.411815, -0.365462, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.369704, 0)
 
-[node name="missile_orig" type="Node3D" parent="model_rotator/helicopter3"]
-transform = Transform3D(-4.37114e-08, -3.7253e-09, -1, 2.98103e-08, 1, -3.7253e-09, 1, -2.98103e-08, -4.37114e-08, -2.13112, 0.472382, -3.48445e-09)
+[node name="MissileOrig" type="Marker3D" parent="model_rotator/helicopter3"]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -1.84706, 0.510279, 0)
 
 [node name="NewRotatingSMP" type="Node" parent="."]
 script = ExtResource("9_3v2ag")

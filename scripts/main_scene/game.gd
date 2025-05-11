@@ -10,7 +10,7 @@ class_name Game
 @onready var tanks_node = get_node(tanks_node_np)
 @export_node_path("Node") var planes_node_np
 @onready var planes_node = get_node(planes_node_np)
-@export_file("*.json") var game_parameters : String
+@export_file("*.json") var game_parameters_filename : String
 @export_node_path("Camera3D") var game_camera_np
 @onready var game_camera: Camera3D = get_node(game_camera_np)
 @export_node_path("LokSceneStorageManager") var lok_scene_mng_np
@@ -27,7 +27,8 @@ func _ready():
 	#if OS.is_debug_build(): manage_debug_window()	
 
 	# load game parameters
-	GameVariables.load_parameters(game_parameters) #TODO : remove it
+	GameVariables.game_parameters_filename = game_parameters_filename
+	GameVariables.load_parameters()
 
 	# put accessors in the LokSceneStorageManager
 	for a in get_tree().get_nodes_in_group("lok_storage"):
@@ -43,11 +44,11 @@ func _ready():
 	LiveDemo.demo_finished.connect(_on_demo_finished)
 	Messenger.demo_timer_authorized.connect(_on_demo_timer_authorized)
 	Messenger.demo_timer_forbidden.connect(_on_demo_timer_forbidden)
-	
 
+	GameVariables.apply_user_parameters()
 
 	Messenger.return_to_start.emit()
-	pass
+	
 	#GlobalUtils.all_signals(Messenger)
 
 func _on_begin_game() -> void:
@@ -122,7 +123,6 @@ func _on_smp_transited(_from: Variant, to: Variant) -> void:
 			LiveDemo.current_active = "demo"
 			if LiveDemo.custom_params.has("current_level"):
 				GameVariables.current_level = LiveDemo.custom_params["current_level"]
-			GameVariables._on_begin_game()  # FIXME : level & life to be initiated elsewhere
 			Messenger.level_started.emit(GameVariables.current_level)
 			Messenger.begin_play.emit()
 			Messenger.ui_total_dark_display.emit()
@@ -163,11 +163,12 @@ func _unhandled_key_input(_event):
 		smp.set_trigger("to_demo")
 	if Input.is_action_just_pressed("save"):
 		lok_scene_mng.save_data()
+		
 	if Input.is_action_just_pressed("load"):
 		lok_scene_mng.load_data()
 		
 
-			
+
 
 func _on_return_to_start() -> void:
 	smp.set_trigger("to_startscreen")

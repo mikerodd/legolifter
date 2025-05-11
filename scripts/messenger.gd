@@ -54,7 +54,8 @@ signal ui_show_instructions
 signal ui_show_confirm
 @warning_ignore("unused_signal")
 signal ui_show_level
-
+@warning_ignore("unused_signal")
+signal ui_show_parameters
 
 func display_signal_mapping() -> void:
 	for s in get_signal_list():

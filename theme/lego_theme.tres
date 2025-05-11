@@ -66,6 +66,7 @@ texture_margin_right = 62.0
 [resource]
 default_font = ExtResource("1_msykr")
 Button/colors/font_color = Color(0.800183, 0.176349, 0.152895, 1)
+Button/constants/h_separation = 8
 Button/font_sizes/font_size = 20
 Button/fonts/font = ExtResource("1_msykr")
 Button/styles/hover = SubResource("StyleBoxFlat_6gj1h")

@@ -46,10 +46,11 @@ enabled=PackedStringArray("res://addons/gs_logger/plugin.cfg", "res://addons/imj
 
 [global_group]
 
-houses=""
+lok_storage=""
 enemy_tanks=""
 enemy_planes=""
-lok_storage=""
+lightmaps=""
+lights=""
 
 [input]
 

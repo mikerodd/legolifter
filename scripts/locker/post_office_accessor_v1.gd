@@ -26,6 +26,6 @@ func _retrieve_data(deps: Dictionary) -> Dictionary:
 	return ret
 	
 	
-func _consume_data(res: Dictionary, deps: Dictionary) -> void:
+func _consume_data(_res: Dictionary, _deps: Dictionary) -> void:
 	pass
 		

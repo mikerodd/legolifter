@@ -27,7 +27,7 @@ point_count = 3
 script = ExtResource("1_7vu2t")
 hostage_scene = ExtResource("2_yv1ri")
 
-[node name="LightmapGI" type="LightmapGI" parent="."]
+[node name="LightmapGI" type="LightmapGI" parent="." groups=["lightmaps"]]
 light_data = ExtResource("3_1hob2")
 
 [node name="LokStorageAccessor" type="Node" parent="."]

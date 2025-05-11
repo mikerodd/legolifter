@@ -1,7 +1,7 @@
 extends UILifterElement
 
-var ui_hide_position: float = -150
-var ui_show_position: float = 126
+var ui_hide_position: float = -278.0
+var ui_show_position: float = 0
 
 @export_node_path("UILifterElement") var myself
 
@@ -20,7 +20,6 @@ func _on_instructions_pressed() -> void:
 	Messenger.demo_timer_forbidden.emit()
 	_hide_me()
 	show_modal(self,Messenger.ui_show_instructions)
-	Logger.debug("After instruction pressed")
 
 func _on_begin_play():
 		_hide_me()
@@ -32,3 +31,8 @@ func _show_me(darken : bool = false ) -> void:
 	Messenger.demo_timer_authorized.emit()
 	super._show_me(darken)
 	
+
+func _on_config_pressed() -> void:
+	Messenger.demo_timer_forbidden.emit()
+	_hide_me()
+	show_modal(self,Messenger.ui_show_parameters)

@@ -13,7 +13,7 @@ signal destroy
 @onready var model_rotator = $model_rotator
 @onready var model = $model_rotator/helicopter3
 @onready var model_anim: AnimationPlayer = $model_rotator/helicopter3/AnimationPlayer
-@onready var shell_orig = $model_rotator/helicopter3/missile_orig
+@onready var shell_orig = $model_rotator/helicopter3/MissileOrig
 @onready var fire_rate_timer: Timer = $fire_rate_timer
 @onready var coli_shape:CollisionShape3D = $new_heli_colishape
 

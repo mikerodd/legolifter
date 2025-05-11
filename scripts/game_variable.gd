@@ -5,7 +5,7 @@ const ENEMY_SHELLS_LAYER : int = 5
 const PLAYER_MISSILES_LAYER : int = 8
 
 var game_parameters : Dictionary
-
+var game_parameters_filename : String
 
 
 var saved_count : int = 0 :
@@ -42,7 +42,17 @@ var start_heli_lives : int = 0
 var max_hostage_onboard : int = 0
 var hostages_per_house : int = 0
 var start_level : int = 0
+var start_fullscreen : bool
+var keyboard_use_wsad : bool
+var high_graphics : bool
 var level : Array
+
+var save_parameters_list: Array = [
+	"start_level",
+	"start_fullscreen",
+	"keyboard_use_wsad",
+	"high_graphics",
+]
 
 var current_level : int = 0 :
 	set(value):
@@ -89,10 +99,36 @@ func get_my_parms(id : String) -> Dictionary:
 		push_warning("parm : %s does not exist in level %d" % [id, GameVariables.current_level])
 		return {}
 
+func apply_user_parameters()-> void: 
+	if start_fullscreen:
+		DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_FULLSCREEN)
+	else:
+		DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_WINDOWED)
+			
+	switch_to_dynamic_lights() if high_graphics else switch_to_lightmaps()
 
-func load_parameters(json_file) -> void:
+
+func save_parameters() -> void:
+	var json_as_text = FileAccess.get_file_as_string(game_parameters_filename)
+	var json: JSON = JSON.new()
+	var error = json.parse(json_as_text)
+	if error == OK:
+		var data = json.data
+		for parm in save_parameters_list:
+			data[parm] = self.get(parm)
+			var save = FileAccess.open(game_parameters_filename,FileAccess.WRITE)
+			save.store_string(JSON.stringify(json.data, "    "))
+			save.close()
+			apply_user_parameters()
+			
+	else:
+		Logger.fatal("Error in parameters file %s : %s" % [game_parameters_filename, json.get_error_message()])
+		get_tree().quit()
+	pass
+
+func load_parameters() -> void:
 	
-	var json_as_text = FileAccess.get_file_as_string(json_file)
+	var json_as_text = FileAccess.get_file_as_string(game_parameters_filename)
 	var json = JSON.new()
 	var error = json.parse(json_as_text)
 	if error == OK:
@@ -100,7 +136,7 @@ func load_parameters(json_file) -> void:
 			self.set(parm, json.data[parm])
 		Logger.debug("start level is : %d" % self.start_level)
 	else:
-		Logger.fatal("Error in parameters file %s : %s" % [json_file, json.get_error_message()])
+		Logger.fatal("Error in parameters file %s : %s" % [game_parameters_filename, json.get_error_message()])
 		get_tree().quit()
 
 func get_level_array() -> Array :
@@ -114,3 +150,19 @@ func get_heli_lives() -> int:
 		return game_parameters.heli_lives
 	else: return 0
 		
+
+
+var use_lightmap: bool = false
+func switch_to_lightmaps() -> void:
+	use_lightmap = true
+	for n : Node in get_tree().get_nodes_in_group("lightmaps"):
+		n.visible = true
+	for n : Node in get_tree().get_nodes_in_group("lights"):
+		n.visible = false
+	
+func switch_to_dynamic_lights() -> void:
+	use_lightmap = false
+	for n : Node in get_tree().get_nodes_in_group("lightmaps"):
+		n.visible = false
+	for n : Node in get_tree().get_nodes_in_group("lights"):
+		n.visible = true

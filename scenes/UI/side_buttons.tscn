@@ -8,8 +8,9 @@ layout_mode = 3
 anchors_preset = 4
 anchor_top = 0.5
 anchor_bottom = 0.5
-offset_left = -127.73
-offset_right = -127.73
+offset_top = -65.0
+offset_right = 276.0
+offset_bottom = 65.0
 grow_vertical = 2
 theme = ExtResource("1_puxpd")
 theme_type_variation = &"SmallPanel"
@@ -24,7 +25,6 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_type_variation = &"SmallPanel"
-metadata/_edit_use_anchors_ = true
 
 [node name="HBoxContainer" type="HBoxContainer" parent="PanelContainer"]
 layout_mode = 2
@@ -41,14 +41,18 @@ layout_mode = 2
 layout_mode = 2
 text = "Instructions"
 
-[node name="Exit" type="Button" parent="PanelContainer/HBoxContainer/GridContainer"]
+[node name="Config" type="Button" parent="PanelContainer/HBoxContainer/GridContainer"]
 layout_mode = 2
-theme = ExtResource("1_puxpd")
-text = "Exit"
+text = "Parameters"
 
 [node name="Play" type="Button" parent="PanelContainer/HBoxContainer/GridContainer"]
 layout_mode = 2
 text = "Play"
+
+[node name="Exit" type="Button" parent="PanelContainer/HBoxContainer/GridContainer"]
+layout_mode = 2
+theme = ExtResource("1_puxpd")
+text = "Exit"
 
 [node name="Control2" type="Control" parent="PanelContainer/HBoxContainer"]
 layout_mode = 2
@@ -56,5 +60,6 @@ size_flags_horizontal = 3
 size_flags_vertical = 3
 
 [connection signal="pressed" from="PanelContainer/HBoxContainer/GridContainer/Instructions" to="." method="_on_instructions_pressed"]
-[connection signal="pressed" from="PanelContainer/HBoxContainer/GridContainer/Exit" to="." method="_on_exit_pressed"]
+[connection signal="pressed" from="PanelContainer/HBoxContainer/GridContainer/Config" to="." method="_on_config_pressed"]
 [connection signal="pressed" from="PanelContainer/HBoxContainer/GridContainer/Play" to="." method="_on_play_pressed"]
+[connection signal="pressed" from="PanelContainer/HBoxContainer/GridContainer/Exit" to="." method="_on_exit_pressed"]
