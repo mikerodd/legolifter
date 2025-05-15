@@ -1,8 +1,7 @@
 # Legolifter
 
 ## What is it?
-Legolifter is a game using the Godot engine, based on the classic 8bit game [Choplifter]
-(https://en.wikipedia.org/wiki/Choplifter)
+Legolifter is a game using the Godot engine, based on the classic 8bit game [Choplifter](https://en.wikipedia.org/wiki/Choplifter)
 
 ![Screenshot of the game](/textures/screenshot/game_screenshot.png)
 
@@ -20,7 +19,7 @@ Legolifter is a game using the Godot engine, based on the classic 8bit game [Cho
 **3D Models**
 * Various CCO models from https://polyhaven.com/
 * Lego models, from Ldraw.org : 
-	 - 7903-1 by Marc Giraudet, https://library.ldraw.org/omr/sets/1102
-	 - 6890-1 by willy Tschager, https://library.ldraw.org/omr/sets/985
-	 - 5771-1 by Takeshi Takahashi, https://library.ldraw.org/omr/sets/1402
-* MOC Tiger Tank by Qwinter, https://rebrickable.com/mocs/MOC-128483/Qwinter/tiger-tank-minifig-scale-142
+	 - [7903-1](https://library.ldraw.org/omr/sets/1102) by Marc Giraudet
+	 - [6890-1](https://library.ldraw.org/omr/sets/985) by willy Tschager
+	 - [5771-1](https://library.ldraw.org/omr/sets/1402) by Takeshi Takahashi
+* [MOC Tiger Tank](https://rebrickable.com/mocs/MOC-128483/Qwinter/tiger-tank-minifig-scale-142) by Qwinter
