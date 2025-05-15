@@ -22,11 +22,8 @@ script/source = "extends Area3D
 var list: Array = []
 var last_emited = Time.get_ticks_msec()
 var delta = 0 
-func _on_body_shape_entered(body_rid: RID, body: Node3D, body_shape_index: int, local_shape_index: int) -> void:
+func _on_body_shape_entered(_body_rid: RID, body: Node3D, _body_shape_index: int, _local_shape_index: int) -> void:
 	
-	var key = body.get_path().get_concatenated_names()
-	#if not list.has(key):
-		#list.push_back(key)
 	if Time.get_ticks_msec() - last_emited > delta:
 		delta = randf_range(10,150)
 		sound.pitch_scale = randf_range(0.8,  1.2)

@@ -47,9 +47,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.455528, 0)
 light_data = ExtResource("3_y4r1p")
 script = ExtResource("4_y4r1p")
 
-[node name="RigidBody3D" type="RigidBody3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.182022, 0.627111, -0.035965)
-
 [node name="new_heli_colishape" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.182022, 0.627111, -0.035965)
 shape = SubResource("BoxShape3D_kvmko")
@@ -84,9 +81,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.345612, 0.69965, 0)
 
 [connection signal="destroy" from="." to="." method="_on_destroy"]
 [connection signal="tree_exiting" from="." to="." method="_on_tree_exiting"]
-[connection signal="body_shape_entered" from="RigidBody3D" to="LegoDestroyer" method="_on_rigid_body_3d_body_shape_entered"]
 [connection signal="transited" from="NewRotatingSMP" to="." method="_on_rotating_smp_transited"]
-[connection signal="transited" from="NewFlyingSMP" to="." method="_on_flying_smp_transited"]
 [connection signal="timeout" from="fire_rate_timer" to="." method="_on_fire_rate_timer_timeout"]
 [connection signal="destroy_begin" from="LegoDestroyer" to="." method="_on_lego_destroyer_destroy_begin"]
 [connection signal="destroy_end" from="LegoDestroyer" to="." method="_on_lego_destroyer_destroy_end"]

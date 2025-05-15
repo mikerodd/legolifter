@@ -262,7 +262,3 @@ func _on_lego_destroyer_destroy_end() -> void:
 func _on_tree_exiting() -> void:
 	var _test= name
 	pass
-
-
-func _on_flying_smp_transited(from: Variant, to: Variant) -> void:
-	Logger.debug("PLayer flying SMP transited from %s to %s" % [from, to])

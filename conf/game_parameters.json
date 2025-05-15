@@ -81,7 +81,7 @@
                 "rate_range": 2.0
             },
             "HousesNode": {
-                "house_count": 4.0
+                "house_count": 3.0
             },
             "TanksNode": {
                 "limit": 5.0,
