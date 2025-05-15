@@ -4,7 +4,7 @@
 Legolifter is a game using the Godot engine, based on the classic 8bit game [Choplifter]
 (https://en.wikipedia.org/wiki/Choplifter)
 
-
+![Screenshot of the game](textures/screenshot/gmae_screenshot.png)
 
 
 This game use these assets : 
