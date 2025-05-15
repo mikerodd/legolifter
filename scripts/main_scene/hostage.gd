@@ -2,7 +2,8 @@ class_name Hostage extends Actor
 
 @onready var smp_ia = $NewSPMIA
 @onready var anim: AnimationPlayer = $hostage/AnimationPlayer
-
+@onready var walk_sound: AudioStreamPlayer3D = $WalkSound
+@onready var saved_sound: AudioStreamPlayer3D = $SavedSound
 var wait_delay: float = 0 
 var wait_finished: float = 0
 var speed: float = 2
@@ -87,6 +88,8 @@ func _on_path_post_office_finished():
 	if GameVariables.check_end_level():
 		Messenger.level_complete.emit()
 	Logger.debug("I finished the path to the post office")
+	saved_sound.play()
+	await saved_sound.finished
 	get_parent().queue_free()
 
 
@@ -94,9 +97,10 @@ func _on_smp_ia_transited(_from: Variant, to: Variant) -> void:
 	if to == "Exiting": 
 		rotation.y = -PI/2
 		anim.play("G_run",-1,3)
+		walk_sound.play()
 		
 	if to == "Unload":
-
+		walk_sound.play()
 		anim.play("G_run",-1,3)
 		
 	if to == "ReachHelicopter":
@@ -115,7 +119,8 @@ func _on_smp_ia_transited(_from: Variant, to: Variant) -> void:
 		var tw:Tween = create_tween()
 		tw.tween_property(get_parent(),"progress_ratio", 1, 2)
 		tw.finished.connect(_on_path_post_office_finished)
-		
+		walk_sound.stop()
+	
 	if to == "Idle":
 		rotation.y = 0
 		#anim.play("G_stand-idle")
@@ -126,6 +131,7 @@ func _on_smp_ia_transited(_from: Variant, to: Variant) -> void:
 
 func _init_me(spawn_p: Dictionary) -> void:
 	super._init_me(spawn_p)
+	walk_sound.pitch_scale = randf_range(0.85 , 1.15)
 	if not spawn_p["parms"].has("@where_from"):
 		push_error("no @where_from parm in hostage")
 	if spawn_p["parms"]["@where_from"] == "house":

@@ -1,9 +1,20 @@
-[gd_scene load_steps=2 format=3 uid="uid://lskm5tbedisk"]
+[gd_scene load_steps=6 format=3 uid="uid://lskm5tbedisk"]
 
 [ext_resource type="Script" uid="uid://bybeojwio32dw" path="res://scripts/lego_destroyer.gd" id="1_kej01"]
+[ext_resource type="Script" uid="uid://ba4i5o6c2tj7q" path="res://scripts/brick_break.gd" id="2_61oub"]
+[ext_resource type="AudioStream" uid="uid://b5unjjdk2n4uv" path="res://import/sound/brick-break-1.wav" id="3_als5n"]
+[ext_resource type="AudioStream" uid="uid://chfawldt3vu5m" path="res://import/sound/brick-break-2.wav" id="4_qbhc2"]
+[ext_resource type="AudioStream" uid="uid://bllwpflbon34i" path="res://import/sound/brick-break-3.wav" id="5_3dvxx"]
 
 [node name="LegoDestroyer" type="Node"]
 script = ExtResource("1_kej01")
 center_of_explosion_np = NodePath("CenterOfExplosion")
 
 [node name="CenterOfExplosion" type="Marker3D" parent="."]
+
+[node name="BrickBreak" type="AudioStreamPlayer3D" parent="."]
+volume_db = 10.0
+max_db = 6.0
+bus = &"Effects"
+script = ExtResource("2_61oub")
+breaks = Array[Resource]([ExtResource("3_als5n"), ExtResource("4_qbhc2"), ExtResource("5_3dvxx")])

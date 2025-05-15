@@ -8,10 +8,10 @@ layout_mode = 3
 anchors_preset = 4
 anchor_top = 0.5
 anchor_bottom = 0.5
-offset_left = -450.0
-offset_top = -118.0
-offset_right = -7.0
-offset_bottom = 118.0
+offset_left = -346.0
+offset_top = -220.0
+offset_right = -4.0
+offset_bottom = 220.0
 grow_vertical = 2
 size_flags_horizontal = 0
 size_flags_vertical = 0
@@ -19,15 +19,15 @@ script = ExtResource("1_m2cht")
 
 [node name="ParametersPanel" type="PanelContainer" parent="."]
 layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = 48.0
-offset_top = -7.0
-offset_bottom = 3.0
-grow_horizontal = 2
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_top = -213.0
+offset_right = 335.026
+offset_bottom = 213.0
 grow_vertical = 2
 theme = ExtResource("2_pweea")
+theme_type_variation = &"MiniPanel"
 
 [node name="HBoxContainer" type="HBoxContainer" parent="ParametersPanel"]
 layout_mode = 2
@@ -41,7 +41,11 @@ size_flags_vertical = 3
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="Label" type="Label" parent="ParametersPanel/HBoxContainer/VBoxContainer"]
+[node name="Control5" type="Control" parent="ParametersPanel/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="Parameters" type="Label" parent="ParametersPanel/HBoxContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 3
 size_flags_stretch_ratio = 0.1
@@ -53,17 +57,21 @@ horizontal_alignment = 1
 layout_mode = 2
 size_flags_vertical = 3
 
+[node name="Graphics" type="Label" parent="ParametersPanel/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+size_flags_stretch_ratio = 0.1
+theme_override_font_sizes/font_size = 24
+text = "Graphics"
+horizontal_alignment = 1
+
 [node name="Control3" type="Control" parent="ParametersPanel/HBoxContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 3
 
 [node name="FullscreenMode" type="CheckButton" parent="ParametersPanel/HBoxContainer/VBoxContainer"]
 layout_mode = 2
-text = "Start fullscreen"
-
-[node name="Control4" type="Control" parent="ParametersPanel/HBoxContainer/VBoxContainer"]
-layout_mode = 2
-size_flags_vertical = 3
+text = "Fullscreen"
 
 [node name="HighGraphics" type="CheckButton" parent="ParametersPanel/HBoxContainer/VBoxContainer"]
 layout_mode = 2
@@ -77,12 +85,12 @@ size_flags_vertical = 3
 layout_mode = 2
 size_flags_vertical = 3
 
-[node name="Label2" type="Label" parent="ParametersPanel/HBoxContainer/VBoxContainer"]
+[node name="Keyboard" type="Label" parent="ParametersPanel/HBoxContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 3
 size_flags_stretch_ratio = 0.1
 theme_override_font_sizes/font_size = 24
-text = "keyboard"
+text = "Keyboard"
 horizontal_alignment = 1
 
 [node name="UseWSAD" type="ItemList" parent="ParametersPanel/HBoxContainer/VBoxContainer"]
@@ -97,6 +105,52 @@ item_1/text = "Use arrows and Ctrl"
 [node name="Control2" type="Control" parent="ParametersPanel/HBoxContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 3
+
+[node name="Label3" type="Label" parent="ParametersPanel/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+size_flags_stretch_ratio = 0.1
+theme_override_font_sizes/font_size = 24
+text = "Sound"
+horizontal_alignment = 1
+
+[node name="Sound" type="HBoxContainer" parent="ParametersPanel/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Labels" type="VBoxContainer" parent="ParametersPanel/HBoxContainer/VBoxContainer/Sound"]
+layout_mode = 2
+
+[node name="MusicSliderLabel" type="Label" parent="ParametersPanel/HBoxContainer/VBoxContainer/Sound/Labels"]
+layout_mode = 2
+size_flags_vertical = 3
+size_flags_stretch_ratio = 0.1
+theme_override_font_sizes/font_size = 18
+text = "Music"
+horizontal_alignment = 1
+
+[node name="EffectSliderLabel" type="Label" parent="ParametersPanel/HBoxContainer/VBoxContainer/Sound/Labels"]
+layout_mode = 2
+size_flags_vertical = 3
+size_flags_stretch_ratio = 0.1
+theme_override_font_sizes/font_size = 18
+text = "Effects"
+horizontal_alignment = 1
+
+[node name="Music2" type="VBoxContainer" parent="ParametersPanel/HBoxContainer/VBoxContainer/Sound"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="MusicSlider" type="HSlider" parent="ParametersPanel/HBoxContainer/VBoxContainer/Sound/Music2"]
+layout_mode = 2
+size_flags_horizontal = 3
+max_value = 1.995
+step = 0.01
+
+[node name="EffectSlider" type="HSlider" parent="ParametersPanel/HBoxContainer/VBoxContainer/Sound/Music2"]
+layout_mode = 2
+size_flags_horizontal = 3
+max_value = 1.995
+step = 0.01
 
 [node name="Control6" type="Control" parent="ParametersPanel/HBoxContainer/VBoxContainer"]
 layout_mode = 2

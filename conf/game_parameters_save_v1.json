@@ -1,0 +1,188 @@
+{
+    "effects_volume": 1.39,
+    "high_graphics": true,
+    "hostages_per_house": 5,
+    "keyboard_use_wsad": false,
+    "levels": [
+        {
+            "CosmicsNode": {
+                "limit": 0.0,
+                "rate": 5.0,
+                "rate_range": 2.0
+            },
+            "HousesNode": {
+                "house_count": 1.0
+            },
+            "TanksNode": {
+                "limit": 1.0,
+                "rate": 5.0,
+                "rate_range": 2.0,
+                "tank_intel": {
+                    "HuntTarget": {
+                        "proba": 0.7,
+                        "wait": 10.0,
+                        "wait_range": 1.0
+                    },
+                    "Reload": {
+                        "wait": 4.0,
+                        "wait_range": 1.0
+                    },
+                    "Scanning": {
+                        "proba": 0.6,
+                        "wait": 3.0,
+                        "wait_range": 1.0
+                    },
+                    "TargetFound": {
+                        "wait": 2.0,
+                        "wait_range": 1.0
+                    }
+                }
+            }
+        },
+        {
+            "CosmicsNode": {
+                "limit": 0.0,
+                "rate": 10.0,
+                "rate_range": 2.0
+            },
+            "HousesNode": {
+                "house_count": 2.0
+            },
+            "TanksNode": {
+                "limit": 3.0,
+                "rate": 8.0,
+                "rate_range": 2.0,
+                "tank_intel": {
+                    "HuntTarget": {
+                        "proba": 0.8,
+                        "wait": 10.0,
+                        "wait_range": 1.0
+                    },
+                    "Reload": {
+                        "wait": 3.0,
+                        "wait_range": 1.0
+                    },
+                    "Scanning": {
+                        "proba": 0.7,
+                        "wait": 3.0,
+                        "wait_range": 1.0
+                    },
+                    "TargetFound": {
+                        "wait": 1.5,
+                        "wait_range": 1.0
+                    }
+                }
+            }
+        },
+        {
+            "CosmicsNode": {
+                "limit": 2.0,
+                "rate": 5.0,
+                "rate_range": 2.0
+            },
+            "HousesNode": {
+                "house_count": 4.0
+            },
+            "TanksNode": {
+                "limit": 5.0,
+                "rate": 4.0,
+                "rate_range": 2.0,
+                "tank_intel": {
+                    "HuntTarget": {
+                        "proba": 0.9,
+                        "wait": 10.0,
+                        "wait_range": 1.0
+                    },
+                    "Reload": {
+                        "wait": 2.0,
+                        "wait_range": 0.5
+                    },
+                    "Scanning": {
+                        "proba": 0.8,
+                        "wait": 2.0,
+                        "wait_range": 1.0
+                    },
+                    "TargetFound": {
+                        "wait": 1.0,
+                        "wait_range": 0.5
+                    }
+                }
+            }
+        },
+        {
+            "CosmicsNode": {
+                "limit": 2.0,
+                "rate": 5.0,
+                "rate_range": 2.0
+            },
+            "HousesNode": {
+                "house_count": 4.0
+            },
+            "TanksNode": {
+                "limit": 5.0,
+                "rate": 4.0,
+                "rate_range": 2.0,
+                "tank_intel": {
+                    "HuntTarget": {
+                        "proba": 0.9,
+                        "wait": 10.0,
+                        "wait_range": 1.0
+                    },
+                    "Reload": {
+                        "wait": 1.0,
+                        "wait_range": 0.5
+                    },
+                    "Scanning": {
+                        "proba": 0.9,
+                        "wait": 2.0,
+                        "wait_range": 1.0
+                    },
+                    "TargetFound": {
+                        "wait": 0.5,
+                        "wait_range": 0.2
+                    }
+                }
+            }
+        },
+        {
+            "CosmicsNode": {
+                "limit": 2.0,
+                "rate": 5.0,
+                "rate_range": 2.0
+            },
+            "HousesNode": {
+                "house_count": 4.0
+            },
+            "TanksNode": {
+                "limit": 5.0,
+                "rate": 4.0,
+                "rate_range": 2.0,
+                "tank_intel": {
+                    "HuntTarget": {
+                        "proba": 0.1,
+                        "wait": 1.0,
+                        "wait_range": 0.5
+                    },
+                    "Reload": {
+                        "wait": 0.5,
+                        "wait_range": 0.1
+                    },
+                    "Scanning": {
+                        "proba": 0.99,
+                        "wait": 2.0,
+                        "wait_range": 1.0
+                    },
+                    "TargetFound": {
+                        "wait": 0.1,
+                        "wait_range": 0.05
+                    }
+                }
+            }
+        }
+    ],
+    "max_hostage_onboard": 5,
+    "music_volume": 1.14,
+    "start_fullscreen": false,
+    "start_heli_lives": 5,
+    "start_level": 0
+}

@@ -14,8 +14,9 @@ signal destroy
 @onready var missile_l_orig = get_node(missile_l_orig_np)
 @export_node_path("Marker3D") var missile_r_orig_np : NodePath
 @onready var missile_r_orig = get_node(missile_r_orig_np)
+@onready var lightmap_gi = $LightmapGI
 
-var is_dead : bool = false
+
 var pf : PathFollow3D
 var approach_tw : Tween
 var escape_route : Vector3
@@ -29,7 +30,10 @@ func _init_me(spawn_p: Dictionary) -> void:
 	rotate_y(-PI/2)
 	pf = get_parent()
 	smp_ia.start()
-
+	if GameVariables.use_lightmap:
+		lightmap_gi.visible = true
+	else:
+		lightmap_gi.visible = false		
 
 func _physics_process(delta: float) -> void:
 	if is_dead: return

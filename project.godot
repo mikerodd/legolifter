@@ -22,6 +22,10 @@ boot_splash/bg_color=Color(0.521737, 0.549096, 0.525643, 1)
 boot_splash/image="uid://caepbuo6m4kmt"
 config/icon="uid://0y5yqk5knp6m"
 
+[audio]
+
+buses/default_bus_layout="uid://b85f886gybt0r"
+
 [autoload]
 
 GameVariables="*res://scripts/game_variable.gd"
@@ -134,3 +138,4 @@ load={
 [rendering]
 
 textures/vram_compression/import_etc2_astc=true
+reflections/sky_reflections/texture_array_reflections=false

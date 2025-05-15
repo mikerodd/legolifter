@@ -8,6 +8,7 @@ signal destroy
 @onready var explode:GPUParticles3D = $Explode
 @onready var shell = $missile2
 @onready var collision_shape : CollisionShape3D = $CollisionShape3D
+@onready var missile_launch_sound: AudioStreamPlayer3D = $MissileLaunchSound
 
 var missile_direction: Vector3 
 var target_group: Array
@@ -18,6 +19,7 @@ func _ready() -> void:
 	var t: Vector3 = self.global_basis.z
 	missile_direction = t
 	create_tween().tween_property(self,"speed",speed * 3, 0.5)
+	missile_launch_sound.play()
 
 func _physics_process(delta: float) -> void:
 	var c: KinematicCollision3D

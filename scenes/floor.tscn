@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://b3manrp7qg001"]
+[gd_scene load_steps=13 format=3 uid="uid://b3manrp7qg001"]
 
 [ext_resource type="PackedScene" uid="uid://m3usxqukj557" path="res://import/floor-simple.glb" id="1_1bx2v"]
 [ext_resource type="LightmapGIData" uid="uid://bjqhehjyyxumv" path="res://resources/floor.lmbake" id="1_wc2lb"]
@@ -9,9 +9,33 @@
 [ext_resource type="PackedScene" uid="uid://dkd0m0j6bm6lb" path="res://import/clock-and-books.glb" id="6_hgjnp"]
 [ext_resource type="PackedScene" uid="uid://ccghtcha8b1n0" path="res://import/door.glb" id="7_lvm7u"]
 [ext_resource type="PackedScene" uid="uid://cq1n70b7o4qkb" path="res://scenes/fences.tscn" id="9_hl37q"]
+[ext_resource type="AudioStream" uid="uid://b6d12p5eev07" path="res://import/sound/one-brick-1.wav" id="10_qn20g"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_n5iih"]
 size = Vector3(15.987, 0.009, 2.03)
+
+[sub_resource type="GDScript" id="GDScript_hl37q"]
+script/source = "extends Area3D
+@onready var sound = $BrickSound
+
+
+var list: Array = []
+var last_emited = Time.get_ticks_msec()
+var delta = 0 
+func _on_body_shape_entered(body_rid: RID, body: Node3D, body_shape_index: int, local_shape_index: int) -> void:
+	
+	var key = body.get_path().get_concatenated_names()
+	#if not list.has(key):
+		#list.push_back(key)
+	if Time.get_ticks_msec() - last_emited > delta:
+		delta = randf_range(10,150)
+		sound.pitch_scale = randf_range(0.8,  1.2)
+		sound.global_position = body.global_position
+		sound.play()
+		last_emited = Time.get_ticks_msec()
+
+	
+"
 
 [node name="floor" type="StaticBody3D"]
 collision_layer = 8
@@ -43,3 +67,22 @@ shape = SubResource("BoxShape3D_n5iih")
 
 [node name="Fences" parent="." instance=ExtResource("9_hl37q")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 217.238, 0, 0)
+
+[node name="Area3D" type="Area3D" parent="."]
+collision_mask = 64
+script = SubResource("GDScript_hl37q")
+
+[node name="BrickSound" type="AudioStreamPlayer3D" parent="Area3D"]
+stream = ExtResource("10_qn20g")
+max_db = 6.0
+max_polyphony = 3
+bus = &"Effects"
+playback_type = 1
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
+transform = Transform3D(40, 0, 0, 0, 40, 0, 0, 0, 40, 0.667114, -0.178242, 0)
+shape = SubResource("BoxShape3D_n5iih")
+
+[connection signal="area_shape_entered" from="Area3D" to="Area3D" method="_on_area_shape_entered"]
+[connection signal="body_entered" from="Area3D" to="Area3D" method="_on_body_entered"]
+[connection signal="body_shape_entered" from="Area3D" to="Area3D" method="_on_body_shape_entered"]

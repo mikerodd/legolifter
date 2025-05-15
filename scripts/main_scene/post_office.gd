@@ -4,6 +4,7 @@ class_name PostOffice extends Node3D
 @onready var timer: Timer = $Timer
 @onready var base_path = $way_in/PathTemplate
 @onready var way_in = $way_in
+
 @export var hostage_scene : PackedScene
 
 func _ready() -> void:

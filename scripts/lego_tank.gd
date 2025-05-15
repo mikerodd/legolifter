@@ -17,10 +17,9 @@ signal destroy
 @onready var cannon_rotator: Node3D = $TankMover/tank_tiger_turret/CanonRotator
 @onready var cannon_muzzle = $TankMover/tank_tiger_turret/CanonRotator/CanonMuzzle
 @onready var tank_mover = $TankMover
+@onready var fire_sound = $FireSound
+@onready var lightmap_gi = $LightmapGI
 
-
-
-var is_dead : bool = false 
 
 var wait_delay: float = 0    # current wait 
 var wait_finished: float = 0    #wait limit when proba will be tested
@@ -31,6 +30,10 @@ var intel: Dictionary   # my IA parameters
 func _init_me(spawn_p: Dictionary) -> void:
 	super._init_me(spawn_p)   # initialize standard parms & put in the tree
 	turret_model.rotate_y(PI/2)
+	if GameVariables.use_lightmap:
+		lightmap_gi.visible = true
+	else:
+		lightmap_gi.visible = false
 
 
 func _physics_process(delta: float) -> void:
@@ -75,7 +78,7 @@ func _physics_process(delta: float) -> void:
 		"HuntTarget":
 			point_at_player(delta)
 			if wait_delay > wait_finished:
-				if LiveDemo.randf(self) < intel.HuntTarget.proba:
+				if LiveDemo.randf(self) < (1 - intel.HuntTarget.proba):
 					Logger.debug("I lost my target...")
 					smp_ia.set_trigger("lost_target")
 				else:
@@ -95,6 +98,8 @@ func _physics_process(delta: float) -> void:
 		
 		"FireAtTarget":
 			Logger.debug("Fire! Fire! Fire!")
+			fire_sound.pitch_scale = randf_range(0.85, 1.15)
+			fire_sound.play()
 			tank_mover.move_stop()
 			velocity = Vector3.ZERO
 			var shell: Shell1 = load(shell_path).instantiate()

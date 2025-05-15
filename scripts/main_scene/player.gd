@@ -16,8 +16,9 @@ signal destroy
 @onready var shell_orig = $model_rotator/helicopter3/MissileOrig
 @onready var fire_rate_timer: Timer = $fire_rate_timer
 @onready var coli_shape:CollisionShape3D = $new_heli_colishape
-
-
+@onready var rotor_sound = $Sounds/RotorSound
+@onready var onboard_hostage_sound = $Sounds/OnbardHostage
+@onready var falling_sound =$Sounds/Falling
 
 ## Delay time between to rotation requests
 @export var time_to_rotate:float 
@@ -43,12 +44,17 @@ var elapsed_rotate: float = 0
 var land_altitude: float # altitude where the helicopter should touch ground
 var can_fire: bool = true
 var can_play: bool = false 
-var is_dead: bool = false
 var passenger_count: int  = 0;
 var my_collision_layer :int 
 var limit_right : Vector3
 var limit_left : Vector3 
 var limit_up : Vector3 
+
+var tmp_trace : Array = []
+var physics_frame_begin : int =0
+var drawn_frame_begin : int = 0
+var process_frame_begin: int = 0 
+
 
 func _ready() -> void:
 	flying_smp.transited.connect(self._debug_fly)
@@ -56,21 +62,20 @@ func _ready() -> void:
 	physics_frame_begin = Engine.get_physics_frames()
 	drawn_frame_begin  = Engine.get_frames_drawn()
 	process_frame_begin = Engine.get_process_frames()
-	
+
+
+
 	
 func _init_me(spawn_p: Dictionary) -> void:
 	super._init_me(spawn_p)
 	model_anim.set_speed_scale(spawn_p["parms"]["@speed_scale"])
 	model_anim.play("rotor")
 	my_collision_layer = GlobalUtils.get_my_layer(self)
-
-
-
-var tmp_trace : Array = []
-var physics_frame_begin : int =0
-var drawn_frame_begin : int = 0
-var process_frame_begin: int = 0 
-
+	if can_play: 
+		rotor_sound.pitch_scale = 0.7
+		rotor_sound.play() 
+	
+	
 func _physics_process(_delta: float) -> void:
 	if not can_play:
 		return
@@ -85,6 +90,7 @@ func _physics_process(_delta: float) -> void:
 			if LiveDemo.is_action_pressed("move_up"): 
 				flying_smp.set_trigger("move_up")
 				create_tween().tween_property(model_anim,"speed_scale",1.5,1)
+				create_tween().tween_property(rotor_sound,"pitch_scale",1,1)
 			
 		"OnFly":
 			var move_up = 1 if LiveDemo.is_action_pressed("move_up") else 0
@@ -144,6 +150,7 @@ func _physics_process(_delta: float) -> void:
 
 		"Landing":
 			create_tween().tween_property(model_anim,"speed_scale", 0.5, 1)
+			create_tween().tween_property(rotor_sound,"pitch_scale",0.7,1)
 			create_tween().tween_property(model_rotator, "rotation:z", 0, 0.2)
 			flying_smp.set_trigger("landed")
 			if tmp_trace.size() != 0:
@@ -175,6 +182,9 @@ func manage_collisions(col: KinematicCollision3D) -> void:
 				Logger.debug("release hostages to the post office")
 				Messenger.release_hostages.emit()
 		else:
+			if _t is Actor:
+				if _t.is_dead:
+					return 
 			for s in _t.get_signal_list():
 				if s.name == "destroy": 
 					_t.destroy.emit()
@@ -205,6 +215,7 @@ func _on_rotating_smp_transited(from: Variant, to: Variant) -> void:
 		
 		
 func add_passenger():
+	onboard_hostage_sound.play()
 	GameVariables.out_count -= 1
 	GameVariables.heli_count += 1
 	Logger.trace("We have another passenger !  total : " + str(passenger_count))
@@ -223,9 +234,15 @@ func _on_fire_rate_timer_timeout() -> void:
 func _on_destroy() -> void:
 	if is_dead: return 
 	is_dead = true
+	rotor_sound.stop()
+	falling_sound.play()
 	create_tween().tween_property(model_anim,"speed_scale", 0, 2)
 	Logger.debug("I'm destroyed !")
 	flying_smp.set_trigger("is_destroyed")
+
+
+func _on_lego_destroyer_destroy_begin() -> void:
+		falling_sound.stop()
 
 
 func _on_lego_destroyer_destroy_end() -> void:

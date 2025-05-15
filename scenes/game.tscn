@@ -1,4 +1,4 @@
-[gd_scene load_steps=75 format=3 uid="uid://c8q76n2as4lf"]
+[gd_scene load_steps=76 format=3 uid="uid://c8q76n2as4lf"]
 
 [ext_resource type="Script" uid="uid://divsggom6kasx" path="res://scripts/main_scene/game.gd" id="1_u3qtx"]
 [ext_resource type="Script" uid="uid://c46lxiybkltaj" path="res://scripts/UI/dark_layer.gd" id="2_37s47"]
@@ -30,6 +30,7 @@
 [ext_resource type="Script" uid="uid://xj1j8owjucly" path="res://addons/imjp94.yafsm/src/conditions/Condition.gd" id="22_pr1ej"]
 [ext_resource type="PackedScene" uid="uid://b3manrp7qg001" path="res://scenes/floor.tscn" id="22_qnb83"]
 [ext_resource type="Environment" uid="uid://cjj51l6pe4rqg" path="res://resources/world_environment.tres" id="29_suyxu"]
+[ext_resource type="AudioStream" uid="uid://dlpj88c10utay" path="res://import/sound/legolifter-ost.wav" id="31_qouja"]
 
 [sub_resource type="CameraAttributesPractical" id="CameraAttributesPractical_qnb83"]
 dof_blur_far_enabled = true
@@ -352,6 +353,7 @@ game_parameters_filename = "res://conf/game_parameters.json"
 game_camera_np = NodePath("3D/MovingBits/game_camera")
 lok_scene_mng_np = NodePath("Various/LokSceneStorageManager")
 demo_timer_np = NodePath("Various/DemoTimer")
+music_np = NodePath("Various/Music")
 
 [node name="UI" type="Node" parent="."]
 
@@ -395,6 +397,7 @@ process_mode = 3
 [node name="game_camera" type="Camera3D" parent="3D/MovingBits"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.073, 32.23)
 attributes = SubResource("CameraAttributesPractical_qnb83")
+current = true
 fov = 32.3
 size = 13.071
 near = 0.16
@@ -410,6 +413,10 @@ dependency_paths = {
 "game_camera": NodePath("..")
 }
 metadata/_custom_type_script = "uid://brt4otgn2jol1"
+
+[node name="AudioListener3D" type="AudioListener3D" parent="3D/MovingBits/game_camera"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -22.005)
+current = true
 
 [node name="PlayerNode" type="Node" parent="3D/MovingBits"]
 script = ExtResource("7_qnb83")
@@ -473,6 +480,11 @@ metadata/_custom_type_script = "uid://46l00vp06dcr"
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="Various"]
 environment = ExtResource("29_suyxu")
+
+[node name="Music" type="AudioStreamPlayer" parent="Various"]
+stream = ExtResource("31_qouja")
+volume_db = -12.0
+bus = &"Music"
 
 [connection signal="timeout" from="Various/DemoTimer" to="." method="_on_demo_timer_timeout"]
 [connection signal="transited" from="Various/StateMachinePlayer" to="." method="_on_smp_transited"]

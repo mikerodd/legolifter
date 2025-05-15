@@ -4,6 +4,9 @@ extends Node
 const ENEMY_SHELLS_LAYER : int = 5
 const PLAYER_MISSILES_LAYER : int = 8
 
+const AUDIO_MUSIC_BUS : int = 2
+const AUDIO_EFFECTS_BUS : int = 1
+
 var game_parameters : Dictionary
 var game_parameters_filename : String
 
@@ -38,27 +41,67 @@ var heli_lives : int = 0 :
 		heli_lives = value
 		Messenger.update_scores.emit()
 
+var music_volume: float:
+	get():
+		return music_volume
+	set(value):
+		AudioServer.set_bus_volume_db(AUDIO_MUSIC_BUS, linear_to_db(value))
+		music_volume = value
+		
+var effects_volume: float:
+	get():
+		return effects_volume
+	set(value):
+		AudioServer.set_bus_volume_db(AUDIO_EFFECTS_BUS, linear_to_db(value))
+		effects_volume = value
+
+var start_fullscreen : bool:
+	get():
+		return start_fullscreen
+	set(value):
+		if value:
+			DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_FULLSCREEN)
+		else:
+			DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_WINDOWED)
+		start_fullscreen = value
+
+
+
 var start_heli_lives : int = 0
 var max_hostage_onboard : int = 0
 var hostages_per_house : int = 0
 var start_level : int = 0
-var start_fullscreen : bool
 var keyboard_use_wsad : bool
 var high_graphics : bool
-var level : Array
+var levels : Array
 
-var save_parameters_list: Array = [
+var user_parameters_list: Array = [
 	"start_level",
 	"start_fullscreen",
 	"keyboard_use_wsad",
 	"high_graphics",
+	"music_volume",
+	"effects_volume",
 ]
+var all_parameters_list: Array = [
+	"start_level",
+	"start_fullscreen",
+	"keyboard_use_wsad",
+	"high_graphics",
+	"music_volume",
+	"effects_volume",
+	"hostages_per_house",
+	"max_hostage_onboard",
+	"start_heli_lives",
+	"levels",
+]
+
 
 var current_level : int = 0 :
 	set(value):
-		if value >= level.size():
+		if value >= levels.size():
 			push_warning("Attempting to reach a level with no data, setting level to max")
-			current_level = level.size() - 1
+			current_level = levels.size() - 1
 		else:
 			current_level = value
 
@@ -93,28 +136,32 @@ func check_end_level() -> bool :
 
 
 func get_my_parms(id : String) -> Dictionary:
-	if GameVariables.level[GameVariables.current_level].has(id):
-		return GameVariables.level[GameVariables.current_level][id]
+	if GameVariables.levels[GameVariables.current_level].has(id):
+		return GameVariables.levels[GameVariables.current_level][id]
 	else:
 		push_warning("parm : %s does not exist in level %d" % [id, GameVariables.current_level])
 		return {}
 
 func apply_user_parameters()-> void: 
-	if start_fullscreen:
-		DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_FULLSCREEN)
-	else:
-		DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_WINDOWED)
-			
-	switch_to_dynamic_lights() if high_graphics else switch_to_lightmaps()
+	#if start_fullscreen:
+		#DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_FULLSCREEN)
+	#else:
+		#DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_WINDOWED)
+	if high_graphics:
+		switch_to_dynamic_lights()
+	else: 
+		switch_to_lightmaps()
+	
 
 
-func save_parameters() -> void:
+func save_parameters(all_parms: bool = false) -> void:
 	var json_as_text = FileAccess.get_file_as_string(game_parameters_filename)
 	var json: JSON = JSON.new()
 	var error = json.parse(json_as_text)
 	if error == OK:
 		var data = json.data
-		for parm in save_parameters_list:
+		var the_list = all_parameters_list if all_parms else user_parameters_list  
+		for parm in the_list:
 			data[parm] = self.get(parm)
 			var save = FileAccess.open(game_parameters_filename,FileAccess.WRITE)
 			save.store_string(JSON.stringify(json.data, "    "))
@@ -131,6 +178,8 @@ func load_parameters() -> void:
 	var json_as_text = FileAccess.get_file_as_string(game_parameters_filename)
 	var json = JSON.new()
 	var error = json.parse(json_as_text)
+	
+	
 	if error == OK:
 		for parm in json.data.keys():
 			self.set(parm, json.data[parm])
@@ -138,18 +187,6 @@ func load_parameters() -> void:
 	else:
 		Logger.fatal("Error in parameters file %s : %s" % [game_parameters_filename, json.get_error_message()])
 		get_tree().quit()
-
-func get_level_array() -> Array :
-	if game_parameters:
-		return game_parameters.level
-	else:
-		return []
-
-func get_heli_lives() -> int:
-	if game_parameters:
-		return game_parameters.heli_lives
-	else: return 0
-		
 
 
 var use_lightmap: bool = false

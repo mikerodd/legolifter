@@ -1,0 +1,384 @@
+[gd_scene load_steps=4 format=3 uid="uid://dqdbvtrmph2ql"]
+
+[ext_resource type="Theme" uid="uid://csttegjq0h4hc" path="res://theme/lego_theme.tres" id="1_6lwu6"]
+
+[sub_resource type="GDScript" id="GDScript_8uxt3"]
+script/source = "extends Control
+
+
+@onready var levels_tree_left: Tree = $VBoxContainer/VBoxContainer/HBoxContainer/LevelsTreeLeft
+@onready var levels_tree_middle: Tree = $VBoxContainer/VBoxContainer/HBoxContainer/LevelsTreeMiddle
+@onready var levels_tree_right: Tree = $VBoxContainer/VBoxContainer/HBoxContainer/LevelsTreeRight
+
+var current_left: int  = 0
+
+func init_trees() -> void:
+	levels_tree_left._init_me(current_left)
+	levels_tree_middle._init_me(current_left + 1)
+	levels_tree_right._init_me(current_left + 2)
+	
+
+
+func _ready() -> void:
+	GameVariables.game_parameters_filename = \"res://conf/game_parameters.json\"
+	GameVariables.load_parameters()
+	init_trees()	
+	
+
+
+func _on_left_pressed() -> void:
+	if current_left > 0:
+		current_left -= 1
+		get_tree().call_group(\"trees\", \"save_content_to_game_parms\")
+		init_trees()	
+		
+
+
+func _on_right_pressed() -> void:
+	if current_left < GameVariables.levels.size() - 3:
+		current_left += 1
+		get_tree().call_group(\"trees\", \"save_content_to_game_parms\")
+		init_trees()	
+		
+
+
+func _on_ok_pressed() -> void:
+	GameVariables.save_parameters(true)
+
+
+
+func _on_cancel_pressed() -> void:
+	get_tree().quit()
+"
+
+[sub_resource type="GDScript" id="GDScript_6lwu6"]
+script/source = "extends Tree
+
+
+var parms_mapping: Dictionary = {}
+
+func _ready() -> void:
+			DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_MAXIMIZED)
+
+
+
+func create_editable_parm(parent: TreeItem, parm_name: String, value_ref, prev_val ) -> TreeItem:
+	var parm = create_item(parent)
+	var value = value_ref[parm_name]
+	parm.set_metadata(0,value_ref)
+	#parms_mapping.set(parm, value_ref)
+	parm.set_text(0, parm_name)
+	parm.set_text(1,str(value))
+	if ((value < prev_val and parm_name != \"limit\")
+			or (value > prev_val 
+				and (parm_name == \"limit\" 
+					or parm_name == \"house_count\" 
+					or parm_name == \"proba\"))):
+		match name:
+			\"LevelsTreeLeft\":
+				parm.set_custom_color(1, Color(\"346bd9\"))
+			\"LevelsTreeMiddle\":
+				parm.set_custom_color(1, Color(\"d28c00\"))
+			\"LevelsTreeRight\":
+				parm.set_custom_color(1, Color(\"ef0019\"))
+			_:
+				parm.clear_custom_color(1)
+			
+	parm.set_editable(1, true)
+	
+	
+	return parm
+
+
+func save_content_recurse(child : TreeItem) -> void:
+
+	var meta = child.get_metadata(0)
+	if meta:
+		var key = child.get_text(0)
+		var value  = child.get_text(1)
+		meta[key] = float(value)
+	
+	for c in child.get_children(): 
+		save_content_recurse(c)
+			
+		
+	
+
+func save_content_to_game_parms() -> void:
+	save_content_recurse(get_root())
+	var t = GameVariables.levels		
+	pass
+
+func _init_me(idx) -> void:
+	clear()
+
+		
+	var level = GameVariables.levels[idx]
+	var levprev
+	if idx > 0: 
+		levprev = GameVariables.levels[idx - 1]
+	else: 
+		levprev = GameVariables.levels[idx]
+
+	var child = create_item()
+	child.set_text(0, str(idx))
+	var childCN = create_item(child)
+	childCN.set_text(0, \"CosmicsNode\")
+	create_editable_parm(childCN, \"limit\", level[\"CosmicsNode\"], levprev[\"CosmicsNode\"][\"limit\"])
+	create_editable_parm(childCN, \"rate\", level[\"CosmicsNode\"], levprev[\"CosmicsNode\"][\"rate\"])
+	create_editable_parm(childCN, \"rate_range\", level[\"CosmicsNode\"], levprev[\"CosmicsNode\"][\"rate_range\"])
+	
+	var childHN = create_item(child)
+	childHN.set_text(0, \"HousesNode\")
+	create_editable_parm(childHN, \"house_count\", level[\"HousesNode\"], levprev[\"HousesNode\"][\"house_count\"])
+
+	var childTN = create_item(child)
+	childTN.set_text(0, \"TanksNode\")
+	create_editable_parm(childTN, \"limit\", level[\"TanksNode\"], levprev[\"TanksNode\"][\"limit\"])
+	create_editable_parm(childTN, \"rate\", level[\"TanksNode\"], levprev[\"TanksNode\"][\"rate\"])
+	create_editable_parm(childTN, \"rate_range\", level[\"TanksNode\"], levprev[\"TanksNode\"][\"rate_range\"])
+	
+	var childTI = create_item(childTN)
+	childTI.set_text(0, \"tank_intel\")
+	var childTIH = create_item(childTI)
+	childTIH.set_text(0, \"HuntTarget\")
+	create_editable_parm(childTIH, \"proba\", level[\"TanksNode\"][\"tank_intel\"][\"HuntTarget\"], levprev[\"TanksNode\"][\"tank_intel\"][\"HuntTarget\"][\"proba\"])
+	create_editable_parm(childTIH, \"wait\", level[\"TanksNode\"][\"tank_intel\"][\"HuntTarget\"], levprev[\"TanksNode\"][\"tank_intel\"][\"HuntTarget\"][\"wait\"])
+	create_editable_parm(childTIH, \"wait_range\", level[\"TanksNode\"][\"tank_intel\"][\"HuntTarget\"], levprev[\"TanksNode\"][\"tank_intel\"][\"HuntTarget\"][\"wait_range\"])
+	var childTIR = create_item(childTI)
+	childTIR.set_text(0, \"Reload\")
+	create_editable_parm(childTIR, \"wait\", level[\"TanksNode\"][\"tank_intel\"][\"Reload\"], levprev[\"TanksNode\"][\"tank_intel\"][\"Reload\"][\"wait\"])
+	create_editable_parm(childTIR, \"wait_range\", level[\"TanksNode\"][\"tank_intel\"][\"Reload\"], levprev[\"TanksNode\"][\"tank_intel\"][\"Reload\"][\"wait_range\"])
+	var childTIS = create_item(childTI)
+	childTIS.set_text(0, \"Scanning\")
+	create_editable_parm(childTIS, \"proba\", level[\"TanksNode\"][\"tank_intel\"][\"Scanning\"], levprev[\"TanksNode\"][\"tank_intel\"][\"Scanning\"][\"proba\"])
+	create_editable_parm(childTIS, \"wait\", level[\"TanksNode\"][\"tank_intel\"][\"Scanning\"], levprev[\"TanksNode\"][\"tank_intel\"][\"Scanning\"][\"wait\"])
+	create_editable_parm(childTIS, \"wait_range\", level[\"TanksNode\"][\"tank_intel\"][\"Scanning\"], levprev[\"TanksNode\"][\"tank_intel\"][\"Scanning\"][\"wait_range\"])
+	var childTIT = create_item(childTI)
+	childTIT.set_text(0, \"TargetFound\")
+	create_editable_parm(childTIT, \"wait\", level[\"TanksNode\"][\"tank_intel\"][\"TargetFound\"], levprev[\"TanksNode\"][\"tank_intel\"][\"TargetFound\"][\"wait\"])
+	create_editable_parm(childTIT, \"wait_range\", level[\"TanksNode\"][\"tank_intel\"][\"TargetFound\"], levprev[\"TanksNode\"][\"tank_intel\"][\"TargetFound\"][\"wait_range\"])
+				
+"
+
+[node name="GameParametersMng" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme = ExtResource("1_6lwu6")
+script = SubResource("GDScript_8uxt3")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Label" type="Label" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 6
+theme = ExtResource("1_6lwu6")
+text = "Parameters"
+horizontal_alignment = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer"]
+layout_mode = 2
+
+[node name="Ok" type="Button" parent="VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Ok"
+
+[node name="Cancel" type="Button" parent="VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Cancel"
+
+[node name="Left" type="Button" parent="VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "<"
+
+[node name="Right" type="Button" parent="VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = ">"
+
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer"]
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="LevelsTreeLeft" type="Tree" parent="VBoxContainer/VBoxContainer/HBoxContainer" groups=["trees"]]
+custom_minimum_size = Vector2(0, 480)
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 10
+columns = 2
+script = SubResource("GDScript_6lwu6")
+
+[node name="LevelsTreeMiddle" type="Tree" parent="VBoxContainer/VBoxContainer/HBoxContainer" groups=["trees"]]
+custom_minimum_size = Vector2(0, 300)
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 10
+columns = 2
+script = SubResource("GDScript_6lwu6")
+
+[node name="LevelsTreeRight" type="Tree" parent="VBoxContainer/VBoxContainer/HBoxContainer" groups=["trees"]]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 10
+columns = 2
+script = SubResource("GDScript_6lwu6")
+
+[node name="GlobalParms" type="Label" parent="VBoxContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 6
+text = "Global Parameters"
+horizontal_alignment = 1
+
+[node name="GlobalParameters" type="HBoxContainer" parent="VBoxContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 63)
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/VBoxContainer/GlobalParameters"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/VBoxContainer/GlobalParameters/VBoxContainer"]
+layout_mode = 2
+
+[node name="HBoxContainer2" type="VBoxContainer" parent="VBoxContainer/VBoxContainer/GlobalParameters/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+
+[node name="Label3" type="Label" parent="VBoxContainer/VBoxContainer/GlobalParameters/VBoxContainer/HBoxContainer/HBoxContainer2"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 12
+text = "start_level"
+
+[node name="Label2" type="Label" parent="VBoxContainer/VBoxContainer/GlobalParameters/VBoxContainer/HBoxContainer/HBoxContainer2"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 12
+text = "start_heli_lives"
+
+[node name="Label7" type="Label" parent="VBoxContainer/VBoxContainer/GlobalParameters/VBoxContainer/HBoxContainer/HBoxContainer2"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 12
+text = "high_graphics"
+
+[node name="HBoxContainer3" type="VBoxContainer" parent="VBoxContainer/VBoxContainer/GlobalParameters/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="StartLevel" type="TextEdit" parent="VBoxContainer/VBoxContainer/GlobalParameters/VBoxContainer/HBoxContainer/HBoxContainer3"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_font_sizes/font_size = 12
+
+[node name="StartHeliLives" type="TextEdit" parent="VBoxContainer/VBoxContainer/GlobalParameters/VBoxContainer/HBoxContainer/HBoxContainer3"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_font_sizes/font_size = 12
+
+[node name="HighGraphics" type="TextEdit" parent="VBoxContainer/VBoxContainer/GlobalParameters/VBoxContainer/HBoxContainer/HBoxContainer3"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_font_sizes/font_size = 12
+
+[node name="VBoxContainer3" type="VBoxContainer" parent="VBoxContainer/VBoxContainer/GlobalParameters"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/VBoxContainer/GlobalParameters/VBoxContainer3"]
+layout_mode = 2
+
+[node name="HBoxContainer2" type="VBoxContainer" parent="VBoxContainer/VBoxContainer/GlobalParameters/VBoxContainer3/HBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="VBoxContainer/VBoxContainer/GlobalParameters/VBoxContainer3/HBoxContainer/HBoxContainer2"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 12
+text = "start_fullscreen"
+
+[node name="Label4" type="Label" parent="VBoxContainer/VBoxContainer/GlobalParameters/VBoxContainer3/HBoxContainer/HBoxContainer2"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 12
+text = "max_hostage_onboard"
+
+[node name="Label8" type="Label" parent="VBoxContainer/VBoxContainer/GlobalParameters/VBoxContainer3/HBoxContainer/HBoxContainer2"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 12
+text = "hostages_per_house"
+
+[node name="HBoxContainer3" type="VBoxContainer" parent="VBoxContainer/VBoxContainer/GlobalParameters/VBoxContainer3/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="StartFullscreen" type="TextEdit" parent="VBoxContainer/VBoxContainer/GlobalParameters/VBoxContainer3/HBoxContainer/HBoxContainer3"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="MaxHostageOnboard" type="TextEdit" parent="VBoxContainer/VBoxContainer/GlobalParameters/VBoxContainer3/HBoxContainer/HBoxContainer3"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="HostagesPerHouse" type="TextEdit" parent="VBoxContainer/VBoxContainer/GlobalParameters/VBoxContainer3/HBoxContainer/HBoxContainer3"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="VBoxContainer/VBoxContainer/GlobalParameters"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/VBoxContainer/GlobalParameters/VBoxContainer2"]
+layout_mode = 2
+
+[node name="HBoxContainer2" type="VBoxContainer" parent="VBoxContainer/VBoxContainer/GlobalParameters/VBoxContainer2/HBoxContainer"]
+layout_mode = 2
+
+[node name="Label5" type="Label" parent="VBoxContainer/VBoxContainer/GlobalParameters/VBoxContainer2/HBoxContainer/HBoxContainer2"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 12
+text = "music_volume"
+
+[node name="Label6" type="Label" parent="VBoxContainer/VBoxContainer/GlobalParameters/VBoxContainer2/HBoxContainer/HBoxContainer2"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 12
+text = "effects_volume"
+
+[node name="Label9" type="Label" parent="VBoxContainer/VBoxContainer/GlobalParameters/VBoxContainer2/HBoxContainer/HBoxContainer2"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 12
+text = "keyboard_use_wsad"
+
+[node name="HBoxContainer3" type="VBoxContainer" parent="VBoxContainer/VBoxContainer/GlobalParameters/VBoxContainer2/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="MusicVolume" type="TextEdit" parent="VBoxContainer/VBoxContainer/GlobalParameters/VBoxContainer2/HBoxContainer/HBoxContainer3"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="EffectsVolume" type="TextEdit" parent="VBoxContainer/VBoxContainer/GlobalParameters/VBoxContainer2/HBoxContainer/HBoxContainer3"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="KeyboardUseWSAD" type="TextEdit" parent="VBoxContainer/VBoxContainer/GlobalParameters/VBoxContainer2/HBoxContainer/HBoxContainer3"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[connection signal="pressed" from="VBoxContainer/HBoxContainer/Ok" to="." method="_on_ok_pressed"]
+[connection signal="pressed" from="VBoxContainer/HBoxContainer/Cancel" to="." method="_on_cancel_pressed"]
+[connection signal="pressed" from="VBoxContainer/HBoxContainer/Left" to="." method="_on_left_pressed"]
+[connection signal="pressed" from="VBoxContainer/HBoxContainer/Right" to="." method="_on_right_pressed"]

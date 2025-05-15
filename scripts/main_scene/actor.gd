@@ -2,6 +2,7 @@ extends CharacterBody3D
 
 class_name Actor
 
+var is_dead : bool = false
 
 func _init_me(spawn_p: Dictionary) -> void:
 	if spawn_p.has("parms"): 

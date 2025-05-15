@@ -1,8 +1,9 @@
-[gd_scene load_steps=9 format=3 uid="uid://dcd0l1ye5i2lk"]
+[gd_scene load_steps=10 format=3 uid="uid://dcd0l1ye5i2lk"]
 
 [ext_resource type="Script" uid="uid://dx4bx5hspqbx3" path="res://scripts/main_scene/missile_1.gd" id="1_2aipi"]
 [ext_resource type="PackedScene" uid="uid://bsuocrt8rxj27" path="res://import/missile2.glb" id="2_ro85n"]
 [ext_resource type="Material" uid="uid://em14ienv7cwv" path="res://shaders/explosion1.tres" id="3_s0rhf"]
+[ext_resource type="AudioStream" uid="uid://bfm212eworbgo" path="res://import/sound/missile-launch.wav" id="4_ro85n"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_ro85n"]
 radius = 0.0957479
@@ -43,3 +44,8 @@ one_shot = true
 explosiveness = 0.85
 process_material = SubResource("ParticleProcessMaterial_3awlc")
 draw_pass_1 = SubResource("SphereMesh_baqdl")
+
+[node name="MissileLaunchSound" type="AudioStreamPlayer3D" parent="."]
+stream = ExtResource("4_ro85n")
+volume_db = -8.0
+bus = &"Effects"

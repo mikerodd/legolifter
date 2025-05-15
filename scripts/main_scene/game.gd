@@ -17,6 +17,9 @@ class_name Game
 @onready var lok_scene_mng : LokSceneStorageManager = get_node(lok_scene_mng_np)
 @export_node_path("Timer") var demo_timer_np
 @onready var demo_timer : Timer = get_node(demo_timer_np)
+@export_node_path("AudioStreamPlayer") var music_np
+@onready var music : AudioStreamPlayer = get_node(music_np)
+
 
 var debug_win = preload("res://scenes/debug_window.tscn")
 
@@ -91,6 +94,7 @@ func _init() -> void:
 func _on_smp_transited(_from: Variant, to: Variant) -> void:
 	match to:
 		"StartScreen":
+			music.stop()
 			Messenger.ui_englight_display.emit()
 			Messenger.demo_timer_authorized.emit()
 		"BeginGame":
@@ -101,6 +105,8 @@ func _on_smp_transited(_from: Variant, to: Variant) -> void:
 			Messenger.ui_show_level.emit()
 
 		"Play":
+			if not music.playing: music.play()
+			AudioServer.set_bus_mute(GameVariables.AUDIO_EFFECTS_BUS,false)
 			Messenger.demo_timer_forbidden.emit()
 			LiveDemo.reinit_unique_name()
 			LiveDemo.current_active = "live"
@@ -126,6 +132,7 @@ func _on_smp_transited(_from: Variant, to: Variant) -> void:
 			Messenger.level_started.emit(GameVariables.current_level)
 			Messenger.begin_play.emit()
 			Messenger.ui_total_dark_display.emit()
+			AudioServer.set_bus_mute(GameVariables.AUDIO_EFFECTS_BUS,true)
 			await get_tree().create_timer(1).timeout
 			Messenger.ui_englight_display.emit()
 	

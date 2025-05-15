@@ -11,19 +11,19 @@ func _ready() -> void:
 	
 func _on_level_started(_level : int) -> void :
 	if parameter_id:
-		if _level >= GameVariables.level.size():
-			_level = GameVariables.level.size() - 1
-		parms = GameVariables.level[_level][parameter_id]
+		if _level >= GameVariables.levels.size():
+			_level = GameVariables.levels.size() - 1
+		parms = GameVariables.levels[_level][parameter_id]
 
 	else:
 		Logger.fatal("LoaderComponent(%s) parameter_id is not initialized " % [get_path()] )
 
 func get_parms_level() -> Dictionary : 
 	var lev = GameVariables.current_level
-	if lev >= GameVariables.level.size(): 
-			lev = global_parms.level.size() - 1
-	if global_parms.level[lev]:
-		return global_parms.level[lev][parameter_id]
+	if lev >= GameVariables.levels.size(): 
+			lev = global_parms.levels.size() - 1
+	if global_parms.levels[lev]:
+		return global_parms.levels[lev][parameter_id]
 	else:
 		return {}
 	

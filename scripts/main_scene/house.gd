@@ -10,6 +10,7 @@ signal destroy
 @onready var base_path = $WayOut/BasePath
 @onready var way_out = $WayOut
 @onready var house_model = $house2
+@onready var lightmap_gi = $LightmapGI
 
 @export_node_path("LegoDestroyer") var destroyer_np
 @onready var destroyer : LegoDestroyer = get_node(destroyer_np)
@@ -42,7 +43,11 @@ func _init_me(spawn_p: Dictionary) -> void:
 	if spawn_p["parms"]["timer_is_stopped"]:
 		hostage_timer.stop()
 	else:
-		hostage_timer.start()		
+		hostage_timer.start()
+	if GameVariables.use_lightmap:
+		lightmap_gi.visible = true
+	else:
+		lightmap_gi.visible = false		
 
 func create_path_for_hostage() -> PathFollow3D:
 	var pf: PathFollow3D  = base_path.duplicate()

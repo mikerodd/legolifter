@@ -1,7 +1,9 @@
-[gd_scene load_steps=56 format=3 uid="uid://d22wpla6um2ni"]
+[gd_scene load_steps=58 format=3 uid="uid://d22wpla6um2ni"]
 
 [ext_resource type="Script" uid="uid://djpwkhlpc3nlj" path="res://scripts/lego_tank.gd" id="1_423go"]
+[ext_resource type="AudioStream" uid="uid://bec138mhj1tqp" path="res://import/sound/tank-shell.wav" id="2_2hr33"]
 [ext_resource type="PackedScene" uid="uid://cnci4axl7dae7" path="res://import/tank_tiger.glb" id="2_423go"]
+[ext_resource type="LightmapGIData" uid="uid://cmyuqorcd5fb" path="res://resources/lego_tank_tiger.lmbake" id="2_r38hh"]
 [ext_resource type="PackedScene" uid="uid://dyy6gr03hgf81" path="res://import/tank_tiger_turret.glb" id="3_2hr33"]
 [ext_resource type="PackedScene" uid="uid://ugqvkra70nx0" path="res://import/tank_tiger_cannon.glb" id="4_r38hh"]
 [ext_resource type="Script" uid="uid://46l00vp06dcr" path="res://addons/imjp94.yafsm/src/StateMachinePlayer.gd" id="5_27ga3"]
@@ -11,7 +13,7 @@
 [ext_resource type="Script" uid="uid://blso217oe4a4s" path="res://addons/imjp94.yafsm/src/conditions/BooleanCondition.gd" id="9_3u6oy"]
 [ext_resource type="Script" uid="uid://xj1j8owjucly" path="res://addons/imjp94.yafsm/src/conditions/Condition.gd" id="10_bh0sy"]
 [ext_resource type="PackedScene" uid="uid://lskm5tbedisk" path="res://scenes/lego_destroyer.tscn" id="11_423go"]
-[ext_resource type="PackedScene" uid="uid://dkrt0idmey35x" path="res://import/tank_tiger_destroyed.glb" id="12_681ks"]
+[ext_resource type="PackedScene" uid="uid://pswua3jtaceu" path="res://tests/test_tank.tscn" id="12_423go"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_jy6d4"]
 size = Vector3(5.89328, 0.890896, 1.85648)
@@ -352,6 +354,14 @@ shell_path = "uid://f1yjxnw08eei"
 speed = 2.0
 safe_distance = 5.671
 
+[node name="LightmapGI" type="LightmapGI" parent="." groups=["lightmaps"]]
+light_data = ExtResource("2_r38hh")
+
+[node name="FireSound" type="AudioStreamPlayer3D" parent="."]
+stream = ExtResource("2_2hr33")
+volume_db = -5.0
+bus = &"Effects"
+
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.000556231, 0.444994, -0.0086381)
 shape = SubResource("BoxShape3D_jy6d4")
@@ -379,7 +389,7 @@ state_machine = SubResource("Resource_0q52d")
 metadata/_custom_type_script = "uid://46l00vp06dcr"
 
 [node name="LegoDestroyer" parent="." instance=ExtResource("11_423go")]
-destroy_model = ExtResource("12_681ks")
+destroy_model = ExtResource("12_423go")
 initial_model_np = NodePath("../TankMover/tank_tiger")
 explode_intensity = 8.0
 

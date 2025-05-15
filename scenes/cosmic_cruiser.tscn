@@ -1,8 +1,9 @@
-[gd_scene load_steps=9 format=3 uid="uid://c6mufcm6wmgcn"]
+[gd_scene load_steps=10 format=3 uid="uid://c6mufcm6wmgcn"]
 
 [ext_resource type="Script" uid="uid://dfk5c8vm30wp4" path="res://scripts/main_scene/cosmic_cruiser.gd" id="1_hci50"]
 [ext_resource type="PackedScene" uid="uid://5pu1uu8js4bi" path="res://import/cosmic_cruiser.glb" id="1_ooyga"]
 [ext_resource type="PackedScene" uid="uid://dcd0l1ye5i2lk" path="res://scenes/missile1.tscn" id="2_j7o7i"]
+[ext_resource type="LightmapGIData" uid="uid://xbqtxrgs0qii" path="res://resources/cosmic_cruiser.lmbake" id="3_0vtqp"]
 [ext_resource type="PackedScene" uid="uid://c3r0h0p4w371a" path="res://import/cosmic_cruiser_destroyed.glb" id="5_edoeq"]
 [ext_resource type="Script" uid="uid://cra0md6tqliiq" path="res://scripts/locker/l_s_state_machine_player.gd" id="6_peeb5"]
 [ext_resource type="PackedScene" uid="uid://lskm5tbedisk" path="res://scenes/lego_destroyer.tscn" id="7_565lu"]
@@ -21,6 +22,9 @@ destroyer_np = NodePath("LegoDestroyer")
 smp_ia_np = NodePath("smp_ia")
 missile_l_orig_np = NodePath("MissileLOrig")
 missile_r_orig_np = NodePath("MissileROrig")
+
+[node name="LightmapGI" type="LightmapGI" parent="."]
+light_data = ExtResource("3_0vtqp")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.108353, 0.0296631, 0.00584405)
