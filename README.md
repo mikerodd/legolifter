@@ -9,13 +9,15 @@ Legolifter is a game using the Godot engine, based on the classic 8bit game [Cho
 
 ## Attribution
 ### This game use these assets : 
-####Sound
+**Sounds**
 * Lego Bricks by byjoshberry -- https://freesound.org/s/431420/ -- License: Attribution 4.0
 * LEGO Bricks drop_single by C_Sander -- https://freesound.org/s/721040/ -- License: Creative Commons 0
 * LEGO walking.wav by OwennewO -- https://freesound.org/s/520615/ -- License: Creative Commons 0
 * Helicopter turbine by crooner -- https://freesound.org/s/223474/ -- License: Attribution NonCommercial 3.0
+Helicopter / missile sounds were produced by this excellent VST : [June-21](https://github.com/mikerodd/june-21) ;-)
 
-3D Models
+
+**3D Models**
 * Various CCO models from https://polyhaven.com/
 * Lego models, from Ldraw.org : 
 	 - 7903-1 by Marc Giraudet, https://library.ldraw.org/omr/sets/1102
