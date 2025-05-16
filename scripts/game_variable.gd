@@ -79,6 +79,14 @@ var high_graphics : bool = true:
 			else: 
 				switch_to_lightmaps()
 			high_graphics = value
+var version: String = "":
+	get():
+		return version
+	set(value):
+		version = value
+		pass # nope !
+		
+		
 
 
 var start_heli_lives : int = 0
@@ -86,7 +94,6 @@ var max_hostage_onboard : int = 0
 var hostages_per_house : int = 0
 var start_level : int = 0
 var keyboard_use_wsad : bool = false
-
 var levels : Array
 var hall_of_fame: Array 
 var score: int = 0 
@@ -105,16 +112,20 @@ var game_parameters_list: Array = [
 	"max_hostage_onboard",
 	"start_heli_lives",
 	"levels",
+	"version",
 ]
 
+var fake_level: int 
 
 var current_level : int = 0 :
 	set(value):
 		if value >= levels.size():
 			push_warning("Attempting to reach a level with no data, setting level to max")
 			current_level = levels.size() - 1
+			fake_level = value
 		else:
 			current_level = value
+			fake_level = value
 
 func _ready() -> void:
 	Messenger.begin_game.connect(_on_begin_game)

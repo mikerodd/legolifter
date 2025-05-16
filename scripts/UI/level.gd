@@ -12,6 +12,9 @@ func _ready() -> void:
 
 
 func _show_me(_darken : bool = false ) -> void :
-	level_label.text = str(int(GameVariables.current_level + 1))
+	# fake_level keep incrementing even if we don't have upgraded
+	# AI for this level
+	level_label.text = str(int(max(GameVariables.current_level, 
+			GameVariables.fake_level)  + 1))  
 	get_tree().create_timer(displayed_seconds).timeout.connect(func() : _hide_me())
 	super._show_me()
