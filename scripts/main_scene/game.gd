@@ -3,22 +3,15 @@ extends Node3D
 class_name Game
 
 
-
-@export_node_path("Node") var smp_np
-@onready var smp = get_node(smp_np)
-@export_node_path("Node") var tanks_node_np
-@onready var tanks_node = get_node(tanks_node_np)
-@export_node_path("Node") var planes_node_np
-@onready var planes_node = get_node(planes_node_np)
 @export_file("*.json") var game_parameters_filename : String
-@export_node_path("Camera3D") var game_camera_np
-@onready var game_camera: Camera3D = get_node(game_camera_np)
-@export_node_path("LokSceneStorageManager") var lok_scene_mng_np
-@onready var lok_scene_mng : LokSceneStorageManager = get_node(lok_scene_mng_np)
-@export_node_path("Timer") var demo_timer_np
-@onready var demo_timer : Timer = get_node(demo_timer_np)
-@export_node_path("AudioStreamPlayer") var music_np
-@onready var music : AudioStreamPlayer = get_node(music_np)
+
+@onready var smp = %StateMachinePlayer
+@onready var tanks_node = %TanksNode
+@onready var planes_node = %CosmicsNode
+@onready var game_camera: Camera3D = %GameCamera
+@onready var lok_scene_mng : LokSceneStorageManager = %LokSceneStorageManager
+@onready var demo_timer : Timer = %DemoTimer
+@onready var music : AudioStreamPlayer = %Music
 
 
 var debug_win = preload("res://scenes/debug_window.tscn")

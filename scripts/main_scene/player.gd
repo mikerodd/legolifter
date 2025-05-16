@@ -8,17 +8,17 @@ signal destroy
 @export_node_path("Node") var lego_destroyer_np
 @onready var lego_destroyer : LegoDestroyer = get_node(lego_destroyer_np)
 
-@onready var flying_smp = $NewFlyingSMP
-@onready var rotating_smp = $NewRotatingSMP
-@onready var model_rotator = $model_rotator
-@onready var model = $model_rotator/helicopter3
-@onready var model_anim: AnimationPlayer = $model_rotator/helicopter3/AnimationPlayer
-@onready var shell_orig = $model_rotator/helicopter3/MissileOrig
-@onready var fire_rate_timer: Timer = $fire_rate_timer
-@onready var coli_shape:CollisionShape3D = $new_heli_colishape
-@onready var rotor_sound = $Sounds/RotorSound
-@onready var onboard_hostage_sound = $Sounds/OnbardHostage
-@onready var falling_sound =$Sounds/Falling
+@onready var flying_smp = %FlyingSMP
+@onready var rotating_smp = %RotatingSMP
+@onready var model_rotator = %ModelRotator
+@onready var model = %HelicopterModel
+@onready var model_anim: AnimationPlayer = %HelicopterModel/AnimationPlayer
+@onready var shell_orig = %MissileOrig
+@onready var fire_rate_timer: Timer = %FireRateTimer
+@onready var coli_shape:CollisionShape3D = %NewHeliColisionShape
+@onready var rotor_sound = %RotorSound
+@onready var onboard_hostage_sound = %OnbardHostageSound
+@onready var falling_sound =%FallingSound
 
 ## Delay time between to rotation requests
 @export var time_to_rotate:float 

@@ -4,17 +4,12 @@ class_name CosmicCruiser extends Actor
 signal destroy 
 
 @export var shell1_scene : PackedScene
-@export_node_path("Node3D") var plane_model_np : NodePath
-@onready var plane_model : Node3D = get_node(plane_model_np)
-@export_node_path("LegoDestroyer") var destroyer_np : NodePath
-@onready var destroyer : LegoDestroyer = get_node(destroyer_np)
-@export_node_path("Node") var smp_ia_np : NodePath
-@onready var smp_ia = get_node(smp_ia_np)
-@export_node_path("Marker3D") var missile_l_orig_np : NodePath
-@onready var missile_l_orig = get_node(missile_l_orig_np)
-@export_node_path("Marker3D") var missile_r_orig_np : NodePath
-@onready var missile_r_orig = get_node(missile_r_orig_np)
-@onready var lightmap_gi = $LightmapGI
+@onready var plane_model : Node3D = $cosmic_cruiser
+@onready var destroyer : LegoDestroyer = %LegoDestroyer
+@onready var smp_ia = %FiniteStateMachineIA
+@onready var missile_l_orig = %MissileLOrig
+@onready var missile_r_orig = %MissileROrig
+@onready var lightmap_gi = %LightmapGI
 
 
 var pf : PathFollow3D

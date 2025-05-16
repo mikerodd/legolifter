@@ -43,7 +43,7 @@ func init_player(_can_play : bool ) -> void:
 	spawn_p["parms"]["limit_left"] = player_limit_left.position
 	spawn_p["parms"]["limit_up"] = player_limit_up.position
 	spawn_p["parms"]["@speed_scale"] = 0.5
-	spawn_p["parms"]["#do_initiate"] = var_to_str(["NewFlyingSMP", "NewRotatingSMP"])
+	spawn_p["parms"]["#do_initiate"] = var_to_str(["FlyingSMP", "RotatingSMP"])
 	
 	GlobalUtils.player = player_scene.instantiate()
 	GlobalUtils.player._init_me(spawn_p)

@@ -347,14 +347,7 @@ name = ""
 
 [node name="Game" type="Node3D"]
 script = ExtResource("1_u3qtx")
-smp_np = NodePath("Various/StateMachinePlayer")
-tanks_node_np = NodePath("3D/MovingBits/TanksNode")
-planes_node_np = NodePath("3D/MovingBits/CosmicsNode")
 game_parameters_filename = "res://conf/game_parameters.json"
-game_camera_np = NodePath("3D/MovingBits/game_camera")
-lok_scene_mng_np = NodePath("Various/LokSceneStorageManager")
-demo_timer_np = NodePath("Various/DemoTimer")
-music_np = NodePath("Various/Music")
 
 [node name="UI" type="Node" parent="."]
 
@@ -397,7 +390,8 @@ process_mode = 3
 
 [node name="MovingBits" type="Node3D" parent="3D"]
 
-[node name="game_camera" type="Camera3D" parent="3D/MovingBits"]
+[node name="GameCamera" type="Camera3D" parent="3D/MovingBits"]
+unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.073, 32.23)
 attributes = SubResource("CameraAttributesPractical_qnb83")
 current = true
@@ -408,7 +402,7 @@ far = 94.65
 script = ExtResource("16_twgab")
 start_position_np = NodePath("../PlayerNode/start_position")
 
-[node name="LokStorageAccessor" type="Node" parent="3D/MovingBits/game_camera" groups=["lok_storage"]]
+[node name="LokStorageAccessor" type="Node" parent="3D/MovingBits/GameCamera" groups=["lok_storage"]]
 script = ExtResource("4_sww3w")
 id = "game_camera"
 versions = Array[ExtResource("5_suyxu")]([SubResource("Resource_458eo")])
@@ -417,11 +411,12 @@ dependency_paths = {
 }
 metadata/_custom_type_script = "uid://brt4otgn2jol1"
 
-[node name="AudioListener3D" type="AudioListener3D" parent="3D/MovingBits/game_camera"]
+[node name="AudioListener3D" type="AudioListener3D" parent="3D/MovingBits/GameCamera"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -22.005)
 current = true
 
 [node name="PlayerNode" type="Node" parent="3D/MovingBits"]
+unique_name_in_owner = true
 script = ExtResource("7_qnb83")
 start_position_np = NodePath("start_position")
 player_limit_right_np = NodePath("PlayerLimitRight")
@@ -452,10 +447,13 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -485.48, 0, 0)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.108906, 12.0903, 0)
 
 [node name="HousesNode" parent="3D/MovingBits" instance=ExtResource("15_qnb83")]
+unique_name_in_owner = true
 
 [node name="TanksNode" parent="3D/MovingBits" instance=ExtResource("17_sww3w")]
+unique_name_in_owner = true
 
 [node name="CosmicsNode" parent="3D/MovingBits" instance=ExtResource("17_bhx41")]
+unique_name_in_owner = true
 
 [node name="post_office" parent="3D/MovingBits" instance=ExtResource("17_02fa5")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 53.3198, 0.0224457, 0)
@@ -468,15 +466,18 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -217.238, 0, 0)
 [node name="Various" type="Node" parent="."]
 
 [node name="LokSceneStorageManager" type="Node" parent="Various"]
+unique_name_in_owner = true
 script = ExtResource("2_pl11u")
 current_file = "demo1"
 metadata/_custom_type_script = "uid://dvjva865w4axu"
 
 [node name="DemoTimer" type="Timer" parent="Various"]
+unique_name_in_owner = true
 wait_time = 10.0
 one_shot = true
 
 [node name="StateMachinePlayer" type="Node" parent="Various"]
+unique_name_in_owner = true
 script = ExtResource("18_nepv3")
 state_machine = SubResource("Resource_pxyat")
 metadata/_custom_type_script = "uid://46l00vp06dcr"
@@ -485,6 +486,7 @@ metadata/_custom_type_script = "uid://46l00vp06dcr"
 environment = ExtResource("29_suyxu")
 
 [node name="Music" type="AudioStreamPlayer" parent="Various"]
+unique_name_in_owner = true
 stream = ExtResource("31_qouja")
 volume_db = -12.0
 bus = &"Music"

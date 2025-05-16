@@ -29,16 +29,19 @@ shell1_scene = ExtResource("2_smehm")
 [node name="Sounds" type="Node" parent="."]
 
 [node name="RotorSound" type="AudioStreamPlayer" parent="Sounds"]
+unique_name_in_owner = true
 stream = ExtResource("3_d2wvv")
 volume_db = -15.0
 bus = &"Effects"
 
-[node name="Falling" type="AudioStreamPlayer" parent="Sounds"]
+[node name="FallingSound" type="AudioStreamPlayer" parent="Sounds"]
+unique_name_in_owner = true
 stream = ExtResource("4_jej6c")
 volume_db = -15.0
 bus = &"Effects"
 
-[node name="OnbardHostage" type="AudioStreamPlayer" parent="Sounds"]
+[node name="OnbardHostageSound" type="AudioStreamPlayer" parent="Sounds"]
+unique_name_in_owner = true
 stream = ExtResource("4_3v2ag")
 bus = &"Effects"
 
@@ -47,33 +50,40 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.455528, 0)
 light_data = ExtResource("3_y4r1p")
 script = ExtResource("4_y4r1p")
 
-[node name="new_heli_colishape" type="CollisionShape3D" parent="."]
+[node name="NewHeliColisionShape" type="CollisionShape3D" parent="."]
+unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.182022, 0.627111, -0.035965)
 shape = SubResource("BoxShape3D_kvmko")
 
-[node name="model_rotator" type="Node3D" parent="."]
+[node name="ModelRotator" type="Node3D" parent="."]
+unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.455528, 0)
 
-[node name="helicopter3" parent="model_rotator" instance=ExtResource("3_ur7pv")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.369704, 0)
+[node name="HelicopterModel" parent="ModelRotator" instance=ExtResource("3_ur7pv")]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.345058, 0)
 
-[node name="MissileOrig" type="Marker3D" parent="model_rotator/helicopter3"]
-transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -1.84706, 0.510279, 0)
+[node name="MissileOrig" type="Marker3D" parent="ModelRotator/HelicopterModel"]
+unique_name_in_owner = true
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -1.84706, 0.140575, 0)
 
-[node name="NewRotatingSMP" type="Node" parent="."]
+[node name="RotatingSMP" type="Node" parent="."]
+unique_name_in_owner = true
 script = ExtResource("9_3v2ag")
 state_machine = ExtResource("5_ur7pv")
 
-[node name="NewFlyingSMP" type="Node" parent="."]
+[node name="FlyingSMP" type="Node" parent="."]
+unique_name_in_owner = true
 script = ExtResource("9_3v2ag")
 state_machine = ExtResource("6_y4r1p")
 
-[node name="fire_rate_timer" type="Timer" parent="."]
+[node name="FireRateTimer" type="Timer" parent="."]
+unique_name_in_owner = true
 wait_time = 0.5
 
 [node name="LegoDestroyer" parent="." instance=ExtResource("9_ur7pv")]
 destroy_model = ExtResource("10_y4r1p")
-initial_model_np = NodePath("../model_rotator/helicopter3")
+initial_model_np = NodePath("../ModelRotator/HelicopterModel")
 explode_intensity = 8.0
 
 [node name="CenterOfExplosion" parent="LegoDestroyer" index="0"]
@@ -81,10 +91,10 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.345612, 0.69965, 0)
 
 [connection signal="destroy" from="." to="." method="_on_destroy"]
 [connection signal="tree_exiting" from="." to="." method="_on_tree_exiting"]
-[connection signal="transited" from="NewRotatingSMP" to="." method="_on_rotating_smp_transited"]
-[connection signal="timeout" from="fire_rate_timer" to="." method="_on_fire_rate_timer_timeout"]
+[connection signal="transited" from="RotatingSMP" to="." method="_on_rotating_smp_transited"]
+[connection signal="timeout" from="FireRateTimer" to="." method="_on_fire_rate_timer_timeout"]
 [connection signal="destroy_begin" from="LegoDestroyer" to="." method="_on_lego_destroyer_destroy_begin"]
 [connection signal="destroy_end" from="LegoDestroyer" to="." method="_on_lego_destroyer_destroy_end"]
 
-[editable path="model_rotator/helicopter3"]
+[editable path="ModelRotator/HelicopterModel"]
 [editable path="LegoDestroyer"]

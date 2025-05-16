@@ -3,7 +3,6 @@ class_name LegoTank extends Actor
 
 signal destroy 
 
-@export_file var explo_path:String 
 @export_file var shell_path:String
 @export var align_off: float = PI/10
 

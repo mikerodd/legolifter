@@ -18,7 +18,7 @@ func _init_me(spawn_p: Dictionary) -> void:
 			else:
 				set(parm,spawn_p["parms"][parm])
 				
-	# after parms init in order to have the correct objectn ,ame 
+	# after parms init in order to have the correct object name 
 	if spawn_p.has("parent"):
 		spawn_p["parent"].add_child(self)	
 		owner = get_tree().get_root()  

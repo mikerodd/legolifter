@@ -17,13 +17,9 @@ collision_layer = 2
 collision_mask = 171
 script = ExtResource("1_hci50")
 shell1_scene = ExtResource("2_j7o7i")
-plane_model_np = NodePath("cosmic_cruiser")
-destroyer_np = NodePath("LegoDestroyer")
-smp_ia_np = NodePath("smp_ia")
-missile_l_orig_np = NodePath("MissileLOrig")
-missile_r_orig_np = NodePath("MissileROrig")
 
 [node name="LightmapGI" type="LightmapGI" parent="."]
+unique_name_in_owner = true
 light_data = ExtResource("3_0vtqp")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
@@ -32,29 +28,34 @@ shape = SubResource("BoxShape3D_qdaub")
 
 [node name="cosmic_cruiser" parent="." instance=ExtResource("1_ooyga")]
 
+[node name="CenterOfExplosion" type="Marker3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.121472, 0)
+
 [node name="LegoDestroyer" parent="." instance=ExtResource("7_565lu")]
+unique_name_in_owner = true
 destroy_model = ExtResource("5_edoeq")
 initial_model_np = NodePath("../cosmic_cruiser")
 explode_intensity = 8.0
+center_of_explosion_np = NodePath("../CenterOfExplosion")
 
-[node name="CenterOfExplosion" parent="LegoDestroyer" index="0"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.302292, 0)
-
-[node name="smp_ia" type="Node" parent="." groups=["enemies"]]
+[node name="FiniteStateMachineIA" type="Node" parent="." groups=["enemies"]]
+unique_name_in_owner = true
 script = ExtResource("6_peeb5")
 state_machine = ExtResource("7_hci50")
 autostart = false
 metadata/_custom_type_script = "uid://46l00vp06dcr"
 
-[node name="MissileLOrig" type="Marker3D" parent="."]
+[node name="MissileOrigs" type="Node3D" parent="."]
+
+[node name="MissileLOrig" type="Marker3D" parent="MissileOrigs"]
+unique_name_in_owner = true
 transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -1.45639, 0, 0.859941)
 
-[node name="MissileROrig" type="Marker3D" parent="."]
+[node name="MissileROrig" type="Marker3D" parent="MissileOrigs"]
+unique_name_in_owner = true
 transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -1.45639, 0, -0.83126)
 
 [connection signal="destroy" from="." to="." method="_on_destroy"]
 [connection signal="destroy_begin" from="LegoDestroyer" to="." method="_on_lego_destroyer_destroy_begin"]
 [connection signal="destroy_end" from="LegoDestroyer" to="." method="_on_lego_destroyer_destroy_end"]
-[connection signal="transited" from="smp_ia" to="." method="_on_smp_ia_transited"]
-
-[editable path="LegoDestroyer"]
+[connection signal="transited" from="FiniteStateMachineIA" to="." method="_on_smp_ia_transited"]
