@@ -3,7 +3,6 @@ class_name Hostage extends Actor
 @onready var smp_ia = $NewSPMIA
 @onready var anim: AnimationPlayer = $hostage/AnimationPlayer
 @onready var walk_sound: AudioStreamPlayer3D = $WalkSound
-@onready var saved_sound: AudioStreamPlayer3D = $SavedSound
 var wait_delay: float = 0 
 var wait_finished: float = 0
 var speed: float = 2
@@ -83,13 +82,13 @@ func _on_path_house_finished():
 
 
 func _on_path_post_office_finished():
+	walk_sound.stop()
 	GameVariables.saved_count += 1
 	GameVariables.out_count -= 1
 	if GameVariables.check_end_level():
 		Messenger.level_complete.emit()
 	Logger.debug("I finished the path to the post office")
-	saved_sound.play()
-	await saved_sound.finished
+	Messenger.hostage_is_saved.emit()
 	get_parent().queue_free()
 
 
@@ -119,7 +118,6 @@ func _on_smp_ia_transited(_from: Variant, to: Variant) -> void:
 		var tw:Tween = create_tween()
 		tw.tween_property(get_parent(),"progress_ratio", 1, 2)
 		tw.finished.connect(_on_path_post_office_finished)
-		walk_sound.stop()
 	
 	if to == "Idle":
 		rotation.y = 0

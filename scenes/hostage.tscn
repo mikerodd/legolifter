@@ -1,10 +1,9 @@
-[gd_scene load_steps=9 format=3 uid="uid://cwecakeec8hdj"]
+[gd_scene load_steps=8 format=3 uid="uid://cwecakeec8hdj"]
 
 [ext_resource type="Script" uid="uid://lec2n3axyiyb" path="res://scripts/main_scene/hostage.gd" id="1_bxm40"]
 [ext_resource type="PackedScene" uid="uid://bxamcmsxsv5yr" path="res://import/male-blue9-game.glb" id="1_n0bme"]
 [ext_resource type="PackedScene" uid="uid://bdrgrnxv5wsxj" path="res://import/hostage.glb" id="2_csnpa"]
 [ext_resource type="AudioStream" uid="uid://1wk143xbdfb8" path="res://import/sound/lego-walk.wav" id="2_nuw2j"]
-[ext_resource type="AudioStream" uid="uid://inpvgyixaxe" path="res://import/sound/hostage-onboard.wav" id="3_rt1da"]
 [ext_resource type="Resource" uid="uid://cq0jtyghnkk47" path="res://resources/state_machines/smp_hostage_ia.tres" id="5_csnpa"]
 [ext_resource type="Script" uid="uid://cra0md6tqliiq" path="res://scripts/locker/l_s_state_machine_player.gd" id="9_7dmtn"]
 
@@ -20,10 +19,6 @@ metadata/_custom_type_script = "uid://cybnk07provr5"
 [node name="WalkSound" type="AudioStreamPlayer3D" parent="."]
 stream = ExtResource("2_nuw2j")
 volume_db = 7.13
-bus = &"Effects"
-
-[node name="SavedSound" type="AudioStreamPlayer3D" parent="."]
-stream = ExtResource("3_rt1da")
 bus = &"Effects"
 
 [node name="hostage" parent="." instance=ExtResource("2_csnpa")]

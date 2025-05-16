@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://c7onwsk0sik8q"]
+[gd_scene load_steps=12 format=3 uid="uid://c7onwsk0sik8q"]
 
 [ext_resource type="Script" uid="uid://bd6edutjwqu77" path="res://scripts/main_scene/post_office.gd" id="1_7vu2t"]
 [ext_resource type="PackedScene" uid="uid://c5cdhw2a4u0mt" path="res://import/post-office.glb" id="1_t4qjs"]
@@ -7,6 +7,7 @@
 [ext_resource type="Script" uid="uid://brt4otgn2jol1" path="res://addons/locker/scripts/storage_accessor/storage_accessor.gd" id="3_f3cdo"]
 [ext_resource type="Script" uid="uid://dtvohndbwyieq" path="res://addons/locker/scripts/storage_accessor/storage_accessor_version.gd" id="4_1hob2"]
 [ext_resource type="Script" uid="uid://b2tl1iieiad8p" path="res://scripts/locker/post_office_accessor_v1.gd" id="5_0b11a"]
+[ext_resource type="AudioStream" uid="uid://inpvgyixaxe" path="res://import/sound/hostage-onboard.wav" id="8_0b11a"]
 
 [sub_resource type="Resource" id="Resource_1wsqg"]
 script = ExtResource("5_0b11a")
@@ -35,7 +36,7 @@ script = ExtResource("3_f3cdo")
 id = "post_office_way_in"
 versions = Array[ExtResource("4_1hob2")]([SubResource("Resource_1wsqg")])
 dependency_paths = {
-"post_office_way_in": NodePath("../way_in")
+"post_office_way_in": NodePath("../WayIn")
 }
 metadata/_custom_type_script = "uid://brt4otgn2jol1"
 
@@ -50,13 +51,20 @@ collision_mask = 31
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.891604, 0.00430298, 0.160965)
 shape = SubResource("BoxShape3D_7vu2t")
 
-[node name="way_in" type="Path3D" parent="."]
+[node name="WayIn" type="Path3D" parent="."]
+unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.5, 0, 0.382)
 curve = SubResource("Curve3D_t4qjs")
 
-[node name="PathTemplate" type="PathFollow3D" parent="way_in"]
+[node name="PathTemplate" type="PathFollow3D" parent="WayIn"]
+unique_name_in_owner = true
 transform = Transform3D(0.291672, -0.00993148, -0.956446, -9.31305e-10, 0.99993, -0.0103829, 0.956499, 0.00302848, 0.291656, 0, 0, 0)
 
 [node name="Timer" type="Timer" parent="."]
+
+[node name="SavedSound" type="AudioStreamPlayer3D" parent="."]
+unique_name_in_owner = true
+stream = ExtResource("8_0b11a")
+bus = &"Effects"
 
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

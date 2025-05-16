@@ -36,6 +36,9 @@ signal return_to_base    # signal the game we are ready to restart at base
 signal level_complete
 @warning_ignore("unused_signal")
 signal set_live_demo_mode(mode: String)
+@warning_ignore("unused_signal")
+signal hostage_is_saved
+
 
 ## UI Signals
 @warning_ignore("unused_signal")

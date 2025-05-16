@@ -2,22 +2,29 @@ class_name PostOffice extends Node3D
 
 
 @onready var timer: Timer = $Timer
-@onready var base_path = $way_in/PathTemplate
-@onready var way_in = $way_in
+@onready var base_path = %PathTemplate
+@onready var way_in = %WayIn
+@onready var saved_sound: AudioStreamPlayer3D = %SavedSound
 
 @export var hostage_scene : PackedScene
 
 func _ready() -> void:
 	Messenger.release_hostages.connect(release_hostages)
 	Messenger.return_to_start.connect(cleanup_hostages)
+	Messenger.hostage_is_saved.connect(_on_hostage_is_saved)
 
+func _on_hostage_is_saved() -> void:
+	saved_sound.play()
+	
+	
 func release_hostages() -> void:
 	timer.start()
 
 func cleanup_hostages() -> void:
 	timer.stop()
 	for p in way_in.get_children():
-		if p.name != "PathTemplate":
+		if p != base_path:
+		#if p.name != "PathTemplate":
 			p.queue_free()
 
 func _on_timer_timeout() -> void:
