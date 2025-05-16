@@ -156,6 +156,8 @@ func _on_state_machine_player_entered(to: Variant) -> void:
 
 func _on_lego_destroyer_destroy_begin() -> void:
 	is_dead = true
+	GameVariables.score += 200
+	Messenger.update_scores.emit()
 	turret_model.visible = false 
 	cannon_model.visible = false 
 	tank_model.visible = false

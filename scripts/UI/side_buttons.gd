@@ -36,3 +36,10 @@ func _on_config_pressed() -> void:
 	Messenger.demo_timer_forbidden.emit()
 	_hide_me()
 	show_modal(self,Messenger.ui_show_parameters)
+
+
+func _on_high_scores_pressed() -> void:
+	Messenger.demo_timer_forbidden.emit()
+	_hide_me()
+	show_modal(self,Messenger.ui_show_hall_of_fame)
+  

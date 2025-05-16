@@ -13,6 +13,7 @@ var game_parameters_filename : String
 
 var saved_count : int = 0 :
 	set(value):
+		score += (value - saved_count) * 1000
 		saved_count = value
 		Messenger.update_scores.emit()
 
@@ -23,6 +24,7 @@ var out_count  : int = 0 :
 
 var dead_count : int = 0 : 
 	set(value):
+		score = max(0,score - (value - dead_count) * 500)
 		dead_count = value
 		Messenger.update_scores.emit()
 
@@ -33,6 +35,7 @@ var detained_count : int = 0 :
 
 var heli_count : int = 0 :
 	set(value):
+		score += max(0,(value - heli_count)) * 100
 		heli_count = value
 		Messenger.update_scores.emit()
 	
@@ -74,6 +77,8 @@ var start_level : int = 0
 var keyboard_use_wsad : bool
 var high_graphics : bool
 var levels : Array
+var hall_of_fame: Array 
+var score: int = 0 
 
 var user_parameters_list: Array = [
 	"start_level",
@@ -82,6 +87,7 @@ var user_parameters_list: Array = [
 	"high_graphics",
 	"music_volume",
 	"effects_volume",
+	"hall_of_fame",
 ]
 var all_parameters_list: Array = [
 	"start_level",
@@ -93,6 +99,7 @@ var all_parameters_list: Array = [
 	"hostages_per_house",
 	"max_hostage_onboard",
 	"start_heli_lives",
+	"hall_of_fame",
 	"levels",
 ]
 
@@ -125,6 +132,7 @@ func init_scores() -> void:
 	dead_count = 0
 	detained_count = 0
 	heli_count = 0
+	score = 0
 
 func check_end_level() -> bool :
 	return (out_count  == 0 and 

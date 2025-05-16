@@ -89,6 +89,9 @@ func _on_lego_destroyer_destroy_begin() -> void:
 	
 func _on_lego_destroyer_destroy_end() -> void:
 	get_parent().get_parent().queue_free()
+	GameVariables.score += 400
+	Messenger.update_scores.emit()
+	
 	
 func _on_destroy() -> void:
 	smp_ia.set_trigger("to_destroyed")
