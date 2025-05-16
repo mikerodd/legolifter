@@ -349,7 +349,6 @@ name = ""
 collision_layer = 2
 collision_mask = 2
 script = ExtResource("1_423go")
-explo_path = "uid://b18cw4qc2o2ef"
 shell_path = "uid://f1yjxnw08eei"
 speed = 2.0
 safe_distance = 5.671
@@ -388,16 +387,18 @@ script = ExtResource("5_27ga3")
 state_machine = SubResource("Resource_0q52d")
 metadata/_custom_type_script = "uid://46l00vp06dcr"
 
-[node name="CenterOfExplosion" type="Marker3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.376125, 0)
+[node name="MyExplosion" type="Marker3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.115753, 0)
 
 [node name="LegoDestroyer" parent="." instance=ExtResource("11_423go")]
 destroy_model = ExtResource("12_423go")
 initial_model_np = NodePath("../TankMover/tank_tiger")
-explode_intensity = 8.0
-center_of_explosion_np = NodePath("../CenterOfExplosion")
+explode_intensity = 10.0
+center_of_explosion_np = NodePath("../MyExplosion")
 
 [connection signal="destroy" from="." to="LegoDestroyer" method="destroy"]
 [connection signal="transited" from="StateMachinePlayer" to="." method="_on_fsm_ia_transited"]
 [connection signal="destroy_begin" from="LegoDestroyer" to="." method="_on_lego_destroyer_destroy_begin"]
 [connection signal="destroy_end" from="LegoDestroyer" to="." method="_on_lego_destroyer_destroy_end"]
+
+[editable path="LegoDestroyer"]
