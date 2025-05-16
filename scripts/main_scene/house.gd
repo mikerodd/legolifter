@@ -9,9 +9,8 @@ signal destroy
 @onready var hostage_timer : Timer = $HostageTimer
 @onready var base_path = $WayOut/BasePath
 @onready var way_out = $WayOut
-@onready var house_model = $house2
+@onready var house_model = %HouseModel
 @onready var lightmap_gi = $LightmapGI
-
 @export_node_path("LegoDestroyer") var destroyer_np
 @onready var destroyer : LegoDestroyer = get_node(destroyer_np)
 
@@ -76,5 +75,5 @@ func _on_timer_timeout() -> void:
 
 func _on_lego_destroyer_destroy_begin() -> void:
 	is_destroyed = true
-	house_model.queue_free()
+	house_model.visible = false
 	hostage_timer.start()
