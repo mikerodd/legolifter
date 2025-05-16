@@ -3,6 +3,7 @@ extends UILifterElement
 var ui_hide_position: float = -400.0
 var ui_show_position: float = 5
 
+var created_lines: Array = []
 @onready var template: VBoxContainer = $PanelContainer/VBoxContainer/VBoxContainer/LineTemplate
 
 func _ready() -> void:
@@ -11,14 +12,20 @@ func _ready() -> void:
 
 
 func _on_ok_pressed() -> void:
+	for line:Node in created_lines:
+		line.queue_free()
+	created_lines.clear()
 	_hide_me()
 
 
 func _show_me(darken : bool = false ) -> void :
+	var idx = 1
 	for score in GameVariables.hall_of_fame:
 		var line : VBoxContainer = template.duplicate()
+		created_lines.push_back(line)
 		line.visible = true
 		template.get_parent().add_child(line)
-		line._init_me(score)
+		line._init_me(idx, score)
+		idx += 1
 	super._show_me(darken)
 	

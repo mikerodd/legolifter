@@ -9,6 +9,7 @@ const AUDIO_EFFECTS_BUS : int = 1
 
 var game_parameters : Dictionary
 var game_parameters_filename : String
+var user_parameters_filename : String
 
 
 var saved_count : int = 0 :
@@ -69,13 +70,23 @@ var start_fullscreen : bool:
 		start_fullscreen = value
 
 
+var high_graphics : bool:
+		get():
+			return high_graphics
+		set(value):
+			if value:
+				switch_to_dynamic_lights()
+			else: 
+				switch_to_lightmaps()
+			high_graphics = value
+
 
 var start_heli_lives : int = 0
 var max_hostage_onboard : int = 0
 var hostages_per_house : int = 0
 var start_level : int = 0
 var keyboard_use_wsad : bool
-var high_graphics : bool
+
 var levels : Array
 var hall_of_fame: Array 
 var score: int = 0 
@@ -89,17 +100,10 @@ var user_parameters_list: Array = [
 	"effects_volume",
 	"hall_of_fame",
 ]
-var all_parameters_list: Array = [
-	"start_level",
-	"start_fullscreen",
-	"keyboard_use_wsad",
-	"high_graphics",
-	"music_volume",
-	"effects_volume",
+var game_parameters_list: Array = [
 	"hostages_per_house",
 	"max_hostage_onboard",
 	"start_heli_lives",
-	"hall_of_fame",
 	"levels",
 ]
 
@@ -151,10 +155,6 @@ func get_my_parms(id : String) -> Dictionary:
 		return {}
 
 func apply_user_parameters()-> void: 
-	#if start_fullscreen:
-		#DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_FULLSCREEN)
-	#else:
-		#DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_WINDOWED)
 	if high_graphics:
 		switch_to_dynamic_lights()
 	else: 
@@ -162,39 +162,49 @@ func apply_user_parameters()-> void:
 	
 
 
-func save_parameters(all_parms: bool = false) -> void:
-	var json_as_text = FileAccess.get_file_as_string(game_parameters_filename)
+func save_json_file(filename: String, parm_list:Array) -> void:
+	var json_as_text = FileAccess.get_file_as_string(filename)
 	var json: JSON = JSON.new()
 	var error = json.parse(json_as_text)
 	if error == OK:
 		var data = json.data
-		var the_list = all_parameters_list if all_parms else user_parameters_list  
-		for parm in the_list:
+		for parm in parm_list:
 			data[parm] = self.get(parm)
-			var save = FileAccess.open(game_parameters_filename,FileAccess.WRITE)
+			var save = FileAccess.open(filename, FileAccess.WRITE)
 			save.store_string(JSON.stringify(json.data, "    "))
 			save.close()
-			apply_user_parameters()
-			
 	else:
-		Logger.fatal("Error in parameters file %s : %s" % [game_parameters_filename, json.get_error_message()])
-		get_tree().quit()
-	pass
+		Logger.fatal("Error in saving file %s : %s" % [game_parameters_filename, json.get_error_message()])
 
-func load_parameters() -> void:
-	
-	var json_as_text = FileAccess.get_file_as_string(game_parameters_filename)
+
+func save_parameters(all_parms: bool = false) -> void:
+	if all_parms:
+		save_json_file(game_parameters_filename,game_parameters_list)
+	save_json_file(user_parameters_filename, user_parameters_list)
+	apply_user_parameters()
+
+
+func load_json_file(filename: String) -> Dictionary:
+	var json_as_text = FileAccess.get_file_as_string(filename)
 	var json = JSON.new()
 	var error = json.parse(json_as_text)
-	
-	
 	if error == OK:
-		for parm in json.data.keys():
-			self.set(parm, json.data[parm])
-		Logger.debug("start level is : %d" % self.start_level)
+		return json.data
 	else:
-		Logger.fatal("Error in parameters file %s : %s" % [game_parameters_filename, json.get_error_message()])
-		get_tree().quit()
+		Logger.fatal("Error in loading file %s : %s" % [game_parameters_filename, json.get_error_message()])
+		return {}
+
+
+func store_parameters(data: Dictionary,  parm_list:Array) -> void:
+	for parm in parm_list:
+		self.set(parm, data[parm])
+
+
+func load_parameters() -> void:
+	var dic1 = load_json_file(game_parameters_filename)
+	store_parameters(dic1, game_parameters_list)
+	var dic2 = load_json_file(user_parameters_filename)
+	store_parameters(dic2, user_parameters_list)
 
 
 var use_lightmap: bool = false
@@ -204,6 +214,7 @@ func switch_to_lightmaps() -> void:
 		n.visible = true
 	for n : Node in get_tree().get_nodes_in_group("lights"):
 		n.visible = false
+
 	
 func switch_to_dynamic_lights() -> void:
 	use_lightmap = false
@@ -211,3 +222,19 @@ func switch_to_dynamic_lights() -> void:
 		n.visible = false
 	for n : Node in get_tree().get_nodes_in_group("lights"):
 		n.visible = true
+
+
+func rank_score_in_hall_of_fame() -> int:
+	var idx: int = 1
+	for sc in hall_of_fame:
+		if score > sc.score:
+			return idx
+		idx += 1
+	return 0
+
+func save_new_high_score(rank: int, callsign : String) -> void:
+	assert(rank > 0, "Problem in rank : should be > 0 !")
+	hall_of_fame.insert(rank - 1, {"name": callsign, "score": score})
+	if hall_of_fame.size() > 10:
+		hall_of_fame.pop_back()
+	save_parameters()

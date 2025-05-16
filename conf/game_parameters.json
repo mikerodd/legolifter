@@ -1,8 +1,5 @@
 {
-    "effects_volume": 1.39,
-    "high_graphics": true,
     "hostages_per_house": 5,
-    "keyboard_use_wsad": false,
     "levels": [
         {
             "CosmicsNode": {
@@ -180,21 +177,6 @@
             }
         }
     ],
-    "hall_of_fame": [
-        {
-            "rank": 1,
-            "name": "Test1",
-            "score": 123
-        },
-        {
-            "rank" : 2,
-            "name": "Test2",
-            "score": 1
-        }
-    ],
     "max_hostage_onboard": 5,
-    "music_volume": 1.14,
-    "start_fullscreen": false,
-    "start_heli_lives": 5,
-    "start_level": 0
+    "start_heli_lives": 1
 }

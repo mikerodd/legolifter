@@ -252,12 +252,18 @@ func _on_lego_destroyer_destroy_end() -> void:
 	GameVariables.heli_count = 0
 	
 
-	if GameVariables.check_end_level():
+	if GameVariables.check_end_level() \
+			and GameVariables.heli_lives > 0:
 		Messenger.level_complete.emit()
-	elif GameVariables.heli_lives > 0:
+	if GameVariables.heli_lives > 0:
 		Messenger.return_to_base.emit()
 	else:
-		Messenger.return_to_start.emit()
+		var rank : int = GameVariables.rank_score_in_hall_of_fame() 
+		if rank != 0:
+			var sc: Dictionary = {"rank"= rank, "score" = GameVariables.score}
+			Messenger.ui_new_high_score.emit(sc)
+		else:
+			Messenger.return_to_start.emit()
 	
 func _on_tree_exiting() -> void:
 	var _test= name

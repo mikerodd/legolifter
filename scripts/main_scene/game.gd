@@ -4,6 +4,7 @@ class_name Game
 
 
 @export_file("*.json") var game_parameters_filename : String
+@export_file("*.json") var user_parameters_filename : String
 
 @onready var smp = %StateMachinePlayer
 @onready var tanks_node = %TanksNode
@@ -24,6 +25,7 @@ func _ready():
 
 	# load game parameters
 	GameVariables.game_parameters_filename = game_parameters_filename
+	GameVariables.user_parameters_filename = user_parameters_filename
 	GameVariables.load_parameters()
 
 	# put accessors in the LokSceneStorageManager
