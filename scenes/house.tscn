@@ -29,10 +29,11 @@ destroyer_np = NodePath("LegoDestroyer")
 hostage_scene = ExtResource("2_f74lx")
 broken_model = ExtResource("2_se78b")
 
-[node name="LightmapGI" type="LightmapGI" parent="."]
+[node name="LightmapGI" type="LightmapGI" parent="." groups=["lightmaps"]]
 light_data = ExtResource("4_f74lx")
 
-[node name="house2" parent="." instance=ExtResource("3_se78b")]
+[node name="HouseModel" parent="." instance=ExtResource("3_se78b")]
+unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.990753, 0, 0)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
@@ -54,7 +55,7 @@ transform = Transform3D(-0.999047, 0, -0.0434366, 0, 0.999988, 0, 0.0434369, 0, 
 
 [node name="LegoDestroyer" parent="." instance=ExtResource("5_3bgk5")]
 destroy_model = ExtResource("2_se78b")
-initial_model_np = NodePath("../house2")
+initial_model_np = NodePath("../HouseModel")
 
 [node name="PostWayOut" type="Node3D" parent="."]
 
