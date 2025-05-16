@@ -40,11 +40,11 @@ func _on_ok_pressed() -> void:
 script/source = "extends Label
 
 
-var is_visible: bool = false
+var should_i_show_myself: bool = false
 
 func _on_timer_timeout() -> void:
-	visibility_layer = 1 if is_visible else 0
-	is_visible = not is_visible
+	visibility_layer = 1 if should_i_show_myself else 0
+	should_i_show_myself = not should_i_show_myself
 	
 "
 

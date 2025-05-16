@@ -45,21 +45,21 @@ var heli_lives : int = 0 :
 		heli_lives = value
 		Messenger.update_scores.emit()
 
-var music_volume: float:
+var music_volume: float = 1.14:
 	get():
 		return music_volume
 	set(value):
 		AudioServer.set_bus_volume_db(AUDIO_MUSIC_BUS, linear_to_db(value))
 		music_volume = value
 		
-var effects_volume: float:
+var effects_volume: float = 1.39:
 	get():
 		return effects_volume
 	set(value):
 		AudioServer.set_bus_volume_db(AUDIO_EFFECTS_BUS, linear_to_db(value))
 		effects_volume = value
 
-var start_fullscreen : bool:
+var start_fullscreen : bool = false:
 	get():
 		return start_fullscreen
 	set(value):
@@ -70,7 +70,7 @@ var start_fullscreen : bool:
 		start_fullscreen = value
 
 
-var high_graphics : bool:
+var high_graphics : bool = true:
 		get():
 			return high_graphics
 		set(value):
@@ -85,7 +85,7 @@ var start_heli_lives : int = 0
 var max_hostage_onboard : int = 0
 var hostages_per_house : int = 0
 var start_level : int = 0
-var keyboard_use_wsad : bool
+var keyboard_use_wsad : bool = false
 
 var levels : Array
 var hall_of_fame: Array 
@@ -163,18 +163,12 @@ func apply_user_parameters()-> void:
 
 
 func save_json_file(filename: String, parm_list:Array) -> void:
-	var json_as_text = FileAccess.get_file_as_string(filename)
-	var json: JSON = JSON.new()
-	var error = json.parse(json_as_text)
-	if error == OK:
-		var data = json.data
-		for parm in parm_list:
-			data[parm] = self.get(parm)
-			var save = FileAccess.open(filename, FileAccess.WRITE)
-			save.store_string(JSON.stringify(json.data, "    "))
-			save.close()
-	else:
-		Logger.fatal("Error in saving file %s : %s" % [game_parameters_filename, json.get_error_message()])
+	var to_save: Dictionary = {}
+	for parm in parm_list:
+		to_save.set(parm,self.get(parm))
+	var save = FileAccess.open(filename, FileAccess.WRITE)
+	save.store_string(JSON.stringify(to_save , "    "))
+	save.close()
 
 
 func save_parameters(all_parms: bool = false) -> void:
@@ -204,7 +198,10 @@ func load_parameters() -> void:
 	var dic1 = load_json_file(game_parameters_filename)
 	store_parameters(dic1, game_parameters_list)
 	var dic2 = load_json_file(user_parameters_filename)
-	store_parameters(dic2, user_parameters_list)
+	if dic2.size() == 0: # first use of the game 
+		save_json_file(user_parameters_filename, user_parameters_list)
+	else:
+		store_parameters(dic2, user_parameters_list)
 
 
 var use_lightmap: bool = false
@@ -226,6 +223,8 @@ func switch_to_dynamic_lights() -> void:
 
 func rank_score_in_hall_of_fame() -> int:
 	var idx: int = 1
+	if hall_of_fame.size() == 0:
+		return idx
 	for sc in hall_of_fame:
 		if score > sc.score:
 			return idx
