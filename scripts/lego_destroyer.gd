@@ -28,7 +28,6 @@ func destroy(show_explode: bool = true) -> void:
 	sound.play()
 
 	var destroy_model_inst: Node3D = destroy_model.instantiate()
-	#get_tree().get_root().add_child(destroy_model_inst)
 	self.add_child(destroy_model_inst)
 	destroy_model_inst.transform = Transform3D(initial_model.global_basis, initial_model.global_position)
 	if show_explode:
@@ -46,8 +45,8 @@ func destroy(show_explode: bool = true) -> void:
 func apply_impulse(node: Node3D):
 	for p in node.get_children():
 		if p is RigidBody3D:
-			p.apply_impulse(p.get_child(1).position * randf_range(0.1,explode_intensity), center_of_explosion.global_position)
-			p.apply_torque(center_of_explosion.global_position - p.position)
+			p.apply_impulse(p.get_child(1).position * randf_range(0.1,explode_intensity), center_of_explosion.position)
+			p.apply_torque(Vector3(randf(),randf(),randf()))
 		if p.get_child_count() > 0:
 			apply_impulse(p)
 
