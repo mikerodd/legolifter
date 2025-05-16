@@ -1,12 +1,12 @@
 [gd_scene load_steps=10 format=3 uid="uid://c6mufcm6wmgcn"]
 
-[ext_resource type="Script" uid="uid://dfk5c8vm30wp4" path="res://scripts/main_scene/cosmic_cruiser.gd" id="1_hci50"]
+[ext_resource type="Script" uid="uid://dfk5c8vm30wp4" path="res://scripts/characters/cosmic_cruiser.gd" id="1_hci50"]
 [ext_resource type="PackedScene" uid="uid://5pu1uu8js4bi" path="res://import/cosmic_cruiser.glb" id="1_ooyga"]
-[ext_resource type="PackedScene" uid="uid://dcd0l1ye5i2lk" path="res://scenes/missile1.tscn" id="2_j7o7i"]
-[ext_resource type="LightmapGIData" uid="uid://xbqtxrgs0qii" path="res://resources/cosmic_cruiser.lmbake" id="3_0vtqp"]
+[ext_resource type="PackedScene" uid="uid://dcd0l1ye5i2lk" path="res://scenes/characters/missile1.tscn" id="2_j7o7i"]
+[ext_resource type="LightmapGIData" uid="uid://xbqtxrgs0qii" path="res://resources/lightmaps/cosmic_cruiser.lmbake" id="3_0vtqp"]
 [ext_resource type="PackedScene" uid="uid://c3r0h0p4w371a" path="res://import/cosmic_cruiser_destroyed.glb" id="5_edoeq"]
 [ext_resource type="Script" uid="uid://cra0md6tqliiq" path="res://scripts/locker/l_s_state_machine_player.gd" id="6_peeb5"]
-[ext_resource type="PackedScene" uid="uid://lskm5tbedisk" path="res://scenes/lego_destroyer.tscn" id="7_565lu"]
+[ext_resource type="PackedScene" uid="uid://lskm5tbedisk" path="res://utils/lego_destroyer.tscn" id="7_565lu"]
 [ext_resource type="Resource" uid="uid://kh4vg10jpgc0" path="res://resources/state_machines/smp_cosmic_cruiser.tres" id="7_hci50"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_qdaub"]

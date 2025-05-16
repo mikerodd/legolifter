@@ -1,11 +1,11 @@
 [gd_scene load_steps=8 format=3 uid="uid://cwecakeec8hdj"]
 
-[ext_resource type="Script" uid="uid://lec2n3axyiyb" path="res://scripts/main_scene/hostage.gd" id="1_bxm40"]
-[ext_resource type="PackedScene" uid="uid://bxamcmsxsv5yr" path="res://import/male-blue9-game.glb" id="1_n0bme"]
-[ext_resource type="PackedScene" uid="uid://bdrgrnxv5wsxj" path="res://import/hostage.glb" id="2_csnpa"]
-[ext_resource type="AudioStream" uid="uid://1wk143xbdfb8" path="res://import/sound/lego-walk.wav" id="2_nuw2j"]
-[ext_resource type="Resource" uid="uid://cq0jtyghnkk47" path="res://resources/state_machines/smp_hostage_ia.tres" id="5_csnpa"]
-[ext_resource type="Script" uid="uid://cra0md6tqliiq" path="res://scripts/locker/l_s_state_machine_player.gd" id="9_7dmtn"]
+[ext_resource type="Script" uid="uid://lec2n3axyiyb" path="res://scripts/characters/hostage.gd" id="1_721vu"]
+[ext_resource type="AudioStream" uid="uid://1wk143xbdfb8" path="res://import/sound/lego-walk.wav" id="2_goc83"]
+[ext_resource type="PackedScene" uid="uid://bdrgrnxv5wsxj" path="res://import/hostage.glb" id="3_y11eo"]
+[ext_resource type="PackedScene" uid="uid://bxamcmsxsv5yr" path="res://import/male-blue9-game.glb" id="4_lo3id"]
+[ext_resource type="Script" uid="uid://cra0md6tqliiq" path="res://scripts/locker/l_s_state_machine_player.gd" id="5_pn41b"]
+[ext_resource type="Resource" uid="uid://cq0jtyghnkk47" path="res://resources/state_machines/smp_hostage_ia.tres" id="6_jkqte"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_tnswf"]
 size = Vector3(1.12915, 0.847168, 0.41687)
@@ -13,18 +13,18 @@ size = Vector3(1.12915, 0.847168, 0.41687)
 [node name="Hostage" type="CharacterBody3D"]
 collision_layer = 4
 collision_mask = 154
-script = ExtResource("1_bxm40")
+script = ExtResource("1_721vu")
 metadata/_custom_type_script = "uid://cybnk07provr5"
 
 [node name="WalkSound" type="AudioStreamPlayer3D" parent="."]
-stream = ExtResource("2_nuw2j")
+stream = ExtResource("2_goc83")
 volume_db = 7.13
 bus = &"Effects"
 
-[node name="hostage" parent="." instance=ExtResource("2_csnpa")]
+[node name="hostage" parent="." instance=ExtResource("3_y11eo")]
 transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0, 0)
 
-[node name="male-blue9-game" parent="." instance=ExtResource("1_n0bme")]
+[node name="male-blue9-game" parent="." instance=ExtResource("4_lo3id")]
 transform = Transform3D(0.3, 0, 0, 0, 0.3, 0, 0, 0, 0.3, 0, 0, 0)
 visible = false
 
@@ -111,8 +111,8 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00487661, 0.435961, 0.0053
 shape = SubResource("BoxShape3D_tnswf")
 
 [node name="NewSPMIA" type="Node" parent="."]
-script = ExtResource("9_7dmtn")
-state_machine = ExtResource("5_csnpa")
+script = ExtResource("5_pn41b")
+state_machine = ExtResource("6_jkqte")
 
 [connection signal="transited" from="NewSPMIA" to="." method="_on_smp_ia_transited"]
 

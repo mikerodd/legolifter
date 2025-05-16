@@ -15,7 +15,7 @@ class_name Game
 @onready var music : AudioStreamPlayer = %Music
 
 
-var debug_win = preload("res://scenes/debug_window.tscn")
+var debug_win = preload("uid://d3h0l73sf5pm4")
 
 # Called when the node enters the scene tree for the first time.
 func _ready():

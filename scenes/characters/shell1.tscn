@@ -1,6 +1,6 @@
 [gd_scene load_steps=9 format=3 uid="uid://f1yjxnw08eei"]
 
-[ext_resource type="Script" uid="uid://dij86h6a6ycit" path="res://scripts/main_scene/shell_1.gd" id="1_fq842"]
+[ext_resource type="Script" uid="uid://dij86h6a6ycit" path="res://scripts/characters/shell_1.gd" id="1_fq842"]
 [ext_resource type="PackedScene" uid="uid://bwngoy6jaxcc7" path="res://import/shell1.glb" id="2_ino0c"]
 [ext_resource type="Material" uid="uid://em14ienv7cwv" path="res://shaders/explosion1.tres" id="3_ujs1o"]
 

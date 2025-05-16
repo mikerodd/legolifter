@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://cmhn0x040a2uo"]
+[gd_scene load_steps=11 format=3 uid="uid://cd0e18rqakpe5"]
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_rt1da"]
 animation = &"G_stand-idle"

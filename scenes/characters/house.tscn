@@ -1,11 +1,11 @@
 [gd_scene load_steps=10 format=3 uid="uid://c3jjxg87rvyhs"]
 
-[ext_resource type="Script" uid="uid://44iusi8spl7d" path="res://scripts/main_scene/house.gd" id="1_qtlar"]
-[ext_resource type="PackedScene" uid="uid://cwecakeec8hdj" path="res://scenes/hostage.tscn" id="2_f74lx"]
+[ext_resource type="Script" uid="uid://44iusi8spl7d" path="res://scripts/characters/house.gd" id="1_qtlar"]
+[ext_resource type="PackedScene" uid="uid://cwecakeec8hdj" path="res://scenes/characters/hostage.tscn" id="2_f74lx"]
 [ext_resource type="PackedScene" uid="uid://biinplawy7khb" path="res://import/house2-destroyed.glb" id="2_se78b"]
 [ext_resource type="PackedScene" uid="uid://br1kbj0yuakm4" path="res://import/house2.glb" id="3_se78b"]
-[ext_resource type="LightmapGIData" uid="uid://kdflboyxn4rp" path="res://resources/house.lmbake" id="4_f74lx"]
-[ext_resource type="PackedScene" uid="uid://lskm5tbedisk" path="res://scenes/lego_destroyer.tscn" id="5_3bgk5"]
+[ext_resource type="LightmapGIData" uid="uid://kdflboyxn4rp" path="res://resources/lightmaps/house.lmbake" id="4_f74lx"]
+[ext_resource type="PackedScene" uid="uid://lskm5tbedisk" path="res://utils/lego_destroyer.tscn" id="5_3bgk5"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_qtlar"]
 size = Vector3(2.31264, 2.24554, 5.07672)

@@ -1,6 +1,0 @@
-[gd_scene load_steps=2 format=3 uid="uid://dhm5ptfx4dbln"]
-
-[ext_resource type="Script" uid="uid://ci5hd88c01rss" path="res://utils/components/NothingComponent.gd" id="1_ejgwt"]
-
-[node name="NothingComponent" type="Node"]
-script = ExtResource("1_ejgwt")

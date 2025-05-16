@@ -1,6 +1,0 @@
-[gd_scene load_steps=2 format=3 uid="uid://wiy2ds57v3ix"]
-
-[ext_resource type="Script" uid="uid://bvwka74lkks82" path="res://utils/components/KeyboardInputComponent.gd" id="1_0upps"]
-
-[node name="KeyboardInputComponent" type="Node"]
-script = ExtResource("1_0upps")

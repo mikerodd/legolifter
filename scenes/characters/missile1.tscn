@@ -1,6 +1,6 @@
 [gd_scene load_steps=10 format=3 uid="uid://dcd0l1ye5i2lk"]
 
-[ext_resource type="Script" uid="uid://dx4bx5hspqbx3" path="res://scripts/main_scene/missile_1.gd" id="1_2aipi"]
+[ext_resource type="Script" uid="uid://dx4bx5hspqbx3" path="res://scripts/characters/missile_1.gd" id="1_2aipi"]
 [ext_resource type="PackedScene" uid="uid://bsuocrt8rxj27" path="res://import/missile2.glb" id="2_ro85n"]
 [ext_resource type="Material" uid="uid://em14ienv7cwv" path="res://shaders/explosion1.tres" id="3_s0rhf"]
 [ext_resource type="AudioStream" uid="uid://bfm212eworbgo" path="res://import/sound/missile-launch.wav" id="4_ro85n"]

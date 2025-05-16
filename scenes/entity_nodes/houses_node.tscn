@@ -1,7 +1,7 @@
 [gd_scene load_steps=7 format=3 uid="uid://bl2yjbrwstgqt"]
 
-[ext_resource type="Script" uid="uid://c1oas1y7c08ho" path="res://scripts/main_scene/houses_node.gd" id="1_m76fh"]
-[ext_resource type="PackedScene" uid="uid://c3jjxg87rvyhs" path="res://scenes/house.tscn" id="2_yiiho"]
+[ext_resource type="Script" uid="uid://c1oas1y7c08ho" path="res://scripts/entity_nodes/houses_node.gd" id="1_m76fh"]
+[ext_resource type="PackedScene" uid="uid://c3jjxg87rvyhs" path="res://scenes/characters/house.tscn" id="2_yiiho"]
 [ext_resource type="Script" uid="uid://brt4otgn2jol1" path="res://addons/locker/scripts/storage_accessor/storage_accessor.gd" id="3_qmomb"]
 [ext_resource type="Script" uid="uid://dtvohndbwyieq" path="res://addons/locker/scripts/storage_accessor/storage_accessor_version.gd" id="4_mmbpk"]
 [ext_resource type="Script" uid="uid://kv534even0u1" path="res://scripts/locker/houses_node_accessor_v1.gd" id="5_ao5wp"]
