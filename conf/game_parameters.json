@@ -1,4 +1,5 @@
 {
+    "version":"v1.01alpha",
     "hostages_per_house": 5,
     "levels": [
         {
@@ -178,5 +179,5 @@
         }
     ],
     "max_hostage_onboard": 5,
-    "start_heli_lives": 1
+    "start_heli_lives": 5
 }

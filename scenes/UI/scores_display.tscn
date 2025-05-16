@@ -104,6 +104,7 @@ texture = ExtResource("2_u5qtf")
 expand_mode = 2
 
 [node name="DetainedCount" type="Label" parent="HostageScore/MarginContainer/GridContainer/DetainedContainer"]
+unique_name_in_owner = true
 custom_minimum_size = Vector2(50, 30)
 layout_mode = 2
 size_flags_horizontal = 2
@@ -124,6 +125,7 @@ texture = ExtResource("3_u5qtf")
 expand_mode = 2
 
 [node name="OutCount" type="Label" parent="HostageScore/MarginContainer/GridContainer/OutContainer"]
+unique_name_in_owner = true
 custom_minimum_size = Vector2(50, 30)
 layout_mode = 2
 size_flags_horizontal = 2
@@ -144,6 +146,7 @@ texture = ExtResource("5_7pjmi")
 expand_mode = 2
 
 [node name="HeliCount" type="Label" parent="HostageScore/MarginContainer/GridContainer/HeliContainer"]
+unique_name_in_owner = true
 custom_minimum_size = Vector2(50, 30)
 layout_mode = 2
 size_flags_horizontal = 2
@@ -153,17 +156,18 @@ text = "13"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="DeatContainer" type="HBoxContainer" parent="HostageScore/MarginContainer/GridContainer"]
+[node name="DeadContainer" type="HBoxContainer" parent="HostageScore/MarginContainer/GridContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="DeadIcon" type="TextureRect" parent="HostageScore/MarginContainer/GridContainer/DeatContainer"]
+[node name="DeadIcon" type="TextureRect" parent="HostageScore/MarginContainer/GridContainer/DeadContainer"]
 layout_mode = 2
 size_flags_horizontal = 6
 texture = ExtResource("1_08t0d")
 expand_mode = 2
 
-[node name="DeadCount" type="Label" parent="HostageScore/MarginContainer/GridContainer/DeatContainer"]
+[node name="DeadCount" type="Label" parent="HostageScore/MarginContainer/GridContainer/DeadContainer"]
+unique_name_in_owner = true
 custom_minimum_size = Vector2(50, 30)
 layout_mode = 2
 size_flags_horizontal = 2
@@ -184,6 +188,7 @@ texture = ExtResource("4_7pjmi")
 expand_mode = 2
 
 [node name="SaveCount" type="Label" parent="HostageScore/MarginContainer/GridContainer/SavedContainer"]
+unique_name_in_owner = true
 custom_minimum_size = Vector2(50, 30)
 layout_mode = 2
 size_flags_horizontal = 2
@@ -193,17 +198,22 @@ text = "13"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="ScoreContainer" type="HBoxContainer" parent="HostageScore/MarginContainer/GridContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="HostageScore/MarginContainer/GridContainer"]
+layout_mode = 2
+
+[node name="ScoreContainer" type="HBoxContainer" parent="HostageScore/MarginContainer/GridContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
+size_flags_vertical = 3
 
-[node name="Label" type="Label" parent="HostageScore/MarginContainer/GridContainer/ScoreContainer"]
+[node name="Label" type="Label" parent="HostageScore/MarginContainer/GridContainer/VBoxContainer/ScoreContainer"]
 layout_mode = 2
 theme = ExtResource("1_rrjwj")
 theme_override_font_sizes/font_size = 32
 text = "Score"
 
-[node name="ScoreCount" type="Label" parent="HostageScore/MarginContainer/GridContainer/ScoreContainer"]
+[node name="ScoreCount" type="Label" parent="HostageScore/MarginContainer/GridContainer/VBoxContainer/ScoreContainer"]
+unique_name_in_owner = true
 custom_minimum_size = Vector2(110, 30)
 layout_mode = 2
 size_flags_horizontal = 2
@@ -212,6 +222,13 @@ theme_type_variation = &"ScoreLabel"
 text = "13"
 horizontal_alignment = 2
 vertical_alignment = 1
+
+[node name="Version" type="Label" parent="HostageScore/MarginContainer/GridContainer/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_font_sizes/font_size = 12
+text = "vcc"
+horizontal_alignment = 2
 
 [node name="PressAnyKey" type="PanelContainer" parent="."]
 layout_mode = 1
@@ -245,6 +262,7 @@ theme_override_styles/panel = SubResource("StyleBoxEmpty_jgel7")
 layout_mode = 2
 
 [node name="Helilives" type="Label" parent="HeliRemaining/HBoxContainer"]
+unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
 theme = ExtResource("1_rrjwj")
