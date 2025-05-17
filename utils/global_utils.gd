@@ -1,15 +1,15 @@
 extends Node
 
+
 const MOUSE_SENSITIVITY = 0.003
 const MAX_VERTICAL_LOOK = 1.25
 const  GRAVITY = 9.8
+
 
 var give_intro_speech = true
 var mouse_sensitivity:float = MOUSE_SENSITIVITY
 var max_vertical_look: float = MAX_VERTICAL_LOOK
 var random: RandomNumberGenerator = RandomNumberGenerator.new()
-
-	
 
 var player:Actor:
 	get:
@@ -25,6 +25,7 @@ var game_camera:Camera3D:
 		Logger.debug("Game carmera set")
 		game_camera = c
 
+
 func check_var_for_error(myvar, err_msg):
 	if not myvar:
 		push_error(err_msg)
@@ -32,25 +33,16 @@ func check_var_for_error(myvar, err_msg):
 		#get_tree().root.propagate_notification(NOTIFICATION_WM_CLOSE_REQUEST)
 		get_tree().quit(1)
 
+
 func get_my_layer(obj : CollisionObject3D) -> int :
 	for idx in range(32):
 		if obj.get_collision_layer_value(idx + 1):
 			return  idx + 1
-	return 0	
+	return 0
+
 
 func logger_debug_vector3(v: Vector3,n: String = "") -> void:
 	Logger.debug("Vector " + n + ": (" + str(v.x) + ", " + str(v.y) + ", " + str(v.z) + ")")
-
-
-var exluded_signals = [
-	"child_order_changed",
-	"item_rect_changed",
-	"size_flags_changed",
-	"minimum_size_changed",
-	"visibility_changed",
-	
-	
-]
 
 
 func display_signal(n : Node, s: Dictionary, p_displayed: bool) -> bool:
@@ -72,8 +64,6 @@ func display_signal(n : Node, s: Dictionary, p_displayed: bool) -> bool:
 		p_displayed = true 
 		ret_value = p_displayed
 	return ret_value
-	
-
 
 
 func display_signal_list(n: Node) -> void :
@@ -88,7 +78,6 @@ func all_signals(root : Node) -> void:
 	display_signal_list(root)
 	
 	
-
 static var node_counter = 0
 func build_unique_name(_name: String) -> String:
 	node_counter +=1
