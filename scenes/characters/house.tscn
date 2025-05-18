@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://c3jjxg87rvyhs"]
+[gd_scene load_steps=11 format=3 uid="uid://c3jjxg87rvyhs"]
 
 [ext_resource type="Script" uid="uid://44iusi8spl7d" path="res://scripts/characters/house.gd" id="1_qtlar"]
 [ext_resource type="PackedScene" uid="uid://cwecakeec8hdj" path="res://scenes/characters/hostage.tscn" id="2_f74lx"]
@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://br1kbj0yuakm4" path="res://import/house2.glb" id="3_se78b"]
 [ext_resource type="LightmapGIData" uid="uid://kdflboyxn4rp" path="res://resources/lightmaps/house.lmbake" id="4_f74lx"]
 [ext_resource type="PackedScene" uid="uid://lskm5tbedisk" path="res://utils/lego_destroyer.tscn" id="5_3bgk5"]
+[ext_resource type="PackedScene" uid="uid://b1l033npj7aqk" path="res://scenes/model_nodes/house_destroyed.tscn" id="7_2f6lt"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_qtlar"]
 size = Vector3(2.31264, 2.24554, 5.07672)
@@ -54,7 +55,7 @@ curve = SubResource("Curve3D_f74lx")
 transform = Transform3D(-0.999047, 0, -0.0434366, 0, 0.999988, 0, 0.0434369, 0, -0.999039, -0.0306545, 0.071133, -0.236238)
 
 [node name="LegoDestroyer" parent="." instance=ExtResource("5_3bgk5")]
-destroy_model = ExtResource("2_se78b")
+destroy_model = ExtResource("7_2f6lt")
 initial_model_np = NodePath("../HouseModel")
 
 [node name="PostWayOut" type="Node3D" parent="."]

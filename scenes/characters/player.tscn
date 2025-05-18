@@ -12,7 +12,7 @@
 [ext_resource type="Resource" uid="uid://bvap80v44apuu" path="res://resources/state_machines/smp_player_flying.tres" id="6_y4r1p"]
 [ext_resource type="Script" uid="uid://cra0md6tqliiq" path="res://scripts/locker/l_s_state_machine_player.gd" id="9_3v2ag"]
 [ext_resource type="PackedScene" uid="uid://lskm5tbedisk" path="res://utils/lego_destroyer.tscn" id="9_ur7pv"]
-[ext_resource type="PackedScene" uid="uid://eryu7cbmb1ip" path="res://import/helicopter3_destroyed.glb" id="10_y4r1p"]
+[ext_resource type="PackedScene" uid="uid://bomltid3mooju" path="res://scenes/model_nodes/helicopter_model_destroyed.tscn" id="13_xhtjm"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_kvmko"]
 size = Vector3(3.48972, 1.04744, 3.45163)
@@ -46,6 +46,7 @@ stream = ExtResource("4_3v2ag")
 bus = &"Effects"
 
 [node name="LightmapGI" type="LightmapGI" parent="." groups=["lightmaps"]]
+unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.455528, 0)
 light_data = ExtResource("3_y4r1p")
 script = ExtResource("4_y4r1p")
@@ -80,7 +81,7 @@ unique_name_in_owner = true
 wait_time = 0.5
 
 [node name="LegoDestroyer" parent="." instance=ExtResource("9_ur7pv")]
-destroy_model = ExtResource("10_y4r1p")
+destroy_model = ExtResource("13_xhtjm")
 initial_model_np = NodePath("../ModelRotator/HelicopterModel")
 explode_intensity = 8.0
 

@@ -4,7 +4,7 @@
 [ext_resource type="PackedScene" uid="uid://5pu1uu8js4bi" path="res://import/cosmic_cruiser.glb" id="1_ooyga"]
 [ext_resource type="PackedScene" uid="uid://dcd0l1ye5i2lk" path="res://scenes/characters/missile1.tscn" id="2_j7o7i"]
 [ext_resource type="LightmapGIData" uid="uid://xbqtxrgs0qii" path="res://resources/lightmaps/cosmic_cruiser.lmbake" id="3_0vtqp"]
-[ext_resource type="PackedScene" uid="uid://c3r0h0p4w371a" path="res://import/cosmic_cruiser_destroyed.glb" id="5_edoeq"]
+[ext_resource type="PackedScene" uid="uid://dt2cf4jy5jmjb" path="res://scenes/model_nodes/cosmic_cruiser_destroyed.tscn" id="6_a867q"]
 [ext_resource type="Script" uid="uid://cra0md6tqliiq" path="res://scripts/locker/l_s_state_machine_player.gd" id="6_peeb5"]
 [ext_resource type="PackedScene" uid="uid://lskm5tbedisk" path="res://utils/lego_destroyer.tscn" id="7_565lu"]
 [ext_resource type="Resource" uid="uid://kh4vg10jpgc0" path="res://resources/state_machines/smp_cosmic_cruiser.tres" id="7_hci50"]
@@ -18,7 +18,7 @@ collision_mask = 171
 script = ExtResource("1_hci50")
 shell1_scene = ExtResource("2_j7o7i")
 
-[node name="LightmapGI" type="LightmapGI" parent="."]
+[node name="LightmapGI" type="LightmapGI" parent="." groups=["lightmaps"]]
 unique_name_in_owner = true
 light_data = ExtResource("3_0vtqp")
 
@@ -33,7 +33,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.121472, 0)
 
 [node name="LegoDestroyer" parent="." instance=ExtResource("7_565lu")]
 unique_name_in_owner = true
-destroy_model = ExtResource("5_edoeq")
+destroy_model = ExtResource("6_a867q")
 initial_model_np = NodePath("../cosmic_cruiser")
 explode_intensity = 8.0
 center_of_explosion_np = NodePath("../CenterOfExplosion")

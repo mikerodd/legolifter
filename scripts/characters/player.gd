@@ -19,6 +19,7 @@ signal destroy
 @onready var rotor_sound = %RotorSound
 @onready var onboard_hostage_sound = %OnbardHostageSound
 @onready var falling_sound =%FallingSound
+@onready var lightmap_gi = %LightmapGI
 
 ## Delay time between to rotation requests
 @export var time_to_rotate:float 
@@ -73,7 +74,12 @@ func _init_me(spawn_p: Dictionary) -> void:
 	if can_play: 
 		rotor_sound.pitch_scale = 0.7
 		rotor_sound.play() 
+	if GameVariables.use_lightmap:
+		lightmap_gi.visible = true
+	else:
+		lightmap_gi.visible = false
 	
+
 	
 func _physics_process(_delta: float) -> void:
 	if not can_play:

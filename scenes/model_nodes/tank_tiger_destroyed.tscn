@@ -1,0 +1,25 @@
+[gd_scene load_steps=4 format=3 uid="uid://d4ap3hj8r1rq6"]
+
+[ext_resource type="PackedScene" uid="uid://dkrt0idmey35x" path="res://import/tank_tiger_destroyed.glb" id="1_dnwa6"]
+[ext_resource type="LightmapGIData" uid="uid://jy8s8eplsnx8" path="res://resources/lightmaps/tank_tiger_destroyed.lmbake" id="1_id0jv"]
+
+[sub_resource type="GDScript" id="GDScript_dnwa6"]
+script/source = "extends Node3D
+
+@onready var lightmap_gi = $LightmapGI
+
+func _ready() -> void:
+	if GameVariables.use_lightmap:
+		lightmap_gi.visible = true
+	else:
+		lightmap_gi.visible = false
+	
+"
+
+[node name="TankTigerDestroyed" type="Node3D"]
+script = SubResource("GDScript_dnwa6")
+
+[node name="LightmapGI" type="LightmapGI" parent="." groups=["lightmaps"]]
+light_data = ExtResource("1_id0jv")
+
+[node name="tank_tiger_destroyed" parent="." instance=ExtResource("1_dnwa6")]

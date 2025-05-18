@@ -1,0 +1,25 @@
+[gd_scene load_steps=4 format=3 uid="uid://b1l033npj7aqk"]
+
+[ext_resource type="LightmapGIData" uid="uid://b8fpy2rlljfyi" path="res://resources/lightmaps/house_destroyed.lmbake" id="1_6wd52"]
+[ext_resource type="PackedScene" uid="uid://biinplawy7khb" path="res://import/house2-destroyed.glb" id="1_666q8"]
+
+[sub_resource type="GDScript" id="GDScript_666q8"]
+script/source = "extends Node3D
+
+@onready var lightmap_gi = $LightmapGI
+
+func _ready() -> void:
+	if GameVariables.use_lightmap:
+		lightmap_gi.visible = true
+	else:
+		lightmap_gi.visible = false
+	
+"
+
+[node name="HouseDestroyed" type="Node3D"]
+script = SubResource("GDScript_666q8")
+
+[node name="LightmapGI" type="LightmapGI" parent="." groups=["lightmaps"]]
+light_data = ExtResource("1_6wd52")
+
+[node name="house2-destroyed" parent="." instance=ExtResource("1_666q8")]

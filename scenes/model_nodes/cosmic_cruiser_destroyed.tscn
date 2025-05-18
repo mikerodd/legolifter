@@ -1,0 +1,25 @@
+[gd_scene load_steps=4 format=3 uid="uid://dt2cf4jy5jmjb"]
+
+[ext_resource type="LightmapGIData" uid="uid://lmti1857iohc" path="res://resources/lightmaps/cosmic_cruiser_destroyed.lmbake" id="1_j1u6t"]
+[ext_resource type="PackedScene" uid="uid://c3r0h0p4w371a" path="res://import/cosmic_cruiser_destroyed.glb" id="1_jm2vl"]
+
+[sub_resource type="GDScript" id="GDScript_jm2vl"]
+script/source = "extends Node3D
+
+@onready var lightmap_gi = $LightmapGI
+
+func _ready() -> void:
+	if GameVariables.use_lightmap:
+		lightmap_gi.visible = true
+	else:
+		lightmap_gi.visible = false
+	
+"
+
+[node name="CosmicCruiserDestroyed" type="Node3D"]
+script = SubResource("GDScript_jm2vl")
+
+[node name="LightmapGI" type="LightmapGI" parent="."]
+light_data = ExtResource("1_j1u6t")
+
+[node name="cosmic_cruiser_destroyed" parent="." instance=ExtResource("1_jm2vl")]

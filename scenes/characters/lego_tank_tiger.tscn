@@ -13,7 +13,7 @@
 [ext_resource type="Script" uid="uid://blso217oe4a4s" path="res://addons/imjp94.yafsm/src/conditions/BooleanCondition.gd" id="9_3u6oy"]
 [ext_resource type="Script" uid="uid://xj1j8owjucly" path="res://addons/imjp94.yafsm/src/conditions/Condition.gd" id="10_bh0sy"]
 [ext_resource type="PackedScene" uid="uid://lskm5tbedisk" path="res://utils/lego_destroyer.tscn" id="11_423go"]
-[ext_resource type="PackedScene" uid="uid://pswua3jtaceu" path="res://tests/test_tank.tscn" id="12_423go"]
+[ext_resource type="PackedScene" uid="uid://d4ap3hj8r1rq6" path="res://scenes/model_nodes/tank_tiger_destroyed.tscn" id="14_6iaub"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_jy6d4"]
 size = Vector3(5.89328, 0.890896, 1.85648)
@@ -401,7 +401,7 @@ metadata/_custom_type_script = "uid://46l00vp06dcr"
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.115753, 0)
 
 [node name="LegoDestroyer" parent="." instance=ExtResource("11_423go")]
-destroy_model = ExtResource("12_423go")
+destroy_model = ExtResource("14_6iaub")
 initial_model_np = NodePath("../TankMover/TankTiger")
 explode_intensity = 10.0
 center_of_explosion_np = NodePath("../MyExplosion")
