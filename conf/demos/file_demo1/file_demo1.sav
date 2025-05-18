@@ -2,8 +2,8 @@
 	"cosmic_cruisers_node": {
 		"cosmic_cruisers": [
 			{
-				"@path_position": "Vector3(-84.03067, 1.35846, 0.0)",
-				"@progress_ratio": 0.783333301544189,
+				"@path_position": "Vector3(-177.781, 0.35846, 0)",
+				"@progress_ratio": 0.299999982118607,
 				"@smp_ia": {
 					"_is_param_edited": false,
 					"_is_started": true,
@@ -23,24 +23,24 @@
 				"is_dead": false,
 				"name": "Plane3",
 				"position": "Vector3(0, 0, 0)",
-				"rotation": "Vector3(5.96047e-08, -1.5708, -2.20491e-07)"
+				"rotation": "Vector3(1.78814e-07, -1.5708, 4.33793e-08)"
 			}
 		],
 		"version": "1.0.0"
 	},
 	"game_camera": {
 		"@test": 42,
-		"position": "Vector3(-83.8341, 4.073, 32.23)",
+		"position": "Vector3(-177.54, 4.073, 32.23)",
 		"version": "1.0.0"
 	},
 	"houses_node": {
-		"house_count": 2,
+		"house_count": 3,
 		"houses": [
 			{
 				"current_hostage_count": 5,
 				"hostages": [],
 				"is_destroyed": false,
-				"name": "House15",
+				"name": "House30",
 				"position": "Vector3(-70, 0, 0)",
 				"timer_is_stopped": true
 			},
@@ -48,8 +48,122 @@
 				"current_hostage_count": 5,
 				"hostages": [],
 				"is_destroyed": false,
-				"name": "House16",
+				"name": "House31",
 				"position": "Vector3(-140, 0, 0)",
+				"timer_is_stopped": true
+			},
+			{
+				"current_hostage_count": 0,
+				"hostages": [
+					{
+						"@progress_ratio": 1.0,
+						"@smp_ia": {
+							"_is_param_edited": false,
+							"_is_started": true,
+							"_is_update_locked": true,
+							"_local_parameters": "{}",
+							"_parameters": "{}",
+							"_stack": "[\"Entry\", \"Entry\", \"Exiting\", \"Lost\", \"Idle\", \"ReachHelicopter\"]",
+							"_was_transited": false,
+							"active": true,
+							"autostart": true,
+							"current": "\"ReachHelicopter\"",
+							"state_machine": "Resource(\"res://resources/state_machines/smp_hostage_ia.tres\")",
+							"update_process_mode": 1
+						},
+						"@where_from": "house",
+						"global_position": "Vector3(-208.585, 0.00135803, 1.17932)",
+						"global_rotation": "Vector3(0, 1.5708, 0)",
+						"top_level": true
+					},
+					{
+						"@progress_ratio": 1.0,
+						"@smp_ia": {
+							"_is_param_edited": false,
+							"_is_started": true,
+							"_is_update_locked": true,
+							"_local_parameters": "{}",
+							"_parameters": "{}",
+							"_stack": "[\"Entry\", \"Entry\", \"Exiting\", \"Lost\", \"ReachHelicopter\"]",
+							"_was_transited": false,
+							"active": true,
+							"autostart": true,
+							"current": "\"ReachHelicopter\"",
+							"state_machine": "Resource(\"res://resources/state_machines/smp_hostage_ia.tres\")",
+							"update_process_mode": 1
+						},
+						"@where_from": "house",
+						"global_position": "Vector3(-177.912, 0.00135803, 1.17932)",
+						"global_rotation": "Vector3(0, -1.5708, 0)",
+						"top_level": true
+					},
+					{
+						"@progress_ratio": 1.0,
+						"@smp_ia": {
+							"_is_param_edited": false,
+							"_is_started": true,
+							"_is_update_locked": true,
+							"_local_parameters": "{}",
+							"_parameters": "{}",
+							"_stack": "[\"Entry\", \"Entry\", \"Exiting\", \"Lost\", \"Idle\", \"ReachHelicopter\"]",
+							"_was_transited": false,
+							"active": true,
+							"autostart": true,
+							"current": "\"ReachHelicopter\"",
+							"state_machine": "Resource(\"res://resources/state_machines/smp_hostage_ia.tres\")",
+							"update_process_mode": 1
+						},
+						"@where_from": "house",
+						"global_position": "Vector3(-177.912, 0.00135803, 1.17932)",
+						"global_rotation": "Vector3(0, -1.5708, 0)",
+						"top_level": true
+					},
+					{
+						"@progress_ratio": 1.0,
+						"@smp_ia": {
+							"_is_param_edited": false,
+							"_is_started": true,
+							"_is_update_locked": true,
+							"_local_parameters": "{}",
+							"_parameters": "{}",
+							"_stack": "[\"Entry\", \"Entry\", \"Exiting\", \"Lost\", \"Idle\", \"ReachHelicopter\"]",
+							"_was_transited": false,
+							"active": true,
+							"autostart": true,
+							"current": "\"ReachHelicopter\"",
+							"state_machine": "Resource(\"res://resources/state_machines/smp_hostage_ia.tres\")",
+							"update_process_mode": 1
+						},
+						"@where_from": "house",
+						"global_position": "Vector3(-199.917, 0.00135803, 1.17932)",
+						"global_rotation": "Vector3(0, 1.5708, 0)",
+						"top_level": true
+					},
+					{
+						"@progress_ratio": 1.0,
+						"@smp_ia": {
+							"_is_param_edited": false,
+							"_is_started": true,
+							"_is_update_locked": true,
+							"_local_parameters": "{}",
+							"_parameters": "{}",
+							"_stack": "[\"Entry\", \"Entry\", \"Exiting\", \"ReachHelicopter\", \"Idle\", \"Lost\"]",
+							"_was_transited": false,
+							"active": true,
+							"autostart": true,
+							"current": "\"Lost\"",
+							"state_machine": "Resource(\"res://resources/state_machines/smp_hostage_ia.tres\")",
+							"update_process_mode": 1
+						},
+						"@where_from": "house",
+						"global_position": "Vector3(-185.513, 0.00135803, 1.17932)",
+						"global_rotation": "Vector3(0, -1.5708, 0)",
+						"top_level": true
+					}
+				],
+				"is_destroyed": true,
+				"name": "House32",
+				"position": "Vector3(-210, 0, 0)",
 				"timer_is_stopped": true
 			}
 		],
@@ -89,13 +203,13 @@
 				"update_process_mode": 1
 			},
 			"@speed_scale": 1.5,
-			"can_fire": true,
+			"can_fire": false,
 			"can_play": true,
-			"elapsed_rotate": 0.0333333333333333,
+			"elapsed_rotate": 0.133333333333333,
 			"is_dead": false,
 			"name": "Player1",
 			"passenger_count": 0,
-			"position": "Vector3(-84.07, 5.52849, 0)",
+			"position": "Vector3(-179.57, 4.52849, 0)",
 			"rotation": "Vector3(0, 0, 0)"
 		},
 		"version": "1.0.0"
