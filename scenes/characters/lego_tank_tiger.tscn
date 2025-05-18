@@ -354,35 +354,45 @@ speed = 2.0
 safe_distance = 5.671
 
 [node name="LightmapGI" type="LightmapGI" parent="." groups=["lightmaps"]]
+unique_name_in_owner = true
 light_data = ExtResource("2_r38hh")
 
 [node name="FireSound" type="AudioStreamPlayer3D" parent="."]
+unique_name_in_owner = true
 stream = ExtResource("2_2hr33")
 volume_db = -5.0
 bus = &"Effects"
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.000556231, 0.444994, -0.0086381)
 shape = SubResource("BoxShape3D_jy6d4")
 
 [node name="TankMover" type="Node3D" parent="."]
 script = SubResource("GDScript_pm4ia")
 
-[node name="tank_tiger" parent="TankMover" instance=ExtResource("2_423go")]
+[node name="TankTiger" parent="TankMover" instance=ExtResource("2_423go")]
+unique_name_in_owner = true
 
-[node name="tank_tiger_turret" parent="TankMover" instance=ExtResource("3_2hr33")]
+[node name="TankTigerTurret" parent="TankMover" instance=ExtResource("3_2hr33")]
+unique_name_in_owner = true
 
-[node name="CanonRotator" type="Node3D" parent="TankMover/tank_tiger_turret"]
+[node name="CanonRotator" type="Node3D" parent="TankMover/TankTigerTurret"]
+unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.698181, 0.410971)
 
-[node name="tank_tiger_cannon" parent="TankMover/tank_tiger_turret/CanonRotator" instance=ExtResource("4_r38hh")]
+[node name="TankTigerCannon" parent="TankMover/TankTigerTurret/CanonRotator" instance=ExtResource("4_r38hh")]
+unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.687898, -0.418211)
 
-[node name="CanonMuzzle" type="Marker3D" parent="TankMover/tank_tiger_turret/CanonRotator"]
+[node name="CanonMuzzle" type="Marker3D" parent="TankMover/TankTigerTurret/CanonRotator"]
+unique_name_in_owner = true
 
 [node name="PlayerPointer" type="Marker3D" parent="."]
+unique_name_in_owner = true
 
 [node name="StateMachinePlayer" type="Node" parent="."]
+unique_name_in_owner = true
 script = ExtResource("5_27ga3")
 state_machine = SubResource("Resource_0q52d")
 metadata/_custom_type_script = "uid://46l00vp06dcr"
@@ -392,7 +402,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.115753, 0)
 
 [node name="LegoDestroyer" parent="." instance=ExtResource("11_423go")]
 destroy_model = ExtResource("12_423go")
-initial_model_np = NodePath("../TankMover/tank_tiger")
+initial_model_np = NodePath("../TankMover/TankTiger")
 explode_intensity = 10.0
 center_of_explosion_np = NodePath("../MyExplosion")
 

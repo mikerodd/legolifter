@@ -8,17 +8,17 @@ signal destroy
 
 @export var speed: float
 @export var safe_distance: float
-@onready var smp_ia = $StateMachinePlayer
-@onready var turret_model: Node3D = $TankMover/tank_tiger_turret
-@onready var cannon_model: Node3D = $TankMover/tank_tiger_turret/CanonRotator/tank_tiger_cannon
-@onready var tank_model : Node3D = $TankMover/tank_tiger
-@onready var player_pointer: Node3D = $PlayerPointer
-@onready var cannon_rotator: Node3D = $TankMover/tank_tiger_turret/CanonRotator
-@onready var cannon_muzzle = $TankMover/tank_tiger_turret/CanonRotator/CanonMuzzle
+@onready var smp_ia = %StateMachinePlayer
+@onready var turret_model: Node3D = %TankTigerTurret
+@onready var cannon_model: Node3D = %TankTigerCannon
+@onready var tank_model : Node3D = %TankTiger
+@onready var player_pointer: Node3D = %PlayerPointer
+@onready var cannon_rotator: Node3D = %CanonRotator
+@onready var cannon_muzzle = %CanonMuzzle
 @onready var tank_mover = $TankMover
-@onready var fire_sound = $FireSound
-@onready var lightmap_gi = $LightmapGI
-
+@onready var fire_sound = %FireSound
+@onready var lightmap_gi = %LightmapGI
+@onready var collision_shape = %CollisionShape3D
 
 var wait_delay: float = 0    # current wait 
 var wait_finished: float = 0    #wait limit when proba will be tested
@@ -155,6 +155,7 @@ func _on_state_machine_player_entered(to: Variant) -> void:
 
 func _on_lego_destroyer_destroy_begin() -> void:
 	is_dead = true
+	collision_shape.disabled = true
 	GameVariables.score += 200
 	Messenger.update_scores.emit()
 	turret_model.visible = false 
