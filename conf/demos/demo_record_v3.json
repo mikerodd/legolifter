@@ -1,105 +1,13 @@
 {
-    "/root/Game/3D/MovingBits/CosmicsNode": {
+    "/root/Game/3D/CosmicsNode": {
         "randf": [
             {
                 "tick": 0,
-                "value": 0.860572218894958
+                "value": 0.0221819672733545
             }
         ]
     },
-    "/root/Game/3D/MovingBits/HousesNode/House1/LegoDestroyer/BrickBreak": {
-        "randi": [
-            {
-                "tick": 0,
-                "value": 2
-            }
-        ]
-    },
-    "/root/Game/3D/MovingBits/HousesNode/House1/WayOut/HostagePathFollow4/Hostage": {
-        "randf": [
-            {
-                "tick": 1012,
-                "value": 1.15115892887115
-            },
-            {
-                "tick": 1045,
-                "value": 1.99151217937469
-            },
-            {
-                "tick": 1165,
-                "value": 0.532017827033997
-            },
-            {
-                "tick": 1285,
-                "value": 0.925502300262451
-            }
-        ]
-    },
-    "/root/Game/3D/MovingBits/HousesNode/House1/WayOut/HostagePathFollow5/Hostage": {
-        "randf": [
-            {
-                "tick": 1072,
-                "value": 2.91280651092529
-            },
-            {
-                "tick": 1247,
-                "value": 0.779123723506927
-            }
-        ]
-    },
-    "/root/Game/3D/MovingBits/HousesNode/House1/WayOut/HostagePathFollow7/Hostage": {
-        "randf": [
-            {
-                "tick": 1132,
-                "value": 1.09598755836487
-            },
-            {
-                "tick": 1198,
-                "value": 0.305978864431381
-            },
-            {
-                "tick": 1264,
-                "value": 0.102640807628632
-            },
-            {
-                "tick": 1330,
-                "value": 0.706871032714844
-            }
-        ]
-    },
-    "/root/Game/3D/MovingBits/HousesNode/House1/WayOut/HostagePathFollow8/Hostage": {
-        "randf": [
-            {
-                "tick": 1192,
-                "value": 1.11757290363312
-            },
-            {
-                "tick": 1260,
-                "value": 0.994483590126038
-            },
-            {
-                "tick": 1328,
-                "value": 0.356567710638046
-            },
-            {
-                "tick": 1396,
-                "value": 0.30635479092598
-            }
-        ]
-    },
-    "/root/Game/3D/MovingBits/HousesNode/House1/WayOut/HostagePathFollow9/Hostage": {
-        "randf": [
-            {
-                "tick": 1252,
-                "value": 2.17472815513611
-            },
-            {
-                "tick": 1383,
-                "value": 0.521482229232788
-            }
-        ]
-    },
-    "/root/Game/3D/MovingBits/PlayerNode/Player2/LegoDestroyer/BrickBreak": {
+    "/root/Game/3D/HousesNode/House1/LegoDestroyer/BrickBreak": {
         "randi": [
             {
                 "tick": 0,
@@ -107,131 +15,139 @@
             }
         ]
     },
-    "/root/Game/3D/MovingBits/TanksNode": {
+    "/root/Game/3D/HousesNode/House1/WayOut/HostagePathFollow4/Hostage": {
+        "randf": [
+            {
+                "tick": 930,
+                "value": 1.87911784648895
+            },
+            {
+                "tick": 1043,
+                "value": 0.598626255989075
+            }
+        ]
+    },
+    "/root/Game/3D/HousesNode/House1/WayOut/HostagePathFollow5/Hostage": {
+        "randf": [
+            {
+                "tick": 990,
+                "value": 2.31870269775391
+            },
+            {
+                "tick": 1130,
+                "value": 0.505070388317108
+            }
+        ]
+    },
+    "/root/Game/3D/HousesNode/House1/WayOut/HostagePathFollow6/Hostage": {
+        "randf": [
+            {
+                "tick": 1050,
+                "value": 2.22817659378052
+            },
+            {
+                "tick": 1184,
+                "value": 0.741756498813629
+            }
+        ]
+    },
+    "/root/Game/3D/HousesNode/House1/WayOut/HostagePathFollow7/Hostage": {
+        "randf": [
+            {
+                "tick": 1110,
+                "value": 1.562455534935
+            },
+            {
+                "tick": 1204,
+                "value": 0.259858548641205
+            }
+        ]
+    },
+    "/root/Game/3D/HousesNode/House1/WayOut/HostagePathFollow8/Hostage": {
+        "randf": [
+            {
+                "tick": 1170,
+                "value": 2.55413484573364
+            },
+            {
+                "tick": 1324,
+                "value": 0.90393328666687
+            }
+        ]
+    },
+    "/root/Game/3D/PlayerNode/Player2/LegoDestroyer/BrickBreak": {
+        "randi": [
+            {
+                "tick": 0,
+                "value": 0
+            }
+        ]
+    },
+    "/root/Game/3D/TanksNode": {
         "randf": [
             {
                 "tick": 0,
-                "value": 0.632635354995728
+                "value": 1.97354209423065
             },
             {
-                "tick": 338,
-                "value": 0.461636513471603
+                "tick": 419,
+                "value": 1.34758234024048
             },
             {
-                "tick": 1004,
-                "value": 0.126665621995926
+                "tick": 1218,
+                "value": 1.06590807437897
             },
             {
-                "tick": 2563,
-                "value": 0.606219589710236
+                "tick": 1963,
+                "value": 0.455318242311478
             }
         ]
     },
-    "/root/Game/3D/MovingBits/TanksNode/Tank10/LegoDestroyer/BrickBreak": {
+    "/root/Game/3D/TanksNode/Tank10/LegoDestroyer/BrickBreak": {
         "randi": [
             {
-                "tick": 2563,
+                "tick": 1963,
                 "value": 1
             }
         ]
     },
-    "/root/Game/3D/MovingBits/TanksNode/Tank3": {
+    "/root/Game/3D/TanksNode/Tank3": {
         "randf": [
             {
-                "tick": 380,
-                "value": 0.760852754116058
+                "tick": 420,
+                "value": 0.0924919173121452
             },
             {
-                "tick": 380,
-                "value": 3.58338356018066
+                "tick": 420,
+                "value": 3.03915858268738
             }
         ]
     },
-    "/root/Game/3D/MovingBits/TanksNode/Tank3/LegoDestroyer/BrickBreak": {
+    "/root/Game/3D/TanksNode/Tank3/LegoDestroyer/BrickBreak": {
         "randi": [
             {
-                "tick": 338,
+                "tick": 419,
                 "value": 1
             }
         ]
     },
-    "/root/Game/3D/MovingBits/TanksNode/Tank6": {
+    "/root/Game/3D/TanksNode/Tank9": {
         "randf": [
             {
-                "tick": 1161,
-                "value": 0.705243051052094
+                "tick": 1312,
+                "value": 0.415448874235153
             },
             {
-                "tick": 1161,
-                "value": 3.23815822601318
-            },
-            {
-                "tick": 1356,
-                "value": 0.531496047973633
-            },
-            {
-                "tick": 1356,
-                "value": 0.472253531217575
-            },
-            {
-                "tick": 1356,
-                "value": 1.26526486873627
-            },
-            {
-                "tick": 1432,
-                "value": 0.202665999531746
-            },
-            {
-                "tick": 1432,
-                "value": 9.82221603393555
-            },
-            {
-                "tick": 1656,
-                "value": 0.257012099027634
-            },
-            {
-                "tick": 1656,
-                "value": 3.18270039558411
-            },
-            {
-                "tick": 1847,
-                "value": 0.122642405331135
-            },
-            {
-                "tick": 1847,
-                "value": 10.0429344177246
-            },
-            {
-                "tick": 1849,
-                "value": 0.152861192822456
-            },
-            {
-                "tick": 1849,
-                "value": 3.12178158760071
-            },
-            {
-                "tick": 2037,
-                "value": 0.639099836349487
-            },
-            {
-                "tick": 2037,
-                "value": 9.46998977661133
-            },
-            {
-                "tick": 2073,
-                "value": 0.322493851184845
-            },
-            {
-                "tick": 2073,
-                "value": 2.84552645683289
+                "tick": 1312,
+                "value": 3.14441466331482
             }
         ]
     },
-    "/root/Game/3D/MovingBits/TanksNode/Tank6/LegoDestroyer/BrickBreak": {
+    "/root/Game/3D/TanksNode/Tank9/LegoDestroyer/BrickBreak": {
         "randi": [
             {
-                "tick": 1004,
-                "value": 2
+                "tick": 1218,
+                "value": 0
             }
         ]
     },
@@ -250,585 +166,315 @@
     "just_pressed": [
         {
             "name": "move_left",
-            "tick": 118,
-            "type": "P"
-        },
-        {
-            "name": "move_right",
-            "tick": 474,
-            "type": "P"
-        },
-        {
-            "name": "move_right",
-            "tick": 536,
+            "tick": 100,
             "type": "P"
         },
         {
             "name": "move_left",
-            "tick": 623,
+            "tick": 475,
             "type": "P"
         },
         {
             "name": "move_right",
-            "tick": 894,
+            "tick": 489,
             "type": "P"
         },
         {
             "name": "move_right",
-            "tick": 945,
-            "type": "P"
-        },
-        {
-            "name": "move_right",
-            "tick": 977,
+            "tick": 511,
             "type": "P"
         },
         {
             "name": "move_left",
-            "tick": 1556,
-            "type": "P"
-        },
-        {
-            "name": "move_right",
-            "tick": 1635,
-            "type": "P"
-        },
-        {
-            "name": "move_right",
-            "tick": 1674,
+            "tick": 560,
             "type": "P"
         },
         {
             "name": "move_left",
-            "tick": 1711,
+            "tick": 604,
+            "type": "P"
+        },
+        {
+            "name": "move_right",
+            "tick": 777,
             "type": "P"
         },
         {
             "name": "move_left",
-            "tick": 1741,
+            "tick": 1371,
             "type": "P"
         },
         {
             "name": "move_right",
-            "tick": 1769,
-            "type": "P"
-        },
-        {
-            "name": "move_left",
-            "tick": 1796,
+            "tick": 1455,
             "type": "P"
         },
         {
             "name": "move_right",
-            "tick": 1822,
-            "type": "P"
-        },
-        {
-            "name": "move_right",
-            "tick": 1874,
-            "type": "P"
-        },
-        {
-            "name": "move_right",
-            "tick": 1995,
-            "type": "P"
-        },
-        {
-            "name": "move_left",
-            "tick": 2074,
-            "type": "P"
-        },
-        {
-            "name": "move_left",
-            "tick": 2106,
-            "type": "P"
-        },
-        {
-            "name": "move_right",
-            "tick": 2173,
-            "type": "P"
-        },
-        {
-            "name": "move_right",
-            "tick": 2664,
+            "tick": 2058,
             "type": "P"
         }
     ],
-    "max_tick": 2709.0,
+    "max_tick": 2136.0,
     "pressed": [
         {
             "name": "move_up",
-            "tick": 62,
+            "tick": 74,
+            "type": "P"
+        },
+        {
+            "name": "move_left",
+            "tick": 100,
             "type": "P"
         },
         {
             "name": "move_up",
-            "tick": 83,
+            "tick": 101,
             "type": "R"
         },
         {
             "name": "move_left",
-            "tick": 118,
-            "type": "P"
-        },
-        {
-            "name": "move_left",
-            "tick": 452,
+            "tick": 469,
             "type": "R"
         },
         {
             "name": "rotate_left",
-            "tick": 452,
-            "type": "R"
-        },
-        {
-            "name": "fire",
             "tick": 469,
-            "type": "P"
-        },
-        {
-            "name": "move_right",
-            "tick": 474,
-            "type": "P"
-        },
-        {
-            "name": "rotate_right",
-            "tick": 474,
-            "type": "P"
-        },
-        {
-            "name": "move_right",
-            "tick": 483,
             "type": "R"
         },
         {
-            "name": "rotate_right",
-            "tick": 483,
+            "name": "move_left",
+            "tick": 475,
+            "type": "P"
+        },
+        {
+            "name": "move_left",
+            "tick": 479,
             "type": "R"
         },
         {
-            "name": "fire",
-            "tick": 491,
+            "name": "rotate_left",
+            "tick": 479,
             "type": "R"
         },
         {
             "name": "move_right",
-            "tick": 536,
+            "tick": 489,
             "type": "P"
         },
         {
             "name": "move_right",
-            "tick": 540,
+            "tick": 499,
             "type": "R"
         },
         {
             "name": "rotate_right",
-            "tick": 540,
+            "tick": 499,
             "type": "R"
         },
         {
             "name": "fire",
-            "tick": 561,
+            "tick": 510,
             "type": "P"
         },
         {
+            "name": "move_right",
+            "tick": 511,
+            "type": "P"
+        },
+        {
+            "name": "rotate_right",
+            "tick": 511,
+            "type": "P"
+        },
+        {
+            "name": "move_right",
+            "tick": 525,
+            "type": "R"
+        },
+        {
+            "name": "rotate_right",
+            "tick": 525,
+            "type": "R"
+        },
+        {
             "name": "fire",
+            "tick": 529,
+            "type": "R"
+        },
+        {
+            "name": "move_left",
+            "tick": 560,
+            "type": "P"
+        },
+        {
+            "name": "move_left",
             "tick": 564,
             "type": "R"
         },
         {
+            "name": "rotate_left",
+            "tick": 564,
+            "type": "R"
+        },
+        {
+            "name": "fire",
+            "tick": 567,
+            "type": "P"
+        },
+        {
+            "name": "fire",
+            "tick": 575,
+            "type": "R"
+        },
+        {
             "name": "move_left",
-            "tick": 623,
+            "tick": 604,
             "type": "P"
         },
         {
             "name": "move_left",
-            "tick": 784,
+            "tick": 732,
             "type": "R"
         },
         {
             "name": "rotate_left",
-            "tick": 784,
+            "tick": 732,
             "type": "R"
         },
         {
             "name": "fire",
-            "tick": 818,
+            "tick": 733,
             "type": "P"
         },
         {
             "name": "fire",
-            "tick": 823,
+            "tick": 742,
             "type": "R"
         },
         {
             "name": "move_right",
-            "tick": 894,
+            "tick": 777,
             "type": "P"
         },
         {
             "name": "move_right",
-            "tick": 906,
+            "tick": 796,
             "type": "R"
         },
         {
             "name": "rotate_right",
-            "tick": 906,
-            "type": "R"
-        },
-        {
-            "name": "move_right",
-            "tick": 945,
-            "type": "P"
-        },
-        {
-            "name": "move_right",
-            "tick": 953,
-            "type": "R"
-        },
-        {
-            "name": "rotate_right",
-            "tick": 953,
-            "type": "R"
-        },
-        {
-            "name": "move_right",
-            "tick": 977,
-            "type": "P"
-        },
-        {
-            "name": "move_right",
-            "tick": 986,
-            "type": "R"
-        },
-        {
-            "name": "rotate_right",
-            "tick": 986,
+            "tick": 796,
             "type": "R"
         },
         {
             "name": "move_down",
-            "tick": 998,
+            "tick": 822,
             "type": "P"
         },
         {
             "name": "move_down",
-            "tick": 1010,
-            "type": "R"
-        },
-        {
-            "name": "move_down",
-            "tick": 1036,
-            "type": "P"
-        },
-        {
-            "name": "move_down",
-            "tick": 1055,
+            "tick": 870,
             "type": "R"
         },
         {
             "name": "move_up",
-            "tick": 1533,
+            "tick": 1349,
             "type": "P"
         },
         {
             "name": "move_left",
-            "tick": 1556,
+            "tick": 1371,
             "type": "P"
         },
         {
             "name": "move_up",
-            "tick": 1557,
+            "tick": 1372,
             "type": "R"
         },
         {
-            "name": "fire",
-            "tick": 1602,
-            "type": "P"
-        },
-        {
             "name": "move_left",
-            "tick": 1602,
+            "tick": 1433,
             "type": "R"
         },
         {
             "name": "rotate_left",
-            "tick": 1602,
+            "tick": 1433,
             "type": "R"
         },
         {
             "name": "fire",
-            "tick": 1606,
-            "type": "R"
-        },
-        {
-            "name": "move_right",
-            "tick": 1635,
-            "type": "P"
-        },
-        {
-            "name": "move_right",
-            "tick": 1655,
-            "type": "R"
-        },
-        {
-            "name": "rotate_right",
-            "tick": 1655,
-            "type": "R"
-        },
-        {
-            "name": "fire",
-            "tick": 1657,
+            "tick": 1440,
             "type": "P"
         },
         {
             "name": "fire",
-            "tick": 1665,
+            "tick": 1447,
             "type": "R"
         },
         {
             "name": "move_right",
-            "tick": 1674,
-            "type": "P"
-        },
-        {
-            "name": "move_right",
-            "tick": 1695,
-            "type": "R"
-        },
-        {
-            "name": "rotate_right",
-            "tick": 1695,
-            "type": "R"
-        },
-        {
-            "name": "move_left",
-            "tick": 1711,
-            "type": "P"
-        },
-        {
-            "name": "move_left",
-            "tick": 1732,
-            "type": "R"
-        },
-        {
-            "name": "rotate_left",
-            "tick": 1732,
-            "type": "R"
-        },
-        {
-            "name": "move_left",
-            "tick": 1741,
-            "type": "P"
-        },
-        {
-            "name": "move_left",
-            "tick": 1745,
-            "type": "R"
-        },
-        {
-            "name": "rotate_left",
-            "tick": 1745,
-            "type": "R"
-        },
-        {
-            "name": "fire",
-            "tick": 1749,
+            "tick": 1455,
             "type": "P"
         },
         {
             "name": "fire",
-            "tick": 1753,
-            "type": "R"
-        },
-        {
-            "name": "move_right",
-            "tick": 1769,
-            "type": "P"
-        },
-        {
-            "name": "move_right",
-            "tick": 1785,
-            "type": "R"
-        },
-        {
-            "name": "rotate_right",
-            "tick": 1785,
-            "type": "R"
-        },
-        {
-            "name": "move_left",
-            "tick": 1796,
-            "type": "P"
-        },
-        {
-            "name": "move_left",
-            "tick": 1807,
-            "type": "R"
-        },
-        {
-            "name": "rotate_left",
-            "tick": 1807,
-            "type": "R"
-        },
-        {
-            "name": "fire",
-            "tick": 1811,
-            "type": "P"
-        },
-        {
-            "name": "fire",
-            "tick": 1816,
-            "type": "R"
-        },
-        {
-            "name": "move_right",
-            "tick": 1822,
-            "type": "P"
-        },
-        {
-            "name": "move_right",
-            "tick": 1829,
-            "type": "R"
-        },
-        {
-            "name": "rotate_right",
-            "tick": 1829,
-            "type": "R"
-        },
-        {
-            "name": "move_right",
-            "tick": 1874,
-            "type": "P"
-        },
-        {
-            "name": "move_right",
-            "tick": 1882,
-            "type": "R"
-        },
-        {
-            "name": "rotate_right",
-            "tick": 1882,
-            "type": "R"
-        },
-        {
-            "name": "move_right",
-            "tick": 1995,
-            "type": "P"
-        },
-        {
-            "name": "move_right",
-            "tick": 2000,
-            "type": "R"
-        },
-        {
-            "name": "rotate_right",
-            "tick": 2000,
-            "type": "R"
-        },
-        {
-            "name": "move_left",
-            "tick": 2074,
-            "type": "P"
-        },
-        {
-            "name": "move_left",
-            "tick": 2093,
-            "type": "R"
-        },
-        {
-            "name": "rotate_left",
-            "tick": 2093,
-            "type": "R"
-        },
-        {
-            "name": "move_left",
-            "tick": 2106,
-            "type": "P"
-        },
-        {
-            "name": "move_left",
-            "tick": 2109,
-            "type": "R"
-        },
-        {
-            "name": "rotate_left",
-            "tick": 2109,
-            "type": "R"
-        },
-        {
-            "name": "fire",
-            "tick": 2127,
-            "type": "P"
-        },
-        {
-            "name": "fire",
-            "tick": 2132,
-            "type": "R"
-        },
-        {
-            "name": "move_right",
-            "tick": 2173,
-            "type": "P"
-        },
-        {
-            "name": "fire",
-            "tick": 2250,
+            "tick": 1491,
             "type": "P"
         },
         {
             "name": "rotate_right",
-            "tick": 2251,
+            "tick": 1492,
             "type": "P"
         },
         {
             "name": "fire",
-            "tick": 2257,
+            "tick": 1503,
             "type": "R"
         },
         {
             "name": "move_right",
-            "tick": 2639,
+            "tick": 1970,
             "type": "R"
         },
         {
             "name": "rotate_right",
-            "tick": 2639,
+            "tick": 1970,
             "type": "R"
         },
         {
             "name": "move_down",
-            "tick": 2646,
+            "tick": 2037,
             "type": "P"
         },
         {
             "name": "move_down",
-            "tick": 2656,
+            "tick": 2046,
             "type": "R"
         },
         {
             "name": "move_right",
-            "tick": 2664,
+            "tick": 2058,
             "type": "P"
         },
         {
             "name": "move_right",
-            "tick": 2668,
+            "tick": 2064,
             "type": "R"
         },
         {
             "name": "rotate_right",
-            "tick": 2668,
+            "tick": 2064,
             "type": "R"
         },
         {
             "name": "move_down",
-            "tick": 2676,
+            "tick": 2100,
             "type": "P"
         },
         {
             "name": "move_down",
-            "tick": 2709,
+            "tick": 2136,
             "type": "R"
         }
     ]
