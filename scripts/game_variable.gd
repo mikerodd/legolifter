@@ -79,6 +79,7 @@ var high_graphics : bool = true:
 			else: 
 				switch_to_lightmaps()
 			high_graphics = value
+
 var version: String = "":
 	get():
 		return version
@@ -86,7 +87,20 @@ var version: String = "":
 		version = value
 		pass # nope !
 		
+var music_off : bool = false:
+	get():
+		return music_off
+	set(value):
+		AudioServer.set_bus_mute(AUDIO_MUSIC_BUS, value)
+		music_off = value
 		
+var effects_off : bool = false:
+	get():
+		return effects_off
+	set(value):
+		AudioServer.set_bus_mute(AUDIO_EFFECTS_BUS, value)
+		effects_off = value
+
 
 
 var start_heli_lives : int = 0
@@ -96,7 +110,7 @@ var start_level : int = 0
 var keyboard_use_wsad : bool = false
 var levels : Array
 var hall_of_fame: Array 
-var score: int = 0 
+var score: int = 0
 
 var user_parameters_list: Array = [
 	"start_level",
@@ -106,6 +120,8 @@ var user_parameters_list: Array = [
 	"music_volume",
 	"effects_volume",
 	"hall_of_fame",
+	"music_off",
+	"effects_off",
 ]
 var game_parameters_list: Array = [
 	"hostages_per_house",
@@ -130,7 +146,12 @@ var current_level : int = 0 :
 func _ready() -> void:
 	Messenger.begin_game.connect(_on_begin_game)
 	Messenger.begin_play.connect(_on_begin_play)
-
+	for b in range(0, AudioServer.bus_count):
+		print("bus %d, name : %s" % [b, AudioServer.get_bus_name(b)])
+		pass
+	AudioServer.set_bus_mute(AUDIO_EFFECTS_BUS, true)
+		
+		
 func _on_begin_play() -> void:
 	if LiveDemo.current_active == "demo":
 		current_level = self.start_level
