@@ -8,10 +8,10 @@ layout_mode = 3
 anchors_preset = 4
 anchor_top = 0.5
 anchor_bottom = 0.5
-offset_left = -346.0
-offset_top = -220.0
+offset_left = -380.0
+offset_top = -264.0
 offset_right = -4.0
-offset_bottom = 220.0
+offset_bottom = 176.0
 grow_vertical = 2
 size_flags_horizontal = 0
 size_flags_vertical = 0
@@ -19,23 +19,21 @@ script = ExtResource("1_m2cht")
 
 [node name="ParametersPanel" type="PanelContainer" parent="."]
 layout_mode = 1
-anchors_preset = 4
+anchors_preset = 6
+anchor_left = 1.0
 anchor_top = 0.5
+anchor_right = 1.0
 anchor_bottom = 0.5
+offset_left = -378.0
 offset_top = -213.0
-offset_right = 335.026
 offset_bottom = 213.0
+grow_horizontal = 0
 grow_vertical = 2
 theme = ExtResource("2_pweea")
 theme_type_variation = &"MiniPanel"
 
 [node name="HBoxContainer" type="HBoxContainer" parent="ParametersPanel"]
 layout_mode = 2
-
-[node name="Control8" type="Control" parent="ParametersPanel/HBoxContainer"]
-layout_mode = 2
-size_flags_horizontal = 3
-size_flags_vertical = 3
 
 [node name="VBoxContainer" type="VBoxContainer" parent="ParametersPanel/HBoxContainer"]
 layout_mode = 2
@@ -70,12 +68,16 @@ layout_mode = 2
 size_flags_vertical = 3
 
 [node name="FullscreenMode" type="CheckButton" parent="ParametersPanel/HBoxContainer/VBoxContainer"]
+unique_name_in_owner = true
 layout_mode = 2
 text = "Fullscreen"
+flat = true
 
 [node name="HighGraphics" type="CheckButton" parent="ParametersPanel/HBoxContainer/VBoxContainer"]
+unique_name_in_owner = true
 layout_mode = 2
 text = "High graphics"
+flat = true
 
 [node name="Control8" type="Control" parent="ParametersPanel/HBoxContainer/VBoxContainer"]
 layout_mode = 2
@@ -94,6 +96,7 @@ text = "Keyboard"
 horizontal_alignment = 1
 
 [node name="UseWSAD" type="ItemList" parent="ParametersPanel/HBoxContainer/VBoxContainer"]
+unique_name_in_owner = true
 layout_mode = 2
 size_flags_vertical = 3
 allow_search = false
@@ -117,40 +120,60 @@ horizontal_alignment = 1
 [node name="Sound" type="HBoxContainer" parent="ParametersPanel/HBoxContainer/VBoxContainer"]
 layout_mode = 2
 
-[node name="Labels" type="VBoxContainer" parent="ParametersPanel/HBoxContainer/VBoxContainer/Sound"]
+[node name="GridContainer" type="GridContainer" parent="ParametersPanel/HBoxContainer/VBoxContainer/Sound"]
 layout_mode = 2
+size_flags_horizontal = 3
+columns = 3
 
-[node name="MusicSliderLabel" type="Label" parent="ParametersPanel/HBoxContainer/VBoxContainer/Sound/Labels"]
+[node name="MusicSliderLabel" type="Label" parent="ParametersPanel/HBoxContainer/VBoxContainer/Sound/GridContainer"]
 layout_mode = 2
 size_flags_vertical = 3
 size_flags_stretch_ratio = 0.1
 theme_override_font_sizes/font_size = 18
 text = "Music"
 horizontal_alignment = 1
+vertical_alignment = 1
 
-[node name="EffectSliderLabel" type="Label" parent="ParametersPanel/HBoxContainer/VBoxContainer/Sound/Labels"]
+[node name="MusicSlider" type="HSlider" parent="ParametersPanel/HBoxContainer/VBoxContainer/Sound/GridContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 11.92)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+max_value = 1.995
+step = 0.01
+value = 1.0
+
+[node name="MusicOff" type="CheckBox" parent="ParametersPanel/HBoxContainer/VBoxContainer/Sound/GridContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(65, 0)
+layout_mode = 2
+text = "Off"
+flat = true
+
+[node name="EffectSliderLabel" type="Label" parent="ParametersPanel/HBoxContainer/VBoxContainer/Sound/GridContainer"]
 layout_mode = 2
 size_flags_vertical = 3
 size_flags_stretch_ratio = 0.1
 theme_override_font_sizes/font_size = 18
 text = "Effects"
 horizontal_alignment = 1
+vertical_alignment = 1
 
-[node name="Music2" type="VBoxContainer" parent="ParametersPanel/HBoxContainer/VBoxContainer/Sound"]
+[node name="EffectSlider" type="HSlider" parent="ParametersPanel/HBoxContainer/VBoxContainer/Sound/GridContainer"]
+unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
-
-[node name="MusicSlider" type="HSlider" parent="ParametersPanel/HBoxContainer/VBoxContainer/Sound/Music2"]
-layout_mode = 2
-size_flags_horizontal = 3
+size_flags_vertical = 1
 max_value = 1.995
 step = 0.01
 
-[node name="EffectSlider" type="HSlider" parent="ParametersPanel/HBoxContainer/VBoxContainer/Sound/Music2"]
+[node name="EffectsOff" type="CheckBox" parent="ParametersPanel/HBoxContainer/VBoxContainer/Sound/GridContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(65, 0)
 layout_mode = 2
-size_flags_horizontal = 3
-max_value = 1.995
-step = 0.01
+text = "Off"
+flat = true
 
 [node name="Control6" type="Control" parent="ParametersPanel/HBoxContainer/VBoxContainer"]
 layout_mode = 2
@@ -180,10 +203,7 @@ text = "Cancel"
 layout_mode = 2
 size_flags_vertical = 3
 
-[node name="Control9" type="Control" parent="ParametersPanel/HBoxContainer"]
-layout_mode = 2
-size_flags_horizontal = 3
-size_flags_vertical = 3
-
+[connection signal="pressed" from="ParametersPanel/HBoxContainer/VBoxContainer/Sound/GridContainer/MusicOff" to="." method="_on_music_off_pressed"]
+[connection signal="pressed" from="ParametersPanel/HBoxContainer/VBoxContainer/Sound/GridContainer/EffectsOff" to="." method="_on_effects_off_pressed"]
 [connection signal="pressed" from="ParametersPanel/HBoxContainer/VBoxContainer/HBoxContainer/MarginContainer/OK" to="." method="_on_ok_pressed"]
 [connection signal="pressed" from="ParametersPanel/HBoxContainer/VBoxContainer/HBoxContainer/MarginContainer2/Cancel" to="." method="_on_cancel_pressed"]

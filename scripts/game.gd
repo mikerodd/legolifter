@@ -101,7 +101,6 @@ func _on_smp_transited(_from: Variant, to: Variant) -> void:
 
 		"Play":
 			if not music.playing: music.play()
-			AudioServer.set_bus_mute(GameVariables.AUDIO_EFFECTS_BUS,false)
 			Messenger.demo_timer_forbidden.emit()
 			LiveDemo.reinit_unique_name()
 			LiveDemo.current_active = "live"
