@@ -1,12 +1,9 @@
 extends UILifterElement
 
-var ui_hide_position: float = -144.0
-var ui_show_position: float = 142.0
-
 
 
 func _ready() -> void:
-	#_show_me(true)
+	super._ready()
 	Messenger.ui_show_pause_buttons.connect(_show_me)
 
 func _on_continue_pressed() -> void:

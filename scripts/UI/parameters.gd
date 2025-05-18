@@ -11,8 +11,16 @@ extends UILifterElement
 @onready var music_off : CheckBox = %MusicOff
 @onready var effects_off: CheckBox = %EffectsOff
 
-var ui_hide_position: float = -380.0
-var ui_show_position: float = 5
+var ui_hide_position: float =  0 #- self.size.x  #-757
+var ui_show_position: float = self.size.x # 235.0
+
+#var ui_hide_position: float = -380.0
+#var ui_show_position: float = 5
+
+func _ready() -> void:
+	super._ready()
+	Messenger.ui_show_parameters.connect(_show_me)
+
 
 
 func _show_me(_darken : bool = false ) -> void :
@@ -33,8 +41,6 @@ func _show_me(_darken : bool = false ) -> void :
 	super._show_me(_darken)
 	
 
-func _ready() -> void:
-	Messenger.ui_show_parameters.connect(_show_me)
 
 
 func _on_ok_pressed() -> void:

@@ -3,29 +3,28 @@ class_name UILifterElement extends Control
 
 var speed : float = 1
 var stored_darken : bool = false 
-
+var size_x: float 
 static var null_np: NodePath
-func _ready() -> void:
-	pass
-	if not "ui_show_position" in self or \
-		not "ui_hide_position" in self:
-		push_error ("UILifterElement descendant '%s' without ui_show_position or ui_hide_position " % self.name)
 
+
+func _ready() -> void:
+	# FIXME size is set to 0 by the parent container ?
+	size_x = self.size.x
+	pass
 
 func _show_me(darken : bool = false ) -> void :
 	stored_darken = darken
 	if darken:
 		Messenger.ui_darken_display.emit()
-	if "ui_show_position" in self:
-		create_tween().tween_property(self,"position:x",self.ui_show_position, speed)\
-			.set_trans(Tween.TRANS_ELASTIC)
+	create_tween().tween_property(self,"position:x", size_x, speed)\
+		.set_trans(Tween.TRANS_ELASTIC)
+	Logger.debug("show position for %s : %f" % [name, size_x])
 
 func _hide_me(lighten : bool = false) -> void:
 	if (lighten or stored_darken): 
 		Messenger.ui_englight_display.emit()
-	if "ui_hide_position" in self:
-		create_tween().tween_property(self,"position:x",self.ui_hide_position, speed)\
-		.set_trans(Tween.TRANS_ELASTIC)
+	create_tween().tween_property(self,"position:x", 0, speed)\
+	.set_trans(Tween.TRANS_ELASTIC)
 	if Messenger.ui_show_previous_dialog.has_connections():
 		Messenger.ui_show_previous_dialog.emit(lighten)
 		cancel_return_to_previous()

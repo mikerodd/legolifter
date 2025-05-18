@@ -8,13 +8,13 @@ layout_mode = 3
 anchors_preset = 4
 anchor_top = 0.5
 anchor_bottom = 0.5
-offset_left = -380.0
+offset_left = -387.0
 offset_top = -264.0
 offset_right = -4.0
 offset_bottom = 176.0
 grow_vertical = 2
 size_flags_horizontal = 0
-size_flags_vertical = 0
+size_flags_vertical = 4
 script = ExtResource("1_m2cht")
 
 [node name="ParametersPanel" type="PanelContainer" parent="."]

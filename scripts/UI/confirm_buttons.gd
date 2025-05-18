@@ -5,6 +5,7 @@ var ui_show_position: float = 0
 
 
 func _ready() -> void:
+	super._ready()
 	Messenger.ui_show_confirm.connect(_show_me)
 
 func _on_yes_pressed() -> void:

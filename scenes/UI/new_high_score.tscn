@@ -17,6 +17,7 @@ var ui_show_position: float = 640.0
 var score_parms : Dictionary 
 
 func _ready() -> void:
+	super._ready()
 	Messenger.ui_new_high_score.connect(_show_my_score)
 
 
@@ -54,8 +55,12 @@ layout_mode = 3
 anchors_preset = 4
 anchor_top = 0.5
 anchor_bottom = 0.5
+offset_left = -605.0
+offset_top = -88.0
+offset_bottom = 88.0
 grow_vertical = 2
 size_flags_horizontal = 0
+size_flags_vertical = 4
 theme_type_variation = &"MiniPanel"
 script = SubResource("GDScript_brmxb")
 
@@ -70,10 +75,10 @@ anchor_left = 1.0
 anchor_top = 0.5
 anchor_right = 1.0
 anchor_bottom = 0.5
-offset_left = -630.0
-offset_top = -87.0
-offset_right = -3.77502
-offset_bottom = 87.0
+offset_left = -605.0
+offset_top = -88.0
+offset_right = -8.0
+offset_bottom = 86.0
 grow_horizontal = 0
 grow_vertical = 2
 theme = ExtResource("1_e4q3y")

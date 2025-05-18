@@ -8,6 +8,7 @@ var ui_show_position: float = 187
 @onready var level_label : Label = get_node(level_label_np)
 
 func _ready() -> void:
+	super._ready()
 	Messenger.ui_show_level.connect(_show_me)
 
 

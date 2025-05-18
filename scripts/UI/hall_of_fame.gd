@@ -1,12 +1,10 @@
 extends UILifterElement
 
-var ui_hide_position: float = -400.0
-var ui_show_position: float = 5
-
 var created_lines: Array = []
 @onready var template: VBoxContainer = $PanelContainer/VBoxContainer/VBoxContainer/LineTemplate
 
 func _ready() -> void:
+	super._ready()
 	Messenger.ui_show_hall_of_fame.connect(_show_me)
 	template.visible = false
 

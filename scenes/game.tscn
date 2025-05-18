@@ -1,4 +1,4 @@
-[gd_scene load_steps=78 format=3 uid="uid://c8q76n2as4lf"]
+[gd_scene load_steps=79 format=3 uid="uid://c8q76n2as4lf"]
 
 [ext_resource type="Script" uid="uid://divsggom6kasx" path="res://scripts/game.gd" id="1_u3qtx"]
 [ext_resource type="Script" uid="uid://c46lxiybkltaj" path="res://scripts/UI/dark_layer.gd" id="2_37s47"]
@@ -33,6 +33,8 @@
 [ext_resource type="PackedScene" uid="uid://b3manrp7qg001" path="res://scenes/background/floor.tscn" id="22_qnb83"]
 [ext_resource type="Environment" uid="uid://cjj51l6pe4rqg" path="res://resources/world_environment.tres" id="29_suyxu"]
 [ext_resource type="AudioStream" uid="uid://dlpj88c10utay" path="res://import/sound/legolifter-ost.wav" id="31_qouja"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_v2yb1"]
 
 [sub_resource type="CameraAttributesPractical" id="CameraAttributesPractical_qnb83"]
 dof_blur_far_enabled = true
@@ -361,32 +363,53 @@ offset_bottom = -288.0
 
 [node name="DarkLayer" type="ColorRect" parent="UI"]
 process_mode = 3
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_top = -324.0
 offset_right = 1152.0
-offset_bottom = 648.0
+offset_bottom = 324.0
+size_flags_horizontal = 0
 color = Color(0, 0, 0, 0)
 script = ExtResource("2_37s47")
 
-[node name="ConfirmButtons" parent="UI" instance=ExtResource("4_pl11u")]
-offset_left = -574.0
-offset_right = -574.0
+[node name="PanelContainer" type="PanelContainer" parent="UI"]
+anchors_preset = -1
+anchor_top = 0.464
+anchor_bottom = 0.464
+offset_top = -247.672
+offset_right = 1140.0
+offset_bottom = 247.328
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxEmpty_v2yb1")
 
-[node name="PauseButtons" parent="UI" instance=ExtResource("4_e1j6l")]
+[node name="Instructions" parent="UI/PanelContainer" instance=ExtResource("7_bt5mj")]
+layout_mode = 2
+size_flags_vertical = 4
 
-[node name="SideButtons" parent="UI" instance=ExtResource("5_pl11u")]
+[node name="Parameters" parent="UI/PanelContainer" instance=ExtResource("9_sgl2t")]
+layout_mode = 2
 
-[node name="Instructions" parent="UI" instance=ExtResource("7_bt5mj")]
-offset_left = -688.0
-offset_top = -260.0
-offset_bottom = 160.0
+[node name="HallOfFame" parent="UI/PanelContainer" instance=ExtResource("11_wljb1")]
+layout_mode = 2
+size_flags_vertical = 4
 
-[node name="Parameters" parent="UI" instance=ExtResource("9_sgl2t")]
+[node name="SideButtons" parent="UI/PanelContainer" instance=ExtResource("5_pl11u")]
+layout_mode = 2
+size_flags_vertical = 4
 
-[node name="Level" parent="UI" instance=ExtResource("9_bhx41")]
+[node name="PauseButtons" parent="UI/PanelContainer" instance=ExtResource("4_e1j6l")]
+layout_mode = 2
+
+[node name="ConfirmButtons" parent="UI/PanelContainer" instance=ExtResource("4_pl11u")]
+layout_mode = 2
+
+[node name="NewHighScore" parent="UI/PanelContainer" instance=ExtResource("12_v2yb1")]
+layout_mode = 2
+
+[node name="Level" parent="UI/PanelContainer" instance=ExtResource("9_bhx41")]
 process_mode = 3
-
-[node name="HallOfFame" parent="UI" instance=ExtResource("11_wljb1")]
-
-[node name="NewHighScore" parent="UI" instance=ExtResource("12_v2yb1")]
+layout_mode = 2
 
 [node name="3D" type="Node" parent="."]
 
