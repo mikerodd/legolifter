@@ -136,7 +136,6 @@ var fake_level: int
 var current_level : int = 0 :
 	set(value):
 		if value >= levels.size():
-			push_warning("Attempting to reach a level with no data, setting level to max")
 			current_level = levels.size() - 1
 			fake_level = value
 		else:
