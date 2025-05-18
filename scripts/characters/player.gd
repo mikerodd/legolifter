@@ -50,11 +50,10 @@ var limit_right : Vector3
 var limit_left : Vector3 
 var limit_up : Vector3 
 
-var tmp_trace : Array = []
 var physics_frame_begin : int =0
 var drawn_frame_begin : int = 0
 var process_frame_begin: int = 0 
-
+var fly_rotate_z_tween: Tween
 
 func _ready() -> void:
 	flying_smp.transited.connect(self._debug_fly)
@@ -89,8 +88,9 @@ func _physics_process(_delta: float) -> void:
 		"Landed":
 			if LiveDemo.is_action_pressed("move_up"): 
 				flying_smp.set_trigger("move_up")
-				create_tween().tween_property(model_anim,"speed_scale",1.5,1)
-				create_tween().tween_property(rotor_sound,"pitch_scale",1,1)
+				var tw : Tween = create_tween().set_parallel()
+				tw.tween_property(model_anim,"speed_scale",1.5,1)
+				tw.tween_property(rotor_sound,"pitch_scale",1,1)
 			
 		"OnFly":
 			var move_up = 1 if LiveDemo.is_action_pressed("move_up") else 0
@@ -108,22 +108,18 @@ func _physics_process(_delta: float) -> void:
 				move_up = 0
 			velocity = move_up * Vector3.UP *  speed  + move_down * Vector3.DOWN * speed 
 			velocity += move_left * Vector3.LEFT * speed  + move_right * Vector3.RIGHT * speed
-			if velocity != Vector3.ZERO:
-				tmp_trace.push_back({
-					"player_velocity" : velocity,
-					"player_position" : position,
-					"process_frame" : Engine.get_process_frames() - process_frame_begin,
-					"pyhysics_frame" : Engine.get_physics_frames() - physics_frame_begin,
-					"drawn_frame" : Engine.get_frames_drawn() - drawn_frame_begin
-				})
-			manage_collisions(move_and_collide(velocity * _delta))
+			manage_collisions(move_and_collide(velocity * _delta,false,0.01, true))
 			if action and can_fire:
 				fire_rocket()
 
 			if LiveDemo.is_action_just_pressed("move_left"):
-				create_tween().tween_property(model_rotator, "rotation:z", PI/16, rotation_duration)
+				if fly_rotate_z_tween: fly_rotate_z_tween.kill()
+				fly_rotate_z_tween = create_tween()
+				fly_rotate_z_tween.tween_property(model_rotator, "rotation:z", PI/16, rotation_duration)
 			elif LiveDemo.is_action_just_pressed("move_right"):
-				create_tween().tween_property(model_rotator, "rotation:z", -PI/16, rotation_duration)
+				if fly_rotate_z_tween: fly_rotate_z_tween.kill()
+				fly_rotate_z_tween = create_tween()
+				fly_rotate_z_tween.tween_property(model_rotator, "rotation:z", -PI/16, rotation_duration)
 			elif move_right == 0 and move_left == 0:
 				create_tween().tween_property(model_rotator, "rotation:z", 0, rotation_duration)
 
@@ -149,16 +145,13 @@ func _physics_process(_delta: float) -> void:
 							create_tween().tween_property(model, "rotation:y", PI/2, rotation_duration)
 
 		"Landing":
-			create_tween().tween_property(model_anim,"speed_scale", 0.5, 1)
-			create_tween().tween_property(rotor_sound,"pitch_scale",0.7,1)
-			create_tween().tween_property(model_rotator, "rotation:z", 0, 0.2)
+			if fly_rotate_z_tween: fly_rotate_z_tween.kill()
+			var tw : Tween = create_tween().set_parallel()
+			tw.tween_property(model_anim,"speed_scale", 0.5, 1)
+			tw.tween_property(rotor_sound,"pitch_scale",0.7,1)
+			tw.tween_property(model_rotator, "rotation:z", 0, 0.2)
+			tw.tween_property(self,"position:y",0.0,0.4)
 			flying_smp.set_trigger("landed")
-			if tmp_trace.size() != 0:
-				var file = FileAccess.open("user://test_player.json", FileAccess.WRITE)
-				var json_string = JSON.stringify(tmp_trace,"    ")
-				file.store_string(json_string)
-				file.close()
-
 
 		"Destroyed":
 			velocity += Vector3.DOWN * 0.2
@@ -250,7 +243,6 @@ func _on_lego_destroyer_destroy_end() -> void:
 	GameVariables.heli_lives -= 1
 	GameVariables.dead_count += GameVariables.heli_count
 	GameVariables.heli_count = 0
-	
 
 	if GameVariables.check_end_level() \
 			and GameVariables.heli_lives > 0:

@@ -52,16 +52,14 @@ script = ExtResource("4_y4r1p")
 
 [node name="NewHeliColisionShape" type="CollisionShape3D" parent="."]
 unique_name_in_owner = true
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.182022, 0.627111, -0.035965)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.182, 0.532, -0.036)
 shape = SubResource("BoxShape3D_kvmko")
 
 [node name="ModelRotator" type="Node3D" parent="."]
 unique_name_in_owner = true
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.455528, 0)
 
 [node name="HelicopterModel" parent="ModelRotator" instance=ExtResource("3_ur7pv")]
 unique_name_in_owner = true
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.345058, 0)
 
 [node name="MissileOrig" type="Marker3D" parent="ModelRotator/HelicopterModel"]
 unique_name_in_owner = true

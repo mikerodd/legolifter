@@ -435,7 +435,7 @@ dependency_paths = {
 metadata/_custom_type_script = "uid://brt4otgn2jol1"
 
 [node name="start_position" type="Marker3D" parent="3D/PlayerNode"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 51.93, -0.094, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 51.93, 0, 0)
 
 [node name="PlayerLimitRight" type="Marker3D" parent="3D/PlayerNode"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 60.4299, 0, 0)
