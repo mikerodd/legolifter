@@ -85,6 +85,8 @@ func _on_smp_transited(_from: Variant, to: Variant) -> void:
 	match to:
 		"StartScreen":
 			music.stop()
+			AudioServer.set_bus_mute(0,false)  
+			
 			Messenger.ui_englight_display.emit()
 			Messenger.demo_timer_authorized.emit()
 		"BeginGame":
@@ -121,7 +123,7 @@ func _on_smp_transited(_from: Variant, to: Variant) -> void:
 			Messenger.level_started.emit(GameVariables.current_level)
 			Messenger.begin_play.emit()
 			Messenger.ui_total_dark_display.emit()
-			AudioServer.set_bus_mute(GameVariables.AUDIO_EFFECTS_BUS,true)
+			AudioServer.set_bus_mute(0,true)  
 			await get_tree().create_timer(1).timeout
 			Messenger.ui_englight_display.emit()
 	
