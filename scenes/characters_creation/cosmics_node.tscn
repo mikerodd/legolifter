@@ -1,0 +1,46 @@
+[gd_scene load_steps=4 format=3 uid="uid://dhf2bmsbs7iii"]
+
+[ext_resource type="Script" uid="uid://cwdg2mdj2dpeh" path="res://scripts/characters_creation/cosmic_node.gd" id="1_kec0h"]
+[ext_resource type="PackedScene" uid="uid://c6mufcm6wmgcn" path="res://scenes/characters/cosmic_cruiser.tscn" id="2_k8xgy"]
+
+[sub_resource type="Curve3D" id="Curve3D_sgl2t"]
+_data = {
+"points": PackedVector3Array(5.93851, 0.534083, 0, -5.93851, -0.534083, 0, 8.77906, 14.4134, 0, 2.63521, 0.747299, -0.0131836, -2.63521, -0.747299, 0.0131836, -8.58482, 11.0565, 0, -0.0393324, 2.28123, 0, 0.0393324, -2.28123, 0, -15.5858, 7.0053, 0, -2.685, 0, 0, 0, 0, 0, -9.41039, 4.90495, 0),
+"tilts": PackedFloat32Array(0, -0.99, -2.285, -2.255)
+}
+point_count = 4
+
+[node name="CosmicsNode" type="Node"]
+script = ExtResource("1_kec0h")
+plane_scene = ExtResource("2_k8xgy")
+approach_path_l_np = NodePath("ApproachPathLeft")
+approach_path_r_np = NodePath("ApproachPathRight")
+spawn_timer_np = NodePath("SpawnTimer")
+player_pointer_np = NodePath("PlayerPointer")
+plane_limit_np = NodePath("PlaneRightLimit")
+live_cruisers_parent_np = NodePath("LiveCruisersParent")
+
+[node name="PlaneRightLimit" type="Marker3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12.8728, 2.39212, 0)
+
+[node name="PlayerPointer" type="Marker3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0393314, 4.17003, 0)
+
+[node name="ApproachPathLeft" type="Path3D" parent="."]
+curve = SubResource("Curve3D_sgl2t")
+
+[node name="way_in" type="PathFollow3D" parent="ApproachPathLeft"]
+transform = Transform3D(-4.37106e-08, -0.0895722, 0.996065, 0, 0.995959, 0.0895817, -0.999981, 3.91532e-09, -4.35394e-08, 8.77906, 14.4134, 0)
+
+[node name="ApproachPathRight" type="Path3D" parent="."]
+transform = Transform3D(-1, 0, -8.9407e-08, 0, 1, 0, 8.9407e-08, 0, -1, 0, 0, 0)
+curve = SubResource("Curve3D_sgl2t")
+
+[node name="way_in" type="PathFollow3D" parent="ApproachPathRight"]
+transform = Transform3D(-4.37106e-08, -0.0895722, 0.996065, 0, 0.995959, 0.0895817, -0.999981, 3.91532e-09, -4.35394e-08, 8.77906, 14.4134, 0)
+
+[node name="SpawnTimer" type="Timer" parent="."]
+
+[node name="LiveCruisersParent" type="Node3D" parent="."]
+
+[connection signal="timeout" from="SpawnTimer" to="." method="_on_spawn_timer_timeout"]

@@ -4,7 +4,7 @@
 [ext_resource type="AudioStream" uid="uid://1wk143xbdfb8" path="res://import/sound/lego-walk.wav" id="2_goc83"]
 [ext_resource type="PackedScene" uid="uid://bdrgrnxv5wsxj" path="res://import/hostage.glb" id="3_y11eo"]
 [ext_resource type="PackedScene" uid="uid://bxamcmsxsv5yr" path="res://import/male-blue9-game.glb" id="4_lo3id"]
-[ext_resource type="Script" uid="uid://cra0md6tqliiq" path="res://scripts/locker/l_s_state_machine_player.gd" id="5_pn41b"]
+[ext_resource type="Script" uid="uid://46l00vp06dcr" path="res://addons/imjp94.yafsm/src/StateMachinePlayer.gd" id="5_721vu"]
 [ext_resource type="Resource" uid="uid://cq0jtyghnkk47" path="res://resources/state_machines/smp_hostage_ia.tres" id="6_jkqte"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_tnswf"]
@@ -111,7 +111,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00487661, 0.435961, 0.0053
 shape = SubResource("BoxShape3D_tnswf")
 
 [node name="NewSPMIA" type="Node" parent="."]
-script = ExtResource("5_pn41b")
+script = ExtResource("5_721vu")
 state_machine = ExtResource("6_jkqte")
 
 [connection signal="transited" from="NewSPMIA" to="." method="_on_smp_ia_transited"]

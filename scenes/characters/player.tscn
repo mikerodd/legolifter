@@ -10,7 +10,7 @@
 [ext_resource type="Script" uid="uid://b23muv6jw0n6x" path="res://scripts/lightmap_gi.gd" id="4_y4r1p"]
 [ext_resource type="Resource" uid="uid://dnag2y7ad5phm" path="res://resources/state_machines/smp_player_rotating.tres" id="5_ur7pv"]
 [ext_resource type="Resource" uid="uid://bvap80v44apuu" path="res://resources/state_machines/smp_player_flying.tres" id="6_y4r1p"]
-[ext_resource type="Script" uid="uid://cra0md6tqliiq" path="res://scripts/locker/l_s_state_machine_player.gd" id="9_3v2ag"]
+[ext_resource type="Script" uid="uid://46l00vp06dcr" path="res://addons/imjp94.yafsm/src/StateMachinePlayer.gd" id="9_2l4js"]
 [ext_resource type="PackedScene" uid="uid://lskm5tbedisk" path="res://utils/lego_destroyer.tscn" id="9_ur7pv"]
 [ext_resource type="PackedScene" uid="uid://bomltid3mooju" path="res://scenes/model_nodes/helicopter_model_destroyed.tscn" id="13_xhtjm"]
 
@@ -68,12 +68,13 @@ transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -1.847
 
 [node name="RotatingSMP" type="Node" parent="."]
 unique_name_in_owner = true
-script = ExtResource("9_3v2ag")
+script = ExtResource("9_2l4js")
 state_machine = ExtResource("5_ur7pv")
+metadata/_custom_type_script = "uid://46l00vp06dcr"
 
 [node name="FlyingSMP" type="Node" parent="."]
 unique_name_in_owner = true
-script = ExtResource("9_3v2ag")
+script = ExtResource("9_2l4js")
 state_machine = ExtResource("6_y4r1p")
 
 [node name="FireRateTimer" type="Timer" parent="."]

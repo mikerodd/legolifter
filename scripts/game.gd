@@ -10,7 +10,6 @@ class_name Game
 @onready var tanks_node = %TanksNode
 @onready var planes_node = %CosmicsNode
 @onready var game_camera: Camera3D = %GameCamera
-@onready var lok_scene_mng : LokSceneStorageManager = %LokSceneStorageManager
 @onready var demo_timer : Timer = %DemoTimer
 @onready var music : AudioStreamPlayer = %Music
 
@@ -28,10 +27,6 @@ func _ready():
 	GameVariables.user_parameters_filename = user_parameters_filename
 	GameVariables.load_parameters()
 
-	# put accessors in the LokSceneStorageManager
-	for a in get_tree().get_nodes_in_group("lok_storage"):
-		lok_scene_mng.accessors.append(a)
-	
 	# Signal connection
 	Messenger.exit_game.connect(_on_exit_game)
 	Messenger.play_game.connect(_on_play_game)
@@ -162,11 +157,6 @@ func _unhandled_key_input(_event):
 			
 	if Input.is_action_just_pressed("play_record"):
 		smp.set_trigger("to_demo")
-	if Input.is_action_just_pressed("save"):
-		lok_scene_mng.save_data()
-		
-	if Input.is_action_just_pressed("load"):
-		lok_scene_mng.load_data()
 		
 
 

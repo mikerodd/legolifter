@@ -5,8 +5,8 @@
 [ext_resource type="PackedScene" uid="uid://dcd0l1ye5i2lk" path="res://scenes/characters/missile1.tscn" id="2_j7o7i"]
 [ext_resource type="LightmapGIData" uid="uid://xbqtxrgs0qii" path="res://resources/lightmaps/cosmic_cruiser.lmbake" id="3_0vtqp"]
 [ext_resource type="PackedScene" uid="uid://dt2cf4jy5jmjb" path="res://scenes/model_nodes/cosmic_cruiser_destroyed.tscn" id="6_a867q"]
-[ext_resource type="Script" uid="uid://cra0md6tqliiq" path="res://scripts/locker/l_s_state_machine_player.gd" id="6_peeb5"]
 [ext_resource type="PackedScene" uid="uid://lskm5tbedisk" path="res://utils/lego_destroyer.tscn" id="7_565lu"]
+[ext_resource type="Script" uid="uid://46l00vp06dcr" path="res://addons/imjp94.yafsm/src/StateMachinePlayer.gd" id="7_a867q"]
 [ext_resource type="Resource" uid="uid://kh4vg10jpgc0" path="res://resources/state_machines/smp_cosmic_cruiser.tres" id="7_hci50"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_qdaub"]
@@ -40,9 +40,8 @@ center_of_explosion_np = NodePath("../CenterOfExplosion")
 
 [node name="FiniteStateMachineIA" type="Node" parent="." groups=["enemies"]]
 unique_name_in_owner = true
-script = ExtResource("6_peeb5")
+script = ExtResource("7_a867q")
 state_machine = ExtResource("7_hci50")
-autostart = false
 metadata/_custom_type_script = "uid://46l00vp06dcr"
 
 [node name="MissileOrigs" type="Node3D" parent="."]

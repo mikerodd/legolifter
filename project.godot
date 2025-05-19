@@ -8,11 +8,6 @@
 
 config_version=5
 
-[addons]
-
-locker/saves_directory="res://conf/demos"
-locker/access_strategy="JSON"
-
 [application]
 
 config/name="legolifter"
@@ -32,7 +27,6 @@ GameVariables="*res://scripts/game_variable.gd"
 GlobalUtils="*res://utils/global_utils.gd"
 Messenger="*res://scripts/messenger.gd"
 Logger="*res://addons/gs_logger/logger.gd"
-LokGlobalStorageManager="*res://addons/locker/scripts/storage_manager/global_storage_manager.gd"
 LiveDemo="*res://scenes/live_demo/live_demo.tscn"
 
 [display]
@@ -46,7 +40,7 @@ version_control/autoload_on_startup=true
 
 [editor_plugins]
 
-enabled=PackedStringArray("res://addons/gs_logger/plugin.cfg", "res://addons/imjp94.yafsm/plugin.cfg", "res://addons/locker/plugin.cfg")
+enabled=PackedStringArray("res://addons/gs_logger/plugin.cfg", "res://addons/imjp94.yafsm/plugin.cfg")
 
 [global_group]
 

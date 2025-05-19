@@ -1,18 +1,10 @@
-[gd_scene load_steps=12 format=3 uid="uid://c7onwsk0sik8q"]
+[gd_scene load_steps=8 format=3 uid="uid://c7onwsk0sik8q"]
 
 [ext_resource type="Script" uid="uid://bd6edutjwqu77" path="res://scripts/characters/post_office.gd" id="1_7vu2t"]
 [ext_resource type="PackedScene" uid="uid://c5cdhw2a4u0mt" path="res://import/post-office.glb" id="1_t4qjs"]
 [ext_resource type="PackedScene" uid="uid://cwecakeec8hdj" path="res://scenes/characters/hostage.tscn" id="2_yv1ri"]
 [ext_resource type="LightmapGIData" uid="uid://diusel54cpx0m" path="res://resources/lightmaps/post_office.lmbake" id="3_1hob2"]
-[ext_resource type="Script" uid="uid://brt4otgn2jol1" path="res://addons/locker/scripts/storage_accessor/storage_accessor.gd" id="3_f3cdo"]
-[ext_resource type="Script" uid="uid://dtvohndbwyieq" path="res://addons/locker/scripts/storage_accessor/storage_accessor_version.gd" id="4_1hob2"]
-[ext_resource type="Script" uid="uid://b2tl1iieiad8p" path="res://scripts/locker/post_office_accessor_v1.gd" id="5_0b11a"]
 [ext_resource type="AudioStream" uid="uid://inpvgyixaxe" path="res://import/sound/hostage-onboard.wav" id="8_0b11a"]
-
-[sub_resource type="Resource" id="Resource_1wsqg"]
-script = ExtResource("5_0b11a")
-number = "1.0.0"
-metadata/_custom_type_script = "uid://b2tl1iieiad8p"
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_7vu2t"]
 size = Vector3(9.63108, 0.208435, 2.97415)
@@ -30,15 +22,6 @@ hostage_scene = ExtResource("2_yv1ri")
 
 [node name="LightmapGI" type="LightmapGI" parent="." groups=["lightmaps"]]
 light_data = ExtResource("3_1hob2")
-
-[node name="LokStorageAccessor" type="Node" parent="."]
-script = ExtResource("3_f3cdo")
-id = "post_office_way_in"
-versions = Array[ExtResource("4_1hob2")]([SubResource("Resource_1wsqg")])
-dependency_paths = {
-"post_office_way_in": NodePath("../WayIn")
-}
-metadata/_custom_type_script = "uid://brt4otgn2jol1"
 
 [node name="post-office-model" parent="." instance=ExtResource("1_t4qjs")]
 transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0, 0)

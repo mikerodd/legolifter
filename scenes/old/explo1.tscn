@@ -1,7 +1,7 @@
 [gd_scene load_steps=23 format=3 uid="uid://b18cw4qc2o2ef"]
 
 [ext_resource type="Material" uid="uid://em14ienv7cwv" path="res://shaders/explosion1.tres" id="1_f4xnr"]
-[ext_resource type="Script" uid="uid://bcixqk7kxirh7" path="res://scripts/explo_1.gd" id="1_tqcro"]
+[ext_resource type="Script" uid="uid://bcixqk7kxirh7" path="res://scripts/old/explo_1.gd" id="1_tqcro"]
 
 [sub_resource type="Curve" id="Curve_f4xnr"]
 _data = [Vector2(0.858407, 0), 0.0, 0.0, 0, 0]

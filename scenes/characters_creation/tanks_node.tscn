@@ -1,0 +1,23 @@
+[gd_scene load_steps=4 format=3 uid="uid://bf8tnljfl8isj"]
+
+[ext_resource type="Script" uid="uid://dypb8wvajp5am" path="res://scripts/characters_creation/tanks_node.gd" id="1_y1xgs"]
+[ext_resource type="PackedScene" uid="uid://cp6y14a0vp6su" path="res://scenes/old/tank.tscn" id="2_mg357"]
+[ext_resource type="PackedScene" uid="uid://d22wpla6um2ni" path="res://scenes/characters/lego_tank_tiger.tscn" id="3_nboyh"]
+
+[node name="TanksNode" type="Node"]
+script = ExtResource("1_y1xgs")
+tank_scene = ExtResource("2_mg357")
+lego_tank_scene = ExtResource("3_nboyh")
+tank_limit_np = NodePath("TankRightLimit")
+tank_spawn_location_np = NodePath("TankSpawnLocation")
+spawn_timer_np = NodePath("SpawnTimer")
+
+[node name="TankRightLimit" type="Marker3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12.7731, 0, 0)
+
+[node name="TankSpawnLocation" type="Marker3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -30.1011, 0, 2.2)
+
+[node name="SpawnTimer" type="Timer" parent="."]
+
+[connection signal="timeout" from="SpawnTimer" to="." method="_on_spawn_timer_timeout"]
