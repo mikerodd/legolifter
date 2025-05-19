@@ -9,6 +9,7 @@ func _ready() -> void:
 	Messenger.ui_show_confirm.connect(_show_me)
 
 func _on_yes_pressed() -> void:
+	AudioServer.set_bus_mute(0,true)  # avoid 
 	cancel_return_to_previous()
 	_hide_me()
 	get_tree().paused = false	
