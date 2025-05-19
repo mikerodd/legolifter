@@ -55,6 +55,10 @@ var physics_frame_begin : int =0
 var drawn_frame_begin : int = 0
 var process_frame_begin: int = 0 
 var fly_rotate_z_tween: Tween
+var velo_damper: float  = 0
+var velo_tween: Tween
+var before_velo: Vector3
+
 
 func _ready() -> void:
 	flying_smp.transited.connect(self._debug_fly)
@@ -78,7 +82,48 @@ func _init_me(spawn_p: Dictionary) -> void:
 		lightmap_gi.visible = true
 	else:
 		lightmap_gi.visible = false
-	
+
+
+var tw_dict : Dictionary = {
+	"move_up": null,
+	"move_down": null,
+	"move_left": null,
+	"move_right": null,
+}
+var tw_up : Tween = null
+
+func compute_move_value(act : String, no_damp: bool = false):
+	if no_damp or self.position.y < 0.3: 
+		if LiveDemo.is_action_pressed(act):
+			self.set(act, 1)
+		else:
+			self.set(act, 0)
+	else:
+		var dampening = 0.25
+		var trans = Tween.TRANS_EXPO
+		if LiveDemo.is_action_just_pressed(act):
+			tw_dict[act] = create_tween()
+			tw_dict[act].tween_property(self, act, 1,dampening)\
+					.set_trans(trans)\
+					.set_ease(Tween.EASE_OUT)
+		if LiveDemo.is_action_pressed(act):
+			pass # let the tween
+		else:
+			if  tw_dict[act] == null:
+				tw_dict[act] = create_tween()
+				tw_dict[act].tween_property(self, act, 0, dampening)\
+						.set_trans(trans)\
+						.set_ease(Tween.EASE_OUT)
+			else:
+				if not tw_dict[act].is_running():
+					tw_dict[act] = null
+		
+
+
+var move_up : float
+var move_down : float
+var move_left : float
+var move_right : float
 
 	
 func _physics_process(_delta: float) -> void:
@@ -92,6 +137,7 @@ func _physics_process(_delta: float) -> void:
 
 	match flying_smp.get_current():
 		"Landed":
+			compute_move_value("move_up", true)
 			if LiveDemo.is_action_pressed("move_up"): 
 				flying_smp.set_trigger("move_up")
 				var tw : Tween = create_tween().set_parallel()
@@ -99,10 +145,10 @@ func _physics_process(_delta: float) -> void:
 				tw.tween_property(rotor_sound,"pitch_scale",1,1)
 			
 		"OnFly":
-			var move_up = 1 if LiveDemo.is_action_pressed("move_up") else 0
-			var move_down = 1 if LiveDemo.is_action_pressed("move_down") else 0
-			var move_left = 1 if LiveDemo.is_action_pressed("move_left") else 0
-			var move_right = 1 if LiveDemo.is_action_pressed("move_right") else 0
+			compute_move_value("move_up") # 1 if LiveDemo.is_action_pressed("move_up") else 0
+			compute_move_value("move_down") # move_down = 1 if LiveDemo.is_action_pressed("move_down") else 0
+			compute_move_value("move_left") # move_left = 1 if LiveDemo.is_action_pressed("move_left") else 0
+			compute_move_value("move_right")  #move_right = 1 if LiveDemo.is_action_pressed("move_right") else 0
 			var action = 1 if LiveDemo.is_action_pressed("fire") else 0
 			var rotate_left = 1 if LiveDemo.is_action_pressed("rotate_left") else 0
 			var rotate_right = 1 if LiveDemo.is_action_pressed("rotate_right") else 0
@@ -262,7 +308,3 @@ func _on_lego_destroyer_destroy_end() -> void:
 			Messenger.ui_new_high_score.emit(sc)
 		else:
 			Messenger.return_to_start.emit()
-	
-func _on_tree_exiting() -> void:
-	var _test= name
-	pass

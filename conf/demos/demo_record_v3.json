@@ -3,7 +3,7 @@
         "randf": [
             {
                 "tick": 0,
-                "value": 0.0221819672733545
+                "value": 0.149405434727669
             }
         ]
     },
@@ -11,67 +11,71 @@
         "randi": [
             {
                 "tick": 0,
-                "value": 0
+                "value": 2
             }
         ]
     },
     "/root/Game/3D/HousesNode/House1/WayOut/HostagePathFollow4/Hostage": {
         "randf": [
             {
-                "tick": 930,
-                "value": 1.87911784648895
+                "tick": 963,
+                "value": 2.99676561355591
             },
             {
-                "tick": 1043,
-                "value": 0.598626255989075
+                "tick": 1143,
+                "value": 0.951334357261658
             }
         ]
     },
     "/root/Game/3D/HousesNode/House1/WayOut/HostagePathFollow5/Hostage": {
         "randf": [
             {
-                "tick": 990,
-                "value": 2.31870269775391
+                "tick": 1023,
+                "value": 1.64656400680542
             },
             {
-                "tick": 1130,
-                "value": 0.505070388317108
+                "tick": 1122,
+                "value": 0.597864389419556
             }
         ]
     },
     "/root/Game/3D/HousesNode/House1/WayOut/HostagePathFollow6/Hostage": {
         "randf": [
             {
-                "tick": 1050,
-                "value": 2.22817659378052
+                "tick": 1083,
+                "value": 1.96995496749878
             },
             {
-                "tick": 1184,
-                "value": 0.741756498813629
-            }
-        ]
-    },
-    "/root/Game/3D/HousesNode/House1/WayOut/HostagePathFollow7/Hostage": {
-        "randf": [
-            {
-                "tick": 1110,
-                "value": 1.562455534935
-            },
-            {
-                "tick": 1204,
-                "value": 0.259858548641205
+                "tick": 1202,
+                "value": 0.601639270782471
             }
         ]
     },
     "/root/Game/3D/HousesNode/House1/WayOut/HostagePathFollow8/Hostage": {
         "randf": [
             {
-                "tick": 1170,
-                "value": 2.55413484573364
+                "tick": 1143,
+                "value": 1.15670776367188
             },
             {
-                "tick": 1324,
-                "value": 0.90393328666687
+                "tick": 1213,
+                "value": 0.0245076771825552
+            },
+            {
+                "tick": 1283,
+                "value": 0.882501900196075
+            }
+        ]
+    },
+    "/root/Game/3D/HousesNode/House1/WayOut/HostagePathFollow9/Hostage": {
+        "randf": [
+            {
+                "tick": 1203,
+                "value": 2.83038377761841
+            },
+            {
+                "tick": 1373,
+                "value": 0.0997477322816849
             }
         ]
     },
@@ -79,7 +83,7 @@
         "randi": [
             {
                 "tick": 0,
-                "value": 0
+                "value": 2
             }
         ]
     },
@@ -87,26 +91,26 @@
         "randf": [
             {
                 "tick": 0,
-                "value": 1.97354209423065
+                "value": 0.576060116291046
             },
             {
-                "tick": 419,
-                "value": 1.34758234024048
+                "tick": 335,
+                "value": 0.126814618706703
             },
             {
-                "tick": 1218,
-                "value": 1.06590807437897
+                "tick": 978,
+                "value": 0.927341938018799
             },
             {
-                "tick": 1963,
-                "value": 0.455318242311478
+                "tick": 1997,
+                "value": 1.03476893901825
             }
         ]
     },
     "/root/Game/3D/TanksNode/Tank10/LegoDestroyer/BrickBreak": {
         "randi": [
             {
-                "tick": 1963,
+                "tick": 1997,
                 "value": 1
             }
         ]
@@ -114,40 +118,84 @@
     "/root/Game/3D/TanksNode/Tank3": {
         "randf": [
             {
-                "tick": 420,
-                "value": 0.0924919173121452
+                "tick": 336,
+                "value": 0.93440055847168
             },
             {
-                "tick": 420,
-                "value": 3.03915858268738
+                "tick": 336,
+                "value": 3.30370616912842
+            },
+            {
+                "tick": 535,
+                "value": 0.183936685323715
+            },
+            {
+                "tick": 535,
+                "value": 0.564439117908478
+            },
+            {
+                "tick": 535,
+                "value": 1.55343163013458
             }
         ]
     },
     "/root/Game/3D/TanksNode/Tank3/LegoDestroyer/BrickBreak": {
         "randi": [
             {
-                "tick": 419,
-                "value": 1
+                "tick": 335,
+                "value": 0
             }
         ]
     },
-    "/root/Game/3D/TanksNode/Tank9": {
+    "/root/Game/3D/TanksNode/Tank7": {
         "randf": [
             {
-                "tick": 1312,
-                "value": 0.415448874235153
+                "tick": 1072,
+                "value": 0.906714260578156
             },
             {
-                "tick": 1312,
-                "value": 3.14441466331482
+                "tick": 1072,
+                "value": 2.99685621261597
+            },
+            {
+                "tick": 1252,
+                "value": 0.655087172985077
+            },
+            {
+                "tick": 1252,
+                "value": 0.0953921526670456
+            },
+            {
+                "tick": 1252,
+                "value": 3.07738661766052
+            },
+            {
+                "tick": 1432,
+                "value": 0.272952318191528
+            },
+            {
+                "tick": 1432,
+                "value": 0.45731508731842
+            },
+            {
+                "tick": 1432,
+                "value": 2.25761866569519
+            },
+            {
+                "tick": 1568,
+                "value": 0.308082044124603
+            },
+            {
+                "tick": 1568,
+                "value": 10.2530326843262
             }
         ]
     },
-    "/root/Game/3D/TanksNode/Tank9/LegoDestroyer/BrickBreak": {
+    "/root/Game/3D/TanksNode/Tank7/LegoDestroyer/BrickBreak": {
         "randi": [
             {
-                "tick": 1218,
-                "value": 0
+                "tick": 978,
+                "value": 2
             }
         ]
     },
@@ -165,316 +213,686 @@
     },
     "just_pressed": [
         {
-            "name": "move_left",
-            "tick": 100,
+            "name": "move_up",
+            "tick": 37,
             "type": "P"
         },
         {
             "name": "move_left",
-            "tick": 475,
-            "type": "P"
-        },
-        {
-            "name": "move_right",
-            "tick": 489,
-            "type": "P"
-        },
-        {
-            "name": "move_right",
-            "tick": 511,
+            "tick": 59,
             "type": "P"
         },
         {
             "name": "move_left",
-            "tick": 560,
+            "tick": 59,
+            "type": "P"
+        },
+        {
+            "name": "move_right",
+            "tick": 411,
+            "type": "P"
+        },
+        {
+            "name": "move_right",
+            "tick": 411,
+            "type": "P"
+        },
+        {
+            "name": "move_right",
+            "tick": 430,
+            "type": "P"
+        },
+        {
+            "name": "move_right",
+            "tick": 430,
+            "type": "P"
+        },
+        {
+            "name": "move_right",
+            "tick": 474,
+            "type": "P"
+        },
+        {
+            "name": "move_right",
+            "tick": 474,
             "type": "P"
         },
         {
             "name": "move_left",
-            "tick": 604,
-            "type": "P"
-        },
-        {
-            "name": "move_right",
-            "tick": 777,
+            "tick": 505,
             "type": "P"
         },
         {
             "name": "move_left",
-            "tick": 1371,
+            "tick": 505,
+            "type": "P"
+        },
+        {
+            "name": "move_left",
+            "tick": 569,
+            "type": "P"
+        },
+        {
+            "name": "move_left",
+            "tick": 569,
+            "type": "P"
+        },
+        {
+            "name": "move_left",
+            "tick": 622,
+            "type": "P"
+        },
+        {
+            "name": "move_left",
+            "tick": 622,
             "type": "P"
         },
         {
             "name": "move_right",
-            "tick": 1455,
+            "tick": 798,
             "type": "P"
         },
         {
             "name": "move_right",
-            "tick": 2058,
+            "tick": 798,
+            "type": "P"
+        },
+        {
+            "name": "move_down",
+            "tick": 830,
+            "type": "P"
+        },
+        {
+            "name": "move_up",
+            "tick": 1402,
+            "type": "P"
+        },
+        {
+            "name": "move_up",
+            "tick": 1451,
+            "type": "P"
+        },
+        {
+            "name": "move_left",
+            "tick": 1461,
+            "type": "P"
+        },
+        {
+            "name": "move_left",
+            "tick": 1461,
+            "type": "P"
+        },
+        {
+            "name": "move_right",
+            "tick": 1549,
+            "type": "P"
+        },
+        {
+            "name": "move_right",
+            "tick": 1549,
+            "type": "P"
+        },
+        {
+            "name": "move_left",
+            "tick": 1562,
+            "type": "P"
+        },
+        {
+            "name": "move_left",
+            "tick": 1562,
+            "type": "P"
+        },
+        {
+            "name": "move_left",
+            "tick": 1580,
+            "type": "P"
+        },
+        {
+            "name": "move_left",
+            "tick": 1580,
+            "type": "P"
+        },
+        {
+            "name": "move_right",
+            "tick": 1612,
+            "type": "P"
+        },
+        {
+            "name": "move_right",
+            "tick": 1612,
+            "type": "P"
+        },
+        {
+            "name": "move_right",
+            "tick": 1662,
+            "type": "P"
+        },
+        {
+            "name": "move_right",
+            "tick": 1662,
+            "type": "P"
+        },
+        {
+            "name": "move_down",
+            "tick": 1808,
+            "type": "P"
+        },
+        {
+            "name": "move_up",
+            "tick": 1845,
+            "type": "P"
+        },
+        {
+            "name": "move_down",
+            "tick": 1935,
+            "type": "P"
+        },
+        {
+            "name": "move_right",
+            "tick": 1984,
+            "type": "P"
+        },
+        {
+            "name": "move_right",
+            "tick": 1984,
+            "type": "P"
+        },
+        {
+            "name": "move_right",
+            "tick": 2060,
+            "type": "P"
+        },
+        {
+            "name": "move_right",
+            "tick": 2060,
+            "type": "P"
+        },
+        {
+            "name": "move_up",
+            "tick": 2079,
+            "type": "P"
+        },
+        {
+            "name": "move_down",
+            "tick": 2134,
+            "type": "P"
+        },
+        {
+            "name": "move_down",
+            "tick": 2237,
             "type": "P"
         }
     ],
-    "max_tick": 2136.0,
+    "max_tick": 2259.0,
     "pressed": [
         {
             "name": "move_up",
-            "tick": 74,
-            "type": "P"
-        },
-        {
-            "name": "move_left",
-            "tick": 100,
+            "tick": 37,
             "type": "P"
         },
         {
             "name": "move_up",
-            "tick": 101,
-            "type": "R"
-        },
-        {
-            "name": "move_left",
-            "tick": 469,
-            "type": "R"
-        },
-        {
-            "name": "rotate_left",
-            "tick": 469,
-            "type": "R"
-        },
-        {
-            "name": "move_left",
-            "tick": 475,
+            "tick": 37,
             "type": "P"
         },
         {
             "name": "move_left",
-            "tick": 479,
-            "type": "R"
-        },
-        {
-            "name": "rotate_left",
-            "tick": 479,
-            "type": "R"
-        },
-        {
-            "name": "move_right",
-            "tick": 489,
-            "type": "P"
-        },
-        {
-            "name": "move_right",
-            "tick": 499,
-            "type": "R"
-        },
-        {
-            "name": "rotate_right",
-            "tick": 499,
-            "type": "R"
-        },
-        {
-            "name": "fire",
-            "tick": 510,
-            "type": "P"
-        },
-        {
-            "name": "move_right",
-            "tick": 511,
-            "type": "P"
-        },
-        {
-            "name": "rotate_right",
-            "tick": 511,
-            "type": "P"
-        },
-        {
-            "name": "move_right",
-            "tick": 525,
-            "type": "R"
-        },
-        {
-            "name": "rotate_right",
-            "tick": 525,
-            "type": "R"
-        },
-        {
-            "name": "fire",
-            "tick": 529,
-            "type": "R"
-        },
-        {
-            "name": "move_left",
-            "tick": 560,
-            "type": "P"
-        },
-        {
-            "name": "move_left",
-            "tick": 564,
-            "type": "R"
-        },
-        {
-            "name": "rotate_left",
-            "tick": 564,
-            "type": "R"
-        },
-        {
-            "name": "fire",
-            "tick": 567,
-            "type": "P"
-        },
-        {
-            "name": "fire",
-            "tick": 575,
-            "type": "R"
-        },
-        {
-            "name": "move_left",
-            "tick": 604,
-            "type": "P"
-        },
-        {
-            "name": "move_left",
-            "tick": 732,
-            "type": "R"
-        },
-        {
-            "name": "rotate_left",
-            "tick": 732,
-            "type": "R"
-        },
-        {
-            "name": "fire",
-            "tick": 733,
-            "type": "P"
-        },
-        {
-            "name": "fire",
-            "tick": 742,
-            "type": "R"
-        },
-        {
-            "name": "move_right",
-            "tick": 777,
-            "type": "P"
-        },
-        {
-            "name": "move_right",
-            "tick": 796,
-            "type": "R"
-        },
-        {
-            "name": "rotate_right",
-            "tick": 796,
-            "type": "R"
-        },
-        {
-            "name": "move_down",
-            "tick": 822,
-            "type": "P"
-        },
-        {
-            "name": "move_down",
-            "tick": 870,
-            "type": "R"
-        },
-        {
-            "name": "move_up",
-            "tick": 1349,
-            "type": "P"
-        },
-        {
-            "name": "move_left",
-            "tick": 1371,
+            "tick": 59,
             "type": "P"
         },
         {
             "name": "move_up",
-            "tick": 1372,
+            "tick": 59,
             "type": "R"
         },
         {
             "name": "move_left",
-            "tick": 1433,
+            "tick": 393,
             "type": "R"
         },
         {
             "name": "rotate_left",
-            "tick": 1433,
-            "type": "R"
-        },
-        {
-            "name": "fire",
-            "tick": 1440,
-            "type": "P"
-        },
-        {
-            "name": "fire",
-            "tick": 1447,
+            "tick": 393,
             "type": "R"
         },
         {
             "name": "move_right",
-            "tick": 1455,
+            "tick": 411,
             "type": "P"
-        },
-        {
-            "name": "fire",
-            "tick": 1491,
-            "type": "P"
-        },
-        {
-            "name": "rotate_right",
-            "tick": 1492,
-            "type": "P"
-        },
-        {
-            "name": "fire",
-            "tick": 1503,
-            "type": "R"
         },
         {
             "name": "move_right",
-            "tick": 1970,
+            "tick": 418,
             "type": "R"
         },
         {
             "name": "rotate_right",
-            "tick": 1970,
+            "tick": 418,
             "type": "R"
         },
         {
-            "name": "move_down",
-            "tick": 2037,
-            "type": "P"
-        },
-        {
-            "name": "move_down",
-            "tick": 2046,
-            "type": "R"
-        },
-        {
-            "name": "move_right",
-            "tick": 2058,
+            "name": "fire",
+            "tick": 426,
             "type": "P"
         },
         {
             "name": "move_right",
-            "tick": 2064,
+            "tick": 430,
+            "type": "P"
+        },
+        {
+            "name": "rotate_right",
+            "tick": 430,
+            "type": "P"
+        },
+        {
+            "name": "move_right",
+            "tick": 439,
             "type": "R"
         },
         {
             "name": "rotate_right",
-            "tick": 2064,
+            "tick": 439,
+            "type": "R"
+        },
+        {
+            "name": "fire",
+            "tick": 442,
+            "type": "R"
+        },
+        {
+            "name": "fire",
+            "tick": 472,
+            "type": "P"
+        },
+        {
+            "name": "move_right",
+            "tick": 474,
+            "type": "P"
+        },
+        {
+            "name": "rotate_right",
+            "tick": 474,
+            "type": "P"
+        },
+        {
+            "name": "move_right",
+            "tick": 482,
+            "type": "R"
+        },
+        {
+            "name": "rotate_right",
+            "tick": 482,
+            "type": "R"
+        },
+        {
+            "name": "fire",
+            "tick": 484,
+            "type": "R"
+        },
+        {
+            "name": "move_left",
+            "tick": 505,
+            "type": "P"
+        },
+        {
+            "name": "move_left",
+            "tick": 541,
+            "type": "R"
+        },
+        {
+            "name": "rotate_left",
+            "tick": 541,
+            "type": "R"
+        },
+        {
+            "name": "move_left",
+            "tick": 569,
+            "type": "P"
+        },
+        {
+            "name": "move_left",
+            "tick": 572,
+            "type": "R"
+        },
+        {
+            "name": "rotate_left",
+            "tick": 572,
+            "type": "R"
+        },
+        {
+            "name": "fire",
+            "tick": 577,
+            "type": "P"
+        },
+        {
+            "name": "fire",
+            "tick": 581,
+            "type": "R"
+        },
+        {
+            "name": "move_left",
+            "tick": 622,
+            "type": "P"
+        },
+        {
+            "name": "move_left",
+            "tick": 765,
+            "type": "R"
+        },
+        {
+            "name": "rotate_left",
+            "tick": 765,
+            "type": "R"
+        },
+        {
+            "name": "fire",
+            "tick": 768,
+            "type": "P"
+        },
+        {
+            "name": "fire",
+            "tick": 774,
+            "type": "R"
+        },
+        {
+            "name": "move_right",
+            "tick": 798,
+            "type": "P"
+        },
+        {
+            "name": "move_right",
+            "tick": 821,
+            "type": "R"
+        },
+        {
+            "name": "rotate_right",
+            "tick": 821,
             "type": "R"
         },
         {
             "name": "move_down",
-            "tick": 2100,
+            "tick": 830,
             "type": "P"
         },
         {
             "name": "move_down",
-            "tick": 2136,
+            "tick": 865,
+            "type": "R"
+        },
+        {
+            "name": "move_up",
+            "tick": 1402,
+            "type": "P"
+        },
+        {
+            "name": "move_up",
+            "tick": 1402,
+            "type": "P"
+        },
+        {
+            "name": "move_up",
+            "tick": 1441,
+            "type": "R"
+        },
+        {
+            "name": "move_up",
+            "tick": 1451,
+            "type": "P"
+        },
+        {
+            "name": "move_left",
+            "tick": 1461,
+            "type": "P"
+        },
+        {
+            "name": "move_up",
+            "tick": 1462,
+            "type": "R"
+        },
+        {
+            "name": "fire",
+            "tick": 1523,
+            "type": "P"
+        },
+        {
+            "name": "rotate_left",
+            "tick": 1524,
+            "type": "P"
+        },
+        {
+            "name": "move_left",
+            "tick": 1527,
+            "type": "R"
+        },
+        {
+            "name": "rotate_left",
+            "tick": 1527,
+            "type": "R"
+        },
+        {
+            "name": "fire",
+            "tick": 1531,
+            "type": "R"
+        },
+        {
+            "name": "move_right",
+            "tick": 1549,
+            "type": "P"
+        },
+        {
+            "name": "move_right",
+            "tick": 1553,
+            "type": "R"
+        },
+        {
+            "name": "rotate_right",
+            "tick": 1553,
+            "type": "R"
+        },
+        {
+            "name": "move_left",
+            "tick": 1562,
+            "type": "P"
+        },
+        {
+            "name": "fire",
+            "tick": 1566,
+            "type": "P"
+        },
+        {
+            "name": "move_left",
+            "tick": 1566,
+            "type": "R"
+        },
+        {
+            "name": "rotate_left",
+            "tick": 1566,
+            "type": "R"
+        },
+        {
+            "name": "fire",
+            "tick": 1571,
+            "type": "R"
+        },
+        {
+            "name": "move_left",
+            "tick": 1580,
+            "type": "P"
+        },
+        {
+            "name": "move_left",
+            "tick": 1589,
+            "type": "R"
+        },
+        {
+            "name": "rotate_left",
+            "tick": 1589,
+            "type": "R"
+        },
+        {
+            "name": "move_right",
+            "tick": 1612,
+            "type": "P"
+        },
+        {
+            "name": "move_right",
+            "tick": 1631,
+            "type": "R"
+        },
+        {
+            "name": "rotate_right",
+            "tick": 1631,
+            "type": "R"
+        },
+        {
+            "name": "fire",
+            "tick": 1633,
+            "type": "P"
+        },
+        {
+            "name": "fire",
+            "tick": 1641,
+            "type": "R"
+        },
+        {
+            "name": "move_right",
+            "tick": 1662,
+            "type": "P"
+        },
+        {
+            "name": "move_down",
+            "tick": 1808,
+            "type": "P"
+        },
+        {
+            "name": "move_down",
+            "tick": 1812,
+            "type": "R"
+        },
+        {
+            "name": "move_up",
+            "tick": 1845,
+            "type": "P"
+        },
+        {
+            "name": "move_up",
+            "tick": 1849,
+            "type": "R"
+        },
+        {
+            "name": "move_down",
+            "tick": 1935,
+            "type": "P"
+        },
+        {
+            "name": "move_down",
+            "tick": 1941,
+            "type": "R"
+        },
+        {
+            "name": "fire",
+            "tick": 1953,
+            "type": "P"
+        },
+        {
+            "name": "fire",
+            "tick": 1962,
+            "type": "R"
+        },
+        {
+            "name": "move_right",
+            "tick": 1963,
+            "type": "R"
+        },
+        {
+            "name": "rotate_right",
+            "tick": 1963,
+            "type": "R"
+        },
+        {
+            "name": "move_right",
+            "tick": 1984,
+            "type": "P"
+        },
+        {
+            "name": "fire",
+            "tick": 1993,
+            "type": "P"
+        },
+        {
+            "name": "fire",
+            "tick": 2003,
+            "type": "R"
+        },
+        {
+            "name": "fire",
+            "tick": 2033,
+            "type": "P"
+        },
+        {
+            "name": "rotate_right",
+            "tick": 2034,
+            "type": "P"
+        },
+        {
+            "name": "fire",
+            "tick": 2045,
+            "type": "R"
+        },
+        {
+            "name": "move_right",
+            "tick": 2048,
+            "type": "R"
+        },
+        {
+            "name": "rotate_right",
+            "tick": 2048,
+            "type": "R"
+        },
+        {
+            "name": "move_right",
+            "tick": 2060,
+            "type": "P"
+        },
+        {
+            "name": "move_up",
+            "tick": 2079,
+            "type": "P"
+        },
+        {
+            "name": "move_up",
+            "tick": 2088,
+            "type": "R"
+        },
+        {
+            "name": "move_down",
+            "tick": 2134,
+            "type": "P"
+        },
+        {
+            "name": "move_down",
+            "tick": 2137,
+            "type": "R"
+        },
+        {
+            "name": "move_right",
+            "tick": 2201,
+            "type": "R"
+        },
+        {
+            "name": "rotate_right",
+            "tick": 2201,
+            "type": "R"
+        },
+        {
+            "name": "move_down",
+            "tick": 2237,
+            "type": "P"
+        },
+        {
+            "name": "move_down",
+            "tick": 2259,
             "type": "R"
         }
     ]

@@ -90,7 +90,6 @@ explode_intensity = 8.0
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.345612, 0.69965, 0)
 
 [connection signal="destroy" from="." to="." method="_on_destroy"]
-[connection signal="tree_exiting" from="." to="." method="_on_tree_exiting"]
 [connection signal="transited" from="RotatingSMP" to="." method="_on_rotating_smp_transited"]
 [connection signal="timeout" from="FireRateTimer" to="." method="_on_fire_rate_timer_timeout"]
 [connection signal="destroy_begin" from="LegoDestroyer" to="." method="_on_lego_destroyer_destroy_begin"]
