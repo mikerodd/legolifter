@@ -58,7 +58,12 @@ var fly_rotate_z_tween: Tween
 var velo_damper: float  = 0
 var velo_tween: Tween
 var before_velo: Vector3
-
+var move_up : float
+var move_down : float
+var move_left : float
+var move_right : float
+var just_move_left : bool = false
+var just_move_right : bool = false 
 
 func _ready() -> void:
 	flying_smp.transited.connect(self._debug_fly)
@@ -98,14 +103,25 @@ func compute_move_value(act : String, no_damp: bool = false):
 			self.set(act, 1)
 		else:
 			self.set(act, 0)
+		if "just_" + act in self:
+			if LiveDemo.is_action_just_pressed(act):
+				self.set("just_" + act, true)
+			else:	
+				self.set("just_" + act, false)
 	else:
 		var dampening = 0.25
 		var trans = Tween.TRANS_EXPO
 		if LiveDemo.is_action_just_pressed(act):
+			if "just_" + act in self:
+				self.set("just_" + act, true)
 			tw_dict[act] = create_tween()
 			tw_dict[act].tween_property(self, act, 1,dampening)\
 					.set_trans(trans)\
 					.set_ease(Tween.EASE_OUT)
+		else:
+			if "just_" + act in self:
+				self.set("just_" + act, false)
+			
 		if LiveDemo.is_action_pressed(act):
 			pass # let the tween
 		else:
@@ -120,10 +136,6 @@ func compute_move_value(act : String, no_damp: bool = false):
 		
 
 
-var move_up : float
-var move_down : float
-var move_left : float
-var move_right : float
 
 	
 func _physics_process(_delta: float) -> void:
@@ -164,11 +176,11 @@ func _physics_process(_delta: float) -> void:
 			if action and can_fire:
 				fire_rocket()
 
-			if LiveDemo.is_action_just_pressed("move_left"):
+			if  just_move_left: #  LiveDemo.is_action_just_pressed("move_left"):
 				if fly_rotate_z_tween: fly_rotate_z_tween.kill()
 				fly_rotate_z_tween = create_tween()
 				fly_rotate_z_tween.tween_property(model_rotator, "rotation:z", PI/16, rotation_duration)
-			elif LiveDemo.is_action_just_pressed("move_right"):
+			elif just_move_right: #  LiveDemo.is_action_just_pressed("move_right"):
 				if fly_rotate_z_tween: fly_rotate_z_tween.kill()
 				fly_rotate_z_tween = create_tween()
 				fly_rotate_z_tween.tween_property(model_rotator, "rotation:z", -PI/16, rotation_duration)

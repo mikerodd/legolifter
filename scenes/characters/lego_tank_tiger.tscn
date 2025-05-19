@@ -407,6 +407,8 @@ explode_intensity = 10.0
 center_of_explosion_np = NodePath("../MyExplosion")
 
 [connection signal="destroy" from="." to="LegoDestroyer" method="destroy"]
+[connection signal="tree_exited" from="LightmapGI" to="." method="_on_lightmap_gi_tree_exited"]
+[connection signal="tree_exiting" from="LightmapGI" to="." method="_on_lightmap_gi_tree_exiting"]
 [connection signal="transited" from="StateMachinePlayer" to="." method="_on_fsm_ia_transited"]
 [connection signal="destroy_begin" from="LegoDestroyer" to="." method="_on_lego_destroyer_destroy_begin"]
 [connection signal="destroy_end" from="LegoDestroyer" to="." method="_on_lego_destroyer_destroy_end"]

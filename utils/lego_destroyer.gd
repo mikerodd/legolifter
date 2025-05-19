@@ -32,11 +32,13 @@ func destroy(show_explode: bool = true) -> void:
 	destroy_model_inst.transform = Transform3D(initial_model.global_basis, initial_model.global_position)
 	if show_explode:
 		apply_impulse(destroy_model_inst)
-	destroy_begin.emit()	
+	destroy_begin.emit()
 	if show_explode:
 		await get_tree().create_timer(3).timeout
 	if remove_pieces(destroy_model_inst) == 0:
-		destroy_model_inst.queue_free()
+		destroy_model_inst.visible = false
+		
+		#destroy_model_inst.queue_free()
 	destroy_end.emit()
 	
 	
@@ -52,10 +54,12 @@ func apply_impulse(node: Node3D):
 
 func remove_pieces(p: Node3D, remaining : int = 0) -> int :
 	if not p.name.contains("-notdestruct"):
-		if p.get_child_count() == 0:
-			p.queue_free()
+		if p.get_child_count() == 0 and p is MeshInstance3D:
+			#p.queue_free()
+			p.visible = false
 		else:
 			for p2 in p.get_children():
-				if p2 is Node3D: remaining += remove_pieces(p2, remaining)
+				if p2 is Node3D: 
+					remaining += remove_pieces(p2, remaining)
 		return remaining
 	else: return remaining + 1
